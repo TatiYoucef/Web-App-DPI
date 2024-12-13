@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-@Component({
+@Component({ //This is the main Component, the root
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet],
@@ -12,6 +12,7 @@ import { RouterOutlet } from '@angular/router';
   `,
   styles: [],
 })
+
 export class AppComponent {
   title = 'Front';
 }
