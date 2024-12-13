@@ -1,0 +1,21 @@
+.header-div{
+
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 40px;
+  padding: 10px 30px;
+  background-color: #3958B3;
+
+}
+
+.empty-div{
+
+  width: 100%;
+
+}
+
+button{
+  background-color: #3958B3;
+  border: none;
+}
