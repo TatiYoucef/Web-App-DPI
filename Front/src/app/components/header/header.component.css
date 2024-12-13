@@ -15,7 +15,13 @@
 
 }
 
-button{
-  background-color: #3958B3;
+.activated{
+  background-color: white;
+  border: none;
+  border-radius: 30px;
+}
+
+.desactivated{
+  background-color: transparent;
   border: none;
 }

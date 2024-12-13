@@ -1,8 +1,19 @@
 <header class="header-div">
   <img src="../../../assets/icons/threeLines.svg" width="30">
   <div class="empty-div"></div>
-  <button>
-    <img src="../../../assets/icons/notification.png" width="25">
-  </button>
+
+  @if (isNotiPage()) { <!--Ida rana fe page notification, le bouton de noti yetbeddel-->
+
+    <button class="activated">
+      <img src="../../../assets/icons/NotiActi.png" width="25">
+    </button>
+
+  } @else { <!--Sinon, maransh fe notification-->
+
+    <button class="desactivated" (click)="goToNotifications()">
+      <img src="../../../assets/icons/NotiDesacti.png" width="25">
+    </button>
+  }
+  
   <img src="../../../assets/icons/pfp.png" width="30">
 </header>
