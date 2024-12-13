@@ -13,8 +13,8 @@ export const routes: Routes = [
   {
     path:'test',
     loadComponent: async () => {
-      const m = await import("./pages/homePages/medecin/medecin.component");
-      return m.MedecinComponent;
+      const m = await import("./pages/homePages/rad-lab-inf-page/rad-lab-inf-page.component");
+      return m.RadLabInfPageComponent;
     }
   },
   {

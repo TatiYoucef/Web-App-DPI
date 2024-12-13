@@ -1,0 +1,24 @@
+<div class="container">
+
+  @defer { <!--Defer is when component needs to load so we show something while loading-->
+
+    <h2>Liste des patients en cours d'hospitalisation:</h2>
+
+    @for (item of listePatient(); track item.nss) { <!--For each patient ndirou ceci-->
+      <div class="item">
+  
+        <div class="profile">
+          <h3>{{ item.nom }} {{ item.prenom }}</h3>
+          <p> {{ item.nss }} </p>
+        </div>
+  
+        <div class="empty-div"></div>
+  
+        <p>Not yet submitted</p>
+      </div>
+    }
+  } @loading (minimum 4s) {
+    <p>Loading.....</p>
+  }
+
+</div>

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
+
 export class HeaderComponent implements DoCheck{
 
   router= inject(Router); //Router services
