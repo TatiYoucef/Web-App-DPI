@@ -1,25 +1,33 @@
 from rest_framework import serializers
-from .models import Medicament , Ordonnance , BilanRadiologique, BilanBiologique
+from .models import Medicament , Ordonnance , BilanRadiologique, BilanBiologique , MedicalRecord
 
 class MedicamentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Medicament
-        fields = ["id" , "nom", "dose" , "frequence"]
-
+        fields = '__all__'
+    
 
 class OrdonnanceSerializer(serializers.ModelSerializer):
-    medicament = serializers.StringRelatedField(many=True)  # Adjust to handle ManyToManyField
-
+    medicaments = MedicamentSerializer(many=True)  # Adjust to handle ManyToManyField
+    
     class Meta:
         model = Ordonnance
-        fields = ["id_ord", "medicament"]
+        fields = '__all__'
+        
+
+class MedicalRecordSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MedicalRecord
+        fields = '__all__'
 
 class BilanBilogiqueSerializer(serializers.ModelSerializer):
+    resultats_analytiques = MedicalRecordSerializer(many=True)
+
     class Meta:
         model = BilanBiologique
-        fields = ["id_bilan" , "type", "description" , "date_prescription", "medecin", "biologist" ,"resultats_analytiques"]    
+        fields ='__all__' 
         
 class BilanRadiologiqueSerializer(serializers.ModelSerializer):
     class Meta:
         model = BilanRadiologique
-        fields = ["id_bilan" , "type", "description" , "date_prescription", "medecin", "radiologue" ,"images","compte_rendu"]   
+        fields = '__all__'
