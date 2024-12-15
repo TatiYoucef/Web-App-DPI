@@ -1,0 +1,56 @@
+.header-div{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 30px;
+  padding: 20px 30px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+  position: relative;
+  z-index: 1;
+}
+
+.empty-div{
+  width: 100%;
+}
+
+.inscription-button{
+
+  font-family: "Quicksand", serif;
+  font-size: 20px;
+  font-weight: 500;
+
+  border: none;
+  border-radius: 100px ;
+  padding: 10px 20px;
+  background-color: #FFE7DB;
+  color: #3958B3;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s ;
+
+}
+
+.inscription-button:hover{
+  color: black;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+}
+
+.connexion-button{
+
+  font-family: "Quicksand", serif;
+  font-size: 20px;
+  font-weight: 500;
+
+  border: none;
+  border-radius: 100px ;
+  padding: 10px 20px;
+  background-color:#3958B3;
+  color: #EEF4FF;
+  transition: color 0.5s, background-color 0.5s ;
+
+}
+
+.connexion-button:hover{
+  color: #3958B3;
+  background-color: #EEF4FF;
+}

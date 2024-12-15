@@ -20,7 +20,7 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   align-items: center;
-  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  transition: background-color 0.3s, box-shadow 0.3s;
 
 }
 
