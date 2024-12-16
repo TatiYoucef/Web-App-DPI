@@ -10,6 +10,16 @@ export const routes: Routes = [
       return m.AcceuilPageComponent;
     }
   },
+
+  {
+    path :'logIn' , //Page Log-In
+    pathMatch: 'full', 
+    loadComponent: async () => {
+      const m = await import("./pages/authPages/log-in-page/log-in-page.component");
+      return m.LogInPageComponent;
+    }
+  },
+
   {
     path:'test',
     loadComponent: async () => {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { HeaderAccueilComponent } from "../../../components/header-accueil/header-accueil.component";
 
 @Component({

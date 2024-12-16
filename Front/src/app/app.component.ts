@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { HeaderAccueilComponent } from './components/header-accueil/header-accueil.component';
 
 @Component({ //This is the main Component, the root
   selector: 'app-root',
@@ -13,7 +12,6 @@ import { HeaderAccueilComponent } from './components/header-accueil/header-accue
     </main>
     
   `,
-  styles: [],
 })
 
 export class AppComponent {

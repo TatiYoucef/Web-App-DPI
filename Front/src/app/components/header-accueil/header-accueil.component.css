@@ -27,6 +27,8 @@
   color: #3958B3;
   transition: background-color 0.3s, color 0.3s, box-shadow 0.3s ;
 
+  cursor: pointer;
+
 }
 
 .inscription-button:hover{
@@ -47,6 +49,8 @@
   background-color:#3958B3;
   color: #EEF4FF;
   transition: color 0.5s, background-color 0.5s ;
+
+  cursor: pointer;
 
 }
 
