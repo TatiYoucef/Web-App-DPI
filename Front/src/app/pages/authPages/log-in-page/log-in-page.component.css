@@ -25,6 +25,9 @@
   background-color: white;
   border-radius: 20px;
   padding: 30px 20px;
+
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+
 }
 
 .inputs-div{
@@ -47,7 +50,15 @@ input{
   margin-bottom: 20px;
   padding: 5px 10px;
 
+  border: 1px solid #ccc; /* Light gray border */
+  outline: none;
   border-radius: 5px;
+  transition: border-color 0.3s ease;
+
+}
+
+input:focus {
+  border-color: #3958B3; /* Blue border on focus */
 }
 
 button{
@@ -56,15 +67,15 @@ button{
 
   background-color: #3958B3;
   color: white;
-  font-size: 15px;
+  font-size: 18px;
   font-weight: 800;
   border: none;
   border-radius: 20px;
 
-  padding: 20px 30%;
+  padding: 20px 25%;
   cursor: pointer;
 
-  transition: background-color 0.5s, color 0.5s, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out ;
+  transition: background-color 0.3s, color 0.3s, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out ;
 }
 
 button:hover{
