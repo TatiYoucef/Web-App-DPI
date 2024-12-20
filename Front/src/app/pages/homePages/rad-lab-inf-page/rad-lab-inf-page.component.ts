@@ -2,11 +2,12 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { FetchModulesService } from '../../../services/fetch-modules.service';
 import { Patient } from '../../../modules/types';
 import { catchError } from 'rxjs';
+import { HeaderComponent } from "../../../components/header/header.component";
 
 @Component({
   selector: 'app-rad-lab-inf-page',
   standalone: true,
-  imports: [],
+  imports: [HeaderComponent],
   templateUrl: './rad-lab-inf-page.component.html',
   styleUrl: './rad-lab-inf-page.component.css'
 })
