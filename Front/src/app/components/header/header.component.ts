@@ -1,4 +1,4 @@
-import { Component, DoCheck, inject, signal } from '@angular/core';
+import { Component, DoCheck, EventEmitter, inject, Output, signal } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
 })
 
 export class HeaderComponent implements DoCheck{
+
+  isDashBoard = signal(false);
+  @Output() changeDashEvent = new EventEmitter<boolean>();
 
   router= inject(Router); //Router services
 
@@ -24,4 +27,10 @@ export class HeaderComponent implements DoCheck{
   goToNotifications(){ //bouton de notification si cliqué
     this.router.navigate(["/notif"]);
   }
+
+  changeDashState(){
+    this.isDashBoard.update((e) => !e);
+    this.changeDashEvent.emit(this.isDashBoard()); //Child is telling that its boolean changed !!!
+  }
+
 }

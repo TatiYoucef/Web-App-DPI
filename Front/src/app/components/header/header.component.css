@@ -1,12 +1,16 @@
 .header-div{
   display: flex;
   justify-content: start;
-  align-items: end;
+  align-items: center;
   gap: 50px;
   padding: 20px 50px;
+  width: 95vw;
   background-color: #EEF4FF;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
-  position: relative;
+
+  position: fixed;
+  top: 0;
+  left: 0;
   z-index: 1;
 }
 
@@ -31,7 +35,7 @@
 }
 
 button{
-  padding: 10px 10px;
+  padding: 12px 10px;
   transition: background-color 0.3s;
   border: none;
   cursor: pointer;

@@ -1,8 +1,18 @@
 <header class="header-div">
 
-  <button class="desactivated">
-    <img src="../../../assets/icons/threeLines.png" width="30">
-  </button>
+  @if (isDashBoard()) {
+
+    <button class="activated" (click)="changeDashState()">
+      <img src="../../../assets/icons/threeLinesA.png" width="30">
+    </button>
+
+  } @else {
+
+    <button class="desactivated" (click)="changeDashState()">
+      <img src="../../../assets/icons/threeLinesD.png" width="30">
+    </button>
+
+  }
 
   <img src="../../../assets/images/TrackMed1.png" width="280px">
   <div class="empty-div"></div>
@@ -24,8 +34,8 @@
 
     <img src="../../../assets/icons/pfp.png" width="30">
     <div class="info-div">
-      <p>Tati Youcef</p>
-      <p>Admin</p>
+      <p>Ouadi Chaima</p>
+      <p>Infirmiere</p>
     </div>
     
   </div>
