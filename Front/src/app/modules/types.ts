@@ -1,6 +1,6 @@
 // Hna ndeclariw les classes tawe3na pour les utiliser (User, DPI, Médicament, ...)
 
-export type Patient = { //classe patient
+export type User = { //classe patient
   
   nss: number ,
   nom: string,

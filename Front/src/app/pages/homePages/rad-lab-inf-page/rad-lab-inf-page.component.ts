@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { FetchModulesService } from '../../../services/fetch-modules.service';
-import { Patient } from '../../../modules/types';
+import { FetchModulesService } from '../../../services/fetchModules/fetch-modules.service';
+import { User } from '../../../modules/types';
 import { catchError } from 'rxjs';
 import { HeaderComponent } from "../../../components/header/header.component";
 import { DashBoardComponent } from "../../../components/dash-board/dash-board.component";
@@ -18,7 +18,7 @@ export class RadLabInfPageComponent implements OnInit{
   isDashBoard = signal(false);
 
   fetchServices = inject(FetchModulesService);
-  listePatient = signal<Array<Patient>>([]);
+  listePatient = signal<Array<User>>([]);
 
   ngOnInit(): void { //when this page load, we fetch the list of patients
       
@@ -27,13 +27,12 @@ export class RadLabInfPageComponent implements OnInit{
         console.log(err);
         throw err;
       })
-    ).subscribe((liste) => {
+      ).subscribe((liste) => {
       this.listePatient.set(liste);
     })
   }
 
   changeDashState(){
-    console.log("Hello ")
     this.isDashBoard.update((e) => !e);
   }
   

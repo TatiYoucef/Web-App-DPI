@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Patient } from '../modules/types';
+import { User } from '../../modules/types';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,6 @@ export class FetchModulesService { //Hna yesraw les fetch functions
 
   fetchListePatient(){
     const url = "http://localhost:3000/patients"; //Json Test, not from backend
-    return this.http.get<Array<Patient>>(url);
+    return this.http.get<Array<User>>(url);
   }
 }
