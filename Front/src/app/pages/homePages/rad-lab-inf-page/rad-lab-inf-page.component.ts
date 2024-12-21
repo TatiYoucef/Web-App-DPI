@@ -4,11 +4,12 @@ import { User } from '../../../modules/types';
 import { catchError } from 'rxjs';
 import { HeaderComponent } from "../../../components/header/header.component";
 import { DashBoardComponent } from "../../../components/dash-board/dash-board.component";
+import { LoadingScreenComponent } from "../../../components/loading-screen/loading-screen.component";
 
 @Component({
   selector: 'app-rad-lab-inf-page',
   standalone: true,
-  imports: [HeaderComponent, DashBoardComponent],
+  imports: [HeaderComponent, DashBoardComponent, LoadingScreenComponent],
   templateUrl: './rad-lab-inf-page.component.html',
   styleUrl: './rad-lab-inf-page.component.css'
 })
