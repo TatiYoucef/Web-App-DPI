@@ -6,15 +6,15 @@
       <h2>Ravis de vous revoir !</h2>
 
       <div class="inputs-div">
-        <label>Email</label>
-        <input type="email" placeholder="xxx@gmail.com">
+        <label>Nom de l'utisateur</label>
+        <input id="username" type="text" placeholder="nom de l'utilisateur" #username>
         <Label>Mot de passe</Label>
-        <input type="password" placeholder="mot de passe">
+        <input id="password" type="password" placeholder="mot de passe" #password>
         <i id="togglrPassword" class="fa fa-fw fa-eye toggle-password field-icon"></i>
-        
       </div>
 
-      <button>Se connecter</button>
+      <button (click)="onSubmit(username.value,password.value)">Se connecter</button>
+      <p  class="error-message">{{ errorMessage }}</p>
     </div>
   </div>
 
