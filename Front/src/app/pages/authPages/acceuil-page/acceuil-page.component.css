@@ -1,0 +1,27 @@
+.container{
+
+  background-color: #EEF4FF;
+  display: flex;
+  justify-content: start;
+
+  padding: 50px 30px;
+  gap: 200px;
+  height: 100vh;
+
+}
+
+.text-div{
+  width: 300%;
+}
+
+h1{
+  font-weight: 800;
+}
+
+.text-h1{
+  font-weight: 100;
+}
+
+h1 span{
+  color: #3958B3;
+}

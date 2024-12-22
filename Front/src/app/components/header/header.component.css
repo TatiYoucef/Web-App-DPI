@@ -1,0 +1,61 @@
+.header-div{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 50px;
+  padding: 20px 50px;
+  width: 95vw;
+  background-color: #EEF4FF;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.pfpInfo-div{
+  display: flex;
+  gap: 10px;
+  justify-content: start;
+  align-items: center;
+}
+
+.info-div{
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  justify-content: start;
+  align-items: start;
+}
+
+.empty-div{
+  width: 100%;
+}
+
+button{
+  padding: 12px 10px;
+  transition: background-color 0.3s;
+  border: none;
+  cursor: pointer;
+  border-radius: 30px;
+}
+
+button:hover{
+  background-color: rgb(213, 213, 213);
+}
+
+.activated{
+  background-color: black;
+}
+
+.desactivated{
+  background-color: transparent;
+}
+
+p{
+  white-space: nowrap;
+  margin: 0;
+  margin-bottom: 2px;
+}

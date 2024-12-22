@@ -1,0 +1,59 @@
+.content{
+
+  display: flex;
+  margin-top: 100px;
+  gap: 0;
+  padding: 0;
+  align-items: start;
+}
+
+.empty-dash{
+  width: 25vw;
+}
+
+.container {
+
+  display: flex;
+  flex-direction: column; /* Flex items will be arranged vertically */
+  justify-content: flex-start; /* Align items at the top by default */
+  width: 100%;
+  gap: 10px; /* Add spacing between items */
+  margin: 20px;
+}
+
+.item {
+
+  display: flex;
+  justify-content: start;
+
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #f0f0f0;
+  border: 2px solid black;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  align-items: center;
+  transition: background-color 0.3s, box-shadow 0.3s;
+
+}
+
+.item:hover{
+
+  background-color: rgb(219, 215, 255);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.19);
+  cursor: pointer; /* Show pointer on hover */
+
+}
+
+.profile{
+
+  width: 10%;
+  display: flex;
+  flex-direction: column; /* Flex items will be arranged vertically */
+  justify-content: flex-start; /* Align items at the top by default */
+
+}
+
+.empty-div{
+  width: 100%;
+}

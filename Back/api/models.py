@@ -23,7 +23,7 @@ class Administratif(models.Model):
 
 
   def __str__(self):
-        return f"{self.user.username} - {self.nom}"
+        return f"{self.user.username} "
   
 class Patient(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE , related_name="compte_patient")
@@ -34,10 +34,8 @@ class Patient(models.Model):
   medcin_traitant = models.CharField(max_length=15 , blank=True)
   mutuelle = models.CharField(max_length=15 , blank=True)
  
-  class Meta:
-        db_table = 'custom_person'
   def __str__(self):
-        return f"{self.user.username} - {self.nom}"
+        return f"{self.user.username} "
 
 
 class Medcin(models.Model):

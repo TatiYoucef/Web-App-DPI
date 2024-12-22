@@ -4,7 +4,7 @@ from api.models import (Administratif , Patient , Medcin , User ,  Infirmier , L
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username', 'email', 'role', 'password' , 'id']
+        fields = ['username', 'email', 'role', 'password' , 'id' , 'first_name' , 'last_name']
         extra_kwargs = {'password': {'write_only': True}}
     
     def create(self, validated_data):
@@ -17,11 +17,13 @@ class AdministratifSerializer(serializers.ModelSerializer):
     class Meta:
         model = Administratif
         fields = '__all__'
+        
     def create(self, validated_data):
         user_data = validated_data.pop('user')
         user = User.objects.create_user(**user_data)
         admin=Administratif.objects.create(user=user , **validated_data)
         return admin
+    
 
 
 class PatientSerializer(serializers.ModelSerializer):
