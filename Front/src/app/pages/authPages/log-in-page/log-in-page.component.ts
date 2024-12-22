@@ -49,7 +49,7 @@ export class LogInPageComponent {
               prenom : response.data.user.last_name 
             };
 
-            this.router.navigate(["test"]);
+            this.router.navigate(["rabLabInf"]);
             console.log(patient);  
           break;
 
