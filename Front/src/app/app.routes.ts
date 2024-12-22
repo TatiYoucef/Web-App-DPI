@@ -21,10 +21,10 @@ export const routes: Routes = [
   },
 
   {
-    path:'test',
+    path:'rabLabInf',
     loadComponent: async () => {
-      const m = await import("./pages/homePages/rad-lab-inf-page/rad-lab-inf-page.component");
-      return m.RadLabInfPageComponent;
+      const m = await import("./pages/userPages/rab-lab-inf/acceuil-page/acceuil-page.component");
+      return m.AcceuilPageComponent;
     }
   },
   {
