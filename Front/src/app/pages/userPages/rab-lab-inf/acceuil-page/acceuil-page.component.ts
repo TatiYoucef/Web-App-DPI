@@ -2,7 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { FetchModulesService } from '../../../../services/fetchModules/fetch-modules.service';
 import { Patient } from '../../../../modules/types';
 import { catchError } from 'rxjs';
-import { HeaderComponent } from "../../../../components/header/header.component";
+import { HeaderComponent } from "../../../../components/header-user/header.component";
 import { DashBoardComponent } from "../../../../components/dash-board/dash-board.component";
 import { LoadingScreenComponent } from "../../../../components/loading-screen/loading-screen.component";
 
