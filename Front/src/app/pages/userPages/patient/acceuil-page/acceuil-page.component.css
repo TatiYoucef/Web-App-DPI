@@ -1,0 +1,31 @@
+.content{
+
+  display: flex;
+  margin-top: 100px;
+  gap: 0;
+  padding: 0;
+  align-items: start;
+}
+
+.empty-dash{
+  width: 24vw;
+}
+
+.container {
+
+  display: flex;
+  flex-direction: column; /* Flex items will be arranged vertically */
+  justify-content: flex-start; /* Align items at the top by default */
+  width: 100%;
+  gap: 10px; /* Add spacing between items */
+  margin: 20px;
+}
+
+.center-div{
+  width: 100vw;
+  height: 80vh;
+  display: flex;
+  flex-direction:column ;
+  justify-content: center;
+  align-items: center ;
+}

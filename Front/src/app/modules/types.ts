@@ -1,5 +1,18 @@
 // Hna ndeclariw les classes tawe3na pour les utiliser (User, DPI, Médicament, ...)
 
+export type User = {
+
+  id: number,
+  nomUser : string ,
+  nom: string,
+  prenom : string,
+  role: string,
+  naissance: string,
+  adresse: string,
+  tel: string,
+
+}
+
 export type Patient = { //classe patient
   id : number ,
   idUser : number ,

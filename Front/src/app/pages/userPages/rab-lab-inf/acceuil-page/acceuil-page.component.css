@@ -25,8 +25,19 @@
   width: 100vw;
   height: 80vh;
   display: flex;
+  flex-direction:column ;
   justify-content: center;
   align-items: center ;
+}
+
+h3{
+  color: #2B2A7F;
+  margin: 5px;
+}
+h4{
+  color: #2B2A7F;
+  margin: 5px;
+  opacity: 0.5;
 }
 
 .item {
@@ -36,7 +47,8 @@
 
   padding: 10px;
   box-sizing: border-box;
-  background-color: #f0f0f0;
+  background-color: #3958B3;
+  color: white;
   border: 2px solid black;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -47,7 +59,7 @@
 
 .item:hover{
 
-  background-color: rgb(219, 215, 255);
+  background-color: #758BCA;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.19);
   cursor: pointer; /* Show pointer on hover */
 
@@ -55,12 +67,17 @@
 
 .profile{
 
-  width: 10%;
+  width: 15%;
   display: flex;
+  color: white;
   flex-direction: column; /* Flex items will be arranged vertically */
   justify-content: flex-start; /* Align items at the top by default */
 
 }
+
+.profile h3{
+  color: white;
+} 
 
 .empty-div{
   width: 100%;

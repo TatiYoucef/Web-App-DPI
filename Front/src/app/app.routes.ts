@@ -27,6 +27,31 @@ export const routes: Routes = [
       return m.AcceuilPageComponent;
     }
   },
+
+  {
+    path:'patient',
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/patient/acceuil-page/acceuil-page.component");
+      return m.AcceuilPageComponent;
+    }
+  },
+
+  {
+    path:'medecin',
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/medecin/acceuil-page/acceuil-page.component");
+      return m.AcceuilPageComponent;
+    }
+  },
+
+  {
+    path:'admin',
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/admin/acceuil-page/acceuil-page.component");
+      return m.AcceuilPageComponent;
+    }
+  },
+
   {
     path:'notif',
     loadComponent: async () => {

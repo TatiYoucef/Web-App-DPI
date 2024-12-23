@@ -1,1 +1,26 @@
-<p>acceuil-page works!</p>
+<app-header (changeDashEvent) = "changeDashState()" />
+
+<div class="content">
+
+  @if (isDashBoard()) { <!--Ida kayen dashBoard-->
+    <div class="empty-dash">
+      <app-dash-board />
+    </div>
+  }
+
+  <div class="container">
+
+    @defer { <!--Defer is when component needs to load so we show something while loading-->
+
+      <h1>Bienvenue chers patient {{user.nom}} {{user.prenom}}</h1>
+  
+      
+    } @loading (minimum 0.5s) { <!--Nesstennaw minimum 4s besh naffichiw @defer-->
+      <div class="center-div">
+        <app-loading-screen />
+      </div>
+    }
+  
+  </div>
+</div>
+

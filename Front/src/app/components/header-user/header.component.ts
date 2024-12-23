@@ -1,5 +1,6 @@
 import { Component, DoCheck, EventEmitter, inject, Output, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserDataService } from '../../services/userData/user-data.service';
 
 @Component({
   selector: 'app-header',
@@ -15,6 +16,14 @@ export class HeaderComponent implements DoCheck{
   @Output() changeDashEvent = new EventEmitter<boolean>();
 
   router= inject(Router); //Router services
+  user = inject(UserDataService).getUserData() || {
+    id: 0,
+    nom: "N/A",
+    prenom: "N/A",
+    nomUser: "N/A",
+    naissance: "N/A",
+    role: "N/A",
+  } ; //Njibou Data te3 user te3na , hadik || besh lina 7na ida bghina ndesigniw bla manlogiw à chaque fois
 
   isAcceuilPage = signal(true);
   isNotiPage = signal(false); //ida True rana fe notification, header yetbeddel chwiya
