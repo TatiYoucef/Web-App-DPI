@@ -1,4 +1,5 @@
 {
+
   "patients": [
     {
       "id": 1,
@@ -120,6 +121,41 @@
       "nom": "Anna",
       "prenom": "Garcia"
     }
-  ]
+  ],
+
+  "bilanMedecin": {
+
+    "id": 5,
+    "status": "Pending",
+    "requestedAt": "2024-12-22",
+
+    "tests": [
+      {
+        "id": 1,
+        "testName": "Taux de glycémie",
+        "result": null
+      },
+      {
+        "id": 2,
+        "testName": "Taux de cholestérol",
+        "result": null
+      },
+      {
+        "id": 3,
+        "testName": "Créatinine sanguine",
+        "result": null
+      },
+      {
+        "id": 4,
+        "testName": "Niveau d'hémoglobine",
+        "result": null
+      },
+      {
+        "id": 5,
+        "testName": "Taux d'urée",
+        "result": null
+      }
+    ]
+  }
   
 }

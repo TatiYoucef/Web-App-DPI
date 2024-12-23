@@ -10,7 +10,7 @@ import { UserDataService } from '../../services/userData/user-data.service';
   styleUrl: './header.component.css'
 })
 
-export class HeaderComponent implements DoCheck{
+export class HeaderComponent {
 
   isDashBoard = signal(false);
   @Output() changeDashEvent = new EventEmitter<boolean>();
@@ -25,13 +25,7 @@ export class HeaderComponent implements DoCheck{
     role: "N/A",
   } ; //Njibou Data te3 user te3na , hadik || besh lina 7na ida bghina ndesigniw bla manlogiw à chaque fois
 
-  isAcceuilPage = signal(true);
-  isNotiPage = signal(false); //ida True rana fe notification, header yetbeddel chwiya
-
-  ngDoCheck(): void { //this functions executes for each change happens in browser
-    if(this.router.url.includes("notif")) this.isNotiPage.set(true); //si on est fe notification
-    else this.isNotiPage.set(false); //sinon
-  }
+  isNotiPage = signal(false);
 
   goToNotifications(){ //bouton de notification si cliqué
     this.router.navigate(["/notif"]);

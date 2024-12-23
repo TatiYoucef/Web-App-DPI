@@ -5,6 +5,7 @@ import { Patient } from '../../modules/types';
 @Injectable({
   providedIn: 'root'
 })
+
 export class FetchModulesService { //Hna yesraw les fetch functions
 
   http = inject(HttpClient);
@@ -12,5 +13,10 @@ export class FetchModulesService { //Hna yesraw les fetch functions
   fetchListePatient(){
     const url = "http://localhost:3000/patients"; //Json Test, not from backend
     return this.http.get<Array<Patient>>(url);
+  }
+
+  fetchListeTestsBilan(){
+    const url = "http://localhost:3000/bilanMedecin"; //Json Test, not from backend
+    return this.http.get(url);
   }
 }

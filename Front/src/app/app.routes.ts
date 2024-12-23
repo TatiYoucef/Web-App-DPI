@@ -29,6 +29,14 @@ export const routes: Routes = [
   },
 
   {
+    path:'rabLabInf/joindreBilan',
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/rab-lab-inf/ajout-result-bilan/ajout-result-bilan.component");
+      return m.AjoutResultBilanComponent;
+    }
+  },
+
+  {
     path:'patient',
     loadComponent: async () => {
       const m = await import("./pages/userPages/patient/acceuil-page/acceuil-page.component");

@@ -1,5 +1,4 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { FetchModulesService } from '../../../../services/fetchModules/fetch-modules.service';
 import { HeaderComponent } from "../../../../components/header-user/header.component";
 import { DashBoardComponent } from "../../../../components/dash-board/dash-board.component";
 import { LoadingScreenComponent } from "../../../../components/loading-screen/loading-screen.component";

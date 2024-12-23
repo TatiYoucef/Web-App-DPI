@@ -36,3 +36,11 @@ export type Medcin = {
   adresse: string,
   tel: string,
 }
+
+export type TestBilan = {
+
+  id : number,
+  testName : string,
+  result: string | null,
+
+}
