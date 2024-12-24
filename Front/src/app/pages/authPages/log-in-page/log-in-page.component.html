@@ -10,7 +10,7 @@
         <input id="username" type="text" placeholder="nom de l'utilisateur" #username>
         <Label>Mot de passe</Label>
         <input id="password" type="password" placeholder="mot de passe" #password>
-        <i id="togglrPassword" class="fa fa-fw fa-eye toggle-password field-icon"></i>
+        <i style="margin-left:95%;" [class]="isPasswordVisible ? 'fa fa-eye-slash' : 'fa fa-eye'" (click)="togglePasswordVisibility(password)"></i>
       </div>
 
       <button (click)="onSubmit(username.value,password.value)">Se connecter</button>
