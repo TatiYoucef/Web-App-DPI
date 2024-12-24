@@ -16,11 +16,16 @@
   display: flex;
   flex-direction: column; /* Flex items will be arranged vertically */
   justify-content: flex-start; /* Align items at the top by default */
-  width: 100%;
   gap: 10px; /* Add spacing between items */
   margin: 20px;
 }
+.container2 {
 
+  display: flex;
+  
+  gap: 10px; /* Add spacing between items */
+  margin: 20px;
+}
 .center-div{
   width: 100vw;
   height: 80vh;
@@ -28,4 +33,57 @@
   flex-direction:column ;
   justify-content: center;
   align-items: center ;
+}
+
+.card{
+
+  display: flex;
+  justify-content: center; /* Align items at the top by default */
+
+  padding: 40px 40px;
+  border-radius: 20px;
+  background-color: #EEF4FF;
+  gap: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+
+}
+.card2{
+
+  display: flex;
+  justify-content: center; 
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 40px;
+  border-radius: 20px;
+  background-color: #EEF4FF;
+  gap: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+  width: 25%;
+
+}
+
+button{
+
+  font-family: "Quicksand", serif;
+  font-size: 20px;
+  font-weight: 800;
+  display:flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  border: none;
+  border-radius: 30px ;
+  padding: 40px 20px;
+  background-color:#3958B3;
+  color: #FFFFFF;
+  transition: color 0.3s, background-color 0.3s, box-shadow 0.3s;
+
+  cursor: pointer;
+
+}
+
+button:hover{
+  background-color: #EEF4FF;
+  color: #3958B3;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
 }

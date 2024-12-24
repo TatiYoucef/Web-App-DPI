@@ -13,6 +13,27 @@
     @defer { <!--Defer is when component needs to load so we show something while loading-->
 
       <h1>Bienvenue chers medecin {{user.nom}} {{user.prenom}}</h1>
+      
+      <div class="container2">
+        <div class="card2">
+          <img src="../../../../../assets/icons/new_DPI.png" width="100px" >   
+          <button>  
+            <p>Créer DPI</p>    
+          </button>
+        </div>
+
+        <div class="card"> 
+          <button>  
+            <img src="../../../../../assets/icons/QR.png" width="100px" >
+            <p>Rechercher DPI par code QR</p>
+          </button>
+          <button>  
+            <img src="../../../../../assets/icons/search.png" width="100px" >
+            <p>Rechercher DPI par NSS</p>
+          </button>
+        </div>
+
+      </div>
   
       
     } @loading (minimum 0.5s) { <!--Nesstennaw minimum 4s besh naffichiw @defer-->
