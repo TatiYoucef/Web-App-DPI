@@ -54,15 +54,12 @@ export class GenererGraphComponent {
     if (this.newItem.name && this.newItem.value > 0) {
       this.data.push({ ...this.newItem });
       this.newItem = { name: '', value: 0 };
-
-      this.generateGraph();
     }
   }
 
   removeData(): void{
     if(this.data.length > 0){
       this.data.splice(this.data.length - 1, 1);
-      this.generateGraph();
     }
   }
 

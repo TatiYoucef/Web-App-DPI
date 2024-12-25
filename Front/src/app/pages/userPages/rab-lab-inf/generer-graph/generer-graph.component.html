@@ -25,9 +25,22 @@
         <button (click)="removeData()">-</button>
       </div>
 
-      @if (data.length > 0) {<button (click)="downloadGraph()">Télécharger le graphe</button>}
+      @if (data.length > 0) {
 
-      <canvas #chartCanvas></canvas>
+        <div class="card2">
+          <ul>
+            @for (item of data; track item.value) {
+              <li>Nom: {{item.name}}, Valeur: {{item.value}} </li>
+            }
+          </ul>
+          
+        </div>
+        
+        <button (click)="generateGraph()">Générer le graphe</button>
+        <button (click)="downloadGraph()">Télécharger le graphe</button>
+
+        <canvas #chartCanvas></canvas>
+      }
   
       
     } @loading (minimum 0.5s) { <!--Nesstennaw minimum 4s besh naffichiw @defer-->

@@ -44,6 +44,19 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
 
 }
+.card2{
+
+  display: flex;
+  justify-content: start; /* Align items at the top by default */
+  align-items: center;
+  flex-direction: column;
+
+  padding: 20px 20px;
+  border-radius: 20px;
+  background-color: #EEF4FF;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+
+}
 
 input{
   font-family: "Quicksand", serif;
