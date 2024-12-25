@@ -15,25 +15,82 @@
       <h1>Bienvenue chers medecin {{user.nom}} {{user.prenom}}</h1>
       
       <div class="container2">
+
         <div class="card2">
           <img src="../../../../../assets/icons/new_DPI.png" width="100px" >   
-          <button>  
+
+          <button (click)="isCreeDPI.set(true)">  
             <p>Créer DPI</p>    
           </button>
+
         </div>
 
         <div class="card"> 
+
           <button>  
             <img src="../../../../../assets/icons/QR.png" width="100px" >
             <p>Rechercher DPI par code QR</p>
           </button>
-          <button>  
+
+          <button (click)="isRecherchePatient.set(true)">  
             <img src="../../../../../assets/icons/search.png" width="100px" >
             <p>Rechercher DPI par NSS</p>
           </button>
+
         </div>
 
       </div>
+
+      @if (isCreeDPI() || isRecherchePatient()) { <!--Ida medecin cliaka l'un des deux boutons-->
+
+        <div class="grey-div" (click)="annulerRecherche($event)">
+
+          <div class="card3">
+ 
+            <h2>{{isCreeDPI()? "Créer DPI d'un patient":"Rechercher un patient"}}</h2>
+
+            <label>Nss:</label>
+            <input type="text" placeholder="NSS">  
+            
+            @if (isCreeDPI()) {
+              <label>Nom</label>
+              <input type="text" placeholder="nom"> 
+
+              <label>Prénom</label>
+              <input type="text" placeholder="prénom">
+
+              <label>Nom d'utilisateur</label>
+              <input type="text" placeholder="nom d'utilisateur">
+
+              <label>Addresse</label>
+              <input type="text" placeholder="Addresse">
+
+              <label>Date de naissance</label>
+              <input type="date">
+
+              <label>tel</label>
+              <input type="tel" placeholder="téléphone">
+            }
+
+            <div class="container2">
+
+              <button (click)="isCreeDPI()? creerDPI() : recherchePatient()">  
+                <p> {{isCreeDPI() ? "Créer DPI":"Recherche DPI" }} </p>    
+              </button>
+
+              <button class="annuler" (click)="annulerRecherche($event)">
+                annuler
+              </button>
+
+            </div>
+            
+
+          </div>
+
+          @if (isRecherchePatient()) {<div style="margin-top: 300px;"></div>} 
+        </div>
+
+      }
   
       
     } @loading (minimum 0.5s) { <!--Nesstennaw minimum 4s besh naffichiw @defer-->

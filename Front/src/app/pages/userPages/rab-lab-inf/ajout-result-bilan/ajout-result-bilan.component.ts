@@ -5,6 +5,7 @@ import { DashBoardComponent } from "../../../../components/dash-board/dash-board
 import { TestBilan } from '../../../../modules/types';
 import { FetchModulesService } from '../../../../services/fetchModules/fetch-modules.service';
 import { catchError } from 'rxjs';
+import { UserDataService } from '../../../../services/userData/user-data.service';
 
 @Component({
   selector: 'app-ajout-result-bilan',
@@ -17,6 +18,8 @@ import { catchError } from 'rxjs';
 export class AjoutResultBilanComponent implements OnInit {
 
   isDashBoard = signal(false);
+
+  user = inject(UserDataService).getUserData();
 
   fetchServices = inject(FetchModulesService);
   listTestsBilan = signal<Array<TestBilan>>([]); // liste des demandes de tests pour un bilan

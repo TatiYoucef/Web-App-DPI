@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserDataService } from '../../services/userData/user-data.service';
 
 @Component({
   selector: 'app-dash-board',
@@ -11,7 +12,9 @@ import { Router } from '@angular/router';
 
 export class DashBoardComponent {
 
-  router = inject(Router)
+  router = inject(Router);
+
+  user= inject(UserDataService).getUserData();
 
   goToDisconnect(){
     this.router.navigate([""]);
