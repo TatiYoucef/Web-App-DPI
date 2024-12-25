@@ -15,7 +15,7 @@ export class UserDataService { //classe 3endha ge3 les variables globales de use
     naissance: "01/01/2000",
     adresse: "Kherrouba, Alger, Algérie",
     tel: "0555447788",
-    role: "Administratif",
+    role: "Laborantin",
   };  
 
   getUserData(){

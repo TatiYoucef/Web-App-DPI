@@ -15,7 +15,7 @@
 
     <button>
       <div class="button-div">
-        <p>Gestion des patients</p>
+        <p>Gérer patients</p>
         <img src="../../../assets/icons/ic_patient.png" width="30px" height="30px">
       </div>
     </button>
@@ -23,7 +23,7 @@
 
   @if (user.role === "Laborantin"){
 
-    <button>
+    <button (click)="router.navigate(['rabLabInf/geneGraph'])">
       <div class="button-div">
         <p>Générer un graphe</p>
         <img src="../../../assets/icons/ic_graph.png" width="30px" height="30px">
