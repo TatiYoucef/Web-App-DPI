@@ -61,6 +61,7 @@ input:focus {
 button {
   background-color: #3958b3;
   color: white;
+  font-family: "SF Pro Display", "Quicksand";
   font-size: 18px;
   font-weight: 700;
   border: none;
