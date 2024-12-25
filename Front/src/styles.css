@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
 html, body {
-  font-family: "SF Pro Display", serif;
+  font-family: "SF Pro Display", "Quicksand";
   margin: 0;
   padding: 0;
   height: 100%;
