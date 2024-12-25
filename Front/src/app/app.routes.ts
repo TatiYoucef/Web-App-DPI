@@ -29,6 +29,14 @@ export const routes: Routes = [
   },
 
   {
+    path:'rabLabInf/geneGraph',
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/rab-lab-inf/generer-graph/generer-graph.component");
+      return m.GenererGraphComponent;
+    }
+  },
+
+  {
     path:'rabLabInf/joindreBilan',
     loadComponent: async () => {
       const m = await import("./pages/userPages/rab-lab-inf/ajout-result-bilan/ajout-result-bilan.component");
