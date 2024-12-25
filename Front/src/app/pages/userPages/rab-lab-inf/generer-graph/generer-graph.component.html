@@ -1,0 +1,53 @@
+<app-header (changeDashEvent) = "changeDashState()" />
+
+<div class="content">
+
+  @if (isDashBoard()) { <!--Ida kayen dashBoard-->
+    <div class="empty-dash">
+      <app-dash-board />
+    </div>
+  }
+
+  <div class="container">
+
+    @defer { <!--Defer is when component needs to load so we show something while loading-->
+
+      <h2>Générer un graphe</h2>
+
+      <div class="card">
+        <label for="name">Name:</label>
+        <input type="text" [(ngModel)]="newItem.name" id="name" />
+
+        <label for="value">Value:</label>
+        <input type="number" [(ngModel)]="newItem.value" id="value" />
+
+        <button (click)="addData()">+</button>
+        <button (click)="removeData()">-</button>
+      </div>
+
+      @if (data.length > 0) {
+
+        <div class="card2">
+          <ul>
+            @for (item of data; track item.value) {
+              <li>Nom: {{item.name}}, Valeur: {{item.value}} </li>
+            }
+          </ul>
+          
+        </div>
+        
+        <button (click)="generateGraph()">Générer le graphe</button>
+        <button (click)="downloadGraph()">Télécharger le graphe</button>
+
+        <canvas #chartCanvas></canvas>
+      }
+  
+      
+    } @loading (minimum 0.5s) { <!--Nesstennaw minimum 4s besh naffichiw @defer-->
+      <div class="center-div">
+        <app-loading-screen />
+      </div>
+    }
+  
+  </div>
+</div>
