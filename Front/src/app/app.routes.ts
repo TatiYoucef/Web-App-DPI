@@ -75,6 +75,15 @@ export const routes: Routes = [
       return m.NotificationPageComponent ;
     }
   },
+  {
+    path :'ordonnances' , 
+    pathMatch: 'full', 
+    loadComponent: async () => {
+      const m = await import("./pages/supplementPages/ordonnances/ordonnances-accueil/ordonnances-accueil.component");
+      return m.OrdonnancesAccueilComponent;
+    }
+  },
+
 
 
 ];

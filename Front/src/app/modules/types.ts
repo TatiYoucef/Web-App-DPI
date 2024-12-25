@@ -44,3 +44,18 @@ export type TestBilan = {
   result: string | null,
 
 }
+
+export type Ordonnance = {
+  id : number,
+  dateCreation : String,
+  duree : String,
+  etat : Boolean,
+  medicaments : Medicament[] | null,
+
+}
+
+export type Medicament = {
+  nom : String,
+  dose : String,
+  frequence : String,
+}
