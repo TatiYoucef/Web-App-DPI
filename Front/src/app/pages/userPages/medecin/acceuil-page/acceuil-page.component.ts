@@ -15,16 +15,29 @@ import { UserDataService } from '../../../../services/userData/user-data.service
 export class AcceuilPageComponent {
 
   isDashBoard = signal(false);
-  user = inject(UserDataService).getUserData() || {
-    id: 0,
-    nom: "N/A",
-    prenom: "N/A",
-    nomUser: "N/A",
-    naissance: "N/A",
-    role: "Patient",
-  } ; //Njibou Data te3 user te3na , hadik || besh lina 7na ida bghina ndesigniw bla manlogiw à chaque fois
+  user = inject(UserDataService).getUserData() ;  //Njibou Data te3 user te3na 
+
+  isCreeDPI = signal(false);
+  isRecherchePatient = signal(false); //si on clique 3la recherche wella créer, ywellou vrai
 
   changeDashState(){
     this.isDashBoard.update((e) => !e);
+  }
+
+  annulerRecherche(event: MouseEvent){
+
+    if ((event.target as HTMLElement).classList.contains('grey-div') || (event.target as HTMLElement).classList.contains('annuler') ) {
+      this.isCreeDPI.set(false);
+      this.isRecherchePatient.set(false);
+    }
+    
+  }
+
+  creerDPI(){
+    console.log("Créer DPI en cours de traitement...")
+  }
+
+  recherchePatient(){
+    console.log("Recherche patient en cours de traitement...")
   }
 }
