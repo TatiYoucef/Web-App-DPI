@@ -18,6 +18,11 @@ export class LogInPageComponent {
   postServices = inject(PostModulesService);
   userDataService = inject(UserDataService);
   errorMessage : string = '';
+  passwordVisible: boolean = false;
+
+  togglePasswordVisibility(): void {
+    this.passwordVisible = !this.passwordVisible;
+  }
 
   onSubmit(username: string, password: string){
 
