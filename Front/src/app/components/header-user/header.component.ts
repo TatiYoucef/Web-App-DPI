@@ -16,14 +16,7 @@ export class HeaderComponent {
   @Output() changeDashEvent = new EventEmitter<boolean>();
 
   router= inject(Router); //Router services
-  user = inject(UserDataService).getUserData() || {
-    id: 0,
-    nom: "N/A",
-    prenom: "N/A",
-    nomUser: "N/A",
-    naissance: "N/A",
-    role: "N/A",
-  } ; //Njibou Data te3 user te3na , hadik || besh lina 7na ida bghina ndesigniw bla manlogiw à chaque fois
+  user = inject(UserDataService).getUserData() ; //Njibou Data te3 user te3na
 
   isNotiPage = signal(false);
 
