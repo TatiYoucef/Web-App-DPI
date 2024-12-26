@@ -44,3 +44,12 @@ export type TestBilan = {
   result: string | null,
 
 }
+
+export type Soin = {
+
+  id: number,
+  subject: string,
+  description: string, 
+  date: string,
+    
+}
