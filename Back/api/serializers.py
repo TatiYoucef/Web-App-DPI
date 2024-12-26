@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import (Administratif , Patient , Medcin , User ,  Infirmier , Laborantin , Radiologue)
+from api.models import (Administratif , Patient , Medcin , User ,  Infirmier , Laborantin , Radiologue,DPI, Consultation,Soin)
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -90,3 +90,28 @@ class RadiologueSerializer(serializers.ModelSerializer):
         radiologue=Radiologue.objects.create(user=user , **validated_data)
         return radiologue
 
+
+
+
+class DPISerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DPI
+        fields = '__all__'
+
+
+class ConsultationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Consultation
+        fields = '__all__'
+
+
+class SoinSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Soin
+        fields = '__all__'
+        
+        
+
+
+        
+        
