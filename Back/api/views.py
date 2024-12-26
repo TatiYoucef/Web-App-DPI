@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate , login
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import (User , Administratif , Medcin , Patient,DPI,Consultation,Soin,Infirmier,Medcin,Bilan,Ordonnance,Resume)
+from .models import (User , Administratif , Medcin , Patient,DPI,Consultation,Soin,Infirmier,Observation,Medcin,Bilan,Ordonnance,Resume)
 from .serializers import(UserSerializer , AdministratifSerializer , MedcinSerializer , PatientSerializer , LaborantinSerializer , InfirmierSerializer , RadiologueSerializer,DPISerializer,ConsultationSerializer,SoinSerializer)
 from datetime import datetime
 from rest_framework import status
@@ -122,12 +122,13 @@ class DPIView(APIView):
         try:
             # Fetch related model instances
             
-            patient = Patient.objects.get(id=data.get('patientid'))
-            consultation = Consultation.objects.get(id=data.get('sejourid'))
-            antecedentsMedicaux = Resume.objects.get(id=data.get('antecedentsMedicauxid'))
+            patient = Patient.objects.get(id=data.get('patient_id'))
+            consultation = Consultation.objects.get(id=data.get('sejour_id'))
+            antecedentsMedicaux = Resume.objects.get(id=data.get('antecedentsMedicaux_id'))
             ordonnance=Ordonnance.objects.get(id=data.get(''))
-            bilan = Bilan.objects.get(id=data.get('bilanid'))
-            soin = Soin.objects.get(id=data.get('soinid'))
+            bilan = Bilan.objects.get(id=data.get('bilan_id'))
+            soin = Soin.objects.get(id=data.get('soin_id'))
+            observation=Observation.get(id=data.get('observation_id'))
             
         except (Patient.DoesNotExist, Consultation.DoesNotExist, Resume.DoesNotExist, Bilan.DoesNotExist) as e:
             
@@ -142,8 +143,10 @@ class DPIView(APIView):
             dateAddmition=datetime.now(),
             dateSortie=datetime.now(),
             dateMaj=datetime.now(),
+            ordonnance=ordonnance,
             bilan=bilan,
             soin=soin,
+            observation=observation
         )
         
         # Return success response

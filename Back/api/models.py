@@ -106,11 +106,11 @@ class DPI(models.Model):
 
     # Link to the Bilan (medical exam results) class
     bilan = models.ForeignKey('Bilan', on_delete=models.CASCADE)
-    
-        
+      
     # Link to the Soin class
     soins=models.ForeignKey('Soin',on_delete=models.CASCADE)
-
+    observation=models.ForeignKey('Observation',on_delete=models.CASCADE,null=True, blank=True)
+    
   
     
 
@@ -152,6 +152,8 @@ class Soin(models.Model):
 
 
 
+
+
 class Resume(models.Model):
     pass  # Placeholder for now; I'll add fields later
 
@@ -160,3 +162,14 @@ class Ordonnance(models.Model):
 
 class Bilan(models.Model):
     pass  # Placeholder for now; I'll add fields later
+  
+  
+class Observation(models.Model):
+  
+    temperature = models.FloatField(default=0.0)
+    
+    tension = models.FloatField(default=0.0)
+    
+    frequanceCardiaque= models.FloatField(default=0.0)
+    
+    date=models.DateTimeField(default=datetime.now)
