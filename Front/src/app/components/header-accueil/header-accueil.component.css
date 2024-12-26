@@ -1,60 +1,88 @@
-.header-div{
+/* Header container */
+.header-div {
   display: flex;
-  justify-content: start;
+  justify-content: space-between; /* Space between elements for better alignment */
   align-items: center;
   gap: 30px;
-  padding: 20px 30px;
+  padding: 20px 50px;
   background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   position: relative;
   z-index: 1;
 }
 
-.empty-div{
-  width: 100%;
+/* Logo image */
+.header-div img {
+  max-width: 200px; /* Responsive logo size */
+  height: auto;
 }
 
-.inscription-button{
+/* Empty div to maintain spacing */
+.empty-div {
+  flex-grow: 1; /* Makes this div take up available space */
+}
 
+/* Buttons styling */
+.inscription-button,
+.connexion-button {
   font-family: "Quicksand", serif;
-  font-size: 20px;
+  font-size: 16px; /* Reduced font size for better responsiveness */
   font-weight: 500;
-
   border: none;
-  border-radius: 100px ;
+  border-radius: 100px;
   padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+/* Specific styles for inscription button */
+.inscription-button {
   background-color: #FFE7DB;
   color: #3958B3;
-  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s ;
-
-  cursor: pointer;
-
 }
 
-.inscription-button:hover{
-  color: black;
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
-}
-
-.connexion-button{
-
-  font-family: "Quicksand", serif;
-  font-size: 20px;
-  font-weight: 500;
-
-  border: none;
-  border-radius: 100px ;
-  padding: 10px 20px;
-  background-color:#3958B3;
-  color: #EEF4FF;
-  transition: color 0.5s, background-color 0.5s ;
-
-  cursor: pointer;
-
-}
-
-.connexion-button:hover{
+.inscription-button:hover {
   color: #3958B3;
   background-color: #EEF4FF;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Specific styles for connexion button */
+.connexion-button {
+  background-color: #3958B3;
+  color: #EEF4FF;
+}
+
+.connexion-button:hover {
+  color: #3958B3;
+  background-color: #EEF4FF;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive design for smaller devices */
+@media screen and (max-width: 768px) {
+  .header-div {
+    flex-wrap: wrap; /* Allow wrapping for better stacking */
+    padding: 15px 20px;
+    gap: 15px;
+  }
+
+  .header-div img {
+    max-width: 150px; /* Adjust logo size for smaller screens */
+  }
+
+  .empty-div {
+    display: none; /* Remove spacer for smaller screens */
+  }
+
+  .inscription-button,
+  .connexion-button {
+    font-size: 14px; /* Adjust font size */
+    padding: 8px 15px; /* Reduce padding */
+    width: 100%; /* Full width buttons for small screens */
+  }
+
+  .inscription-button + .connexion-button {
+    margin-top: 10px; /* Add spacing between buttons */
+  }
 }

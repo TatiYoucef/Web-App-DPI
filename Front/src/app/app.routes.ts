@@ -85,5 +85,12 @@ export const routes: Routes = [
   },
 
 
+  {
+    path :'personnelAdministratif' , //Page Log-In
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/personnel-administratif/acceuil-page/acceuil-page.component");
+      return m.AcceuilPageComponent;
+    }
+  },
 
 ];

@@ -1,38 +1,99 @@
-.container{
-
-  background-color: #EEF4FF;
-  display: flex;
-  justify-content: start;
-
-  padding: 50px 30px;
-  gap: 200px;
-  height: 100vh;
-
+/* General reset */
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
 }
 
-.center-div{
+/* Container for desktop layout */
+.container {
+  background-color: #EEF4FF;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 50px 50px;
+  gap: 20px; /* Adjust gap for better spacing on smaller screens */
+  height: calc(100vh - 150px); /* Subtract navbar height (adjust value as needed) */
+}
 
+/* Centered loading screen */
+.center-div {
   background-color: #EEF4FF;
   width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center ;
-
+  align-items: center;
 }
 
-.text-div{
-  width: 300%;
+/* Text content */
+.text-div {
+  flex: 1 1 45%; /* 45% width on larger screens, grows/shrinks responsively */
+  min-width: 300px; /* Ensure a minimum size for smaller devices */
+  padding: 10px 0px;
 }
 
-h1{
-  font-weight: 800;
+h1, p {
+  margin: 20px 0px;
 }
 
-.text-h1{
-  font-weight: 100;
-}
-
-h1 span{
+h1 span {
   color: #3958B3;
+}
+
+h1 {
+  font-size: 2rem; /* Scalable size */
+}
+
+.text-div p {
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+/* Image content */
+.image-div {
+  flex: 1 1 45%; /* Same behavior as text-div */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.doc-image {
+  width: 90%; /* Scale up slightly for larger screens */
+  max-width: 500px; /* Prevent excessive scaling */
+  height: auto; /* Maintain aspect ratio */
+  transition: transform 0.3s ease; /* Smooth scaling effect on hover */
+}
+
+.doc-image:hover {
+  transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Responsive design for smaller devices */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Stack content vertically */
+    align-items: center;
+    height: auto; /* Adjust height for scrolling */
+    padding: 30px 20px;
+  }
+
+  .text-div, .image-div {
+    flex: 1 1 100%; /* Full width for small screens */
+    text-align: center; /* Center align text for better readability */
+  }
+
+  h1 {
+    font-size: 1.8rem; /* Adjust text size for small screens */
+  }
+
+  .text-h1 {
+    font-size: 1.2rem;
+  }
+
+  .doc-image {
+    width: 70%; /* Adjust image size for small screens */
+  }
 }

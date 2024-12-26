@@ -1,95 +1,84 @@
-.container{
-
+.container {
   display: flex;
-  justify-content: start;
   height: 100vh;
-
 }
 
-.left-div{
-  
-  padding: 10vh 8vw;
-  width: 50vw;
-  background-color: #EEF4FF;
-}
-
-.card{
-
+.left-div {
+  width: 50%;
+  /* Set the width of the left side */
+  background-color: #eef4ff;
+  /* Light blue background */
   display: flex;
-  flex-direction: column; /* Flex items will be arranged vertically */
-  justify-content: center; /* Align items at the top by default */
-  gap: 10px; /* Add spacing between items */
+  justify-content: center;
   align-items: center;
+}
 
+.right-div {
+  width: 50%;
+  /* Set the width of the right side */
+  background-color: #3958b3;
+  /* Dark blue background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   background-color: white;
   border-radius: 20px;
   padding: 30px 20px;
-
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
-
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  height: 75%;
+  max-width: 400px;
 }
 
-.inputs-div{
-
-  padding: 10px 0px;
-
+.inputs-div {
   width: 100%;
-
   display: flex;
-  flex-direction: column; /* Flex items will be arranged vertically */
-  justify-content: start; /* Align items at the top by default */
-
+  flex-direction: column;
 }
 
-input{
-  font-family: "Quicksand", serif;
-  
+input {
   height: 25px;
-  margin-top: 5px;
-  margin-bottom: 20px;
+  margin: 5px 0 20px;
   padding: 5px 10px;
-
-  border: 1px solid #ccc; /* Light gray border */
+  border: 1px solid #ccc;
   outline: none;
   border-radius: 5px;
   transition: border-color 0.3s ease;
-
 }
 
 input:focus {
-  border-color: #3958B3; /* Blue border on focus */
+  border-color: #3958b3;
 }
 
-button{
-
-  font-family: "Quicksand", serif;
-
-  background-color: #3958B3;
+button {
+  background-color: #3958b3;
   color: white;
+  font-family: "SF Pro Display", "Quicksand";
   font-size: 18px;
-  font-weight: 800;
+  font-weight: 700;
   border: none;
   border-radius: 20px;
-
-  padding: 20px 25%;
+  padding: 10px 20px;
   cursor: pointer;
-
-  transition: background-color 0.3s, color 0.3s, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out ;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-button:hover{
-  background-color: #EEF4FF;
-  color: #3958B3;
-  border-color: grey;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+button:hover {
+  background-color: #eef4ff;
+  color: #3958b3;
 }
 
-.right-div{
-  
-  padding: 20vh 10vw;
-  width: 35vw;
-  background-color: #3958B3;
-  
+.right-div img {
+  max-width: 80%;
+  height: auto;
 }
 
 .error-message {
@@ -97,4 +86,3 @@ button:hover{
   font-size: 16px; /* Ensure it's readable */
   display: block; /* Ensure it's not hidden */
 }
-
