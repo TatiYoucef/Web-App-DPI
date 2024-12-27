@@ -40,7 +40,7 @@ class MedcinRegistrationView(APIView):
 
 
 class UserLoginView(APIView):
-    def post(self , request , *args , **kwargs):
+    def post(self , request ):
         username = request.data.get('username')
         password = request.data.get('password')
         user = authenticate(request , username = username , password = password)
