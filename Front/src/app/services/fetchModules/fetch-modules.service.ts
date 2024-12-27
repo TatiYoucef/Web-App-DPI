@@ -19,4 +19,9 @@ export class FetchModulesService { //Hna yesraw les fetch functions
     const url = "http://localhost:3000/bilanMedecin"; //Json Test, not from backend
     return this.http.get(url);
   }
+
+  fetchListeDPIsOrdMedSoi(){
+    const url = "http://localhost:3000/DPIs"; //Json Test, not from backend
+    return this.http.get(url);
+  }
 }
