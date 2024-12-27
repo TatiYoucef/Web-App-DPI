@@ -16,7 +16,7 @@
       
       <div class="container2">
 
-        <div class="card2">
+        <div class="card2" >
           <img src="../../../../../assets/icons/new_DPI.png" width="100px" >   
 
           <button (click)="isCreeDPI.set(true)">  
@@ -25,12 +25,21 @@
 
         </div>
 
+
         <div class="card"> 
 
-          <button>  
+          <button (click)="isScanning = true">  
             <img src="../../../../../assets/icons/QR.png" width="100px" >
             <p>Rechercher DPI par code QR</p>
           </button>
+          <div *ngIf="isScanning">
+            <zxing-scanner 
+              [start]="true" 
+              (scanSuccess)="onScanSuccess($event)"
+              (scanFailure)="onScanFailure($event)">
+            </zxing-scanner>
+          </div>
+
 
           <button (click)="isRecherchePatient.set(true)">  
             <img src="../../../../../assets/icons/search.png" width="100px" >
@@ -50,7 +59,7 @@
             <h2>{{isCreeDPI()? "Créer DPI d'un patient":"Rechercher un patient"}}</h2>
 
             <label>Nss:</label>
-            <input type="text" placeholder="NSS">  
+            <input type="text" placeholder="NSS" [(ngModel)]="nssInput">  
             
             @if (isCreeDPI()) {
               <label>Nom</label>
@@ -83,7 +92,16 @@
               </button>
 
             </div>
-            
+            @if (isRecherchePatient()) {
+              <div class="card" *ngIf="searchedDPI">
+                <h3>DPI Trouvé:</h3>
+                <p>ID: {{ searchedDPI()?.id }}</p>
+                <p>Details: {{ searchedDPI | json }}</p>
+              </div>
+              <div class="card" *ngIf="!searchedDPI && nssInput">
+                <p>Aucun DPI trouvé pour le NSS saisi.</p>
+              </div>
+            }
 
           </div>
 

@@ -1,10 +1,10 @@
 import { Component, inject, Inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { OtherDataService } from '../../../../services/otherData/other-data.service';
 import { HeaderComponent } from "../../../../components/header-user/header.component";
 import { DashBoardComponent } from "../../../../components/dash-board/dash-board.component";
 import { LoadingScreenComponent } from "../../../../components/loading-screen/loading-screen.component";
 import { CommonModule } from '@angular/common'; 
+import { FetchModulesService } from '../../../../services/fetchModules/fetch-modules.service';
 
 @Component({
   selector: 'app-ordonnances-accueil',
@@ -22,6 +22,4 @@ export class OrdonnancesAccueilComponent {
 
   router = inject(Router);
 
-
-  ordonnances = inject(OtherDataService).getOrdonnanceData();
 }

@@ -3,7 +3,7 @@
   "patients": [
     {
       "id": 1,
-      "idDPI": 1,
+      "id_DPI": 1,
       "idUser": 101,
       "nomUser": "Doe",
       "nss": 123456789,
@@ -16,7 +16,7 @@
     },
     {
       "id": 2,
-      "idDPI": 2,
+      "id_DPI": 2,
       "idUser": 102,
       "nomUser": "Smith",
       "nss": 987654321,
@@ -29,7 +29,7 @@
     },
     {
       "id": 3,
-      "idDPI": 3,
+      "id_DPI": 3,
       "idUser": 103,
       "nomUser": "Brown",
       "nss": 456123789,
@@ -42,7 +42,7 @@
     },
     {
       "id": 4,
-      "idDPI": 4,
+      "id_DPI": 4,
       "idUser": 104,
       "nomUser": "Johnson",
       "nss": 321654987,
@@ -55,7 +55,7 @@
     },
     {
       "id": 5,
-      "idDPI": 5,
+      "id_DPI": 5,
       "idUser": 105,
       "nomUser": "Taylor",
       "nss": 654789321,
@@ -68,7 +68,7 @@
     },
     {
       "id": 6,
-      "idDPI": 6,
+      "id_DPI": 6,
       "idUser": 106,
       "nomUser": "Anderson",
       "nss": 789123456,
@@ -81,7 +81,7 @@
     },
     {
       "id": 7,
-      "idDPI": 7,
+      "id_DPI": 7,
       "idUser": 107,
       "nomUser": "Moore",
       "nss": 123789456,
@@ -94,7 +94,7 @@
     },
     {
       "id": 8,
-      "idDPI": 8,
+      "id_DPI": 8,
       "idUser": 108,
       "nomUser": "Thomas",
       "nss": 987321654,
@@ -107,7 +107,7 @@
     },
     {
       "id": 9,
-      "idDPI": 9,
+      "id_DPI": 9,
       "idUser": 109,
       "nomUser": "Martin",
       "nss": 321987654,
@@ -120,7 +120,7 @@
     },
     {
       "id": 10,
-      "idDPI": 10,
+      "id_DPI": 10,
       "idUser": 110,
       "nomUser": "Garcia",
       "nss": 654321987,
@@ -178,7 +178,7 @@
       "ordonnances": [
         {
           "id": 21,
-          "idDPI": 11,
+          "id_DPI": 11,
           "dateCreation": "2024-12-01",
           "duree": "10 jours",
           "etat": true,
@@ -201,7 +201,7 @@
         },
         {
           "id": 22,
-          "idDPI": 11,
+          "id_DPI": 11,
           "dateCreation": "2024-12-05",
           "duree": "7 jours",
           "etat": false,
@@ -234,7 +234,7 @@
       "ordonnances": [
         {
           "id": 23,
-          "idDPI": 12,
+          "id_DPI": 12,
           "dateCreation": "2024-12-11",
           "duree": "5 jours",
           "etat": true,
@@ -250,7 +250,7 @@
         },
         {
           "id": 24,
-          "idDPI": 12,
+          "id_DPI": 12,
           "dateCreation": "2024-12-13",
           "duree": "10 jours",
           "etat": false,
@@ -290,7 +290,7 @@
       "ordonnances": [
         {
           "id": 25,
-          "idDPI": 13,
+          "id_DPI": 13,
           "dateCreation": "2024-12-21",
           "duree": "3 jours",
           "etat": true,
@@ -306,7 +306,7 @@
         },
         {
           "id": 26,
-          "idDPI": 13,
+          "id_DPI": 13,
           "dateCreation": "2024-12-22",
           "duree": "5 jours",
           "etat": false,

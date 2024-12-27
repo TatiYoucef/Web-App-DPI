@@ -14,10 +14,11 @@
       <div class="container2">
         <h1>Patient ... : Liste des ordonnances </h1>
 
-        <div *ngFor="let ordonnance of ordonnances"> 
-          <div [class]="ordonnance.etat ? 'card1' : 'card2'">
-              <strong> Date de création {{ordonnance.dateCreation}} </strong>  
-              <strong> Durée {{ordonnance.duree}} </strong>  
+        <div> 
+          <!-- *ngFor="let ordonnance of ordonnances" -->
+          <div class="card1">
+              <strong> Date de création  </strong>  
+              <strong> Durée </strong>  
           </div>
         </div>
       </div>

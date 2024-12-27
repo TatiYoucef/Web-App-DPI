@@ -63,7 +63,7 @@ export type DPI = {
 
 export type Ordonnance = {
   id : number,
-  idDPI : number,
+  id_DPI : number,
   dateCreation : Date,
   duree : String,
   etat : Boolean,
