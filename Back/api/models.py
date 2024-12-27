@@ -30,6 +30,7 @@ class Administratif(models.Model):
   
 class Patient(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE , related_name="compte_patient")
+  dossier=models.OneToOneField('DPI',on_delete=models.CASCADE,null=True, blank=True)
   date_naissance=models.DateField(default=date.today)
   address = models.CharField(max_length=255 , blank=True)
   phone_number = models.CharField(max_length=15 , blank=True)
@@ -83,14 +84,15 @@ class Radiologue(models.Model):
 
 
 class DPI(models.Model):
-
-    # Link to the Patient class
-    patient = models.OneToOneField('Patient', on_delete=models.CASCADE)
+  
+    # # Link to the Patient class
+    # patient = models.OneToOneField('Patient', on_delete=models.CASCADE)
 
     # Link to the Séjour class
+    
     consultation = models.ForeignKey('Consultation', on_delete=models.CASCADE)
       # Date and time of the patient entrence 
-    dateAddmition = models.DateTimeField(default=datetime.now)
+    dateAdmission = models.DateTimeField(default=datetime.now)
 
     # Date and time of the discharge of the patient
     dateSortie = models.DateTimeField(auto_now=True)
@@ -98,9 +100,8 @@ class DPI(models.Model):
     # Date and time of the last update of the DPI record
     dateMaj = models.DateTimeField(default=datetime.now)
 
-    # Link to the Resume (medical history) class
-    antecedents_medicaux = models.ForeignKey('Resume', on_delete=models.CASCADE)
-    
+    # String dispkaying antecedents_medicaux of a patient 
+    antecedents_medicaux = models.TextField(blank=True, null=True)    
     # Link to the Ordonnance class
     ordonnance=models.ForeignKey('Ordonnance',on_delete=models.CASCADE)
 
@@ -109,6 +110,7 @@ class DPI(models.Model):
       
     # Link to the Soin class
     soins=models.ForeignKey('Soin',on_delete=models.CASCADE)
+    
     observation=models.ForeignKey('Observation',on_delete=models.CASCADE,null=True, blank=True)
     
   
@@ -151,19 +153,6 @@ class Soin(models.Model):
     infermier = models.ManyToManyField('Infirmier', related_name='soins')
 
 
-
-
-
-class Resume(models.Model):
-    pass  # Placeholder for now; I'll add fields later
-
-class Ordonnance(models.Model):
-    pass  # Placeholder for now; I'll add fields later
-
-class Bilan(models.Model):
-    pass  # Placeholder for now; I'll add fields later
-  
-  
 class Observation(models.Model):
   
     temperature = models.FloatField(default=0.0)
@@ -173,3 +162,13 @@ class Observation(models.Model):
     frequanceCardiaque= models.FloatField(default=0.0)
     
     date=models.DateTimeField(default=datetime.now)
+
+
+
+class Ordonnance(models.Model):
+    pass  # Placeholder for now; I'll add fields later
+
+class Bilan(models.Model):
+    pass  # Placeholder for now; I'll add fields later
+  
+  

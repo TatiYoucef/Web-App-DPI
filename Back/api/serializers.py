@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import (Administratif , Patient , Medcin , User ,  Infirmier , Laborantin , Radiologue,DPI, Consultation,Soin)
+from api.models import (Administratif , Patient , Medcin , User ,Observation,Ordonnance,Bilan, Infirmier , Laborantin , Radiologue,DPI, Consultation,Soin)
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -33,12 +33,26 @@ class PatientSerializer(serializers.ModelSerializer):
         fields = '__all__'
     
     def create(self, validated_data):
+        
         user_data = validated_data.pop('user')
         # Create the user
         user = User.objects.create_user(**user_data)
         # Create the Patient profile and associate it with the user
         patient = Patient.objects.create(user=user, **validated_data)
         return patient
+
+
+class PatientDPIListSerializer(serializers.ModelSerializer):
+    user_first_name = serializers.CharField(source='user.first_name', read_only=True)
+    user_last_name = serializers.CharField(source='user.last_name', read_only=True)
+    date_admission = serializers.DateTimeField(source='dossier.dateAdmission', read_only=True)
+    dpi_id = serializers.IntegerField(source='dossier.id', read_only=True)
+    
+    class Meta:
+        model = Patient
+        fields = ['user_first_name', 'user_last_name', 'date_admission', 'dpi_id']
+        
+
 
 
 class MedcinSerializer(serializers.ModelSerializer):
@@ -94,9 +108,16 @@ class RadiologueSerializer(serializers.ModelSerializer):
 
 
 class DPISerializer(serializers.ModelSerializer):
+    consultation = serializers.PrimaryKeyRelatedField(queryset=Consultation.objects.all())
+    ordonnance = serializers.PrimaryKeyRelatedField(queryset=Ordonnance.objects.all())
+    bilan = serializers.PrimaryKeyRelatedField(queryset=Bilan.objects.all())
+    soins = serializers.PrimaryKeyRelatedField(queryset=Soin.objects.all())
+    antecedents_medicaux = serializers.CharField(allow_blank=True, required=False) 
+    #observation = serializers.PrimaryKeyRelatedField(queryset=Observation.objects.all())
+    
     class Meta:
         model = DPI
-        fields = '__all__'
+        fields = ['id', 'dateAddmition', 'dateMaj', 'consultation', 'ordonnance', 'bilan', 'soins', 'antecedents_medicaux']
 
 
 class ConsultationSerializer(serializers.ModelSerializer):
