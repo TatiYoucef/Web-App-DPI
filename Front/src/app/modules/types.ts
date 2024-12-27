@@ -76,3 +76,12 @@ export type Medicament = {
   dose : String,
   frequence : String,
 }
+
+export type Soin = {
+
+  id: number,
+  subject: string,
+  description: string, 
+  date: string,
+    
+}

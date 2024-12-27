@@ -37,12 +37,22 @@ export const routes: Routes = [
   },
 
   {
-    path:'rabLabInf/joindreBilan',
+    path:'rabLabInf/joindreBilan/:id', //id te3 patient li 7a najoutiwlou bilan
     loadComponent: async () => {
       const m = await import("./pages/userPages/rab-lab-inf/ajout-result-bilan/ajout-result-bilan.component");
       return m.AjoutResultBilanComponent;
     }
   },
+  
+  {
+    path:'rabLabInf/ajoutSoin/:id', //id te3 patient li 7a najoutiwlou soins
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/rab-lab-inf/ajout-soin/ajout-soin.component");
+      return m.AjoutSoinComponent;
+    }
+  },
+
+
 
   {
     path:'patient',
