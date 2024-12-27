@@ -2,7 +2,7 @@ from django.db import models
 from datetime import date
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
-
+from django import forms
 # Create your models here.
 class User(AbstractUser):
     ROLE_CHOICES = (
@@ -15,37 +15,7 @@ class User(AbstractUser):
     )
     role = models.CharField(max_length=30, choices=ROLE_CHOICES)
 
-class Administratif(models.Model):
-  user = models.OneToOneField( User , on_delete=models.CASCADE , related_name="compte_admin")
-  date_naissance=models.DateField(default=date.today)
-  address = models.CharField(max_length=255 , blank=True)
-  phone_number = models.CharField(max_length=15 , blank=True)
 
-
-  def __str__(self):
-        return f"{self.user.username} "
-  
-class Patient(models.Model):
-  user = models.OneToOneField(User, on_delete=models.CASCADE , related_name="compte_patient")
-  date_naissance=models.DateField(default=date.today)
-  address = models.CharField(max_length=255 , blank=True)
-  phone_number = models.CharField(max_length=15 , blank=True)
-  nss = models.CharField(max_length=15 , blank=True)
-  medcin_traitant = models.CharField(max_length=15 , blank=True)
-  mutuelle = models.CharField(max_length=15 , blank=True)
- 
-  def __str__(self):
-        return f"{self.user.username} "
-
-
-class Medcin(models.Model):
-  user = models.OneToOneField(User, on_delete=models.CASCADE , related_name="compte_medcin")
-  date_naissance=models.DateField(default=date.today)
-  address = models.CharField(max_length=255 , blank=True)
-  phone_number = models.CharField(max_length=15 , blank=True)
-  
-  def __str__(self):
-    return f"{self.user.username}"
 
 class Infirmier(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE , related_name="compte_Infirmier")
@@ -57,6 +27,7 @@ class Infirmier(models.Model):
     return f"{self.user.username}"
 
 class Laborantin(models.Model):
+  id_biolo = models.AutoField(primary_key=True)
   user = models.OneToOneField(User, on_delete=models.CASCADE , related_name="compte_Laborantin")
   date_naissance=models.DateField(default=date.today)
   address = models.CharField(max_length=255 , blank=True)
@@ -66,20 +37,208 @@ class Laborantin(models.Model):
    return f"{self.user.username}"
   
 class Radiologue(models.Model):
+  id_radio = models.AutoField(primary_key=True)
   user = models.OneToOneField(User, on_delete=models.CASCADE , related_name="compte_Radiologue")
   date_naissance=models.DateField(default=date.today)
   address = models.CharField(max_length=255 , blank=True)
   phone_number = models.CharField(max_length=15 , blank=True)
 
   def __str__(self):
-   return f"{self.user.username}"
+   return f"{self.user.username}"    
+  
+  
+class Administratif(models.Model):
+  user = models.OneToOneField( User , on_delete=models.CASCADE , related_name="compte_admin")
+  date_naissance=models.DateField(default=date.today)
+  address = models.CharField(max_length=255 , blank=True)
+  phone_number = models.CharField(max_length=15 , blank=True)
 
 
+  def __str__(self):
+        return f"{self.user.username} "
+  
+class Soin(models.Model):
+  infirmier = models.OneToOneField(Infirmier , on_delete=models.CASCADE , related_name="infirmier_soin")
+  observation =models.TextField()
 
+
+class Medcin(models.Model):
+  id_medecin = models.AutoField(primary_key=True)
+  user = models.OneToOneField(User, on_delete=models.CASCADE , related_name="compte_medcin")
+  date_naissance=models.DateField(default=date.today)
+  address = models.CharField(max_length=255 , blank=True)
+  phone_number = models.CharField(max_length=15 , blank=True)
+  
+  def __str__(self):
+    return f"{self.user.username}"
+  
+class Consultation(models.Model):
+  id_consul = models.AutoField(primary_key=True)
+  soin = models.ForeignKey(Soin ,on_delete=models.CASCADE , related_name= "soin_sejour")
+  medcin = models.OneToOneField(Medcin , on_delete=models.CASCADE , related_name="medcin_sejour")
+  date = models.DateField()
+  trouveDiagnostic = models.BooleanField(default=False) 
+
+
+class Medicament(models.Model):
+  nom = models.CharField(max_length=100)  
+  dose = models.CharField(max_length=50) 
+  FREQUENCE_CHOICES = [
+      ('matin', 'Matin'),
+      ('midi', 'Midi'),
+      ('soir', 'Soir'),
+      ('matin_midi', 'Matin et Midi'),
+      ('midi_soir', 'Midi et Soir'),
+      ('matin_midi_soir', 'Matin, Midi et Soir'),
+      ('au_besoin', 'Au besoin'),
+  ]
+  frequence = models.CharField(max_length=50, choices=FREQUENCE_CHOICES)  
+
+  def __str__(self):
+      return self.nom  
+  
+class Ordonnance(models.Model):
+  id_ord = models.AutoField(primary_key=True) 
+  medicaments = models.ManyToManyField(Medicament, related_name="ordonnances" ,  blank=True )  
+  medecin = models.ForeignKey(Medcin, on_delete=models.CASCADE)  
+  consul = models.ForeignKey(Consultation, on_delete=models.CASCADE)
+  date = models.DateField(default=date.today)
+  duree = models.CharField(max_length=50)
+  etat = models.BooleanField(default=False) #validee ou nn
+  
+
+  def __str__(self):
+    return f"Ordonnance {self.id}"
+
+class Bilan(models.Model):
+  id_bilan = models.AutoField(primary_key=True)  
+  TYPE_BILAN_CHOICES = [
+      ('BIOLOGIQUE', 'Biologique'),
+      ('RADIOLOGIQUE', 'Radiologique'),
+  ]
+  description = models.TextField() 
+  date_prescription = models.DateField()  
+  medecin = models.ForeignKey(Medcin, on_delete=models.CASCADE)  
+  consul = models.ForeignKey(Consultation, on_delete=models.CASCADE)
+  typeBilan = models.CharField(
+      max_length=10,
+      choices=TYPE_BILAN_CHOICES,
+      default='',  
+  )
+
+  class Meta :
+    abstract = True 
+
+class MedicalRecord(models.Model) :
+    id_medRecord = models.AutoField(primary_key=True)  
+    parametre = models.CharField(max_length=100)
+    value = models.FloatField()
+    unite = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.parametre} ({self.value} {self.unite})"
+
+
+class BilanBiologique(Bilan):
+  laborantin= models.OneToOneField(Laborantin ,on_delete=models.CASCADE ,  related_name="labo_bilan")  
+  resultats_analytiques = models.ManyToManyField(MedicalRecord ,related_name="result_bilan")
+  
+  def ajouter_resultat(self, parametre, valeur, unite):
+        new_record = MedicalRecord.objects.create(parametre=parametre, value=valeur, unite=unite)
+        self.resultats_analytiques.add(new_record)
+        self.save()
+
+  def traiter_resultats(self):
+        print(f"Fait par: {self.biologist}")
+        print("Parametre Valeur Unite")
+        for record in self.resultats_analytiques.all():   
+            print(record.parametre ,record.valeur, record.unite) 
+  
+
+class BilanRadiologique(Bilan):
+  radiologue = models.OneToOneField(Radiologue ,on_delete=models.CASCADE ,related_name="radio_bilan" , null=True)  
+  images = models.JSONField(default=list , null=True, blank=True )  # List to store image paths
+  #images = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
+  compte_rendu = models.TextField(null=True, blank=True) 
+
+  def ajouter_image(self, image_path):
+        self.images.append(image_path)
+        self.save() 
+
+  def ajouter_compte_rendu(self, texte):
+        """Raport """
+        self.compte_rendu = texte
+        self.save() 
+
+  def traiter_resultats(self):
+        """Processes and displays radiological results."""
+        print(f"Fait par: {self.radiologue}")
+        print("Images radiologiques:")
+        for image in self.images:
+            print(f"Image: {image}")
+        print(f"Compte-rendu: {self.compte_rendu}")
+
+class Dossier(models.Model):
+  ordannance = models.ManyToManyField(Ordonnance  , related_name="sejour_ord" ,  blank=True)
+  bilanBiologique = models.ManyToManyField(BilanBiologique  , related_name="sejour_bilanBio" , blank=True)
+  bilanRadiologique =models.ManyToManyField(BilanRadiologique , related_name="sejour_bilanRadio", blank=True)
+  consultation = models.ManyToManyField(Consultation , related_name="cons_dossier" ,  blank=True)
+  antecedants = models.TextField( null=True ,blank=True)
    
+class Patient(models.Model):
+  id_patient = models.AutoField(primary_key=True)
+  user = models.OneToOneField(User, on_delete=models.CASCADE , related_name="compte_patient")
+  date_naissance=models.DateField(default=date.today)
+  address = models.CharField(max_length=255 , blank=True)
+  phone_number = models.CharField(max_length=15 , blank=True)
+  nss = models.CharField( unique=True , max_length=15 , blank=True)
+  medcin_traitant = models.CharField(max_length=15 , blank=True)
+  mutuelle = models.CharField(max_length=15 , blank=True)
+  dossier = models.OneToOneField(Dossier , on_delete=models.CASCADE , related_name="patient_dossier" , null=True , blank=True)
+  def __str__(self):
+        return f"{self.user.username} "
+
+  
+class Resume(models.Model):
+    id_resume = models.AutoField(primary_key=True) 
+    symptomes = models.CharField(max_length=100)  
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
+    consul = models.ForeignKey(Consultation, on_delete=models.CASCADE)
+    mesuresPrises = models.ManyToManyField(MedicalRecord, related_name="resume")
+    dateProchaineConsul = models.DateField() 
+
+    def __str__(self):
+        return f"Resume {self.id_resume}" 
+
+  
+
+ 
+  
 
 
 
 
 
-    
+
+  
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+  
+
+
+
+
+
+  
