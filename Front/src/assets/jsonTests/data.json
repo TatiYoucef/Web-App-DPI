@@ -1,0 +1,161 @@
+{
+
+  "patients": [
+    {
+      "id": 1,
+      "idUser": 101,
+      "nomUser": "Doe",
+      "nss": 123456789,
+      "naissance": "1990-01-01",
+      "adresse": "123 Main Street, Cityville",
+      "tel": "123-456-7890",
+      "mutuelle": "HealthCare Plus",
+      "nom": "John",
+      "prenom": "Doe"
+    },
+    {
+      "id": 2,
+      "idUser": 102,
+      "nomUser": "Smith",
+      "nss": 987654321,
+      "naissance": "1985-05-15",
+      "adresse": "456 Elm Street, Townsville",
+      "tel": "987-654-3210",
+      "mutuelle": "Premium Health",
+      "nom": "Jane",
+      "prenom": "Smith"
+    },
+    {
+      "id": 3,
+      "idUser": 103,
+      "nomUser": "Brown",
+      "nss": 456123789,
+      "naissance": "1995-03-20",
+      "adresse": "789 Oak Avenue, Villageton",
+      "tel": "456-789-1234",
+      "mutuelle": "Standard Care",
+      "nom": "Mike",
+      "prenom": "Brown"
+    },
+    {
+      "id": 4,
+      "idUser": 104,
+      "nomUser": "Johnson",
+      "nss": 321654987,
+      "naissance": "1988-07-11",
+      "adresse": "321 Pine Lane, Suburbia",
+      "tel": "321-654-9870",
+      "mutuelle": "Comprehensive Cover",
+      "nom": "Emily",
+      "prenom": "Johnson"
+    },
+    {
+      "id": 5,
+      "idUser": 105,
+      "nomUser": "Taylor",
+      "nss": 654789321,
+      "naissance": "1992-12-03",
+      "adresse": "654 Maple Drive, Metropolis",
+      "tel": "654-789-3214",
+      "mutuelle": "Basic Health Plan",
+      "nom": "Chris",
+      "prenom": "Taylor"
+    },
+    {
+      "id": 6,
+      "idUser": 106,
+      "nomUser": "Anderson",
+      "nss": 789123456,
+      "naissance": "1980-04-25",
+      "adresse": "789 Cedar Court, Riverwood",
+      "tel": "789-123-4567",
+      "mutuelle": "HealthSecure",
+      "nom": "Sarah",
+      "prenom": "Anderson"
+    },
+    {
+      "id": 7,
+      "idUser": 107,
+      "nomUser": "Moore",
+      "nss": 123789456,
+      "naissance": "1998-09-18",
+      "adresse": "123 Birch Lane, Highland",
+      "tel": "123-789-4561",
+      "mutuelle": "Wellness Plan",
+      "nom": "James",
+      "prenom": "Moore"
+    },
+    {
+      "id": 8,
+      "idUser": 108,
+      "nomUser": "Thomas",
+      "nss": 987321654,
+      "naissance": "1983-02-10",
+      "adresse": "456 Spruce Road, Valleyview",
+      "tel": "987-321-6543",
+      "mutuelle": "Optimum Care",
+      "nom": "Linda",
+      "prenom": "Thomas"
+    },
+    {
+      "id": 9,
+      "idUser": 109,
+      "nomUser": "Martin",
+      "nss": 321987654,
+      "naissance": "1991-11-30",
+      "adresse": "321 Redwood Avenue, Forest Hill",
+      "tel": "321-987-6543",
+      "mutuelle": "Prime Health",
+      "nom": "Robert",
+      "prenom": "Martin"
+    },
+    {
+      "id": 10,
+      "idUser": 110,
+      "nomUser": "Garcia",
+      "nss": 654321987,
+      "naissance": "1993-06-22",
+      "adresse": "654 Willow Way, Seaside",
+      "tel": "654-321-9876",
+      "mutuelle": "SecureLife",
+      "nom": "Anna",
+      "prenom": "Garcia"
+    }
+  ],
+
+  "bilanMedecin": {
+
+    "id": 5,
+    "status": "Pending",
+    "requestedAt": "2024-12-22",
+
+    "tests": [
+      {
+        "id": 1,
+        "testName": "Taux de glycémie",
+        "result": null
+      },
+      {
+        "id": 2,
+        "testName": "Taux de cholestérol",
+        "result": null
+      },
+      {
+        "id": 3,
+        "testName": "Créatinine sanguine",
+        "result": null
+      },
+      {
+        "id": 4,
+        "testName": "Niveau d'hémoglobine",
+        "result": null
+      },
+      {
+        "id": 5,
+        "testName": "Taux d'urée",
+        "result": null
+      }
+    ]
+  }
+  
+}

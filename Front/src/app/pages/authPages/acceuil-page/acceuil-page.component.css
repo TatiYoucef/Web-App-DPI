@@ -10,6 +10,17 @@
 
 }
 
+.center-div{
+
+  background-color: #EEF4FF;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center ;
+
+}
+
 .text-div{
   width: 300%;
 }

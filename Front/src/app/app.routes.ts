@@ -21,12 +21,45 @@ export const routes: Routes = [
   },
 
   {
-    path:'test',
+    path:'rabLabInf',
     loadComponent: async () => {
-      const m = await import("./pages/homePages/rad-lab-inf-page/rad-lab-inf-page.component");
-      return m.RadLabInfPageComponent;
+      const m = await import("./pages/userPages/rab-lab-inf/acceuil-page/acceuil-page.component");
+      return m.AcceuilPageComponent;
     }
   },
+
+  {
+    path:'rabLabInf/joindreBilan',
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/rab-lab-inf/ajout-result-bilan/ajout-result-bilan.component");
+      return m.AjoutResultBilanComponent;
+    }
+  },
+
+  {
+    path:'patient',
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/patient/acceuil-page/acceuil-page.component");
+      return m.AcceuilPageComponent;
+    }
+  },
+
+  {
+    path:'medecin',
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/medecin/acceuil-page/acceuil-page.component");
+      return m.AcceuilPageComponent;
+    }
+  },
+
+  {
+    path:'admin',
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/admin/acceuil-page/acceuil-page.component");
+      return m.AcceuilPageComponent;
+    }
+  },
+
   {
     path:'notif',
     loadComponent: async () => {

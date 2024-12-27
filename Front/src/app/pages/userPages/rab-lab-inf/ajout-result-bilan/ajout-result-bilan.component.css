@@ -1,0 +1,134 @@
+.content{
+
+  display: flex;
+  margin-top: 100px;
+  gap: 0;
+  padding: 0;
+  align-items: start;
+}
+
+.empty-dash{
+  width: 24vw;
+}
+
+.container {
+
+  display: flex;
+  flex-direction: column; /* Flex items will be arranged vertically */
+  justify-content: flex-start; /* Align items at the top by default */
+  width: 100%;
+  gap: 10px; /* Add spacing between items */
+  margin: 20px;
+}
+
+.center-div{
+  width: 100vw;
+  height: 80vh;
+  display: flex;
+  flex-direction:column ;
+  justify-content: center;
+  align-items: center ;
+}
+
+.card{
+
+  display: flex;
+  flex-direction: column; /* Flex items will be arranged vertically */
+  justify-content: flex-start; /* Align items at the top by default */
+
+  padding: 40px 40px;
+  border-radius: 20px;
+  background-color: #EEF4FF;
+  width: 50%;
+  margin: auto;
+  margin-bottom: 40px;
+  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+
+}
+
+.card-button{
+
+  font-family: "Quicksand", serif;
+  font-size: 40px;
+  font-weight: 500;
+
+  border: none;
+  border-radius: 30px ;
+  padding: 40px 20px;
+  background-color:#3958B3;
+  color: #EEF4FF;
+  transition: color 0.3s, background-color 0.3s, box-shadow 0.3s;
+
+  cursor: pointer;
+
+}
+
+.card-button:hover, .sub-button:hover{
+  background-color: #EEF4FF;
+  color: #3958B3;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+}
+
+.sub-button{
+  
+  margin: auto;
+  font-family: "Quicksand", serif;
+  font-size: 20px;
+  font-weight: 800;
+
+  border: none;
+  border-radius: 100px ;
+  padding: 15px 40px;
+  background-color:#3958B3;
+  color: #EEF4FF;
+  transition: color 0.3s, background-color 0.3s, box-shadow 0.3s;
+
+  cursor: pointer;
+
+}
+
+h3{
+  font-size: 25px;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.inputs-div{
+
+  padding: 10px 0px;
+
+  width: 100%;
+
+  display: flex;
+  flex-direction: column; /* Flex items will be arranged vertically */
+  justify-content: start; /* Align items at the top by default */
+
+}
+
+input{
+  font-family: "Quicksand", serif;
+  
+  height: 25px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  padding: 5px 10px;
+
+  border: 1px solid #ccc; /* Light gray border */
+  outline: none;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+
+}
+
+input:focus {
+  border-color: #3958B3; /* Blue border on focus */
+}
+
+img{
+  margin: auto;
+  margin-bottom: 30px;
+  border: solid;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+}

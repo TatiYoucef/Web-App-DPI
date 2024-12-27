@@ -1,0 +1,114 @@
+<app-header (changeDashEvent) = "changeDashState()" />
+
+<div class="content">
+
+  @if (isDashBoard()) { <!--Ida kayen dashBoard-->
+    <div class="empty-dash">
+      <app-dash-board />
+    </div>
+  }
+
+  <div class="container">
+
+    @defer { <!--Defer is when component needs to load so we show something while loading-->
+
+      <h1>Bienvenue chers medecin {{user.nom}} {{user.prenom}}</h1>
+      
+      <div class="container2">
+
+        <div class="card2">
+          <img src="../../../../../assets/icons/new_DPI.png" width="100px" >   
+
+          <button (click)="isCreeDPI.set(true)">  
+            <p>Créer DPI</p>    
+          </button>
+
+        </div>
+
+        <div class="card"> 
+
+          <button>  
+            <img src="../../../../../assets/icons/QR.png" width="100px" >
+            <p>Rechercher DPI par code QR</p>
+          </button>
+
+          <button (click)="isRecherchePatient.set(true)">  
+            <img src="../../../../../assets/icons/search.png" width="100px" >
+            <p>Rechercher DPI par NSS</p>
+          </button>
+
+        </div>
+
+      </div>
+
+      @if (isCreeDPI() || isRecherchePatient()) { <!--Ida medecin cliaka l'un des deux boutons-->
+
+        <div class="grey-div" (click)="annulerRecherche($event)">
+
+          <div class="card3">
+ 
+            <h2>{{isCreeDPI()? "Créer DPI d'un patient":"Rechercher un patient"}}</h2>
+
+            <label>Nss:</label>
+            <input id="nss" type="text" placeholder="NSS" #nss>  
+            
+            @if (isCreeDPI()) {
+              <label>Nom</label>
+              <input type="text" id= "nom" placeholder="nom"> 
+
+              <label>Prénom</label>
+              <input type="text" id="prenom" placeholder="prénom">
+
+              <label>Nom d'utilisateur</label>
+              <input type="text" id="nom_utilisateur" placeholder="nom d'utilisateur">
+
+              <label>Password</label>
+              <input type="text" id="password" placeholder="mot_passe">
+
+              <label>Email</label>
+              <input type="text" id="email" placeholder="email">
+
+               
+              <label>Addresse</label>
+              <input type="text" id="adresse" placeholder="Addresse">
+
+              <label>Date de naissance</label>
+              <input type="date" id="date_naissance">
+
+              <label>tel</label>
+              <input type="tel" id="tel" placeholder="téléphone">
+
+              <label>mutuelle</label>
+              <input type="text" id="mutuelle" placeholder="mutuelle">
+            }
+
+            <div class="container2">
+
+              <button (click)="isCreeDPI()? creerDPI() : recherchePatient(nss.value)">  
+                <p> {{isCreeDPI() ? "Créer DPI":"Recherche DPI" }} </p>    
+              </button>
+
+              <button class="annuler" (click)="annulerRecherche($event)">
+                annuler
+              </button>
+
+            </div>
+            
+
+          </div>
+
+          @if (isRecherchePatient()) {<div style="margin-top: 300px;"></div>} 
+        </div>
+
+      }
+  
+      
+    } @loading (minimum 0.5s) { <!--Nesstennaw minimum 4s besh naffichiw @defer-->
+      <div class="center-div">
+        <app-loading-screen />
+      </div>
+    }
+  
+  </div>
+</div>
+

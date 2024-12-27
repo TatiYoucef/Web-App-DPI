@@ -94,3 +94,21 @@ class UserLoginView(APIView):
         else:
             return Response({'message': 'Invalid username or password'}, status=status.HTTP_401_UNAUTHORIZED)
 
+
+class PatientList(generics.ListAPIView):
+    queryset = Patient.objects.all()
+    serializer_class = PatientSerializer
+
+class PatientByNSSView(APIView):
+    serializer_class = PatientSerializer
+    def get(self, request, nss):
+        try:
+            patient = Patient.objects.get(nss=nss)
+        except Patient.DoesNotExist:
+            return Response({'error': 'Notification not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = self.serializer_class(patient)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+        
+
+        

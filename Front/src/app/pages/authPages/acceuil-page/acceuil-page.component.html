@@ -1,15 +1,24 @@
-<app-header-accueil />
+@defer {
 
-<div class="container">
+  <app-header-accueil />
 
-  <div class="text-div">
-    <h1>Bienvenue sur <span>TrackMed</span></h1>
-    <h1 class="text-h1">la meilleure solution de gestion des dossiers médicaux informatisés.</h1>
+  <div class="container">
 
-    <p>Simplifiez la gestion de vos dossiers médicaux avec un système intuitif et sécurisé.</p>
+    <div class="text-div">
+      <h1>Bienvenue sur <span>TrackMed</span></h1>
+      <h1 class="text-h1">la meilleure solution de gestion des dossiers médicaux informatisés.</h1>
+
+      <p>Simplifiez la gestion de vos dossiers médicaux avec un système intuitif et sécurisé.</p>
+    </div>
+
+    <div class="image-div">
+      <img src="../../../../assets/images/AccueilPhoto.png" height="80%">
+    </div>
   </div>
 
-  <div class="image-div">
-    <img src="../../../../assets/images/AccueilPhoto.png" height="80%">
+} @loading (minimum 4s) {
+  
+  <div class="center-div">
+    <app-loading-screen />
   </div>
-</div>
+}

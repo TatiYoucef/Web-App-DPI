@@ -1,0 +1,51 @@
+<app-header (changeDashEvent) = "changeDashState()" />
+
+<div class="content">
+
+  @if (isDashBoard()) { <!--Ida kayen dashBoard-->
+    <div class="empty-dash">
+      <app-dash-board />
+    </div>
+  }
+
+  <div class="container">
+
+    @defer { <!--Defer is when component needs to load so we show something while loading-->
+
+      @if (listePatient().length === 0) { <!--Liste rahi fargha-->
+
+        <div class="center-div">
+          <img src="../../../../../assets/images/Task_empty.png" width="280px" >
+          <h3>Non patient trouvé</h3>
+          <h4>Aucun patient en cours de traitement, veuillez revenir plus tard</h4>
+        </div>
+
+      } @else {
+
+        <h2>Liste des patients en cours d'hospitalisation:</h2>
+
+        @for (item of listePatient(); track item.nss) { <!--For each patient ndirou ceci-->
+          <div class="item">
+      
+            <div class="profile">
+              <h3>{{ item.nom }} {{ item.prenom }}</h3>
+              <p>Nss: {{ item.nss }} </p>
+            </div>
+      
+            <div class="empty-div"></div>
+      
+            <p>Not yet submitted</p>
+          </div>
+        }
+
+      }
+  
+      
+    } @loading (minimum 2s) { <!--Nesstennaw minimum 4s besh naffichiw @defer-->
+      <div class="center-div">
+        <app-loading-screen />
+      </div>
+    }
+  
+  </div>
+</div>

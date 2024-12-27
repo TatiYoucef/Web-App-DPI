@@ -5,7 +5,7 @@
   justify-content: start;
   align-items: center;
   gap: 20px;
-  padding: 80px 20px;
+  padding: 100px 20px;
   padding-bottom: 50px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
   background-color: #EEF4FF;
@@ -14,11 +14,18 @@
   border-bottom-right-radius: 20px;
 
 
-  height: 85vh;
+  height: 80vh;
 
   position: fixed;
   top: 0;
   left: 0;
+}
+
+.button-div{
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 .empty-div{
@@ -27,18 +34,26 @@
 
 button{
   font-family: "Quicksand", serif;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 800;
+  color: #3958B3;
 
-  padding: 10px 30px;
-  background-color: transparent;
+  width: 100%;
+  padding: 10px 20px;
+  background-color: white;
   border: none;
   border-radius: 10px;
 
   cursor: pointer;
+
+  transition: box-shadow 0.3s ;
 }
 
 button:hover{
-  background-color: rgb(213, 212, 212);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+}
+
+p{
+  margin: 0;
 }
 

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LogInPageComponent } from './log-in-page.component';
-import { FormsModule } from '@angular/forms';
+
 describe('LogInPageComponent', () => {
   let component: LogInPageComponent;
   let fixture: ComponentFixture<LogInPageComponent>;

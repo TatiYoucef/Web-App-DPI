@@ -6,16 +6,16 @@
       <h2>Ravis de vous revoir !</h2>
 
       <div class="inputs-div">
-        <label>Username</label>
-        <input id="username" type="text" placeholder="username" #username>
+        <label>Nom de l'utisateur</label>
+        <input id="username" type="text" placeholder="nom de l'utilisateur" #username>
         <Label>Mot de passe</Label>
         <input id="password" type="password" placeholder="mot de passe" #password>
         <i id="togglrPassword" class="fa fa-fw fa-eye toggle-password field-icon"></i>
       </div>
-      
+
       <button (click)="onSubmit(username.value,password.value)">Se connecter</button>
-      <p  class="error-message">{{errorMessage}}</p>
-    </div>  
+      <p  class="error-message">{{ errorMessage }}</p>
+    </div>
   </div>
 
   <div class="right-div">

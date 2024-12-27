@@ -1,0 +1,65 @@
+<app-header (changeDashEvent) = "changeDashState()" />
+
+<div class="content">
+
+  @if (isDashBoard()) { <!--Ida kayen dashBoard-->
+    <div class="empty-dash">
+      <app-dash-board />
+    </div>
+  }
+
+  <div class="container">
+
+    @defer { <!--Defer is when component needs to load so we show something while loading-->
+
+      <h2>Saisie {{user.role === "Radiologue" ? "de compte rendue": "des résultats de bilan biologique"}} </h2>
+
+      <div class="card">
+
+        <h3>Rédaction des résultats des tests</h3>
+
+        @for (item of listTestsBilan() ; track item.id) {
+
+          <div class="inputs-div">
+            <label> {{item.testName}}: </label>
+            <input type="text">
+          </div>
+  
+        }
+
+      </div>
+
+      <div class="card">
+        <h3>Jointure {{user.role === "Radiologue" ? "de la radio": "de graphe"}}</h3>
+
+        @if (selectedFile === null) {
+          <button class="card-button" (click)="triggerFileInput()">+</button>
+        } @else {
+          
+          <img [src]="previewUrl" alt="photo preview" width="400px">
+          <button class="card-button" (click)="removeFile()">-</button>
+        }
+
+      </div>
+
+      
+      <button class="sub-button">Envoyer bilan</button>
+
+      <input 
+        type="file" 
+        #fileInput 
+        style="display: none;" 
+        (change)="onFileSelected($event)" 
+        accept=".jpg,.jpeg,.png" 
+      />
+  
+      
+    } @loading (minimum 1s) { <!--Nesstennaw minimum 1s besh naffichiw @defer-->
+      <div class="center-div">
+        <app-loading-screen />
+      </div>
+    }
+  
+  </div>
+</div>
+
