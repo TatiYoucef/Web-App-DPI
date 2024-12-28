@@ -105,7 +105,6 @@ class Ordonnance(models.Model):
     return f"Ordonnance {self.id}"
 
 class Bilan(models.Model):
-  #id_bilan = models.AutoField(primary_key=True)  
   TYPE_BILAN_CHOICES = [
       ('BIOLOGIQUE', 'Biologique'),
       ('RADIOLOGIQUE', 'Radiologique'),
@@ -124,7 +123,6 @@ class Bilan(models.Model):
     abstract = True 
 
 class MedcalRecord(models.Model) :
-    #id_medRecord = models.AutoField(primary_key=True)  
     parametre = models.CharField(max_length=100)
     value = models.FloatField()
     unite = models.CharField(max_length=50)
@@ -146,23 +144,6 @@ class BilanRadiologique(Bilan):
   images = models.JSONField(default=list , null=True, blank=True )  # List to store image paths
   #images = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
   compte_rendu = models.TextField(null=True, blank=True) 
-
-  def ajouter_image(self, image_path):
-        self.images.append(image_path)
-        self.save() 
-
-  def ajouter_compte_rendu(self, texte):
-        """Raport """
-        self.compte_rendu = texte
-        self.save() 
-
-  def traiter_resultats(self):
-        """Processes and displays radiological results."""
-        print(f"Fait par: {self.radiologue}")
-        print("Images radiologiques:")
-        for image in self.images:
-            print(f"Image: {image}")
-        print(f"Compte-rendu: {self.compte_rendu}")
 
 class Dossier(models.Model):
   ordannance = models.ManyToManyField(Ordonnance  , related_name="sejour_ord" ,  blank=True)

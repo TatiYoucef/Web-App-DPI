@@ -5,7 +5,7 @@ import { LoadingScreenComponent } from "../../../../components/loading-screen/lo
 import { UserDataService } from '../../../../services/userData/user-data.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Medcin, Patient, User } from '../../../../modules/types';
+import { Medcin, Patient, User ,Ordonnance,Medicament} from '../../../../modules/types';
 @Component({
   selector: 'app-acceuil-page',
   standalone: true,
@@ -78,6 +78,32 @@ export class AcceuilPageComponent {
       },
       error : (error: any) =>{
         console.error('Error fetching patient:', error);
+      }
+    });
+
+  }
+
+  creerOrdonnance(){
+    const duree = (document.getElementById('duree') as HTMLInputElement).value;
+    //const med = [];
+
+    
+    const ordonnace ={
+      duree: duree,
+      etat: false,
+     // medicaments : med,
+    };
+    
+    console.log(ordonnace);
+
+    const apiUrl = 'http://127.0.0.1:8000/api/auth/register/patient' ;
+    
+    this.http.post(apiUrl , ordonnace).subscribe({
+      next: (response:any)=>{
+        console.log(response);
+      },
+      error : (error: any) =>{
+        console.error('Error fetching ordonnance:', error);
       }
     });
 

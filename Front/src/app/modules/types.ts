@@ -62,17 +62,26 @@ export type DPI = {
 
 }
 
+export type Consultation = {
+  id : number,
+  soin : String[],
+  medecin: Medcin,
+  date : Date,
+  trouveDiagnostic : boolean,
+}
+
 export type Ordonnance = {
   id : number,
   id_DPI : number,
-  dateCreation : Date,
+  medecin : Medcin,
+  id_consul : number,
   duree : String,
   etat : Boolean,
+  medicaments :Medicament[],
 }
 
 export type Medicament = {
   id : number,
-  id_ordonnance : number,
   nom : String,
   dose : String,
   frequence : String,
