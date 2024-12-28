@@ -82,3 +82,12 @@ h4{
 .empty-div{
   width: 100%;
 }
+
+.qr-code {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border: 2px solid red; 
+}

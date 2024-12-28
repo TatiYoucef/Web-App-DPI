@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "^17.3.0",
     "@angular/router": "^17.3.0",
     "@fortawesome/fontawesome-free": "^6.7.2",
+    "angularx-qrcode": "^17.0.0",
     "chart.js": "^4.4.7",
     "font-awesome": "^4.7.0",
     "html2canvas": "^1.4.1",

@@ -50,31 +50,41 @@
             <h2>{{isCreeDPI()? "Créer DPI d'un patient":"Rechercher un patient"}}</h2>
 
             <label>Nss:</label>
-            <input type="text" placeholder="NSS">  
+            <input id="nss" type="text" placeholder="NSS" #nss>  
             
             @if (isCreeDPI()) {
               <label>Nom</label>
-              <input type="text" placeholder="nom"> 
+              <input type="text" id= "nom" placeholder="nom"> 
 
               <label>Prénom</label>
-              <input type="text" placeholder="prénom">
+              <input type="text" id="prenom" placeholder="prénom">
 
               <label>Nom d'utilisateur</label>
-              <input type="text" placeholder="nom d'utilisateur">
+              <input type="text" id="nom_utilisateur" placeholder="nom d'utilisateur">
 
+              <label>Password</label>
+              <input type="text" id="password" placeholder="mot_passe">
+
+              <label>Email</label>
+              <input type="text" id="email" placeholder="email">
+
+               
               <label>Addresse</label>
-              <input type="text" placeholder="Addresse">
+              <input type="text" id="adresse" placeholder="Addresse">
 
               <label>Date de naissance</label>
-              <input type="date">
+              <input type="date" id="date_naissance">
 
               <label>tel</label>
-              <input type="tel" placeholder="téléphone">
+              <input type="tel" id="tel" placeholder="téléphone">
+
+              <label>mutuelle</label>
+              <input type="text" id="mutuelle" placeholder="mutuelle">
             }
 
             <div class="container2">
 
-              <button (click)="isCreeDPI()? creerDPI() : recherchePatient()">  
+              <button (click)="isCreeDPI()? creerDPI() : recherchePatient(nss.value)">  
                 <p> {{isCreeDPI() ? "Créer DPI":"Recherche DPI" }} </p>    
               </button>
 
@@ -101,4 +111,3 @@
   
   </div>
 </div>
-

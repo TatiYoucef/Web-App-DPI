@@ -3,7 +3,9 @@ import { HeaderComponent } from "../../../../components/header-user/header.compo
 import { DashBoardComponent } from "../../../../components/dash-board/dash-board.component";
 import { LoadingScreenComponent } from "../../../../components/loading-screen/loading-screen.component";
 import { UserDataService } from '../../../../services/userData/user-data.service';
-
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Medcin, Patient, User } from '../../../../modules/types';
 @Component({
   selector: 'app-acceuil-page',
   standalone: true,
@@ -13,7 +15,10 @@ import { UserDataService } from '../../../../services/userData/user-data.service
 })
 
 export class AcceuilPageComponent {
-
+  router= inject(Router); 
+  userDataService = inject(UserDataService);
+  errorMessage : string = '';
+  http = inject(HttpClient);
   isDashBoard = signal(false);
   user = inject(UserDataService).getUserData() ;  //Njibou Data te3 user te3na 
 
@@ -34,10 +39,73 @@ export class AcceuilPageComponent {
   }
 
   creerDPI(){
-    console.log("Créer DPI en cours de traitement...")
+    const nss = (document.getElementById('nss') as HTMLInputElement).value;
+    const nom = (document.getElementById('nom') as HTMLInputElement).value;
+    const prenom = (document.getElementById('prenom') as HTMLInputElement).value;
+    const nomUser = (document.getElementById('nom_utilisateur') as HTMLInputElement).value;
+    const adress = (document.getElementById('adresse') as HTMLInputElement).value;
+    const date_naissance = (document.getElementById('date_naissance') as HTMLInputElement).value;
+    const tel = (document.getElementById('tel') as HTMLInputElement).value;
+    const password = (document.getElementById('password') as HTMLInputElement).value;
+    const mutuelle = (document.getElementById('mutuelle') as HTMLInputElement).value;
+    const email = (document.getElementById('email') as HTMLInputElement).value;
+    console.log('HIIII');
+
+
+    const patientData ={
+      user: {
+        username: nomUser,
+        email: email,
+        password: password, // Ajouter le mot de passe
+        role: 'Patient',
+        first_name: prenom,
+        last_name: nom
+      },
+      date_naissance: date_naissance,
+      address: adress,
+      phone_number: tel,
+      nss: nss,
+      mutuelle: mutuelle
+    };
+    
+    console.log(patientData);
+
+    const apiUrl = 'http://127.0.0.1:8000/api/auth/register/patient' ;
+    
+    this.http.post(apiUrl , patientData).subscribe({
+      next: (response:any)=>{
+        console.log(response);
+      },
+      error : (error: any) =>{
+        console.error('Error fetching patient:', error);
+      }
+    });
+
   }
 
-  recherchePatient(){
-    console.log("Recherche patient en cours de traitement...")
+  recherchePatient( nss: String ){
+    const loginUrl = `http://127.0.0.1:8000/api/auth/get/patient/${nss}`;
+    this.http.get(loginUrl).subscribe({
+      next: (response:any)=>{
+       let user: User = {
+        id: response.user.id,
+        nomUser : response.user.username ,
+        nom : response.user.first_name ,
+        prenom : response.user.last_name ,
+        naissance: response.date_naissance,
+        adresse: response.address,
+        tel: response.phone_number,
+        role : response.user.role
+      }
+        console.log(user)
+        this.userDataService.setUserData(user);
+        this.router.navigate(["patient"]);
+      },
+
+      error : (error: any) =>{
+      console.error('Error fetching patient:', error);
+     }
+    });
+ 
   }
 }

@@ -15,7 +15,14 @@ import { UserDataService } from '../../../../services/userData/user-data.service
 export class AcceuilPageComponent {
 
   isDashBoard = signal(false);
-  user = inject(UserDataService).getUserData() //Njibou Data te3 user te3na
+  user = inject(UserDataService).getUserData() || {
+    id: 0,
+    nom: "N/A",
+    prenom: "N/A",
+    nomUser: "N/A",
+    naissance: "N/A",
+    role: "Patient",
+  } ; //Njibou Data te3 user te3na , hadik || besh lina 7na ida bghina ndesigniw bla manlogiw à chaque fois
 
   changeDashState(){
     this.isDashBoard.update((e) => !e);

@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from api.models import (Administratif , Patient , Medcin , User ,  Infirmier , Laborantin , Radiologue ,Medicament , Ordonnance , BilanBiologique , BilanRadiologique)
+from api.models import (Administratif , Patient , Medcin , User ,  Infirmier , Laborantin , Radiologue ,Medicament , Ordonnance , BilanBiologique , BilanRadiologique , Medicament , Ordonnance , BilanRadiologique, BilanBiologique , MedcalRecord)
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -97,16 +98,24 @@ class MedicamentSerializer(serializers.ModelSerializer):
     
 
 class OrdonnanceSerializer(serializers.ModelSerializer):
-    medicaments = MedicamentSerializer(many=True)  # Adjust to handle ManyToManyField
+    medicaments = MedicamentSerializer(many=True) 
     
     class Meta:
         model = Ordonnance
         fields = '__all__'
+  
 
+
+class MedicalRecordSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MedcalRecord
+        fields = '__all__'
+        
 class BilanBilogiqueSerializer(serializers.ModelSerializer):
     class Meta:
         model = BilanBiologique
         fields ='__all__' 
+    
         
 class BilanRadiologiqueSerializer(serializers.ModelSerializer):
     class Meta:
