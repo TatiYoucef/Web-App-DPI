@@ -32,6 +32,7 @@
             <img src="../../../../../assets/icons/QR.png" width="100px" >
             <p>Rechercher DPI par code QR</p>
           </button>
+
           <div *ngIf="isScanning">
             <zxing-scanner 
               [start]="true" 
@@ -92,12 +93,8 @@
               </button>
 
             </div>
+
             @if (isRecherchePatient()) {
-              <div class="card" *ngIf="searchedDPI">
-                <h3>DPI Trouvé:</h3>
-                <p>ID: {{ searchedDPI()?.id }}</p>
-                <p>Details: {{ searchedDPI | json }}</p>
-              </div>
               <div class="card" *ngIf="!searchedDPI && nssInput">
                 <p>Aucun DPI trouvé pour le NSS saisi.</p>
               </div>

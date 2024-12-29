@@ -68,29 +68,48 @@ export class AcceuilPageComponent implements OnInit {
       })
       ).subscribe((liste) => {
       this.listePatient.set(liste);
-    })
+    });
+
     this.fetchServices.fetchListeDPIs().pipe( //pipe to catch any error
       catchError((err) => {
         console.log(err);
         throw err;
       })
       ).subscribe((liste) => {
-      this.listeDPI.set(liste);
+        this.listeDPI.set(liste);
+        this.transformData()
+    })
+
+    
+  }
+
+  transformData(){ //id of DPI from string -> int
+    this.listeDPI.update((liste) => {
+      liste.forEach((d) => d.id = Number(d.id));
+      return liste;
     })
   }
 
   searchedDPI = signal<DPI | null>(null);
   nssInput = '';
+
   recherchePatient(){
+
     console.log("Recherche patient en cours de traitement...");
     const inputNSS = +this.nssInput; // Get the user's input
     console.log(inputNSS);
     console.log(this.listeDPI());
     const patient = this.listePatient().find((p) => p.nss === +inputNSS); 
     console.log(patient);
+
     if (patient) {
-      console.log("Patient ID_DPI:", patient.id_DPI);   
-      const dpi = this.listeDPI().find((d) => JSON.stringify(d.id) === JSON.stringify(patient.id_DPI));
+      console.log("Patient ID_DPI:", patient.id_DPI); 
+
+      const dpi = this.listeDPI().find((d) => {
+        if(d.id === patient.id_DPI) return d;
+        return undefined;
+      });
+
       console.log("DPI found:", dpi);
       if (dpi) {
         this.searchedDPI.set(dpi); // Set the found DPI

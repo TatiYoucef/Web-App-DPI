@@ -24,6 +24,7 @@ export class FetchModulesService { //Hna yesraw les fetch functions
     const url = "http://localhost:3000/DPIs"; //Json Test, not from backend
     return this.http.get<Array<DPI>>(url);
   }
+  
   fetchListeOrdonnances(){
     const url = "http://localhost:3000/DPIs"; //Json Test, not from backend
     return this.http.get(url);
