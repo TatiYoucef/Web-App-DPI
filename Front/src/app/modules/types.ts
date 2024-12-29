@@ -52,14 +52,12 @@ export type DPI = {
   date_maj : Date,
   date_admission : Date,
   date_sortie : Date,
-  antecedents_medicaux : String[],
+  antecedents_medicaux : Array<String>,
+  ordonnances : Array<Ordonnance>,
+  soins : Array<Soin>
 
-// antécédents médicaux : String[]
-// ordonnances : Ordonnance[]
 // bilans : Bilan[]
 // observations : Observation[]
-// soins : Soin[]
-
 }
 
 export type Ordonnance = {
