@@ -19,7 +19,7 @@ export class AjoutSoinComponent implements OnInit{
   isDashBoard = signal(false);
   
   user = inject(UserDataService).getUserData() //Njibou Data te3 user te3na
-  id: string | null = null;
+  id!:number;
   router = inject(ActivatedRoute); //bihe njibou id fel path
 
   changeDashState(){
@@ -29,7 +29,7 @@ export class AjoutSoinComponent implements OnInit{
   ngOnInit(): void { //nrecupriwi id te3 patient 
 
     this.router.paramMap.subscribe((params) =>{
-      this.id = params.get("id"); //id de patient récupéré
+      this.id = Number(params.get("id")); //id de patient récupéré
     });
 
     console.log(this.id);

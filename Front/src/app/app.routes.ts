@@ -79,6 +79,22 @@ export const routes: Routes = [
   },
 
   {
+    path:'admin/gestionPatient',
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/admin/gestion-patients/gestion-patients.component");
+      return m.GestionPatientsComponent;
+    }
+  },
+
+  {
+    path:'admin/gestionPatient/:id',
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/admin/add-account/add-account.component");
+      return m.AddAccountComponent;
+    }
+  },
+
+  {
     path:'notif',
     loadComponent: async () => {
       const m = await import("./pages/supplementPages/notification-page/notification-page.component");
@@ -104,7 +120,7 @@ export const routes: Routes = [
   },
 
   {
-    path :'consulter-DPI' ,
+    path :'consulter-DPI/:id' ,
     loadComponent: async () => {
       const m = await import("./pages/userPages/DPI/consulter-dpi/consulter-dpi.component");
       return m.ConsulterDPIComponent;

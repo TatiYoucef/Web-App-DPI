@@ -15,6 +15,11 @@ export class FetchModulesService { //Hna yesraw les fetch functions
     return this.http.get<Array<Patient>>(url);
   }
 
+  fetchPatient( id:number ){ //fetch patient with id Patient
+    const url = `http://localhost:3000/patients/${id}`;
+    return this.http.get<Patient>(url);
+  }
+
   fetchListeTestsBilan(){
     const url = "http://localhost:3000/bilanMedecin"; //Json Test, not from backend
     return this.http.get(url);
@@ -23,6 +28,11 @@ export class FetchModulesService { //Hna yesraw les fetch functions
   fetchListeDPIs(){
     const url = "http://localhost:3000/DPIs"; //Json Test, not from backend
     return this.http.get<Array<DPI>>(url);
+  }
+
+  fetchDPI(idPatient: number){
+    const url = `http://localhost:3000/DPIs/${idPatient}`; //Json Test, not from backend
+    return this.http.get<DPI>(url);
   }
   
   fetchListeOrdonnances(){

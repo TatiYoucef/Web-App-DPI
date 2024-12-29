@@ -17,12 +17,12 @@
         <div class="center-div">
           <img src="../../../../../assets/images/Task_empty.png" width="280px" >
           <h3>Aucun patient trouvé</h3>
-          <h4>Aucun patient en cours de traitement, veuillez revenir plus tard</h4>
+          <h4>Tous les patients possédent déja un compte, vous pouvez crée des nouveaux sur la page d'acceuil</h4>
         </div>
 
       } @else {
 
-        <h2>Liste des patients en cours d'hospitalisation:</h2>
+        <h2>Liste des patients sans compte:</h2>
 
         @for (item of listePatient(); track item.nss) { <!--For each patient ndirou ceci-->
 

@@ -25,4 +25,28 @@ export class DashBoardComponent {
     this.isDashBoard.set(isVisible);
   }
 
+  goToHome(){
+
+    switch(this.user.role){
+
+      case "Administratif":
+        this.router.navigate(['admin']);
+      break;
+
+      case "Medcin":
+        this.router.navigate(['medecin']);
+      break;
+
+      case "Patient":
+        this.router.navigate(['consulter-DPI', this.user.id]);
+      break;
+
+      default: //rablabinf
+        this.router.navigate(['rabLabInf']);
+
+      
+    }
+
+  }
+
 }
