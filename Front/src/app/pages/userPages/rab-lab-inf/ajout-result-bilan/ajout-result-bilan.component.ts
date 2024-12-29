@@ -22,7 +22,7 @@ export class AjoutResultBilanComponent implements OnInit {
 
   user = inject(UserDataService).getUserData();
 
-  id: string | null = null;
+  id!: number;
   router = inject(ActivatedRoute); //bihe njibou id fel path
 
   fetchServices = inject(FetchModulesService);
@@ -41,7 +41,7 @@ export class AjoutResultBilanComponent implements OnInit {
     })
 
     this.router.paramMap.subscribe((params) =>{
-      this.id = params.get("id"); //id de patient récupéré
+      this.id =Number(params.get("id")); //id de patient récupéré
     });
 
     console.log(this.id);

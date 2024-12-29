@@ -6,6 +6,15 @@
   margin-left: 20%; /* Space for the sidebar */
 }
 
+.center-div{
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  flex-direction:column ;
+  justify-content: center;
+  align-items: center ;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -90,6 +99,7 @@ button {
   flex: 1; /* Makes buttons equal width */
   width: 120px; /* Wider buttons */
   height: 70px; /* Taller buttons */
+  font-family: "SF Pro Display", "Quicksand";
   font-size: 16px;
   font-weight: 600;
   border: none;

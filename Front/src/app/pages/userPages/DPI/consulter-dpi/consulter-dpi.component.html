@@ -22,14 +22,14 @@
         <div class="card-info">
           <p><strong>Patient:</strong> {{patient.nom}} {{patient.prenom}}</p>
           <p><strong>NSS:</strong> {{patient.nss}}</p>
-          <p><strong>Créé le:</strong> patient.creationDate</p>
-          <p><strong>Nombre d'hospitalisations:</strong> patient.hospisalizations</p>
+          <p><strong>Créé le:</strong> {{Dpi.date_admission}} </p>
+          <p><strong>Nombre d'hospitalisations:</strong> {{Dpi.ordonnances.length}} </p>
           <!-- <p><strong>Créé le:</strong> {{patient.creationDate}}</p>
             <p><strong>Nombre d'hospitalisations:</strong> {{patient.hospitalizations}}</p> -->
         </div>
         <div class="last-modif">
           <p class="modif"><strong>Derniere modification</strong></p>
-          <p class="date">[Date de modif]</p>
+          <p class="date"> {{Dpi.date_maj}} </p>
         </div>
       </div>
 
@@ -47,13 +47,13 @@
 
           <!-- hadou dirthem in comments just becuz mazalou matdarouch les methodes -->
           <!-- <button (click)="viewPatientInfo()">Informations patient</button>
-            <button (click)="viewConsultations()">Consultations</button>
-            <button (click)="viewAntecedents()">Antécédents</button>
+          <button (click)="viewConsultations()">Consultations</button>
+          <button (click)="viewAntecedents()">Antécédents</button>
           </div>
           <div class="buttons-bottom">
-            <button (click)="viewOrdonnances()">Ordonnances</button>
-            <button (click)="viewResumes()">Résumés</button>
-            <button (click)="viewBilans()">Bilans</button> -->
+          <button (click)="viewOrdonnances()">Ordonnances</button>
+          <button (click)="viewResumes()">Résumés</button>
+          <button (click)="viewBilans()">Bilans</button> -->
 
           @if (isInformationsPatient()) { <!-- If we click on Infos patient -->
 

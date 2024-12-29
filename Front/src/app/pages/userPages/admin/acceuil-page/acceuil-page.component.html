@@ -1,1 +1,81 @@
-<p>acceuil-page works!</p>
+<app-header (changeDashEvent)="updateDashboardVisibility($event)" />
+
+<div class="content">
+
+  <div class="empty-dash">
+    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>
+  </div>
+
+
+  <div class="container">
+
+    @defer {
+
+      <h1>Bienvenue chers admin {{user.nom}} {{user.prenom}}</h1>
+
+      <div class="card2" >
+        <img src="../../../../../assets/icons/new_DPI.png" width="100px" >   
+
+        <button (click)="isCreeDPI.set(true)">  
+          <p>Créer DPI</p>    
+        </button>
+
+      </div>
+
+      @if (isCreeDPI()) {
+
+        <div class="grey-div" (click)="annuler($event)">
+
+          <div class="card3">
+
+            <h2>Créer DPI d'un patient</h2>
+
+            <label>Nss:</label>
+            <input type="text" placeholder="NSS" [(ngModel)]="nssInput"> 
+
+            <label>Nom</label>
+            <input type="text" placeholder="nom"> 
+
+            <label>Prénom</label>
+            <input type="text" placeholder="prénom">
+
+            <label>Nom d'utilisateur</label>
+            <input type="text" placeholder="nom d'utilisateur">
+
+            <label>Addresse</label>
+            <input type="text" placeholder="Addresse">
+
+            <label>Date de naissance</label>
+            <input type="date">
+
+            <label>numero telephone</label>
+            <input type="tel" placeholder="téléphone">
+
+            <div class="container2">
+
+              <button (click)="creerDPI()">  
+                créer DPI    
+              </button>
+
+              <button class="annuler" (click)="annuler($event)">
+                annuler
+              </button>
+
+            </div>
+
+          </div>
+
+          
+
+        </div>
+
+      }
+    
+    } @loading (minimum 0.5s) {
+      <div class="center-div">
+        <app-loading-screen />
+      </div>
+    }
+
+  </div>
+</div>

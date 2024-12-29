@@ -2,7 +2,7 @@
 
   <img src="../../../../assets/images/TrackMed1.png" width="180px" class="logo">
 
-  <button>
+  <button (click)="goToHome()">
 
     <div class="button-div">
       <img src="../../../assets/icons/ic_home.png" width="25px" height="25px">
@@ -15,7 +15,7 @@
 
   <button>
 
-    <div class="button-div">
+    <div class="button-div" (click)="router.navigate(['admin/gestionPatient'])">
         <img src="../../../assets/icons/ic_patient.png" width="25px" height="25px">
         <p>Gérer patients</p>
       </div>
