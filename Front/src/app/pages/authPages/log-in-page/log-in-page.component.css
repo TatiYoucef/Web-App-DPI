@@ -82,31 +82,7 @@ button:hover {
 }
 
 .error-message {
-  color: red;
-  /* Ensure text color is visible */
-  font-size: 16px;
-  /* Ensure it's readable */
-  display: block;
-  /* Ensure it's not hidden */
-}
-
-
-/* Media Queries for Responsiveness */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    /* Stack the elements vertically on smaller screens */
-  }
-
-  .left-div,
-  .right-div {
-    width: 100%;
-    /* Full width for each section */
-    height: 50vh;
-    /* Split height for stacked layout */
-  }
-
-  .right-div img {
-    max-width: 70%;
-  }
+  color: red; /* Ensure text color is visible */
+  font-size: 16px; /* Ensure it's readable */
+  display: block; /* Ensure it's not hidden */
 }

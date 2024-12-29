@@ -9,9 +9,7 @@
         <label>Nom de l'utilisateur</label>
         <input id="username" type="text" placeholder="nom de l'utilisateur" #username>
         <Label>Mot de passe</Label>
-        <input id="password" [type]="passwordVisible ? 'text' : 'password'" placeholder="mot de passe" #password>
-        <i class="fa" [class.fa-eye]="!passwordVisible" [class.fa-eye-slash]="passwordVisible"
-          (click)="togglePasswordVisibility()"></i>
+        <input id="password" type="password" placeholder="mot de passe" #password>
       </div>
 
       <button (click)="onSubmit(username.value,password.value)">Se connecter</button>

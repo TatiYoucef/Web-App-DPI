@@ -1,0 +1,34 @@
+<app-header (changeDashEvent) = "changeDashState()" />
+
+<div class="content">
+
+  @if (isDashBoard()) { <!--Ida kayen dashBoard-->
+    <div class="empty-dash">
+      <app-dash-board />
+    </div>
+  }
+
+  <div class="container">
+
+    @defer { <!--Defer is when component needs to load so we show something while loading-->
+      <div class="container2">
+        <h1>Patient ... : Liste des ordonnances </h1>
+
+        <div> 
+          <!-- *ngFor="let ordonnance of ordonnances" -->
+          <div class="card1">
+              <strong> Date de création  </strong>  
+              <strong> Durée </strong>  
+          </div>
+        </div>
+      </div>
+      
+    } @loading (minimum 0.5s) { <!--Nesstennaw minimum 4s besh naffichiw @defer-->
+      <div class="center-div">
+        <app-loading-screen />
+      </div>
+    }
+  
+  </div>
+</div>
+
