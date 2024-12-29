@@ -1,32 +1,62 @@
-import { Component, DoCheck, EventEmitter, inject, Output, signal } from '@angular/core';
+import { Component, EventEmitter, inject, Output, signal, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserDataService } from '../../services/userData/user-data.service';
+import { CommonModule } from '@angular/common'; // Import CommonModule
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css']
 })
 
 export class HeaderComponent {
 
-  isDashBoard = signal(false);
+  isDashBoard = signal(true);  // Dashboard is visible by default on larger screens
   @Output() changeDashEvent = new EventEmitter<boolean>();
 
-  router= inject(Router); //Router services
-  user = inject(UserDataService).getUserData() ; //Njibou Data te3 user te3na
+  router = inject(Router);  // Router service
+  user = inject(UserDataService).getUserData();  // Get user data
 
-  isNotiPage = signal(false);
+  isNotiPage = signal(false);  // Notification page state
 
-  goToNotifications(){ //bouton de notification si cliqué
+  screenWidth: number = window.innerWidth;
+
+  constructor() {
+    // On initialization, check screen width and set dashboard visibility
+    this.updateDashboardState();
+  }
+
+  @HostListener('window:resize')
+  onResize() {
+    this.screenWidth = window.innerWidth;
+    this.updateDashboardState();
+  }
+
+  // Update the dashboard visibility based on screen size
+  updateDashboardState() {
+    const shouldShowDashboard = this.screenWidth > 768;
+    this.isDashBoard.set(shouldShowDashboard); // Update state
+    this.changeDashEvent.emit(shouldShowDashboard); // Emit change
+  }
+
+  goToNotifications() {
     this.router.navigate(["/notif"]);
   }
 
-  changeDashState(){
-    this.isDashBoard.update((e) => !e);
-    this.changeDashEvent.emit(this.isDashBoard()); //Child is telling that its boolean changed !!!
+  toggleDashboard() {
+    this.isDashBoard.update((prev) => !prev);
+    this.changeDashEvent.emit(this.isDashBoard());
   }
 
+  changeDashState() {
+    console.log("Dashboard toggle button clicked!");
+    this.isDashBoard.update((prevState) => !prevState); // Toggle visibility
+    this.changeDashEvent.emit(this.isDashBoard()); // Emit updated state
+  }  
+
+  get buttonClass(): string {
+    return this.isDashBoard() ? 'shifted' : '';  // Add 'shifted' class if dashboard is visible
+  }
 }

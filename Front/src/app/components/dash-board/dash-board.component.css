@@ -1,43 +1,51 @@
-.container{
-
+.container {
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: center;
   gap: 20px;
-  padding: 100px 20px;
+  padding: 20px 20px;
   padding-bottom: 50px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
   background-color: #EEF4FF;
-
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-
-
-  height: 80vh;
-
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+  height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 2; /* Ensure the dashboard is on top of the header */
+  transform: translateX(0); /* Default visible position */
+  transition: transform 0.3s;
 }
 
-.button-div{
+/* .container.hidden {
+  transform: translateX(-100%); /* Hide dashboard off-screen */
+/*} */
+
+.container.visible {
+  transform: translateX(0); /* Visible */
+}
+
+.button-div {
   display: flex;
   gap: 20px;
-  justify-content: center;
   align-items: center;
+  justify-content: flex-start;
 }
 
-.empty-div{
-  height: 100%;
+.empty-div {
+  height: 25%;
 }
 
-button{
-  font-family: "Quicksand", serif;
+.logo {
+  padding-top: 13px;
+  padding-bottom: 30px;
+}
+
+button {
   font-size: 15px;
-  font-weight: 800;
+  font-weight: 600;
   color: #3958B3;
-
+  font-family: "SF Pro Display", serif;
   width: 100%;
   padding: 10px 20px;
   background-color: white;
@@ -45,15 +53,19 @@ button{
   border-radius: 10px;
 
   cursor: pointer;
-
-  transition: box-shadow 0.3s ;
+  transition: box-shadow 0.3s;
 }
 
-button:hover{
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+button:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-p{
+p {
   margin: 0;
 }
 
+@media (min-width: 769px) {
+  .container {
+    transform: translateX(0); /* Always visible on larger screens */
+  }
+}
