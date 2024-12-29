@@ -5,12 +5,15 @@ import { catchError } from 'rxjs';
 import { HeaderComponent } from "../../../../components/header-user/header.component";
 import { DashBoardComponent } from "../../../../components/dash-board/dash-board.component";
 import { LoadingScreenComponent } from "../../../../components/loading-screen/loading-screen.component";
-import { QRCodeModule } from 'angularx-qrcode';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import QRCode from 'qrcode';
+
 
 @Component({
   selector: 'app-acceuil-page',
   standalone: true,
-  imports: [HeaderComponent, DashBoardComponent, LoadingScreenComponent, QRCodeModule ],
+  imports: [HeaderComponent,DashBoardComponent, LoadingScreenComponent, CommonModule, FormsModule ],
   schemas: [NO_ERRORS_SCHEMA],
   templateUrl: './acceuil-page.component.html',
   styleUrl: './acceuil-page.component.css'
@@ -30,11 +33,13 @@ export class AcceuilPageComponent implements OnInit{
         console.log(err);
         throw err;
       })
-      ).subscribe((liste) => {
-      const listeWithQrCode = liste.map((patient) => ({
-        ...patient,
-        qrCode: this.generateQRCode(patient.nss), // Generate QR code
-      }));
+      ).subscribe(async (liste) => {
+        const listeWithQrCode = await Promise.all(
+          liste.map(async (patient) => ({
+            ...patient,
+            qrcode: await this.generateQRCode(patient.nss), // Await each QR code generation
+          }))
+        );
       this.listePatient.set(listeWithQrCode);
       //this.listePatient.set(liste);
     })
@@ -45,8 +50,8 @@ export class AcceuilPageComponent implements OnInit{
   changeDashState(){
     this.isDashBoard.update((e) => !e);
   }
-  private generateQRCode(nss: number): string {
-    return nss.toString(); // Customize the QR code value generation if needed
+  private generateQRCode(nss: number): Promise<string> {
+    return QRCode.toDataURL(nss.toString()); // Returns a Base64-encoded string of the QR code
   }
   
 }

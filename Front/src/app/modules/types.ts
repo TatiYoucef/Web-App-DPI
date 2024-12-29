@@ -25,7 +25,7 @@ export type Patient = { //classe patient
   mutuelle: String,
   nom: String,
   prenom : String,
-  qrcode : String,
+  qrcode : string,
 }
 
 export type Medcin = {

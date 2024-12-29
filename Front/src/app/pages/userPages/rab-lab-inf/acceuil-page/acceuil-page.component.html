@@ -30,11 +30,10 @@
             <div class="profile">
               <h3>{{ item.nom }} {{ item.prenom }}</h3>
               <p>Nss: {{ item.nss }} </p>
-              
             </div>
             <div class="qr-code">
-              <qrcode [qrdata]="item.qrcode" [width]="100" [height]="100" [errorCorrectionLevel]="'M'"></qrcode>
-            </div>
+              <img [src]="item.qrcode" alt="QR Code" />
+            </div>   
             <div class="empty-div"></div>
 
             <p>Not yet submitted</p>
