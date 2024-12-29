@@ -1,22 +1,23 @@
 <div class="container">
 
-  <img src="../../../../assets/images/Logo.png" width="50px">
+  <img src="../../../../assets/images/TrackMed1.png" width="180px" class="logo">
 
   <button>
 
     <div class="button-div">
+      <img src="../../../assets/icons/ic_home.png" width="25px" height="25px">
       <p>Accueil</p>
-      <img src="../../../assets/icons/ic_home.png" width="30px" height="30px">
     </div>
 
   </button>
 
   @if (user.role === "Administratif" ){
 
-    <button>
-      <div class="button-div">
+  <button>
+
+    <div class="button-div">
+        <img src="../../../assets/icons/ic_patient.png" width="25px" height="25px">
         <p>Gérer patients</p>
-        <img src="../../../assets/icons/ic_patient.png" width="30px" height="30px">
       </div>
     </button>
   }
@@ -25,18 +26,18 @@
 
     <button (click)="router.navigate(['rabLabInf/geneGraph'])">
       <div class="button-div">
+        <img src="../../../assets/icons/ic_graph.png" width="25px" height="25px">
         <p>Générer un graphe</p>
-        <img src="../../../assets/icons/ic_graph.png" width="30px" height="30px">
       </div>
-    </button>
+  </button>
 
   }
 
   <button>
 
     <div class="button-div">
+      <img src="../../../assets/icons/ic_settings.png" width="25px" height="25px">
       <p>Paramètres</p>
-      <img src="../../../assets/icons/ic_settings.png" width="30px" height="30px">
     </div>
 
   </button>
@@ -47,7 +48,7 @@
 
     <div class="button-div" (click)="goToDisconnect()">
       <p>Se déconnecter</p>
-      <img src="../../../assets/icons/ic_exit.png" width="30px" height="30px">
+      <img src="../../../assets/icons/ic_exit.png" width="25px" height="25px">
     </div>
 
   </button>

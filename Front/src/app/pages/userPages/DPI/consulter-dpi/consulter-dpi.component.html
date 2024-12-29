@@ -1,0 +1,120 @@
+<app-header (changeDashEvent)="updateDashboardVisibility($event)" />
+
+<div class="content">
+
+  <div class="empty-dash">
+    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>
+  </div>
+
+
+  <div class="container">
+
+    @defer {
+
+    <div class="container2">
+      <!-- First Container: DPI title -->
+      <div class="dpi-title">
+        <h2>DPI</h2>
+      </div>
+
+      <!-- Second Container: Patient Information Card -->
+      <div class="patient-info-card">
+        <div class="card-info">
+          <p><strong>Patient:</strong> {{patient.nom}} {{patient.prenom}}</p>
+          <p><strong>NSS:</strong> {{patient.nss}}</p>
+          <p><strong>Créé le:</strong> patient.creationDate</p>
+          <p><strong>Nombre d'hospitalisations:</strong> patient.hospisalizations</p>
+          <!-- <p><strong>Créé le:</strong> {{patient.creationDate}}</p>
+            <p><strong>Nombre d'hospitalisations:</strong> {{patient.hospitalizations}}</p> -->
+        </div>
+        <div class="last-modif">
+          <p class="modif"><strong>Derniere modification</strong></p>
+          <p class="date">[Date de modif]</p>
+        </div>
+      </div>
+
+      <!-- Third Container: Buttons -->
+      <div class="buttons-container">
+        <div class="buttons-top">
+          <button (click)="isInformationsPatient.set(true)">Informations patient</button>
+          <button>Consultations</button>
+          <button>Antécédents</button>
+        </div>
+        <div class="buttons-bottom">
+          <button>Ordonnances</button>
+          
+          <button>Bilans</button>
+
+          <!-- hadou dirthem in comments just becuz mazalou matdarouch les methodes -->
+          <!-- <button (click)="viewPatientInfo()">Informations patient</button>
+            <button (click)="viewConsultations()">Consultations</button>
+            <button (click)="viewAntecedents()">Antécédents</button>
+          </div>
+          <div class="buttons-bottom">
+            <button (click)="viewOrdonnances()">Ordonnances</button>
+            <button (click)="viewResumes()">Résumés</button>
+            <button (click)="viewBilans()">Bilans</button> -->
+
+          @if (isInformationsPatient()) { <!-- If we click on Infos patient -->
+
+          <div class="grey-div" (click)="annuler($event)">
+
+            <div class="card-bouton-info">
+
+              <h2>Consultation des informations du patient</h2>
+              
+              <div class="info-container">
+              <div class="div1">
+              <label>Nss:</label>
+              <input type="text" placeholder="NSS" readonly>
+
+              <label>Nom</label>
+              <input type="text" placeholder="nom" readonly>
+
+              <label>Prénom</label>
+              <input type="text" placeholder="prénom" readonly>
+
+              <label>Nom d'utilisateur</label>
+              <input type="text" placeholder="nom d'utilisateur" readonly>
+              </div>
+ 
+              <div class="div2">
+              <label>Addresse</label>
+              <input type="text" placeholder="Addresse" readonly>
+
+              <label>Date de naissance</label>
+              <input type="date" readonly>
+
+              <label>tel</label>
+              <input type="tel" placeholder="téléphone" readonly>
+              </div>
+              </div>
+
+              <div class="container3">
+
+                <button class="annuler" (click)="annuler($event)">
+                  sortir
+                </button>
+
+              </div>
+
+
+            </div>
+
+          </div>
+
+          }
+
+        </div>
+      </div>
+    </div>
+    }
+
+    @loading (minimum 0.5s) {
+    <div class="center-div">
+      <app-loading-screen />
+    </div>
+    }
+
+  </div>
+</div>

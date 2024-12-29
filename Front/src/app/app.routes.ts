@@ -77,10 +77,18 @@ export const routes: Routes = [
   },
 
   {
-    path :'personnelAdministratif' , //Page Log-In
+    path :'personnelAdministratif' ,
     loadComponent: async () => {
       const m = await import("./pages/userPages/personnel-administratif/acceuil-page/acceuil-page.component");
       return m.AcceuilPageComponent;
+    }
+  },
+
+  {
+    path :'consulter-DPI' ,
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/DPI/consulter-dpi/consulter-dpi.component");
+      return m.ConsulterDPIComponent;
     }
   },
 

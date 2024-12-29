@@ -1,27 +1,27 @@
-.header-div{
+.header-div {
   display: flex;
   justify-content: start;
   align-items: center;
   gap: 50px;
   padding: 20px 50px;
-  width: 95vw;
+  width: 100vw;
+  height: 30px;
   background-color: #EEF4FF;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
-
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 1; /* Lower than the dashboard */
 }
 
-.pfpInfo-div{
+.pfpInfo-div {
   display: flex;
   gap: 10px;
   justify-content: start;
   align-items: center;
 }
 
-.info-div{
+.info-div {
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -30,31 +30,52 @@
   align-items: start;
 }
 
-.empty-div{
-  width: 100%;
+.empty-div {
+  width: 70%;
 }
 
-button{
+button {
   padding: 12px 10px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.3s;
   border: none;
   cursor: pointer;
   border-radius: 30px;
+  background-color: #EEF4FF; /* Blue background */
+  color: #3958B3; /* Light text color */
 }
 
-button:hover{
+button:hover {
   background-color: rgb(213, 213, 213);
+  color: #3958B3;
 }
 
-.activated{
+button.toggle-dashboard {
+  display: none; /* Default: hide the button */
+  position: relative; /* Ensure it shifts without affecting layout */
+}
+
+button.toggle-dashboard.shifted {
+  transform: translateX(250px); /* Shift button to the right when dashboard is visible */
   background-color: #3958B3;
+  color :#EEF4FF;
 }
 
-.desactivated{
+@media (max-width: 768px) {
+  button.toggle-dashboard {
+    display: block; /* Show the button on smaller screens */
+  }
+}
+
+.activated {
+  background-color: #3958B3;
+  color :#EEF4FF;
+}
+
+.desactivated {
   background-color: transparent;
 }
 
-p{
+p {
   white-space: nowrap;
   margin: 0;
   margin-bottom: 2px;
