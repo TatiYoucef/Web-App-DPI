@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Medcin , Patient , Administratif , User ,Infirmier , Laborantin , Radiologue
+from .models import Medcin , Patient ,BilanBiologique,BilanRadiologique, Administratif , User ,Infirmier , Laborantin , Observation,Radiologue,Consultation,Soin,DPI,Ordonnance,Bilan
 # Register your models here.
 
 admin.site.register(Medcin )
@@ -9,4 +9,11 @@ admin.site.register(User)
 admin.site.register(Infirmier)
 admin.site.register(Laborantin)
 admin.site.register(Radiologue)
+admin.site.register( Consultation)
+admin.site.register( Soin)
+admin.site.register( DPI)
+admin.site.register( BilanBiologique)
+admin.site.register(BilanRadiologique)
+admin.site.register( Ordonnance)
+admin.site.register( Observation)
 
