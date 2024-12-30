@@ -8,7 +8,8 @@ from rest_framework import generics ,permissions ,status
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.views import ObtainAuthToken
-from .serializers import MedicamentSerializer, OrdonnanceSerializer ,BilanBilogiqueSerializer, BilanRadiologiqueSerializer ,MedicalRecordSerializer
+from .serializers import MedicamentSerializer, OrdonnanceSerializer ,BilanBilogiqueSerializer, BilanRadiologiqueSerializer ,MedicalRecordSerializer,OrdonnanceSerializer
+from django.utils import timezone
 
 # Create your views here.
 
@@ -253,19 +254,48 @@ class BilanBiologiqueView(APIView):
 
 
 class BilanRadiologiqueView(APIView):
-    def post(self, request):
-        """Handle POST request - Create a new Bilan Radiologique"""
-        serializer = BilanRadiologiqueSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save() 
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)   
+    def get(self, request, patient_id):
+        try:
+            patient = Patient.objects.get(pk=patient_id)
+            dossier = patient.dossier
 
-    def get(self, request):
-        bilan = BilanRadiologique.objects.all()
-        serializer = BilanRadiologiqueSerializer(bilan)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+            if dossier:
+                bilans = BilanBiologique.objects.filter(consul__in=dossier.consultation.all())
+                print("Bilans:", bilans)
+                serializer = BilanBilogiqueSerializer(bilans, many=True)
+            else:
+                bilans = []
+                serializer = BilanBilogiqueSerializer(bilans, many=True)
+
+            return Response({
+                'patient': patient.user.username,
+                'dossier': dossier.id if dossier else None,
+                'bilans': serializer.data
+            })
+        except Patient.DoesNotExist:
+            return Response({'detail': 'Patient not found.'}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({'detail': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR) 
 
 
 
-        
+class ValiderOrdonnanceAPIView(APIView):
+    def put(self, request, patient_id, ordonnance_id):
+        try:
+            ordonnance = Ordonnance.objects.get(id=ordonnance_id)
+            
+            if ordonnance.etat:
+                return Response({"message": "Cette ordonnance est déjà validée."}, status=status.HTTP_400_BAD_REQUEST)
+
+            ordonnance.etat = True
+            ordonnance.dateValidation = timezone.now()  
+            ordonnance.commentairesValidation = request.data.get('commentairesValidation', ordonnance.commentairesValidation)
+            ordonnance.save()
+            serializer = OrdonnanceSerializer(ordonnance)
+
+            return Response({"message": "Ordonnance validée avec succès.", "ordonnance": serializer.data}, status=status.HTTP_200_OK)
+
+        except Ordonnance.DoesNotExist:
+            return Response({"error": "Ordonnance introuvable."}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

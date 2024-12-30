@@ -99,6 +99,10 @@ class Ordonnance(models.Model):
   consul = models.ForeignKey(Consultation, on_delete=models.CASCADE,  related_name="consul_ord" ,  blank=True, null= True)
   duree = models.CharField(max_length=50, blank=True)
   etat = models.BooleanField(default=False) #validee ou nn
+  dateCreation = models.DateTimeField(auto_now_add=True , null=True, blank=True) 
+  commentairesValidation = models.TextField(blank=True, null=True)
+  dateValidation =  models.DateTimeField(null=True, blank=True)
+
   
 
   def __str__(self):
@@ -142,7 +146,6 @@ class BilanBiologique(Bilan):
 class BilanRadiologique(Bilan):
   radiologue = models.OneToOneField(Radiologue ,on_delete=models.CASCADE ,related_name="radio_bilan" , null=True)  
   images = models.JSONField(default=list , null=True, blank=True )  # List to store image paths
-  #images = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
   compte_rendu = models.TextField(null=True, blank=True) 
 
 class Dossier(models.Model):
@@ -154,15 +157,12 @@ class Dossier(models.Model):
 
    
 class Patient(models.Model):
-  #id_patient = models.AutoField(primary_key=True)
   user = models.OneToOneField(User, on_delete=models.CASCADE , related_name="compte_patient")
   date_naissance=models.DateField(default=date.today)
   address = models.CharField(max_length=255 , blank=True)
   phone_number = models.CharField(max_length=15 , blank=True)
   nss = models.CharField( unique=True , max_length=15 , blank=True)
   medcin_traitant = models.ForeignKey('Medcin', on_delete=models.SET_NULL, blank=True, null=True)
-  #medcin_traitant = models.ManyToManyField('Medcin', related_name='patient_medTraitant', blank=True)
-  #medcin_traitant = models.ManyToManyField(Medcin ,related_name="med_traitant", blank=True)
   mutuelle = models.CharField(max_length=15 , blank=True)
   dossier = models.OneToOneField(Dossier , on_delete=models.CASCADE , related_name="patient_dossier" , null=True , blank=True)
   def __str__(self):
