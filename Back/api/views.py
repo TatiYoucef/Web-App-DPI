@@ -34,7 +34,17 @@ class PatientListView(APIView):
         serializer = PatientDPIListSerializer(patients, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-
+class PatientByNSSView(APIView):
+    serializer_class = PatientSerializer
+    def get(self, request, nss):
+        try:
+            patient = Patient.objects.get(nss=nss)
+        except Patient.DoesNotExist:
+            return Response({'error': 'Notification not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = self.serializer_class(patient)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
 class PatientView(APIView):
         
     def get(self, request,firstName,lastName):
