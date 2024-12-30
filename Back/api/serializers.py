@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from api.models import (Administratif , Patient , Medcin , User ,Observation,Ordonnance,Bilan, Infirmier , Laborantin , Radiologue,DPI, Consultation,Soin)
+from api.models import (Administratif ,BilanRadiologique,BilanBiologique, Patient , Medcin , User ,Observation,Ordonnance,Bilan, Infirmier , Laborantin , Radiologue,DPI, Consultation,Soin)
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -47,10 +47,11 @@ class PatientDPIListSerializer(serializers.ModelSerializer):
     user_last_name = serializers.CharField(source='user.last_name', read_only=True)
     date_admission = serializers.DateTimeField(source='dossier.dateAdmission', read_only=True)
     dpi_id = serializers.IntegerField(source='dossier.id', read_only=True)
+    patient_id = serializers.IntegerField(source='id', read_only=True)  
     
     class Meta:
         model = Patient
-        fields = ['user_first_name', 'user_last_name', 'date_admission', 'dpi_id']
+        fields = [' patient_id','user_first_name', 'user_last_name', 'date_admission', 'dpi_id']
         
 
 
@@ -106,24 +107,36 @@ class RadiologueSerializer(serializers.ModelSerializer):
 
 
 
-
 class DPISerializer(serializers.ModelSerializer):
-    consultation = serializers.PrimaryKeyRelatedField(queryset=Consultation.objects.all())
-    ordonnance = serializers.PrimaryKeyRelatedField(queryset=Ordonnance.objects.all())
-    bilan = serializers.PrimaryKeyRelatedField(queryset=Bilan.objects.all())
-    soins = serializers.PrimaryKeyRelatedField(queryset=Soin.objects.all())
-    antecedents_medicaux = serializers.CharField(allow_blank=True, required=False) 
-    #observation = serializers.PrimaryKeyRelatedField(queryset=Observation.objects.all())
     
+    consultations = serializers.PrimaryKeyRelatedField(queryset=Consultation.objects.all(), many=True)
+    ordonnances = serializers.PrimaryKeyRelatedField(queryset=Ordonnance.objects.all(), many=True)
+    bilanBiologiques = serializers.PrimaryKeyRelatedField(queryset=BilanBiologique.objects.all(), many=True)
+    bilanRadiologiques = serializers.PrimaryKeyRelatedField(queryset=BilanRadiologique.objects.all(), many=True)
+    observations = serializers.PrimaryKeyRelatedField(queryset=Observation.objects.all(), many=True)
+    antecedents_medicaux = serializers.CharField(allow_blank=True, required=False)
+
     class Meta:
         model = DPI
-        fields = ['id', 'dateAddmition', 'dateMaj', 'consultation', 'ordonnance', 'bilan', 'soins', 'antecedents_medicaux']
+        fields = ['id', 'dateAdmission', 'dateSortie', 'dateMaj', 'consultations', 'ordonnances','bilanBiologiques' ,'bilanRadiologiques', 'observations', 'antecedents_medicaux']
+
 
 
 class ConsultationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Consultation
         fields = '__all__'
+
+
+class ConsultationListSerializer(serializers.ModelSerializer): 
+    
+    medcin_nom = serializers.CharField(source='medcin.user.lastname', read_only=True)
+    raison_admission= serializers.CharField(source='raison_admission', read_only=True)
+    id=serializers.CharField(source='id',read_only=True)
+    class Meta:
+        model = Consultation
+        fields = ['id','medcin_nom','raison_admission']
+        
 
 
 class SoinSerializer(serializers.ModelSerializer):
