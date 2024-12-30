@@ -1,0 +1,44 @@
+<app-header (changeDashEvent)="updateDashboardVisibility($event)" />
+
+<div class="content">
+
+  @if (isDashBoard()) { <!--Ida kayen dashBoard-->
+    <div class="empty-dash">
+      <app-dash-board />
+    </div>
+  }
+
+  <div class="container">
+
+    @defer { <!--Defer is when component needs to load so we show something while loading-->
+
+      <h2>Création de compte pour patient {{patient.nom}} {{patient.prenom}} </h2>
+
+      <div class="card">
+
+        <h3>Saisie des données</h3>
+
+        <div class="inputs-div">
+          <label>Nom de l'utilisateur</label>
+          <input id="username" type="text" placeholder="nom de l'utilisateur" #username>
+        </div>
+
+        <div class="inputs-div">
+          <Label>Mot de passe</Label>
+          <input id="password" type="password" placeholder="mot de passe" #password>
+        </div>
+
+      </div>
+      
+      <button class="sub-button" (click)="creerCompte(username.value, password.value)">Créer compte</button>
+  
+      
+    } @loading (minimum 1s) { <!--Nesstennaw minimum 1s besh naffichiw @defer-->
+      <div class="center-div">
+        <app-loading-screen />
+      </div>
+    }
+  
+  </div>
+</div>
+

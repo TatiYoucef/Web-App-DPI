@@ -16,7 +16,7 @@
 
         <div class="center-div">
           <img src="../../../../../assets/images/Task_empty.png" width="280px" >
-          <h3>Non patient trouvé</h3>
+          <h3>Aucun patient trouvé</h3>
           <h4>Aucun patient en cours de traitement, veuillez revenir plus tard</h4>
         </div>
 
@@ -25,15 +25,18 @@
         <h2>Liste des patients en cours d'hospitalisation:</h2>
 
         @for (item of listePatient(); track item.nss) { <!--For each patient ndirou ceci-->
-          <div class="item">
+
+          <div class="item" (click)="goConsult(item.id)">
       
             <div class="profile">
               <h3>{{ item.nom }} {{ item.prenom }}</h3>
               <p>Nss: {{ item.nss }} </p>
             </div>
-      
+            <div class="qr-code">
+              <img [src]="item.qrcode" alt="QR Code" />
+            </div>   
             <div class="empty-div"></div>
-      
+
             <p>Not yet submitted</p>
           </div>
         }

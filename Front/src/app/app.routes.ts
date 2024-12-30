@@ -29,12 +29,30 @@ export const routes: Routes = [
   },
 
   {
-    path:'rabLabInf/joindreBilan',
+    path:'rabLabInf/geneGraph',
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/rab-lab-inf/generer-graph/generer-graph.component");
+      return m.GenererGraphComponent;
+    }
+  },
+
+  {
+    path:'rabLabInf/joindreBilan/:id', //id te3 patient li 7a najoutiwlou bilan
     loadComponent: async () => {
       const m = await import("./pages/userPages/rab-lab-inf/ajout-result-bilan/ajout-result-bilan.component");
       return m.AjoutResultBilanComponent;
     }
   },
+  
+  {
+    path:'rabLabInf/ajoutSoin/:id', //id te3 patient li 7a najoutiwlou soins
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/rab-lab-inf/ajout-soin/ajout-soin.component");
+      return m.AjoutSoinComponent;
+    }
+  },
+
+
 
   {
     path:'patient',
@@ -61,12 +79,52 @@ export const routes: Routes = [
   },
 
   {
+    path:'admin/gestionPatient',
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/admin/gestion-patients/gestion-patients.component");
+      return m.GestionPatientsComponent;
+    }
+  },
+
+  {
+    path:'admin/gestionPatient/:id',
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/admin/add-account/add-account.component");
+      return m.AddAccountComponent;
+    }
+  },
+
+  {
     path:'notif',
     loadComponent: async () => {
       const m = await import("./pages/supplementPages/notification-page/notification-page.component");
       return m.NotificationPageComponent ;
     }
   },
+  {
+    path :'ordonnances' , 
+    pathMatch: 'full', 
+    loadComponent: async () => {
+      const m = await import("./pages/supplementPages/ordonnances/ordonnances-accueil/ordonnances-accueil.component");
+      return m.OrdonnancesAccueilComponent;
+    }
+  },
 
+
+  {
+    path :'personnelAdministratif' ,
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/personnel-administratif/acceuil-page/acceuil-page.component");
+      return m.AcceuilPageComponent;
+    }
+  },
+
+  {
+    path :'consulter-DPI/:id' ,
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/DPI/consulter-dpi/consulter-dpi.component");
+      return m.ConsulterDPIComponent;
+    }
+  },
 
 ];

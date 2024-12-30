@@ -1,0 +1,108 @@
+.content{
+
+  display: flex;
+  margin-top: 100px;
+  gap: 0;
+  padding: 0;
+  align-items: start;
+}
+
+.empty-dash{
+  width: 24vw;
+}
+
+.container {
+
+  display: flex;
+  flex-direction: column; /* Flex items will be arranged vertically */
+  justify-content: flex-start; /* Align items at the top by default */
+  align-items: center;
+  width: 100%;
+  gap: 10px; /* Add spacing between items */
+  margin: 20px;
+}
+
+.card{
+
+  display: flex;
+  flex-direction: column; /* Flex items will be arranged vertically */
+  justify-content: flex-start; /* Align items at the top by default */
+
+  padding: 40px 40px;
+  border-radius: 20px;
+  background-color: #EEF4FF;
+  width: 50%;
+  margin-bottom: 40px;
+  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+
+}
+
+input{
+  height: 25px;
+}
+
+input, textarea{
+  font-family: "Quicksand", serif;
+  
+  padding: 5px 10px;
+
+  margin-bottom: 20px;
+
+  border: 1px solid #ccc; /* Light gray border */
+  outline: none;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+
+}
+
+input:focus , textarea:hover{
+  border-color: #3958B3; /* Blue border on focus */
+}
+
+button{
+
+  font-family: "Quicksand", serif;
+
+  background-color: #3958B3;
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+  border: none;
+  border-radius: 20px;
+  width: 20%;
+
+  padding: 10px 10px ;
+  cursor: pointer;
+
+  transition: background-color 0.3s, color 0.3s, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out ;
+}
+
+.card button{
+  margin: auto;
+}
+
+button:hover{
+  background-color: #EEF4FF;
+  color: #3958B3;
+  border-color: grey;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+}
+
+h1{
+  margin-right: auto;
+}
+
+h2{
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.center-div{
+  width: 100vw;
+  height: 80vh;
+  display: flex;
+  flex-direction:column ;
+  justify-content: center;
+  align-items: center ;
+}

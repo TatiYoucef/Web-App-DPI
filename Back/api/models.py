@@ -14,6 +14,17 @@ class User(AbstractUser):
         ('Radiologue' , 'radiologue'),
     )
     role = models.CharField(max_length=30, choices=ROLE_CHOICES)
+    password = models.CharField(max_length=128, null=True, blank=True)
+
+  
+class Medcin(models.Model):
+  user = models.OneToOneField(User, on_delete=models.CASCADE , related_name="compte_medcin")
+  date_naissance=models.DateField(default=date.today)
+  address = models.CharField(max_length=255 , blank=True)
+  phone_number = models.CharField(max_length=15 , blank=True)
+  
+  def __str__(self):
+    return f"{self.user.username}" 
 
 class Medicament(models.Model):
   nom = models.CharField(max_length=100)  
@@ -22,12 +33,12 @@ class Medicament(models.Model):
 
   def __str__(self):
     return self.nom 
-  
 
+  
 class Ordonnance(models.Model):
   date = models.DateField(default=date.today)
   medicaments = models.ManyToManyField(Medicament, related_name="ordonnances" ,  blank=True )
-  #medcin = models.OneToOneField(Medcin , on_delete=models.CASCADE , related_name="medi_ord")
+  medcin = models.ForeignKey(Medcin , on_delete=models.CASCADE , related_name="medi_ord" , blank=True , null=True)
   
 
   def __str__(self):
@@ -102,20 +113,18 @@ class Soin(models.Model):
   observation =models.TextField()
 
 
-class Medcin(models.Model):
-  user = models.OneToOneField(User, on_delete=models.CASCADE , related_name="compte_medcin")
-  date_naissance=models.DateField(default=date.today)
-  address = models.CharField(max_length=255 , blank=True)
-  phone_number = models.CharField(max_length=15 , blank=True)
-  
-  def __str__(self):
-    return f"{self.user.username}"
+
 
 class Consultation(models.Model):
   soin = models.ForeignKey(Soin ,on_delete=models.CASCADE , related_name= "soin_sejour")
   medcin = models.OneToOneField(Medcin , on_delete=models.CASCADE , related_name="medcin_sejour")
   date = models.DateField()
-  resume = models.TextField()
+ 
+class Resume(models.Model):
+  diagnostic = models.CharField(max_length=255 , blank=True)
+  symptomes = models.CharField(max_length=255 , blank=True)
+  mesures = models.CharField(max_length=255 , blank=True)
+  date_prochin = models.DateField(default=date.today)
 
 
 class Dossier(models.Model):
@@ -131,7 +140,7 @@ class Administratif(models.Model):
   date_naissance=models.DateField(default=date.today)
   address = models.CharField(max_length=255 , blank=True)
   phone_number = models.CharField(max_length=15 , blank=True)
-
+  
 
   def __str__(self):
         return f"{self.user.username} "

@@ -46,7 +46,7 @@ export class LogInPageComponent {
         
         console.log("User is: \n"+user);
         this.userDataService.setUserData(user); //We save the data
-
+        console.log(user)
 
         switch(response.role){
           
@@ -60,6 +60,11 @@ export class LogInPageComponent {
 
             this.router.navigate(["medecin"])
             
+          break;
+
+          case "Administratif" :
+            console.log('howww');
+            this.router.navigate(["admin"])
           break;
         }
         

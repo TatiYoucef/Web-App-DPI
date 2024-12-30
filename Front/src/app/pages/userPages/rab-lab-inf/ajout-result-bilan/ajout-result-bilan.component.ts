@@ -6,6 +6,7 @@ import { TestBilan } from '../../../../modules/types';
 import { FetchModulesService } from '../../../../services/fetchModules/fetch-modules.service';
 import { catchError } from 'rxjs';
 import { UserDataService } from '../../../../services/userData/user-data.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-ajout-result-bilan',
@@ -21,6 +22,9 @@ export class AjoutResultBilanComponent implements OnInit {
 
   user = inject(UserDataService).getUserData();
 
+  id!: number;
+  router = inject(ActivatedRoute); //bihe njibou id fel path
+
   fetchServices = inject(FetchModulesService);
   listTestsBilan = signal<Array<TestBilan>>([]); // liste des demandes de tests pour un bilan
 
@@ -35,6 +39,12 @@ export class AjoutResultBilanComponent implements OnInit {
 
       this.listTestsBilan.set(liste.tests);
     })
+
+    this.router.paramMap.subscribe((params) =>{
+      this.id =Number(params.get("id")); //id de patient récupéré
+    });
+
+    console.log(this.id);
       
   }
     

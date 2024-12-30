@@ -2,8 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate , login
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import (User , Administratif , Medcin , Patient)
-from .serializers import(UserSerializer , AdministratifSerializer , MedcinSerializer , PatientSerializer , LaborantinSerializer , InfirmierSerializer , RadiologueSerializer)
+from .models import (User , Administratif , Medcin , Patient , Ordonnance , Medicament , Dossier ,Consultation , Soin , MedcalRecord )
+from .serializers import(UserSerializer , AdministratifSerializer , MedcinSerializer , PatientSerializer , LaborantinSerializer , InfirmierSerializer , RadiologueSerializer , OrdonnanceSerializer , MedcalRecordSerializer , MedicamentSerializer , SoinSerializer , ConsultationSerializer , DossierSerializer)
 from rest_framework import generics ,permissions ,status
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
@@ -38,6 +38,38 @@ class MedcinRegistrationView(APIView):
           return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class RadiologueRegistrationView(APIView):
+    def post(self, request) :
+        serializer =RadiologueSerializer(data= request.data)
+        if serializer.is_valid():         
+          serializer.save()
+          return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class LaborantinRegistrationView(APIView):
+    def post(self, request) :
+        serializer =LaborantinSerializer(data= request.data)
+        if serializer.is_valid():         
+          serializer.save()
+          return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class InfirmierRegistrationView(APIView):
+    def post(self, request) :
+        serializer =InfirmierSerializer(data= request.data)
+        if serializer.is_valid():         
+          serializer.save()
+          return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class AdminRegistrationView(APIView):
+    def post(self, request) :
+        serializer =AdministratifSerializer(data= request.data)
+        if serializer.is_valid():         
+          serializer.save()
+          return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class UserLoginView(APIView):
     def post(self , request , *args , **kwargs):
@@ -56,7 +88,11 @@ class UserLoginView(APIView):
                 'role': user.role,
             }
             
-            
+            if user.role == 'Administratif' :
+                admin = user.compte_admin
+                if admin is not None:
+                    admin_data = AdministratifSerializer(admin).data
+                    response_data['data'] = admin_data
             
             if user.role == 'Patient' :
                 patient = user.compte_patient
@@ -99,16 +135,81 @@ class PatientList(generics.ListAPIView):
     queryset = Patient.objects.all()
     serializer_class = PatientSerializer
 
+class MedcinList(generics.ListAPIView):
+    queryset = Medcin.objects.all()
+    serializer_class = MedcinSerializer
+
 class PatientByNSSView(APIView):
     serializer_class = PatientSerializer
     def get(self, request, nss):
         try:
             patient = Patient.objects.get(nss=nss)
         except Patient.DoesNotExist:
-            return Response({'error': 'Notification not found'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'error': 'Patient not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = self.serializer_class(patient)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+class DossierPatient(APIView):
+    serializer_class= DossierSerializer
+    def get(self, request , key):
+        try:
+            dossier = Dossier.objects.get(pk=key)
+        except Dossier.DoesNotExist:
+            return Response({'error': 'Dossier not found'}, status=status.HTTP_404_NOT_FOUND)
+      
+        serializer = self.serializer_class(dossier)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class OrdonnanceList(APIView):
+    # You can use this if you want to manually query the queryset
+    def get(self, request, format=None):
+        ordonnances = Ordonnance.objects.all()  # Get all ordonnances
+        serializer = OrdonnanceSerializer(ordonnances, many=True)  # Serialize the data
+        return Response(serializer.data)
+
+
+class PatientByDefaultUser(APIView):
+    serializer_class = PatientSerializer
+    def get(self , request ):
+
+        try:
+            patient=Patient.objects.get(user__username="DefaultUser")
+
+        except Patient.DoesNotExist:
+
+            return Response({'error': 'Patient not found'}, status=status.HTTP_404_NOT_FOUND)
         
         serializer = self.serializer_class(patient)
         return Response(serializer.data, status=status.HTTP_200_OK)
         
 
+class OrdonnanceCreatView(APIView):
+    def post(self, request):
+        serializer = OrdonnanceSerializer(data=request.data)
+        if serializer.is_valid():
+            ordonnance = serializer.save()
+            return Response({
+                "message": "Ordonnance created successfully.",
+                "data": serializer.data
+            }, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class DossierOrdonnanceCreatView(APIView):
+    def post(self, request , pk):
+        try:
+            dossier = Dossier.objects.get(pk=pk)
+        except Dossier.DoesNotExist:
+            return Response({'error': 'Dossier not found'}, status=status.HTTP_404_NOT_FOUND)
+      
+        ordonnance_serializer = OrdonnanceSerializer(data=request.data)
+        if ordonnance_serializer.is_valid():
+            ordonnance = ordonnance_serializer.save()
+            dossier.ordannance.add(ordonnance)
+            dossier_serializer = DossierSerializer(dossier)
+            return Response(dossier_serializer.data, status=status.HTTP_201_CREATED)
+        else :
+            return Response(ordonnance_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
+

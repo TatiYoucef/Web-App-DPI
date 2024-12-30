@@ -1,10 +1,10 @@
 from rest_framework import serializers
-from api.models import (Administratif , Patient , Medcin , User ,  Infirmier , Laborantin , Radiologue ,Medicament , Ordonnance , BilanBiologique , BilanRadiologique)
+from api.models import (Administratif , Patient , Medcin , User ,  Infirmier , Laborantin , Radiologue ,Medicament , Ordonnance , BilanBiologique , BilanRadiologique , Medicament , Ordonnance , MedcalRecord , Soin , Consultation , Resume , Dossier)
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['username', 'email', 'role', 'password' , 'id' , 'first_name' , 'last_name']
+        fields = ['username', 'email', 'role' , 'password' , 'id' , 'first_name' , 'last_name']
         extra_kwargs = {'password': {'write_only': True}}
     
     def create(self, validated_data):
@@ -111,6 +111,58 @@ class BilanBilogiqueSerializer(serializers.ModelSerializer):
 class BilanRadiologiqueSerializer(serializers.ModelSerializer):
     class Meta:
         model = BilanRadiologique
+        fields = '__all__'
+
+class MedicamentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Medicament
+        fields = '__all__'
+
+class OrdonnanceSerializer(serializers.ModelSerializer):
+    medicaments = MedicamentSerializer(many=True) 
+    class Meta:
+        model = Ordonnance
+        fields = '__all__'
+    def create(self, validated_data):
+        # Extract medicaments data from payload
+        medicaments_data = validated_data.pop('medicaments', [])
+        
+        # Create the Ordonnance instance
+        ordonnance = Ordonnance.objects.create(**validated_data)
+
+        # Create only the medicaments included in the JSON payload
+        for medicament_data in medicaments_data:
+            medicament = Medicament.objects.create(**medicament_data)
+            ordonnance.medicaments.add(medicament)
+
+        return ordonnance
+  
+    
+class MedcalRecordSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MedcalRecord
+        fields = '__all__'
+
+class SoinSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Soin
+        fields = '__all__'
+
+class ConsultationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Consultation
+        fields = '__all__'
+  #  def create(self , validated_data):
+
+
+class ResumeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Resume
+        fields = '__all__'
+
+class DossierSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Dossier
         fields = '__all__'
 
 
