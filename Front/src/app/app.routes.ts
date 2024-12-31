@@ -127,4 +127,20 @@ export const routes: Routes = [
     }
   },
 
+  {
+    path :'consulter-DPI/:id/Bilans' ,
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/DPI/bilans-liste/bilans-liste.component");
+      return m.BilansListeComponent;
+    }
+  },
+
+  {
+    path :'consulter-DPI/:id1/Bilans/:id2' , //id1: id de patient / id2: id de bilan
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/DPI/consulter-bilan/consulter-bilan.component");
+      return m.ConsulterBilanComponent;
+    }
+  },
+
 ];

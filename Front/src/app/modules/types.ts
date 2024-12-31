@@ -39,6 +39,19 @@ export type Medcin = {
   tel: String,
 }
 
+export type Bilan = {
+
+  id: number;
+  idMed: number;
+  idConsul: number;
+
+  type: String; //Biologique or Radiologique
+  rempli: boolean; //si rad/lab l'a rempli ou pas
+  date: String;
+
+  tests: Array<TestBilan>;
+}
+
 export type TestBilan = {
 
   id : number,
