@@ -340,5 +340,89 @@
         }
       ]
     }
+  ],
+
+  "listeBilan": [
+    {
+      "id": 1,
+      "idMed": 101,
+      "idConsul": 202,
+      "type": "Biologique",
+      "rempli": true,
+      "date": "2024-01-15",
+      "tests": [
+        {
+          "id": 1,
+          "testName": "Taux de glycémie",
+          "result": "5.6 mmol/L"
+        },
+        {
+          "id": 2,
+          "testName": "Taux de cholestérol",
+          "result": "190 mg/dL"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "idMed": 102,
+      "idConsul": 203,
+      "type": "Radiologique",
+      "rempli": true,
+      "date": "2024-03-20",
+      "tests": [
+        {
+          "id": 3,
+          "testName": "Radiographie thoracique",
+          "result": "Normal"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "idMed": 103,
+      "idConsul": 204,
+      "type": "Biologique",
+      "rempli": true,
+      "date": "2024-05-12",
+      "tests": [
+        {
+          "id": 4,
+          "testName": "Créatinine sanguine",
+          "result": "0.9 mg/dL"
+        },
+        {
+          "id": 5,
+          "testName": "Niveau d'hémoglobine",
+          "result": "13.5 g/dL"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "idMed": 104,
+      "idConsul": 205,
+      "type": "Radiologique",
+      "rempli": true,
+      "date": "2024-07-03",
+      "tests": [
+        {
+          "id": 6,
+          "testName": "Échographie abdominale",
+          "result": "Normal"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "idMed": 105,
+      "idConsul": 206,
+      "type": "Biologique",
+      "rempli": false,
+      "date": "2024-09-18",
+      "tests": []
+    }
   ]
+  
+  
 }

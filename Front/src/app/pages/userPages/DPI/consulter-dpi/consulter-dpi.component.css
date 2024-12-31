@@ -172,7 +172,8 @@ button:hover {
 
 .card-bouton-info input[type="text"],
 .card-bouton-info input[type="date"],
-.card-bouton-info input[type="tel"] {
+.card-bouton-info input[type="tel"],
+textarea {
   width: 100%;
   padding: 10px;
   margin-bottom: 15px;

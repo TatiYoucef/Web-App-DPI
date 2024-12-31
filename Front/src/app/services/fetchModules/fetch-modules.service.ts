@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Patient } from '../../modules/types';
+import { Bilan, Patient } from '../../modules/types';
 import { DPI } from '../../modules/types';
 @Injectable({
   providedIn: 'root'
@@ -28,6 +28,16 @@ export class FetchModulesService { //Hna yesraw les fetch functions
   fetchListeDPIs(){
     const url = "http://localhost:3000/DPIs"; //Json Test, not from backend
     return this.http.get<Array<DPI>>(url);
+  }
+
+  fetchListeBilan(){
+    const url = "http://localhost:3000/listeBilan";
+    return this.http.get<Array<Bilan>>(url);
+  }
+
+  fetchBilan(id:number){
+    const url = `http://localhost:3000/listeBilan/${id}`;
+    return this.http.get<Bilan>(url);
   }
 
   fetchDPI(idPatient: number){

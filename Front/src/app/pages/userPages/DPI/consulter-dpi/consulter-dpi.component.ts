@@ -4,7 +4,7 @@ import { DashBoardComponent } from "../../../../components/dash-board/dash-board
 import { LoadingScreenComponent } from "../../../../components/loading-screen/loading-screen.component";
 import { UserDataService } from '../../../../services/userData/user-data.service';
 import { CommonModule } from '@angular/common'; // Import CommonModule
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DPI, Patient } from '../../../../modules/types';
 import { FetchModulesService } from '../../../../services/fetchModules/fetch-modules.service';
 import { catchError } from 'rxjs';
@@ -28,6 +28,7 @@ export class ConsulterDPIComponent implements OnInit{
   user = inject(UserDataService).getUserData() ;  //Njibou Data te3 user te3na 
 
   router = inject(ActivatedRoute); //bihe njibou id fel path
+  route = inject(Router);
 
   ngOnInit(): void {
       
@@ -62,9 +63,9 @@ export class ConsulterDPIComponent implements OnInit{
   }
 
   isInformationsPatient = signal(false); //si on clique 3la infos patients tweli vrai
+  isAntecedentPatient = signal(false);
 
   updateDashboardVisibility(isVisible: boolean) {
-    console.log('Dashboard visibility updated:', isVisible);
     this.isDashBoardVisible = isVisible;
   }
 
@@ -72,12 +73,17 @@ export class ConsulterDPIComponent implements OnInit{
 
     if ((event.target as HTMLElement).classList.contains('grey-div') || (event.target as HTMLElement).classList.contains('annuler') ) {
       this.isInformationsPatient.set(false);
+      this.isAntecedentPatient.set(false);
     }
     
   }
 
   informationsPatient(){
     console.log("Consultation des informations du patient.");
+  }
+
+  mettreAjourAntecedent(){
+    console.log("Antecedents patché...");
   }
 
 }
