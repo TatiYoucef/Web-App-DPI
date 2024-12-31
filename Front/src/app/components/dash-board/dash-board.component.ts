@@ -38,7 +38,12 @@ export class DashBoardComponent {
       break;
 
       case "Patient":
-        this.router.navigate(['consulter-DPI', this.user.id]);
+        //const patientId = data.id;
+        //I left this hakda because I don't know 
+        //how to get the patient's id from 
+        //the user, someone help !!!
+        const patientUrl = `patient/consulter-DPI/${this.user.id}`;
+        this.router.navigate([patientUrl]);
       break;
 
       default: //rablabinf

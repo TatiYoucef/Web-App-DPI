@@ -17,7 +17,7 @@ import { HeaderComponent } from "../../../../components/header-user/header.compo
 })
 export class GestionPatientsComponent {
 
-  isDashBoard = signal(false);
+  isDashBoardVisible = true;
   
   fetchServices = inject(FetchModulesService);
   listePatient = signal<Array<Patient>>([]);
@@ -45,8 +45,9 @@ export class GestionPatientsComponent {
     
   }
 
-  changeDashState(){
-    this.isDashBoard.update((e) => !e);
+  updateDashboardVisibility(isVisible: boolean) {
+    console.log('Dashboard visibility updated:', isVisible);
+    this.isDashBoardVisible = isVisible;
   }
 
   private generateQRCode(nss: number): Promise<string> {

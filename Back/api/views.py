@@ -127,23 +127,24 @@ class UserLoginView(APIView):
 
 class DPIView(APIView):
         
-    def get(self, request, DPI_id):
-        try:
-            dossier = DPI.objects.get(id=DPI_id)    
-            patient = dossier.patient  
-            
+ def get(self, request, patient_id):
+    try:
+        patient = Patient.objects.get(id=patient_id)
+        if patient.dossier:
+            dossier = patient.dossier
             dossier_serializer = DPISerializer(dossier)
             patient_serializer = PatientSerializer(patient)
-            
+
+
             return Response({
                 "dossier": dossier_serializer.data,
                 "patient": patient_serializer.data
             }, status=status.HTTP_200_OK)
-        
-        except DPI.DoesNotExist:
-            return Response({"error": "Dossier de patient not found."}, status=status.HTTP_404_NOT_FOUND)
-        except Patient.DoesNotExist:
-            return Response({"error": "Patient not found."}, status=status.HTTP_404_NOT_FOUND)
+        else:
+            return Response({"error": "Patient does not have a related DPI."}, status=status.HTTP_404_NOT_FOUND)
+
+    except Patient.DoesNotExist:
+        return Response({"error": "Patient not found."}, status=status.HTTP_404_NOT_FOUND)
 
 
     
@@ -224,17 +225,28 @@ class modifyDIView(APIView):
             return JsonResponse({'error': str(e)}, status=400)
     
 
-
-    
 class DPIConsultationListView(APIView):
-    def get(self, request, id):
+
+    def get(self, request, patient_id):
         try:
-            dossier = DPI.objects.get(id=id)
-            consultations = dossier.consultation.all() 
+            patient=Patient.objects.get(id=patient_id)
+            dossier = patient.dossier
+            consultations = dossier.consultations.all() 
             serializer = ConsultationListSerializer(consultations, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Consultation.DoesNotExist:
             return Response({"error": "consultation not found."}, status=status.HTTP_404_NOT_FOUND)
+
+    
+# class DPIConsultationListView(APIView):
+#     def get(self, request, id):
+#         try:
+#             dossier = DPI.objects.get(id=id)
+#             consultations = dossier.consultation.all() 
+#             serializer = ConsultationListSerializer(consultations, many=True)
+#             return Response(serializer.data, status=status.HTTP_200_OK)
+#         except Consultation.DoesNotExist:
+#             return Response({"error": "consultation not found."}, status=status.HTTP_404_NOT_FOUND)
 
 
 class ConsultationView(APIView):

@@ -17,7 +17,7 @@ import { LoadingScreenComponent } from "../../../../components/loading-screen/lo
 
 export class AddAccountComponent {
 
-  isDashBoard = signal(false);
+  isDashBoardVisible = true;
 
   id!: number; //id de patient li ra7 necryyoulou compte
   router = inject(ActivatedRoute); //bihe njibou id fel path
@@ -45,8 +45,9 @@ export class AddAccountComponent {
       
   }
     
-  updateDashboardVisibility(V:boolean){
-    this.isDashBoard.set(V);
+  updateDashboardVisibility(isVisible: boolean) {
+    console.log('Dashboard visibility updated:', isVisible);
+    this.isDashBoardVisible = isVisible;
   }
 
   creerCompte(username:String, password:String){

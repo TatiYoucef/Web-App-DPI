@@ -2,11 +2,9 @@
 
 <div class="content">
 
-  @if (isDashBoard()) { <!--Ida kayen dashBoard-->
-    <div class="empty-dash">
-      <app-dash-board />
-    </div>
-  }
+  <div class="empty-dash">
+    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>
+  </div>
 
   <div class="container">
 

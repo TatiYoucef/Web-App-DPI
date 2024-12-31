@@ -23,6 +23,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 export class AcceuilPageComponent implements OnInit {
 
+  isDashBoardVisible = true;
+
   isScanning = false;
   onScanSuccess(result: string) {
     console.log('QR Code scanned: ', result);
@@ -31,14 +33,14 @@ export class AcceuilPageComponent implements OnInit {
     console.error('Scan failed: ', error);
   }
 
-  isDashBoard = signal(false);
   user = inject(UserDataService).getUserData() ;  //Njibou Data te3 user te3na 
 
   isCreeDPI = signal(false);
   isRecherchePatient = signal(false); //si on clique 3la recherche wella créer, ywellou vrai
 
-  changeDashState(){
-    this.isDashBoard.update((e) => !e);
+  updateDashboardVisibility(isVisible: boolean) {
+    console.log('Dashboard visibility updated:', isVisible);
+    this.isDashBoardVisible = isVisible;
   }
 
   annulerRecherche(event: MouseEvent){

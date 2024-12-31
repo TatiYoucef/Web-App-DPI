@@ -7,18 +7,19 @@ import { FetchModulesService } from '../../../../services/fetchModules/fetch-mod
 import { catchError } from 'rxjs';
 import { UserDataService } from '../../../../services/userData/user-data.service';
 import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ajout-result-bilan',
   standalone: true,
-  imports: [LoadingScreenComponent, HeaderComponent, DashBoardComponent],
+  imports: [LoadingScreenComponent, HeaderComponent, DashBoardComponent, CommonModule],
   templateUrl: './ajout-result-bilan.component.html',
   styleUrl: './ajout-result-bilan.component.css'
 })
 
 export class AjoutResultBilanComponent implements OnInit {
 
-  isDashBoard = signal(false);
+  isDashBoardVisible = true;
 
   user = inject(UserDataService).getUserData();
 
@@ -48,10 +49,10 @@ export class AjoutResultBilanComponent implements OnInit {
       
   }
     
-  changeDashState(){
-    this.isDashBoard.update((e) => !e);
+  updateDashboardVisibility(isVisible: boolean) {
+    console.log('Dashboard visibility updated:', isVisible);
+    this.isDashBoardVisible = isVisible;
   }
-
   //Hade la partie te3 gestion de fichier, modify it CAREFULLY
 
 
