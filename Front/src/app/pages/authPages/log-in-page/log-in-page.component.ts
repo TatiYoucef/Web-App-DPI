@@ -51,8 +51,9 @@ export class LogInPageComponent {
         switch(response.role){
           
           case "Patient" :
-
-            this.router.navigate(["patient"]);
+            const patientId = response.data.id;
+            const patientUrl = `patient/consulter-DPI/${patientId}`;
+            this.router.navigate([patientUrl]);
               
           break;
 

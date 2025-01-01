@@ -6,173 +6,116 @@
     <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>
   </div>
 
-
   <div class="container">
-
     @defer {
-
-    <div class="container2">
-      <!-- First Container: DPI title -->
-      <div class="dpi-title">
-        <h2>DPI</h2>
-      </div>
-
-      <!-- Second Container: Patient Information Card -->
-      <div class="patient-info-card">
-        <div class="card-info">
-          <p><strong>Patient:</strong> {{patient.nom}} {{patient.prenom}}</p>
-          <p><strong>NSS:</strong> {{patient.nss}}</p>
-          <p><strong>Créé le:</strong> {{Dpi.date_admission}} </p>
-          <p><strong>Nombre d'hospitalisations:</strong> {{Dpi.ordonnances.length}} </p>
-          <!-- <p><strong>Créé le:</strong> {{patient.creationDate}}</p>
-            <p><strong>Nombre d'hospitalisations:</strong> {{patient.hospitalizations}}</p> -->
-        </div>
-        <div class="last-modif">
-          <p class="modif"><strong>Derniere modification</strong></p>
-          <p class="date"> {{Dpi.date_maj}} </p>
-        </div>
-      </div>
-
-      <!-- Third Container: Buttons -->
-      <div class="buttons-container">
-
-        <div class="buttons-top">
-          <button (click)="isInformationsPatient.set(true)">Informations patient</button>
-          <button>Consultations</button>
-          <button (click)="isAntecedentPatient.set(true)">Antécédents</button>
+      <div class="container2">
+        <!-- First Container: DPI title -->
+        <div class="dpi-title">
+          <h2>DPI</h2>
         </div>
 
-        <div class="buttons-bottom">
-          <button>Ordonnances</button>
-          
-          <button (click)="route.navigate(['consulter-DPI',id,'Bilans'])">Bilans</button>
-
-          <!-- hadou dirthem in comments just becuz mazalou matdarouch les methodes -->
-          <!-- <button (click)="viewPatientInfo()">Informations patient</button>
-          <button (click)="viewConsultations()">Consultations</button>
-          <button (click)="viewAntecedents()">Antécédents</button>
+        <!-- Second Container: Patient Information Card -->
+        <div class="patient-info-card">
+          <div class="card-info">
+            <p><strong>Patient:</strong> {{patient.user.last_name}} {{patient.user.first_name}}</p>
+            <p><strong>NSS:</strong> {{patient.nss}}</p>
+            <p><strong>Créé le :</strong> {{ dossier.dateAdmission | date:'yyyy-MM-dd à HH\'h\'mm\'m\'ss\'s\'' }} </p>
+            <p><strong>Nombre d'hospitalisations:</strong> {{dossier.ordonnances.length}} </p>
           </div>
+          <div class="last-modif">
+            <p class="modif"><strong>Derniere modification</strong></p>
+            <p class="date"> {{dossier.dateMaj | date:'yyyy-MM-dd à HH\'h\'mm\'m\'ss\'s\'' }} </p>
+          </div>
+        </div>
+
+        <!-- Third Container: Buttons -->
+        <div class="buttons-container">
+          <div class="buttons-top">
+            <button (click)="isInformationsPatient.set(true)">Informations patient</button>
+            <button (click)="viewConsultations()">Consultations</button>
+            <button (click)="isAntecedentPatient.set(true)">Antécédents</button>
+          </div>
+
           <div class="buttons-bottom">
-          <button (click)="viewOrdonnances()">Ordonnances</button>
-          <button (click)="viewResumes()">Résumés</button>
-          <button (click)="viewBilans()">Bilans</button> -->
+            <button>Ordonnances</button>
+            <button (click)="navigation.navigate(['consulter-DPI',id,'Bilans'])">Bilans</button>
+          </div>
 
-          @if (isInformationsPatient()) { <!-- If we click on Infos patient -->
+          <!-- Conditional Display: Informations Patient -->
+          @if (isInformationsPatient()) {
+          <div class="grey-div" (click)="annuler($event)">
+            <div class="card-bouton-info">
+              <h2>Consultation des informations du patient</h2>
+              <div class="info-container">
+                <div class="div1">
+                  <label>Nss:</label>
+                  <input type="text" placeholder="NSS" readonly value="{{patient.nss}}">
 
-            <div class="grey-div" (click)="annuler($event)">
+                  <label>Nom</label>
+                  <input type="text" placeholder="nom" readonly value="{{patient.user.last_name}}">
 
-              <div class="card-bouton-info">
+                  <label>Prénom</label>
+                  <input type="text" placeholder="prénom" readonly value="{{patient.user.first_name}}">
 
-                <h2>Consultation des informations du patient</h2>
-                
-                <div class="info-container">
-
-                  <div class="div1">
-
-                    <label>Nss:</label>
-                    <input type="text" [placeholder]="patient.nss" readonly>
-
-                    <label>Nom</label>
-                    <input type="text" [placeholder]="patient.nom" readonly>
-
-                    <label>Prénom</label>
-                    <input type="text" [placeholder]="patient.prenom" readonly>
-
-                    <label>Addresse</label>
-                    <input type="text" [placeholder]="patient.adresse" readonly style="width: 210%;">
-
-                  </div>
-    
-                  <div class="div2">
-
-                    <label>Nom d'utilisateur</label>
-                    <input type="text" [placeholder]="patient.nomUser" readonly>
-
-                    <label>Date de naissance</label>
-                    <input type="text" [placeholder]="patient.naissance" readonly>
-
-                    <label>tel</label>
-                    <input type="tel" [placeholder]="patient.tel" readonly>
-
-                  </div>
-
+                  <label>Nom d'utilisateur</label>
+                  <input type="text" placeholder="nom d'utilisateur" readonly value="{{patient.user.username}}">
                 </div>
 
-                <div class="container3">
+                <div class="div2">
+                  <label>Addresse</label>
+                  <input type="text" placeholder="Addresse" readonly value="{{patient.address}}">
 
-                  <button class="annuler" (click)="annuler($event)">
-                    sortir
-                  </button>
+                  <label>Date de naissance</label>
+                  <input type="date" readonly value="{{patient.date_naissance}}">
 
+                  <label>Tel</label>
+                  <input type="tel" placeholder="téléphone" readonly value="{{patient.phone_number}}">
                 </div>
-
-
               </div>
-
+              <div class="container3">
+                <button class="annuler" (click)="annuler($event)">Sortir</button>
+              </div>
             </div>
-
+          </div>
           }
 
-          @if (isAntecedentPatient()) { <!-- If we click on Infos patient -->
-
-            <div class="grey-div" (click)="annuler($event)">
-
-              <div class="card-bouton-info" style="width: 30%;">
-
-                <h2>Antécédents du patient</h2>
-                
-                <div class="info-container">
-
-                  <div class="div1" >
-
-                    <label>Description</label>
-                    @if (user.role === "Patient") {
-                      <textarea rows="4" type="text" style="width: 200%;" readonly> Alergie aux chats, poussière, oiseaux, ORG</textarea>
-                    } @else {
-                      <textarea rows="4" type="text" style="width: 200%;"> Alergie aux chats, poussière, oiseaux, ORG</textarea>
-                    }
-  
-
-                  </div>
-
+          <!-- Conditional Display: Antecedents Patient -->
+          @if (isAntecedentPatient()) {
+          <div class="grey-div" (click)="annuler($event)">
+            <div class="card-bouton-info" style="width: 30%;">
+              <h2>Antécédents du patient</h2>
+              <div class="info-container">
+                <div class="div1">
+                  <label>Description</label>
+                  @if (user.role === "Patient") {
+                  <textarea rows="4" type="text" style="width: 200%;" readonly>
+                    Alergie aux chats, poussière, oiseaux, ORG
+                  </textarea>
+                  } @else {
+                  <textarea rows="4" type="text" style="width: 200%;">
+                    Alergie aux chats, poussière, oiseaux, ORG
+                  </textarea>
+                  }
                 </div>
-
-                <div class="info-container" style="justify-content: center;">
-
-                  <div class="div1">
-
-                    <button *ngIf="user.role === 'Medcin' "  (click)="mettreAjourAntecedent()">
-                      mettre à jour
-                    </button>
-                    
-                  </div>
-
-                  <div class="div2">
-
-                    <button class="annuler" (click)="annuler($event)">
-                      Sortir
-                    </button>
-
-                  </div>
-
-                </div>
-
               </div>
-
+              <div class="info-container" style="justify-content: center;">
+                <div class="div1">
+                  <button *ngIf="user.role === 'Medcin'" (click)="mettreAjourAntecedent()">Mettre à jour</button>
+                </div>
+                <div class="div2">
+                  <button class="annuler" (click)="annuler($event)">Sortir</button>
+                </div>
+              </div>
             </div>
-
+          </div>
           }
-
         </div>
       </div>
-    </div>
     }
-
     @loading (minimum 0.5s) {
     <div class="center-div">
       <app-loading-screen />
     </div>
     }
-
   </div>
 </div>

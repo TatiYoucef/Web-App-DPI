@@ -1,4 +1,5 @@
 import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { 
   BarController,
@@ -17,18 +18,19 @@ import { LoadingScreenComponent } from "../../../../components/loading-screen/lo
 @Component({
   selector: 'app-generer-graph',
   standalone: true,
-  imports: [FormsModule, HeaderComponent, DashBoardComponent, LoadingScreenComponent],
+  imports: [FormsModule, HeaderComponent, DashBoardComponent, LoadingScreenComponent, CommonModule],
   templateUrl: './generer-graph.component.html',
   styleUrl: './generer-graph.component.css'
 })
 
 export class GenererGraphComponent {
 
-  isDashBoard = signal(false);
+  isDashBoardVisible = true;
   user = inject(UserDataService).getUserData() //Njibou Data te3 user te3na
   
-  changeDashState(){
-    this.isDashBoard.update((e) => !e);
+  updateDashboardVisibility(isVisible: boolean) {
+    console.log('Dashboard visibility updated:', isVisible);
+    this.isDashBoardVisible = isVisible;
   }
 
   @ViewChild('chartCanvas') chartCanvas!: ElementRef<HTMLCanvasElement>;

@@ -147,18 +147,17 @@ class Resume(models.Model):
         return f"Resume {self.id_resume}"
 
 class DPI(models.Model):
-    consultations = models.ManyToManyField('Consultation', related_name='dpis')
+    consultations = models.ManyToManyField('Consultation', related_name='dpis', blank=True)
     dateAdmission = models.DateTimeField(default=datetime.now)
     dateSortie = models.DateTimeField(auto_now=True)
     dateMaj = models.DateTimeField(default=datetime.now)
     antecedents_medicaux = models.TextField(blank=True, null=True)
-    ordonnances = models.ManyToManyField(Ordonnance, related_name='dpis')
+    ordonnances = models.ManyToManyField(Ordonnance, related_name='dpis', blank=True)
     bilanBiologiques = models.ManyToManyField(BilanBiologique  , related_name="dpis" , blank=True)
     bilanRadiologiques =models.ManyToManyField(BilanRadiologique , related_name="dpis", blank=True)
-    observations = models.ManyToManyField('Observation', related_name='dpis')
+    observations = models.ManyToManyField('Observation', related_name='dpis', blank=True)
 
-    def __str__(self):
-        return f"Dossier for {self.patient.user.username}"
+
 
 class Consultation(models.Model):
     patient = models.OneToOneField(Patient, on_delete=models.CASCADE)
