@@ -420,7 +420,13 @@
       "type": "Biologique",
       "rempli": false,
       "date": "2024-09-18",
-      "tests": []
+      "tests": [
+        {
+          "id": 6,
+          "testName": "Échographie abdominale",
+          "result": "Normal"
+        }
+      ]
     }
   ]
   

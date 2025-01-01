@@ -7,11 +7,12 @@ import QRCode from 'qrcode';
 import { LoadingScreenComponent } from "../../../../components/loading-screen/loading-screen.component";
 import { DashBoardComponent } from "../../../../components/dash-board/dash-board.component";
 import { HeaderComponent } from "../../../../components/header-user/header.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-gestion-patients',
   standalone: true,
-  imports: [LoadingScreenComponent, DashBoardComponent, HeaderComponent],
+  imports: [LoadingScreenComponent, DashBoardComponent, HeaderComponent, CommonModule],
   templateUrl: './gestion-patients.component.html',
   styleUrl: './gestion-patients.component.css'
 })
