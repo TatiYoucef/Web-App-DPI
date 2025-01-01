@@ -8,11 +8,12 @@ import { DashBoardComponent } from "../../../../components/dash-board/dash-board
 import { CommonModule } from '@angular/common';
 import { LoadingScreenComponent } from "../../../../components/loading-screen/loading-screen.component";
 import QRCode from 'qrcode';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-bilans-liste',
   standalone: true,
-  imports: [HeaderComponent, DashBoardComponent, CommonModule, LoadingScreenComponent],
+  imports: [HeaderComponent, DashBoardComponent, CommonModule, LoadingScreenComponent, FormsModule],
   templateUrl: './bilans-liste.component.html',
   styleUrl: './bilans-liste.component.css'
 })
@@ -20,6 +21,8 @@ import QRCode from 'qrcode';
 export class BilansListeComponent {
 
   isDashBoardVisible = true;
+  isAjoutBilan = false;
+  selectedType = "Biologique";
 
   fetchServices = inject(FetchModulesService);
   listeBilan = signal<Array<Bilan>>([]);
@@ -71,6 +74,41 @@ export class BilansListeComponent {
   
   goToBilan(idBilan:number){
     this.rout.navigate(['consulter-DPI',this.id,'Bilans',idBilan]);
+  }
+
+  annuler(event: MouseEvent){
+
+    if ((event.target as HTMLElement).classList.contains('grey-div') || (event.target as HTMLElement).classList.contains('annuler') ) {
+      this.isAjoutBilan= false;
+    }
+    
+  }
+
+  ajouterBilan(){
+
+    if( this.listeBilan()[this.listeBilan().length - 1].tests.length === 0 ){
+      this.isAjoutBilan= false;
+      alert("Bilan non crée, il existe déja un bilan non rempli");
+    } else {
+
+      this.listeBilan.update((liste) => {
+
+        liste.push({
+          id: 0,
+          idMed: 0,
+          idConsul: 0,
+          type: this.selectedType,
+          rempli: false,
+          tests:[],
+          date: (Date.now()/(3600000 * 24 )).toString(),
+        })
+
+        return liste
+      });
+
+      this.isAjoutBilan= false;
+    }
+
   }
 
   private generateQRCode(nss: number): Promise<string> {
