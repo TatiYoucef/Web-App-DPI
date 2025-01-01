@@ -118,3 +118,89 @@ button:hover {
 .popup-content button:hover {
   background-color: #d32f2f;
 }
+
+.card-button, .card button, select{
+
+  font-family: "Quicksand", serif;
+
+  background-color: #3958B3;
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+  border: none;
+  border-radius: 20px;
+
+  padding: 10px 10px ;
+  cursor: pointer;
+
+  transition: background-color 0.3s, color 0.3s, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out ;
+}
+
+.card-button:hover, .card button:hover, select:hover{
+  background-color: #EEF4FF;
+  color: #3958B3;
+  border-color: grey;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+}
+
+option{
+  font-family: "Quicksand", serif;
+}
+
+.grey-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+
+  background-color: rgba(0, 0, 0, 0.3);
+
+  width: 100%;
+  height: 100%;
+
+  overflow: auto;
+}
+
+.card{
+
+  display: flex;
+  justify-content: start; 
+  flex-direction: column;
+  gap: 30px;
+
+  align-items: center;
+  padding: 20px 20px;
+  border-radius: 20px;
+  background-color: #EEF4FF;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+
+}
+
+.horiz{
+  display: flex;
+  gap: 20px;
+  justify-content: start;
+  align-items: center;
+}
+
+input{
+  
+  height: 25px;
+  padding: 5px 10px;
+  width: 80%;
+
+  border: 1px solid #ccc; /* Light gray border */
+  outline: none;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+
+}
+
+input:focus {
+  border-color: #3958B3; /* Blue border on focus */
+}

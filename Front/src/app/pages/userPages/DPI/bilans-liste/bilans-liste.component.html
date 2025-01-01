@@ -15,15 +15,15 @@
         <div class="center-div">
           <img src="../../../../../assets/images/Task_empty.png" width="280px" >
           <h3>Aucun bilan trouvé</h3>
-          <h4>Vous pouvez créer votre premier bilan ici</h4>
-          <button (click)="isAjoutBilan = true" style="margin: auto;">Ajouter bilan</button>
+          <h4>{{user.role === "Medcin" ? "Vous pouvez créer votre premier bilan ici":"Attendez votre medecin crée un bilan pour vous"}}</h4>
+          <button *ngIf="user.role === 'Medcin'" (click)="isAjoutBilan = true" style="margin: auto;">Ajouter bilan</button>
         </div>
 
       } @else {
 
         <h2>Liste des bilans de patient {{patient.nom}} {{patient.prenom}}:</h2>
 
-        <button (click)="isAjoutBilan = true" style="margin: auto;">Ajouter bilan</button>
+        <button *ngIf="user.role === 'Medcin'" (click)="isAjoutBilan = true" style="margin: auto;">Ajouter bilan</button>
 
         <div class="container-invert">
 
