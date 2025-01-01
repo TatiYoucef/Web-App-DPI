@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { LoadingScreenComponent } from "../../../../components/loading-screen/loading-screen.component";
 import QRCode from 'qrcode';
 import { FormsModule } from '@angular/forms';
+import { UserDataService } from '../../../../services/userData/user-data.service';
 
 @Component({
   selector: 'app-bilans-liste',
@@ -28,7 +29,8 @@ export class BilansListeComponent {
   listeBilan = signal<Array<Bilan>>([]);
 
   id!: number ; //id de patient
-  patient !: Patient  ;  // ! means it will surely be initialised  
+  patient !: Patient  ;  // ! means it will surely be initialised 
+  user = inject(UserDataService).getUserData(); 
   
   rout = inject(Router);
   router = inject(ActivatedRoute); //bihe njibou id fel path

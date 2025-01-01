@@ -17,6 +17,8 @@
       <p>Aucune consultation disponible pour le moment.</p>
     </div>
 
+    <button class="card-button" *ngIf="user.role === 'Medcin'" (click)="isAjoutConsultation = true" style="margin: auto;">Ajouter consultation</button>
+
     <div *ngIf="consultations.length > 0" class="consultations-list">
       <ul>
         <li *ngFor="let consultation of consultations" class="consultation-item" (click)="showDetails(consultation)">
@@ -29,6 +31,49 @@
         </li>
       </ul>
     </div>
+
+    @if (isAjoutConsultation) {
+
+      <div class="grey-div" (click)="annuler($event)">
+
+        <div class="card">
+
+          <div class="horiz">
+
+            <h4>Diagnostiqué? </h4>
+
+            <select [(ngModel)]="isDiagnosed">
+              <option value="false">Non</option>
+              <option value="true">oui</option>
+            </select>
+
+          </div>
+
+          <div class="horiz">
+
+            <h4>Date :</h4>
+            <input type="date" [(ngModel)]="dateSet">
+
+          </div>
+
+          <div class="horiz">
+
+            <h4>Raison d'admission: </h4>
+            <input type="text" [(ngModel)]="raisonSet">
+
+          </div>
+
+          <div class="horiz">
+            <button class="annuler" (click)="annuler($event)">Annuler</button>
+            <button (click)="ajoutConsultation()">Créer Consultation</button>
+          </div>
+          
+        </div>
+
+      </div>
+
+
+    }
   </div>
 
   <!-- Popup for Consultation Details -->
