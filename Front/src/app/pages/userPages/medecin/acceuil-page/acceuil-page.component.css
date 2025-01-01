@@ -22,7 +22,7 @@
 .container2 {
 
   display: flex;
-  
+  flex-direction: column;
   gap: 50px; /* Add spacing between items */
   margin: 20px;
 }
