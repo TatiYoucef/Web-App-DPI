@@ -6,18 +6,19 @@ import { Patient } from '../../../../modules/types';
 import { FetchModulesService } from '../../../../services/fetchModules/fetch-modules.service';
 import { catchError } from 'rxjs';
 import { LoadingScreenComponent } from "../../../../components/loading-screen/loading-screen.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-account',
   standalone: true,
-  imports: [HeaderComponent, DashBoardComponent, LoadingScreenComponent],
+  imports: [HeaderComponent, DashBoardComponent, LoadingScreenComponent, CommonModule],
   templateUrl: './add-account.component.html',
   styleUrl: './add-account.component.css'
 })
 
 export class AddAccountComponent {
 
-  isDashBoard = signal(false);
+  isDashBoardVisible = true;
 
   id!: number; //id de patient li ra7 necryyoulou compte
   router = inject(ActivatedRoute); //bihe njibou id fel path
@@ -45,8 +46,9 @@ export class AddAccountComponent {
       
   }
     
-  updateDashboardVisibility(V:boolean){
-    this.isDashBoard.set(V);
+  updateDashboardVisibility(isVisible: boolean) {
+    console.log('Dashboard visibility updated:', isVisible);
+    this.isDashBoardVisible = isVisible;
   }
 
   creerCompte(username:String, password:String){

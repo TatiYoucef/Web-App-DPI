@@ -23,7 +23,7 @@ import { UserDataService } from '../../../../services/userData/user-data.service
 
 export class AcceuilPageComponent implements OnInit{
 
-  isDashBoard = signal(false);
+  isDashBoardVisible = true;
 
   fetchServices = inject(FetchModulesService);
   listePatient = signal<Array<Patient>>([]);
@@ -52,8 +52,9 @@ export class AcceuilPageComponent implements OnInit{
     
   }
 
-  changeDashState(){
-    this.isDashBoard.update((e) => !e);
+  updateDashboardVisibility(isVisible: boolean) {
+    console.log('Dashboard visibility updated:', isVisible);
+    this.isDashBoardVisible = isVisible;
   }
 
   goConsult(id:number){

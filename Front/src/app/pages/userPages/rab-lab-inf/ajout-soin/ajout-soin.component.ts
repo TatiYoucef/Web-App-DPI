@@ -6,24 +6,26 @@ import { HeaderComponent } from "../../../../components/header-user/header.compo
 import { Soin } from '../../../../modules/types';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-ajout-soin',
   standalone: true,
-  imports: [FormsModule, LoadingScreenComponent, DashBoardComponent, HeaderComponent],
+  imports: [FormsModule, LoadingScreenComponent, DashBoardComponent, HeaderComponent, CommonModule],
   templateUrl: './ajout-soin.component.html',
   styleUrl: './ajout-soin.component.css'
 })
 export class AjoutSoinComponent implements OnInit{
 
-  isDashBoard = signal(false);
+  isDashBoardVisible = true;
   
   user = inject(UserDataService).getUserData() //Njibou Data te3 user te3na
   id!:number;
   router = inject(ActivatedRoute); //bihe njibou id fel path
 
-  changeDashState(){
-    this.isDashBoard.update((e) => !e);
+  updateDashboardVisibility(isVisible: boolean) {
+    console.log('Dashboard visibility updated:', isVisible);
+    this.isDashBoardVisible = isVisible;
   }
 
   ngOnInit(): void { //nrecupriwi id te3 patient 

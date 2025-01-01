@@ -63,6 +63,14 @@ export const routes: Routes = [
   },
 
   {
+    path :'patient/consulter-DPI/:id' ,
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/DPI/consulter-dpi/consulter-dpi.component");
+      return m.ConsulterDPIComponent;
+    }
+  },
+
+  {
     path:'medecin',
     loadComponent: async () => {
       const m = await import("./pages/userPages/medecin/acceuil-page/acceuil-page.component");
@@ -143,4 +151,13 @@ export const routes: Routes = [
     }
   },
 
+  {
+    path :'consulter-DPI/:id/consultations' ,
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/DPI/consultations/consultations.component");
+      return m.ConsultationsComponent;
+    }
+  },
+
+  
 ];

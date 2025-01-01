@@ -130,12 +130,21 @@ class ConsultationSerializer(serializers.ModelSerializer):
 
 class ConsultationListSerializer(serializers.ModelSerializer): 
     
-    medcin_nom = serializers.CharField(source='medcin.user.lastname', read_only=True)
-    raison_admission= serializers.CharField(source='raison_admission', read_only=True)
-    id=serializers.CharField(source='id',read_only=True)
+    medcin_nom = serializers.CharField(source='medcin.user.get_full_name', read_only=True)
+    
     class Meta:
         model = Consultation
-        fields = ['id','medcin_nom','raison_admission']
+        fields = '__all__'
+
+
+# class ConsultationListSerializer(serializers.ModelSerializer): 
+    
+#     medcin_nom = serializers.CharField(source='medcin.user.lastname', read_only=True)
+#     raison_admission= serializers.CharField(source='raison_admission', read_only=True)
+#     id=serializers.CharField(source='id',read_only=True)
+#     class Meta:
+#         model = Consultation
+#         fields = ['id','medcin_nom','raison_admission']
         
 
 

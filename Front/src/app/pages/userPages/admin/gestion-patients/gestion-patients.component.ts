@@ -7,17 +7,18 @@ import QRCode from 'qrcode';
 import { LoadingScreenComponent } from "../../../../components/loading-screen/loading-screen.component";
 import { DashBoardComponent } from "../../../../components/dash-board/dash-board.component";
 import { HeaderComponent } from "../../../../components/header-user/header.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-gestion-patients',
   standalone: true,
-  imports: [LoadingScreenComponent, DashBoardComponent, HeaderComponent],
+  imports: [LoadingScreenComponent, DashBoardComponent, HeaderComponent, CommonModule],
   templateUrl: './gestion-patients.component.html',
   styleUrl: './gestion-patients.component.css'
 })
 export class GestionPatientsComponent {
 
-  isDashBoard = signal(false);
+  isDashBoardVisible = true;
   
   fetchServices = inject(FetchModulesService);
   listePatient = signal<Array<Patient>>([]);
@@ -45,8 +46,9 @@ export class GestionPatientsComponent {
     
   }
 
-  changeDashState(){
-    this.isDashBoard.update((e) => !e);
+  updateDashboardVisibility(isVisible: boolean) {
+    console.log('Dashboard visibility updated:', isVisible);
+    this.isDashBoardVisible = isVisible;
   }
 
   private generateQRCode(nss: number): Promise<string> {
