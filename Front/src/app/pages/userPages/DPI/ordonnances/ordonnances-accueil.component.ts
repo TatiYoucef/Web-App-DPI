@@ -5,20 +5,29 @@ import { DashBoardComponent } from "../../../../components/dash-board/dash-board
 import { LoadingScreenComponent } from "../../../../components/loading-screen/loading-screen.component";
 import { CommonModule } from '@angular/common'; 
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
   selector: 'app-ordonnances-accueil',
   standalone: true,
-  imports: [HeaderComponent, DashBoardComponent, LoadingScreenComponent, CommonModule, FormsModule],
+  imports: [HeaderComponent, DashBoardComponent, LoadingScreenComponent, CommonModule, FormsModule, ActivatedRoute],
   templateUrl: './ordonnances-accueil.component.html',
   styleUrl: './ordonnances-accueil.component.css'
 })
 export class OrdonnancesAccueilComponent {
-
+  private route = inject(ActivatedRoute);
   isDashBoard = signal(false);
   isDashBoardVisible = true;
-  ordonnances2 = [];
+  isAjoutOrdonnance = false;
+  isAjoutMedicament = false;
+  duree = "";
+  isValid = false;
+  nom = "";
+  dose = "";
+  frequence = "";
+  dateSet = Date.now();
+
   ordonnances = [
     {
       "id": 23,
@@ -67,6 +76,22 @@ export class OrdonnancesAccueilComponent {
   toggleEtat(ordonnance: any): void {
     ordonnance.etat = !ordonnance.etat;
     console.log('Etat changed to:', ordonnance.etat);
+  }
+
+  annuler(event: MouseEvent){
+
+    if ((event.target as HTMLElement).classList.contains('grey-div') || (event.target as HTMLElement).classList.contains('annuler') ) {
+      this.isAjoutOrdonnance= false;
+      this.isAjoutMedicament= false;
+    }
+    
+  }
+  ajoutOrdonnance(){
+
+  }
+
+  ajoutMedicament(){
+    
   }
 
   router = inject(Router);

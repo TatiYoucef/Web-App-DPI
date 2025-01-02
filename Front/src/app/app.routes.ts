@@ -110,10 +110,10 @@ export const routes: Routes = [
     }
   },
   {
-    path :'ordonnances' , 
+    path :'ordonnances' , //a test path
     pathMatch: 'full', 
     loadComponent: async () => {
-      const m = await import("./pages/supplementPages/ordonnances/ordonnances-accueil/ordonnances-accueil.component");
+      const m = await import("./pages/userPages/DPI/ordonnances/ordonnances-accueil.component");
       return m.OrdonnancesAccueilComponent;
     }
   },
@@ -132,6 +132,14 @@ export const routes: Routes = [
     loadComponent: async () => {
       const m = await import("./pages/userPages/DPI/consulter-dpi/consulter-dpi.component");
       return m.ConsulterDPIComponent;
+    }
+  },
+
+  {
+    path :'consulter-DPI/:id/Ordonnances' , //the right path to ordonnances
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/DPI/ordonnances/ordonnances-accueil.component");
+      return m.OrdonnancesAccueilComponent;
     }
   },
 

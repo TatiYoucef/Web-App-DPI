@@ -31,13 +31,25 @@ h2 {
   font-size: 1.2em;
   color: #2B2A7F;
 }
-.etat-line {
+
+
+.firstLine {
   display: flex;
-  align-items: center;
+  align-items:stretch;
 }
 
+.etat-line  {
+  display: flex;
+  align-items:center;
+}
+
+.etat-line button{
+  margin-left: 5px;
+}
+
+
 .etat-line strong {
-  margin-right: 10px; /* Optional: Adds space between the label and the checkbox */
+  margin-right: 5px; /* Optional: Adds space between the label and the checkbox */
 }
 
 .ordonnances-list ul {
