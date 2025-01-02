@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from api.models import (Administratif , Patient , Medcin , User ,  Infirmier , Laborantin , Radiologue ,Medicament , Ordonnance , BilanBiologique , BilanRadiologique , Medicament , Ordonnance , BilanRadiologique, BilanBiologique , MedcalRecord)
+
+from api.models import (Administratif , Patient , Medcin , User ,  Infirmier , Laborantin , Radiologue ,Medicament , Ordonnance , BilanBiologique , BilanRadiologique , Medicament , Ordonnance , BilanRadiologique, BilanBiologique , MedcalRecord ,Dossier)
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -111,7 +112,7 @@ class MedicalRecordSerializer(serializers.ModelSerializer):
         model = MedcalRecord
         fields = '__all__'
         
-class BilanBilogiqueSerializer(serializers.ModelSerializer):
+class BilanBiologiqueSerializer(serializers.ModelSerializer):
     class Meta:
         model = BilanBiologique
         fields ='__all__' 
@@ -122,4 +123,7 @@ class BilanRadiologiqueSerializer(serializers.ModelSerializer):
         model = BilanRadiologique
         fields = '__all__'
 
-
+class DossierSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Dossier
+        fields = '__all__'

@@ -113,15 +113,26 @@ class Bilan(models.Model):
       ('BIOLOGIQUE', 'Biologique'),
       ('RADIOLOGIQUE', 'Radiologique'),
   ]
-  description = models.TextField() 
-  date_prescription = models.DateField()  
-  #medecin = models.ForeignKey(Medcin, on_delete=models.CASCADE, related_name="medcin_bilan",blank=True)  
+  description = models.TextField(blank=True, null= True) 
+  date_prescription = models.DateTimeField(auto_now_add=True , null=True, blank=True) 
   consul = models.ForeignKey(Consultation, on_delete=models.CASCADE,  blank=True, null= True)
   typeBilan = models.CharField(
       max_length=100,
       choices=TYPE_BILAN_CHOICES,
       default='',  
   )
+  STATUS_CHOICES = [
+        ('PENDING', 'Pending'),  # not effected and not traited
+        ('IN_PROGRESS', 'In Progress'),  # affected and not traited
+        ('COMPLETED', 'Completed'),  # affected and traited
+    ]
+  
+  status = models.CharField(
+        max_length=100,
+        choices=STATUS_CHOICES,
+        default='',
+        blank=True
+    )
 
   class Meta :
     abstract = True 
@@ -136,7 +147,7 @@ class MedcalRecord(models.Model) :
 
 
 class BilanBiologique(Bilan):
-  laborantin= models.OneToOneField(Laborantin ,on_delete=models.CASCADE ,  related_name="labo_bilan" )  
+  laborantin= models.OneToOneField(Laborantin ,on_delete=models.CASCADE ,  related_name="labo_bilan" ,  null=True, blank=True)  
   resultats_analytiques = models.ManyToManyField(MedcalRecord ,related_name="result_bilan")
   def __str__(self):
         return f"{self.pk}"
@@ -144,8 +155,8 @@ class BilanBiologique(Bilan):
   
 
 class BilanRadiologique(Bilan):
-  radiologue = models.OneToOneField(Radiologue ,on_delete=models.CASCADE ,related_name="radio_bilan" , null=True)  
-  images = models.JSONField(default=list , null=True, blank=True )  # List to store image paths
+  radiologue = models.OneToOneField(Radiologue ,on_delete=models.CASCADE ,related_name="radio_bilan" ,  null=True, blank=True)  
+  resultats = models.JSONField(default=list , null=True, blank=True )  # List to store image paths
   compte_rendu = models.TextField(null=True, blank=True) 
 
 class Dossier(models.Model):
