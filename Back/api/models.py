@@ -15,8 +15,9 @@ class User(AbstractUser):
     )
     role = models.CharField(max_length=30, choices=ROLE_CHOICES)
     password = models.CharField(max_length=128, null=True, blank=True)
+    
 
-  
+
 class Medcin(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE , related_name="compte_medcin")
   date_naissance=models.DateField(default=date.today)
@@ -51,21 +52,32 @@ class Bilan(models.Model):
       ('RAD', 'Radiologique'),
   ]
   description = models.TextField() 
-  date_prescription = models.DateField()  
-  #medcin = models.OneToOneField(Medcin,  on_delete=models.CASCADE ,  related_name="medcin_bilan") 
+  date_prescription = models.DateField(default=date.today)  
   typeBilan = models.CharField(
       max_length=10,
       choices=TYPE_BILAN_CHOICES,
       default='BIO',  # Option par défaut, si nécessaire
+  )
+  
+  STATUS_CHOICES = [
+        ('PENDING', 'Pending'),  # not effected and not traited
+        ('IN_PROGRESS', 'In Progress'),  # affected and not traited
+        ('COMPLETED', 'Completed'),  # affected and traited
+    ]
+  status = models.CharField(
+        max_length=100,
+        choices=STATUS_CHOICES,
+        default='',
+        blank=True
   )
 
   class Meta :
     abstract = True 
 
 class MedcalRecord(models.Model) :
-    parametre = models.CharField(max_length=100)
-    value = models.FloatField()
-    unite = models.CharField(max_length=50)
+    parametre = models.CharField(max_length=100 , blank=True)
+    value = models.FloatField(blank=True , null=True)
+    unite = models.CharField(max_length=50 , blank=True , null=True)
 
 
 class Infirmier(models.Model):
@@ -96,17 +108,16 @@ class Radiologue(models.Model):
    return f"{self.user.username}"
 
 class BilanBiologique(Bilan):
-  laborantin= models.OneToOneField(Laborantin ,on_delete=models.CASCADE ,  related_name="labo_bilan")  
+  laborantin= models.ForeignKey(Laborantin ,on_delete=models.CASCADE , related_name="labo_bilan" , blank=True , null=True)  
   resultats_analytiques = models.ManyToManyField(MedcalRecord ,related_name="result_bilan")
-  
+  medcin = models.OneToOneField(Medcin,  on_delete=models.CASCADE ,  related_name="medcin_bilanBio" , blank=True , null=True ) 
   
 
 class BilanRadiologique(Bilan):
-  radiologue = models.OneToOneField(Radiologue ,on_delete=models.CASCADE ,related_name="radio_bilan" , null=True)  
+  radiologue = models.ForeignKey(Radiologue ,on_delete=models.CASCADE ,related_name="radio_bilan" , null=True)  
   images = models.JSONField(default=list , null=True, blank=True )  # List to store image paths
-  #images = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
   compte_rendu = models.TextField(null=True, blank=True)
-
+  medcin = models.OneToOneField(Medcin,  on_delete=models.CASCADE ,  related_name="medcin_bilanRad" , blank=True , null=True ) 
 
 class Soin(models.Model):
   infirmier = models.OneToOneField(Infirmier , on_delete=models.CASCADE , related_name="infirmier_soin")
@@ -119,7 +130,8 @@ class Consultation(models.Model):
   soin = models.ForeignKey(Soin ,on_delete=models.CASCADE , related_name= "soin_sejour")
   medcin = models.OneToOneField(Medcin , on_delete=models.CASCADE , related_name="medcin_sejour")
   date = models.DateField()
- 
+  
+
 class Resume(models.Model):
   diagnostic = models.CharField(max_length=255 , blank=True)
   symptomes = models.CharField(max_length=255 , blank=True)
@@ -133,7 +145,7 @@ class Dossier(models.Model):
   bilanRadiologique =models.ManyToManyField(BilanRadiologique , related_name="sejour_bilanRadio", blank=True)
   consultation = models.ManyToManyField(Consultation , related_name="cons_dossier" ,  blank=True)
   antecedants = models.TextField( null=True ,blank=True)
-  
+  dateAdmission = models.DateField(default=date.today)
 
 class Administratif(models.Model):
   user = models.OneToOneField( User , on_delete=models.CASCADE , related_name="compte_admin")
@@ -154,6 +166,8 @@ class Patient(models.Model):
   medcin_traitant = models.CharField(max_length=15 , blank=True)
   mutuelle = models.CharField(max_length=15 , blank=True)
   dossier = models.OneToOneField(Dossier , on_delete=models.CASCADE , related_name="patient_dossier" , null=True , blank=True)
+  have_accounts = models.BooleanField(default=False , null =True)
+
   def __str__(self):
         return f"{self.user.username} "
 

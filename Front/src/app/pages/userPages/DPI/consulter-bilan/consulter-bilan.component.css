@@ -1,0 +1,97 @@
+.content {
+  display: flex;
+  margin-top: 100px;
+  gap: 20px;
+  align-items: flex-start;
+  margin-left: 20%; /* Space for the sidebar */
+}
+
+.center-div{
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  flex-direction:column ;
+  justify-content: center;
+  align-items: center ;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 0 20px;
+  width: 100%;
+  padding-bottom: 20px;
+}
+
+.container2 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.card{
+
+  display: flex;
+  flex-direction: column; /* Flex items will be arranged vertically */
+  justify-content: flex-start; /* Align items at the top by default */
+  gap: 30px;
+
+  padding: 40px 40px;
+  border-radius: 20px;
+  background-color: #EEF4FF;
+  width: 50%;
+  margin: auto;
+  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+
+}
+
+.horiz-div{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+input{
+  font-family: "Quicksand", serif;
+  height: 25px;
+  padding: 5px 10px;
+
+  width: 50%;
+  border: 1px solid #ccc; /* Light gray border */
+  outline: none;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+
+}
+
+input:focus{
+  border-color: #3958B3; /* Blue border on focus */
+}
+
+button{
+
+  font-family: "Quicksand", serif;
+
+  background-color: #3958B3;
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+  border: none;
+  border-radius: 20px;
+  width: 20%;
+
+  padding: 10px 10px ;
+  cursor: pointer;
+
+  transition: background-color 0.3s, color 0.3s, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out ;
+}
+
+button:hover{
+  background-color: #EEF4FF;
+  color: #3958B3;
+  border-color: grey;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+}

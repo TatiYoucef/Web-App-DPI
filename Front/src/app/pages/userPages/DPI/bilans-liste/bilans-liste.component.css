@@ -1,0 +1,153 @@
+.content {
+  display: flex;
+  margin-top: 100px;
+  gap: 20px;
+  align-items: flex-start;
+  margin-left: 20%; /* Space for the sidebar */
+}
+
+.center-div{
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  flex-direction:column ;
+  justify-content: center;
+  align-items: center ;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 0 20px;
+  width: 100%;
+}
+
+.container-invert {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 20px;
+  width: 100%;
+}
+
+h3{
+  color: #2B2A7F;
+  margin: 5px;
+}
+h4{
+  margin: 5px;
+  width: 200%;
+}
+p{text-align: center;}
+
+.item {
+
+  display: flex;
+  justify-content: start;
+
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #3958B3;
+  color: white;
+  border: 2px solid black;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  align-items: center;
+  transition: background-color 0.3s, box-shadow 0.3s;
+
+}
+
+.item:hover{
+
+  background-color: #758BCA;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.19);
+  cursor: pointer; /* Show pointer on hover */
+
+}
+
+.profile{
+
+  width: 15%;
+  display: flex;
+  color: white;
+  flex-direction: column; /* Flex items will be arranged vertically */
+  justify-content: flex-start; /* Align items at the top by default */
+
+}
+
+.profile h3{
+  color: white;
+} 
+
+.empty-div{
+  width: 100%;
+}
+
+button, select{
+
+  font-family: "Quicksand", serif;
+
+  background-color: #3958B3;
+  color: white;
+  font-size: 18px;
+  font-weight: 800;
+  border: none;
+  border-radius: 20px;
+
+  padding: 10px 10px ;
+  cursor: pointer;
+
+  transition: background-color 0.3s, color 0.3s, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out ;
+}
+
+button:hover, select:hover{
+  background-color: #EEF4FF;
+  color: #3958B3;
+  border-color: grey;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+}
+
+option{
+  font-family: "Quicksand", serif;
+}
+
+.grey-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+
+  background-color: rgba(0, 0, 0, 0.3);
+
+  width: 100%;
+  height: 100%;
+
+  overflow: auto;
+}
+
+.card{
+
+  display: flex;
+  justify-content: start; 
+  flex-direction: column;
+  gap: 30px;
+
+  align-items: center;
+  padding: 20px 20px;
+  border-radius: 20px;
+  background-color: #EEF4FF;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+
+}
+
+.horiz{
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}

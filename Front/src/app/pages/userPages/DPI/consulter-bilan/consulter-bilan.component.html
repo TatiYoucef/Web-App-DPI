@@ -1,0 +1,18 @@
+<app-header (changeDashEvent)="updateDashboardVisibility($event)" />
+
+<div class="content">
+  
+  <div class="empty-dash">
+    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>
+  </div>
+
+  <div class="container">
+
+    @defer {
+
+      <h2>Bilan {{bilanRadio.type}}: {{bilanRadio.date}}</h2>
+
+    },
+
+
+</div>

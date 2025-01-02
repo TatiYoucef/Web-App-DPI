@@ -65,7 +65,7 @@ export type Ordonnance = {
   id_DPI : number,
   dateCreation : Date,
   duree : String,
-  etat : Boolean,
+  etat : Boolean
 }
 
 export type Medicament = {
@@ -73,7 +73,7 @@ export type Medicament = {
   id_ordonnance : number,
   nom : String,
   dose : String,
-  frequence : String,
+  frequence : String
 }
 
 export type Soin = {
@@ -81,6 +81,41 @@ export type Soin = {
   id: number,
   subject: String,
   description: String, 
-  date: String,
+  date: String
     
+}
+
+export type BilanRadio = {
+
+  id: number;
+  //idMed: number;
+  //idConsul: number;
+  medcin:String,
+  type: String , //Biologique or Radiologique
+  status : String,
+  images : Array<String>,
+  date: String,
+  compteRendu : String,
+  idRadio : number
+}
+
+export type MedicalRecord = {
+
+  id: number,
+  parametre: String,
+  value: number,
+  unite: String
+}
+
+export type BilanBio = {
+
+  id: number,
+  //idMed: number;
+  //idConsul: number;
+  type: String , //Biologique or Radiologique
+  status : String,
+  date: String,
+  idLabo : number,
+  resultats_analytiques : Array<MedicalRecord>,
+  medcin : String,
 }

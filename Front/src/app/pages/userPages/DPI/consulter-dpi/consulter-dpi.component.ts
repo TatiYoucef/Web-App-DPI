@@ -4,7 +4,7 @@ import { DashBoardComponent } from "../../../../components/dash-board/dash-board
 import { LoadingScreenComponent } from "../../../../components/loading-screen/loading-screen.component";
 import {  UserDataService } from '../../../../services/userData/user-data.service';
 import { CommonModule } from '@angular/common'; // Import CommonModule
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute , Router} from '@angular/router';
 import { DPI, Patient } from '../../../../modules/types';
 import { FetchModulesService } from '../../../../services/fetchModules/fetch-modules.service';
 import { catchError } from 'rxjs';
@@ -28,14 +28,14 @@ export class ConsulterDPIComponent implements OnInit{
   Dpi !: DPI ; 
   http = inject(HttpClient)
   router = inject(ActivatedRoute); //bihe njibou id fel path
-
+  navigation = inject(Router);
   ngOnInit(): void {
     
     this.router.paramMap.subscribe((params) =>{
       this.id =Number(params.get("id")); //id de patient récupéré
     });
 
-    const loginUrl = `http://127.0.0.1:8000/api/auth/get/patient/${this.id}`;
+    const loginUrl = `http://127.0.0.1:8000/api/auth/get/medcin/patient/${this.id}`;
     this.http.get(loginUrl).subscribe({
       next: (response:any)=>{
        console.log(response.user) 
@@ -62,6 +62,10 @@ export class ConsulterDPIComponent implements OnInit{
       error : (error: any) =>{
       console.error('Error fetching patient:', error);
      }
+
+     
+
+     
     });
 
     

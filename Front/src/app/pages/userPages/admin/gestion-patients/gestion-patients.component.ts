@@ -21,7 +21,7 @@ export class GestionPatientsComponent {
   
   fetchServices = inject(FetchModulesService);
   listePatient = signal<Array<Patient>>([]);
-
+  patient!: Patient;
   router = inject(Router);
 
   ngOnInit(): void { //when this page load, we fetch the list of patients
@@ -34,7 +34,7 @@ export class GestionPatientsComponent {
       ).subscribe(async (liste) => {
         const listeWithQrCode = await Promise.all(
           liste.map(async (patient) => ({
-            ...patient,
+           ...patient,
            qrcode: await this.generateQRCode(patient.nss), // Await each QR code generation
           }))
         );

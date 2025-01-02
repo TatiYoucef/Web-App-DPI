@@ -1,0 +1,104 @@
+<app-header (changeDashEvent)="updateDashboardVisibility($event)" />
+
+<div class="content">
+  
+  <div class="empty-dash">
+    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>
+  </div>
+
+  <div class="container">
+
+    @defer {
+
+      @if (listeBilanRadio().length === 0) { <!--Liste rahi fargha-->
+
+        <div class="center-div">
+          <img src="../../../../../assets/images/Task_empty.png" width="280px" >
+          <h3>Aucun bilan trouvé</h3>
+          <h4>{{user.role === "Medcin" ? "Vous pouvez créer votre premier bilan ici":"Attendez votre medecin crée un bilan pour vous"}}</h4>
+          
+        </div>
+
+      } @else {
+
+        <h2>Liste des bilans de patient {{patient.nom}} {{patient.prenom}}:</h2>
+
+        <button *ngIf="user.role === 'Medcin'" (click)="isAjoutBilan = true" style="margin: auto;">Ajouter bilan</button>
+
+        <div class="container-invert">
+
+          @for (item of listeBilanRadio(); track item.id) { <!--For each patient ndirou ceci-->
+
+            <div class="item" (click)="goToBilan(item.id)">
+        
+              <div class="profile">
+                <h3>{{ item.type }} </h3>
+                <h4>créé le: {{ item.date }} </h4>
+              </div>
+                
+              <div class="empty-div"></div>
+  
+              
+            </div>
+          }
+
+          @for (item of listeBilanBio(); track item.id) { <!--For each patient ndirou ceci-->
+
+            <div class="item" (click)="goToBilan(item.id)">
+        
+              <div class="profile">
+                <h3>{{ item.type }} Creer Par {{item.medcin}}</h3>
+                <h4>créé le: {{ item.date }} </h4>
+              </div>
+                
+              <div class="empty-div"></div>
+  
+              
+            </div>
+          }
+          
+        </div>
+
+        @if (isAjoutBilan) {
+
+          <div class="grey-div" (click)="annuler($event)">
+
+            <div class="card">
+
+              <div class="horiz">
+
+                <h4>Type de bilan: </h4>
+
+                <select [(ngModel)]="selectedType">
+                  <option value="Biologique">Biologique</option>
+                  <option value="Radiologique">Radiologique</option>
+                </select>
+
+              </div>
+
+              <div class="horiz">
+                <button class="annuler" (click)="annuler($event)">Annuler</button>
+                
+              </div>
+              
+            </div>
+
+          </div>
+
+
+        }
+
+      }
+
+    } @loading(minimum 1s) {
+
+      <div class="center-div">
+        <app-loading-screen />
+      </div>
+
+    }
+
+  </div>
+
+
+</div>
