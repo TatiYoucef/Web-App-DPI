@@ -109,15 +109,6 @@ export const routes: Routes = [
       return m.NotificationPageComponent ;
     }
   },
-  {
-    path :'ordonnances' , //a test path
-    pathMatch: 'full', 
-    loadComponent: async () => {
-      const m = await import("./pages/userPages/DPI/ordonnances/ordonnances-accueil.component");
-      return m.OrdonnancesAccueilComponent;
-    }
-  },
-
 
   {
     path :'personnelAdministratif' ,
