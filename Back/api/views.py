@@ -303,7 +303,6 @@ class UpdateBilanBiologiqueView(APIView):
         
 
 #BILAN RADIO   
-
 class BilanRadiologiqueCreateView(APIView):
     def post(self, request, dossier_id):
         try:
