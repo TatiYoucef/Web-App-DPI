@@ -11,6 +11,15 @@
   justify-content: flex-start;
 }
 
+.center-div{
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  flex-direction:column ;
+  justify-content: center;
+  align-items: center ;
+}
+
 .ordonnances-container {
   display: flex;
   flex-direction: column;

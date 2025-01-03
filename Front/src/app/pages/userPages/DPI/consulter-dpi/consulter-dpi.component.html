@@ -37,46 +37,46 @@
           </div>
 
           <div class="buttons-bottom">
-            <button (click)="navigation.navigate(['consulter-DPI',id,'Ordonnances'])">Ordonnances</button>
-            <button (click)="navigation.navigate(['consulter-DPI',id,'Bilans'])">Bilans</button>
+            <button (click)="navigation.navigate([ user.role === 'Patient' ? 'patient':'medecin' , 'consulter-DPI',id,'Ordonnances'])">Ordonnances</button>
+            <button (click)="navigation.navigate([user.role === 'Patient' ? 'patient':'medecin'  , 'consulter-DPI',id,'Bilans'])">Bilans</button>
           </div>
 
           <!-- Conditional Display: Informations Patient -->
           @if (isInformationsPatient()) {
-          <div class="grey-div" (click)="annuler($event)">
-            <div class="card-bouton-info">
-              <h2>Consultation des informations du patient</h2>
-              <div class="info-container">
-                <div class="div1">
-                  <label>Nss:</label>
-                  <input type="text" placeholder="NSS" readonly value="{{patient.nss}}">
+            <div class="grey-div" (click)="annuler($event)">
+              <div class="card-bouton-info">
+                <h2>Consultation des informations du patient</h2>
+                <div class="info-container">
+                  <div class="div1">
+                    <label>Nss:</label>
+                    <input type="text" placeholder="NSS" readonly value="{{patient.nss}}">
 
-                  <label>Nom</label>
-                  <input type="text" placeholder="nom" readonly value="{{patient.user.last_name}}">
+                    <label>Nom</label>
+                    <input type="text" placeholder="nom" readonly value="{{patient.user.last_name}}">
 
-                  <label>Prénom</label>
-                  <input type="text" placeholder="prénom" readonly value="{{patient.user.first_name}}">
+                    <label>Prénom</label>
+                    <input type="text" placeholder="prénom" readonly value="{{patient.user.first_name}}">
 
-                  <label>Nom d'utilisateur</label>
-                  <input type="text" placeholder="nom d'utilisateur" readonly value="{{patient.user.username}}">
+                    <label>Nom d'utilisateur</label>
+                    <input type="text" placeholder="nom d'utilisateur" readonly value="{{patient.user.username}}">
+                  </div>
+
+                  <div class="div2">
+                    <label>Addresse</label>
+                    <input type="text" placeholder="Addresse" readonly value="{{patient.address}}">
+
+                    <label>Date de naissance</label>
+                    <input type="date" readonly value="{{patient.date_naissance}}">
+
+                    <label>Tel</label>
+                    <input type="tel" placeholder="téléphone" readonly value="{{patient.phone_number}}">
+                  </div>
                 </div>
-
-                <div class="div2">
-                  <label>Addresse</label>
-                  <input type="text" placeholder="Addresse" readonly value="{{patient.address}}">
-
-                  <label>Date de naissance</label>
-                  <input type="date" readonly value="{{patient.date_naissance}}">
-
-                  <label>Tel</label>
-                  <input type="tel" placeholder="téléphone" readonly value="{{patient.phone_number}}">
+                <div class="container3">
+                  <button class="annuler" (click)="annuler($event)">Sortir</button>
                 </div>
-              </div>
-              <div class="container3">
-                <button class="annuler" (click)="annuler($event)">Sortir</button>
               </div>
             </div>
-          </div>
           }
 
           <!-- Conditional Display: Antecedents Patient -->

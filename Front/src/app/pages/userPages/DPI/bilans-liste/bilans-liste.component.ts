@@ -75,7 +75,8 @@ export class BilansListeComponent {
   }
   
   goToBilan(idBilan:number){
-    this.rout.navigate(['consulter-DPI',this.id,'Bilans',idBilan]);
+    const initPath = this.user.role === 'Patient' ? 'patient':'medecin';
+    this.rout.navigate([initPath,'consulter-DPI',this.id,'Bilans',idBilan]);
   }
 
   annuler(event: MouseEvent){

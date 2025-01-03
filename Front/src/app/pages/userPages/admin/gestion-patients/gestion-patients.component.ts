@@ -1,13 +1,14 @@
 import { Component, inject, signal } from '@angular/core';
 import { FetchModulesService } from '../../../../services/fetchModules/fetch-modules.service';
 import { Patient } from '../../../../modules/types';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { catchError } from 'rxjs';
 import QRCode from 'qrcode';
 import { LoadingScreenComponent } from "../../../../components/loading-screen/loading-screen.component";
 import { DashBoardComponent } from "../../../../components/dash-board/dash-board.component";
 import { HeaderComponent } from "../../../../components/header-user/header.component";
 import { CommonModule } from '@angular/common';
+import { UserDataService } from '../../../../services/userData/user-data.service';
 
 @Component({
   selector: 'app-gestion-patients',
@@ -22,6 +23,8 @@ export class GestionPatientsComponent {
   
   fetchServices = inject(FetchModulesService);
   listePatient = signal<Array<Patient>>([]);
+  user = inject(UserDataService).getUserData();
+  id!:number;
 
   router = inject(Router);
 
@@ -43,6 +46,11 @@ export class GestionPatientsComponent {
       //this.listePatient.set(liste);
     })
 
+    const rout = inject(ActivatedRoute);
+    rout.paramMap.subscribe((params) =>{
+      this.id = Number(params.get("id")); //id de patient récupéré
+    });
+
     
   }
 
@@ -56,7 +64,7 @@ export class GestionPatientsComponent {
   }
 
   goConsult(id:number){ //aller au page pour créer un compte
-    this.router.navigate(['admin/gestionPatient', id]);
+    this.router.navigate(['admin',this.user.id,'gestionPatient', id]);
   }
 
 }

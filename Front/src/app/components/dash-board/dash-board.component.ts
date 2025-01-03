@@ -30,24 +30,19 @@ export class DashBoardComponent {
     switch(this.user.role){
 
       case "Administratif":
-        this.router.navigate(['admin']);
+        this.router.navigate(['admin', this.user.id]);
       break;
 
       case "Medcin":
-        this.router.navigate(['medecin']);
+        this.router.navigate(['medecin', this.user.id]);
       break;
 
       case "Patient":
-        //const patientId = data.id;
-        //I left this hakda because I don't know 
-        //how to get the patient's id from 
-        //the user, someone help !!!
-        const patientUrl = `patient/consulter-DPI/${this.user.id}`;
-        this.router.navigate([patientUrl]);
+        this.router.navigate([`patient/consulter-DPI/${this.user.id}`]);
       break;
 
       default: //rablabinf
-        this.router.navigate(['rabLabInf']);
+        this.router.navigate(['rabLabInf',this.user.id]);
 
       
     }

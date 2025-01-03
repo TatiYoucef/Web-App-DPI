@@ -21,6 +21,7 @@ export class AddAccountComponent {
   isDashBoardVisible = true;
 
   id!: number; //id de patient li ra7 necryyoulou compte
+  idA!: number; //id de Admin
   router = inject(ActivatedRoute); //bihe njibou id fel path
 
   patient!:Patient;
@@ -30,6 +31,7 @@ export class AddAccountComponent {
 
     this.router.paramMap.subscribe((params) =>{
       this.id =Number(params.get("id")); //id de patient récupéré
+      this.idA =Number(params.get("idA")); //id de Admin récupéré
     });
 
     console.log(this.id);
