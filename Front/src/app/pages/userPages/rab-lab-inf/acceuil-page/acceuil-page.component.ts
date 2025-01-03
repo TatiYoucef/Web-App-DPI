@@ -8,7 +8,7 @@ import { LoadingScreenComponent } from "../../../../components/loading-screen/lo
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import QRCode from 'qrcode';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserDataService } from '../../../../services/userData/user-data.service';
 
 
@@ -27,6 +27,8 @@ export class AcceuilPageComponent implements OnInit{
 
   fetchServices = inject(FetchModulesService);
   listePatient = signal<Array<Patient>>([]);
+
+  id!:number;
 
   router = inject(Router);
   user = inject(UserDataService).getUserData();
@@ -49,6 +51,11 @@ export class AcceuilPageComponent implements OnInit{
       //this.listePatient.set(liste);
     })
 
+    const rout = inject(ActivatedRoute);
+    rout.paramMap.subscribe((params) =>{
+      this.id = Number(params.get("id")); //id de patient récupéré
+    });
+
     
   }
 
@@ -60,9 +67,9 @@ export class AcceuilPageComponent implements OnInit{
   goConsult(id:number){
     
     if(this.user.role === "Infermier"){
-      this.router.navigate(['rabLabInf/ajoutSoin/', id]);
+      this.router.navigate([`rabLabInf/${this.user.id}/ajoutSoin/`, id]);
     } else {
-      this.router.navigate(['rabLabInf/joindreBilan/', id]);
+      this.router.navigate([`rabLabInf/${this.user.id}/joindreBilan/`, id]);
     }
 
   }

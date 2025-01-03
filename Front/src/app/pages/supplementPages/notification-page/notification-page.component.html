@@ -1,1 +1,27 @@
-<p>notification-page works!</p>
+<app-header (changeDashEvent)="updateDashboardVisibility($event)" />
+
+<div class="content">
+
+  <div class="empty-dash">
+    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>
+  </div>
+
+
+  <div class="container">
+
+    @defer {
+
+      <div class="center-div">
+        <img src="../../../../assets/images/Notification_empty.png" width="280px" >
+        <h3>Aucune notification trouvé</h3>
+        <h4>veuillez attendre de recevoir une notification au plus tard...</h4>
+      </div>
+    
+    } @loading (minimum 0.5s) {
+      <div class="center-div">
+        <app-loading-screen />
+      </div>
+    }
+
+  </div>
+</div>

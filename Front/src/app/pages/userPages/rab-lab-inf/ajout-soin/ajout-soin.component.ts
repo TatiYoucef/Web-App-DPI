@@ -21,6 +21,7 @@ export class AjoutSoinComponent implements OnInit{
   
   user = inject(UserDataService).getUserData() //Njibou Data te3 user te3na
   id!:number;
+  idP!: number
   router = inject(ActivatedRoute); //bihe njibou id fel path
 
   updateDashboardVisibility(isVisible: boolean) {
@@ -32,6 +33,7 @@ export class AjoutSoinComponent implements OnInit{
 
     this.router.paramMap.subscribe((params) =>{
       this.id = Number(params.get("id")); //id de patient récupéré
+      this.idP = Number(params.get("idP"));
     });
 
     console.log(this.id);

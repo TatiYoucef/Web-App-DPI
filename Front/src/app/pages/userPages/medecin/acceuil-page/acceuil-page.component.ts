@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-acceuil-page',
@@ -24,6 +25,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 export class AcceuilPageComponent implements OnInit {
 
   isDashBoardVisible = true;
+  id!:number;
 
   isScanning = false;
   onScanSuccess(result: string) {
@@ -81,6 +83,11 @@ export class AcceuilPageComponent implements OnInit {
         this.listeDPI.set(liste);
         this.transformData()
     })
+
+    const rout = inject(ActivatedRoute);
+    rout.paramMap.subscribe((params) =>{
+      this.id = Number(params.get("id")); //id de patient récupéré
+    });
 
     
   }

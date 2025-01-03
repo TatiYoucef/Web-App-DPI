@@ -1,10 +1,11 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { LoadingScreenComponent } from "../../../../components/loading-screen/loading-screen.component";
 import { DashBoardComponent } from "../../../../components/dash-board/dash-board.component";
 import { HeaderComponent } from "../../../../components/header-user/header.component";
 import { UserDataService } from '../../../../services/userData/user-data.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-acceuil-page',
@@ -14,14 +15,24 @@ import { CommonModule } from '@angular/common';
   styleUrl: './acceuil-page.component.css'
 })
 
-export class AcceuilPageComponent {
+export class AcceuilPageComponent implements OnInit{
 
   isDashBoardVisible = true;
   isCreeDPI = signal(false);
   user = inject(UserDataService).getUserData() ;  //Njibou Data te3 user te3na 
+  id!:number;
 
   updateDashboardVisibility(isVisible: boolean) {
     this.isDashBoardVisible = isVisible;
+  }
+
+  ngOnInit(): void {
+
+    const rout = inject(ActivatedRoute);
+    rout.paramMap.subscribe((params) =>{
+      this.id = Number(params.get("id")); //id de user récupéré
+    });
+
   }
 
   creerDPI(){
