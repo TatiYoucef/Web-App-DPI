@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-ordonnances-accueil',
   standalone: true,
-  imports: [HeaderComponent, DashBoardComponent, LoadingScreenComponent, CommonModule, FormsModule, ActivatedRoute],
+  imports: [HeaderComponent, DashBoardComponent, LoadingScreenComponent, CommonModule, FormsModule],
   templateUrl: './ordonnances-accueil.component.html',
   styleUrl: './ordonnances-accueil.component.css'
 })
