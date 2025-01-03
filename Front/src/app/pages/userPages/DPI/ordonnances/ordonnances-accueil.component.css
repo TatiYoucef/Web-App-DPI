@@ -5,6 +5,15 @@
   gap: 20px;
 }
 
+.center-div{
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  flex-direction:column ;
+  justify-content: center;
+  align-items: center ;
+}
+
 .empty-dash {
   width: 25%; /* Set the width of the dashboard to be smaller */
   display: flex;

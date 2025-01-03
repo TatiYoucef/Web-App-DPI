@@ -12,11 +12,12 @@
   <div class="ordonnances-container">
         <div class="firstLine">
           <h1>Liste des ordonnances </h1>
-          <button class="card-button" style="margin: auto;" (click)="isAjoutOrdonnance = true">Ajouter ordonnance</button>
+          <button class="card-button" *ngIf="user.role === 'Medcin'" style="margin: auto;" (click)="isAjoutOrdonnance = true">Ajouter ordonnance</button>
         </div>
           <div *ngIf="ordonnances.length === 0" class="no-ordonnances">
-          <p>Aucune ordonnance disponible pour le moment.</p>
-        </div>
+            <img src="../../../../../assets/images/Document_empty.png" width="280px" >
+            <p>Aucune ordonnance disponible pour le moment.</p>
+          </div>
          <div *ngIf="ordonnances.length > 0" class="ordonnances-list">
           <ul>
             <li *ngFor="let ordonnance of ordonnances" class="ordonnance-item">   
