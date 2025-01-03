@@ -112,7 +112,8 @@ export class BilansListeComponent {
               date: element.date_prescription,
               idLabo : element.laborantin,
               resultats_analytiques : element.resultats_analytiques,
-              medcin : element.medcin
+              medcin : element.medcin,
+              description : element.description
             }
             console.log(this.bilanBio);
           this.listeBilanBio.update((currentlist) => [...currentlist , this.bilanBio])
@@ -176,8 +177,12 @@ export class BilansListeComponent {
     this.isDashBoardVisible = isVisible;
   }
   
-  goToBilan(idBilan:number){
-    this.rout.navigate(['consulter-DPI',this.id,'Bilans',idBilan]);
+  goToBilanRad(idBilan:number){
+    this.rout.navigate(['consulter-DPI',this.id,'BilanRad',idBilan]);
+  }
+
+  goToBilanBio(idBilan:number){
+    this.rout.navigate(['consulter-DPI',this.id,'BilanBio',idBilan])
   }
 
   annuler(event: MouseEvent){

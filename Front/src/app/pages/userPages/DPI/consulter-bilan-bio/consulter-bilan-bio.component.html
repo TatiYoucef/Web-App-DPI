@@ -1,0 +1,27 @@
+<app-header (changeDashEvent)="updateDashboardVisibility($event)" />
+
+
+<div class="content">
+  
+    <div class="empty-dash">
+      <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>
+    </div>
+
+  <div class="container">
+    @defer {
+
+      <h2>Bilan {{bilanBio.type}}: {{bilanBio.date}}</h2>
+      <p> Compte Rendus : {{bilanBio.description}}</p>
+      @for (item of bilanBio.resultats_analytiques ; track item.id){
+        <div class="result">
+          <p> {{item.parametre}} : {{item.value}} {{item.unite}} </p>
+        </div>
+      }
+    },
+
+    
+  </div>
+
+</div>
+
+

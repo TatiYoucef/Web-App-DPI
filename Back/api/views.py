@@ -388,6 +388,31 @@ class BilanRadiologiqueView(APIView):
         
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+class BilanRadioView(APIView):
+    serializer_class = BilanRadiologiqueSerializer
+    def get(self, request, bilan_id):
+
+        try:
+            bilan_radiologique = BilanRadiologique.objects.get(pk=bilan_id)          
+        except BilanRadiologique.DoesNotExist:
+            return Response({'error': 'Bilan Radiologique not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = BilanRadiologiqueSerializer(bilan_radiologique)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class BilanBioView(APIView):
+    serializer_class = BilanBiologiqueSerializer
+    def get(self, request, bilan_id):
+        
+        try:
+            bilan_biologique = BilanBiologique.objects.get(pk=bilan_id)          
+        except BilanBiologique.DoesNotExist:
+            return Response({'error': 'Bilan Radiologique not found'}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = BilanBiologiqueSerializer(bilan_biologique)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
 
 class BilanRadiologiqueView_radiologue(APIView):
 

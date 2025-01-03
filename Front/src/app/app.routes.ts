@@ -136,10 +136,18 @@ export const routes: Routes = [
   },
 
   {
-    path :'consulter-DPI/:id1/Bilans/:id2' , //id1: id de patient / id2: id de bilan
+    path :'consulter-DPI/:id1/BilanRad/:id2' , //id1: id de patient / id2: id de bilan
     loadComponent: async () => {
       const m = await import("./pages/userPages/DPI/consulter-bilan/consulter-bilan.component");
       return m.ConsulterBilanComponent;
+    }
+  },
+
+  {
+    path :'consulter-DPI/:id1/BilanBio/:id2' , //id1: id de patient / id2: id de bilan
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/DPI/consulter-bilan-bio/consulter-bilan-bio.component");
+      return m.ConsulterBilanBioComponent;
     }
   },
 

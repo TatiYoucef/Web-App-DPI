@@ -29,10 +29,16 @@ export class FetchModulesService { //Hna yesraw les fetch functions
     const url = `http://127.0.0.1:8000/api/auth/get/patient/dossier/${dossier_id}/bilanbio`;
     return this.http.get<Array<BilanBio>>(url);
   }
-  fetchBilanRadio( idDossier :number , idBilan:number){
-    const url = `http://127.0.0.1:8000/api/auth/get/patient/dossier/${idDossier}/bilanRadio/${idBilan}`;
+  fetchBilanRadio( idBilan:number){
+    const url = `http://127.0.0.1:8000/api/auth/get/patient/dossier/bilanRadio/${idBilan}`;
     return this.http.get<BilanRadio>(url);
   }
+
+  fetchBilanBio( idBilan:number){
+    const url = `http://127.0.0.1:8000/api/auth/get/patient/dossier/bilanBio/${idBilan}`;
+    return this.http.get<BilanRadio>(url);
+  }
+  
   
 
   fetchPatient(id:number){

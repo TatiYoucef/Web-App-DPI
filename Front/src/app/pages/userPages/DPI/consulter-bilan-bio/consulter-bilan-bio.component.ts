@@ -12,17 +12,14 @@ import { UserDataService } from '../../../../services/userData/user-data.service
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-consulter-bilan',
+  selector: 'app-consulter-bilan-bio',
   standalone: true,
-  imports: [LoadingScreenComponent, DashBoardComponent, HeaderComponent, FormsModule, CommonModule ],
-  templateUrl: './consulter-bilan.component.html',
-  styleUrl: './consulter-bilan.component.css'
+  imports: [LoadingScreenComponent, DashBoardComponent, HeaderComponent, FormsModule, CommonModule],
+  templateUrl: './consulter-bilan-bio.component.html',
+  styleUrl: './consulter-bilan-bio.component.css'
 })
-
-export class ConsulterBilanComponent implements OnInit{
-
+export class ConsulterBilanBioComponent {
   isDashBoardVisible = true;
-
   fetchServices = inject(FetchModulesService);
   idPatient!:number ; //id patient
   idBilan!:number ; //id bilan
@@ -32,58 +29,26 @@ export class ConsulterBilanComponent implements OnInit{
   http = inject(HttpClient)
   router = inject(ActivatedRoute); //bihe njibou id fel path
   patient !: Patient ;
+
   ngOnInit(): void {
 
     this.router.paramMap.subscribe((params) =>{
       this.idPatient =Number(params.get("id1")); //id de patient récupéré
       this.idBilan =Number(params.get("id2")); //id de bilan récupéré
     });
-
     
-  /*  const loginUrl = `http://127.0.0.1:8000/api/auth/get/medcin/patient/${this.idPatient}`;
-    this.http.get(loginUrl).subscribe({
-      next: (response:any)=>{
-       console.log(response.user) 
-       
-        
-       this.patient  = {
-        idUser: response.user.id,
-        id: response.user.id,
-        id_DPI:response.dossier,
-        nss:response.nss,
-        nomUser : response.user.username ,
-        nom : response.user.first_name ,
-        prenom : response.user.last_name ,
-        naissance: response.date_naissance,
-        adresse: response.address,
-        tel: response.phone_number,
-        mutuelle:response.mutuelle,
-        qrcode:"9iwiti"
-       }
-        
-        
-      },
 
-      error : (error: any) =>{
-      console.error('Error fetching patient:', error);
-     }
-
-     
-     
-     
-    });*/
-
-    this.fetchServices.fetchBilanRadio(this.idBilan).subscribe({
+    this.fetchServices.fetchBilanBio(this.idBilan).subscribe({
     
       next : (response:any)=>{
-        this.bilanRadio = {
+        this.bilanBio = {
          id: response.id,
          type: response.typeBilan, //Biologique or Radiologique
          status : response.status,
-         images : response.images,
+         resultats_analytiques : response.resultats_analytiques,
          date: response.date_prescription,
-         compteRendu : response.compte_rendu,
-         idRadio : response.radiologue,
+         description : response.description,
+         idLabo : response.radiologue,
          medcin : response.medcin,
         }
       },
@@ -96,31 +61,16 @@ export class ConsulterBilanComponent implements OnInit{
     
     //pipe to catch any error
     });
-    
-
   }
-
-  updateDashboardVisibility(isVisible: boolean) {
+    
+  updateDashboardVisibility( isVisible : boolean) {
     this.isDashBoardVisible = isVisible;
   }
+   
 
-  addTest(){
 
-   /* this.bilan.tests.push({
-      id:this.bilan.tests.length,
-      testName:'',
-      result:null
-    })*/
+  
 
-  }
-
-  removeTest(index:number){
-
-   // this.bilan.tests.splice(index, 1);
-
-  }
-
-  patchBilan(){
-    //console.log("Bilan updated to", this.bilan);
-  }
 }
+
+

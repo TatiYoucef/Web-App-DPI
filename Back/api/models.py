@@ -121,29 +121,41 @@ class BilanRadiologique(Bilan):
 
 class Soin(models.Model):
   infirmier = models.OneToOneField(Infirmier , on_delete=models.CASCADE , related_name="infirmier_soin")
-  observation =models.TextField()
+  descriptionSoin = models.TextField()
+  typeSoin = models.TextField(blank=True)
+
+
+class Observation(models.Model):
+    temperature = models.FloatField(default=0.0)
+    tension = models.FloatField(default=0.0)
+    frequanceCardiaque = models.FloatField(default=0.0)
+    date = models.DateTimeField(default=date.today)
 
 
 
 
 class Consultation(models.Model):
-  soin = models.ForeignKey(Soin ,on_delete=models.CASCADE , related_name= "soin_sejour")
+  soin = models.ManyToManyField(Soin , related_name= "soin_sejour")
   medcin = models.OneToOneField(Medcin , on_delete=models.CASCADE , related_name="medcin_sejour")
-  date = models.DateField()
+  date = models.DateField(default=date.today)
+  trouveDiagnostic = models.BooleanField(default=False)
+  raison_admission = models.TextField(blank = True)
   
 
 class Resume(models.Model):
   diagnostic = models.CharField(max_length=255 , blank=True)
   symptomes = models.CharField(max_length=255 , blank=True)
-  mesures = models.CharField(max_length=255 , blank=True)
+  mesuresPrises = models.CharField(max_length=255 , blank=True)
   date_prochin = models.DateField(default=date.today)
-
+  consul = models.OneToOneField( Consultation, on_delete=models.CASCADE  , related_name="cons_resum" , blank=True , null=True)
 
 class Dossier(models.Model):
   ordannance = models.ManyToManyField(Ordonnance  , related_name="sejour_ord" ,  blank=True)
   bilanBiologique = models.ManyToManyField(BilanBiologique  , related_name="sejour_bilanBio" , blank=True)
   bilanRadiologique =models.ManyToManyField(BilanRadiologique , related_name="sejour_bilanRadio", blank=True)
   consultation = models.ManyToManyField(Consultation , related_name="cons_dossier" ,  blank=True)
+  dateSortie = models.DateField(default=date.today)
+  dateMaj = models.DateField(default=date.today)
   antecedants = models.TextField( null=True ,blank=True)
   dateAdmission = models.DateField(default=date.today)
 

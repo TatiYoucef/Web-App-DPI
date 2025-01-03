@@ -10,7 +10,7 @@
 
     @defer {
 
-      @if (listeBilanRadio().length === 0) { <!--Liste rahi fargha-->
+      @if (listeBilanRadio().length === 0 && listeBilanBio().length === 0 ) { <!--Liste rahi fargha-->
 
         <div class="center-div">
           <img src="../../../../../assets/images/Task_empty.png" width="280px" >
@@ -23,13 +23,13 @@
 
         <h2>Liste des bilans de patient {{patient.nom}} {{patient.prenom}}:</h2>
 
-        <button *ngIf="user.role === 'Medcin'" (click)="isAjoutBilan = true" style="margin: auto;">Ajouter bilan</button>
+        <button  (click)="isAjoutBilan = true" *ngIf="user.role === 'Medcin'" style="margin: auto;">Ajouter bilan</button>
 
         <div class="container-invert">
 
           @for (item of listeBilanRadio(); track item.id) { <!--For each patient ndirou ceci-->
 
-            <div class="item" (click)="goToBilan(item.id)">
+            <div class="item" (click)="goToBilanRad(item.id)">
         
               <div class="profile">
                 <h3>{{ item.type }} </h3>
@@ -44,7 +44,7 @@
 
           @for (item of listeBilanBio(); track item.id) { <!--For each patient ndirou ceci-->
 
-            <div class="item" (click)="goToBilan(item.id)">
+            <div class="item" (click)="goToBilanBio(item.id)">
         
               <div class="profile">
                 <h3>{{ item.type }} Creer Par {{item.medcin}}</h3>
@@ -74,6 +74,11 @@
                   <option value="Radiologique">Radiologique</option>
                 </select>
 
+              </div>
+
+              <div class="horiz" *ngIf="selectedType === 'Radiologique'">
+                <label for="radiologiqueInput">Informations complémentaires :</label>
+                <input id="radiologiqueInput" type="text" placeholder="Entrez les détails" />
               </div>
 
               <div class="horiz">

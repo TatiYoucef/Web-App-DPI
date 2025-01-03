@@ -86,6 +86,7 @@ export type Soin = {
 }
 
 export type BilanRadio = {
+  
 
   id: number;
   //idMed: number;
@@ -94,7 +95,7 @@ export type BilanRadio = {
   type: String , //Biologique or Radiologique
   status : String,
   images : Array<String>,
-  date: String,
+  date: Date,
   compteRendu : String,
   idRadio : number
 }
@@ -112,9 +113,10 @@ export type BilanBio = {
   id: number,
   //idMed: number;
   //idConsul: number;
+  description : String,
   type: String , //Biologique or Radiologique
   status : String,
-  date: String,
+  date: Date,
   idLabo : number,
   resultats_analytiques : Array<MedicalRecord>,
   medcin : String,
