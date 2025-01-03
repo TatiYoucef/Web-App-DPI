@@ -61,20 +61,26 @@ export type DPI = {
 }
 
 export type Ordonnance = {
-  id : number,
-  id_DPI : number,
-  dateCreation : Date,
-  duree : String,
-  etat : Boolean
-}
+  id: number;
+  id_DPI: number; 
+  dateCreation: Date; 
+  duree: string;
+  etat: boolean;
+  medicaments: Medicament[]; 
+  medecinId?: number; 
+  consulId?: number; 
+  dateValidation?: Date; 
+  commentairesValidation?: string; 
+};
 
 export type Medicament = {
-  id : number,
-  id_ordonnance : number,
-  nom : String,
-  dose : String,
-  frequence : String
-}
+  id: number;
+  id_ordonnance: number; 
+  nom: string; 
+  dose: string; 
+  frequence: string; 
+};
+
 
 export type Soin = {
 

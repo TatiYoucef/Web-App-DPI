@@ -18,6 +18,15 @@ class User(AbstractUser):
     
 
 
+class Infirmier(models.Model):
+  user = models.OneToOneField(User, on_delete=models.CASCADE , related_name="compte_Infirmier")
+  date_naissance=models.DateField(default=date.today)
+  address = models.CharField(max_length=255 , blank=True)
+  phone_number = models.CharField(max_length=15 , blank=True)
+
+  def __str__(self):
+    return f"{self.user.username}"
+
 class Medcin(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE , related_name="compte_medcin")
   date_naissance=models.DateField(default=date.today)
@@ -27,24 +36,47 @@ class Medcin(models.Model):
   def __str__(self):
     return f"{self.user.username}" 
 
+class Soin(models.Model):
+  infirmier = models.OneToOneField(Infirmier , on_delete=models.CASCADE , related_name="infirmier_soin")
+  observation =models.TextField()
+class Consultation(models.Model):
+  soin = models.ForeignKey(Soin ,on_delete=models.CASCADE , related_name= "soin_sejour")
+  medcin = models.OneToOneField(Medcin , on_delete=models.CASCADE , related_name="medcin_sejour")
+  date = models.DateField(default=date.today)
+  trouveDiagnostic = models.BooleanField(default=False) 
+
 class Medicament(models.Model):
   nom = models.CharField(max_length=100)  
   dose = models.CharField(max_length=50) 
-  frequence = models.CharField(max_length=50)   
+  FREQUENCE_CHOICES = [
+      ('matin', 'Matin'),
+      ('midi', 'Midi'),
+      ('soir', 'Soir'),
+      ('matin_midi', 'Matin et Midi'),
+      ('midi_soir', 'Midi et Soir'),
+      ('matin_midi_soir', 'Matin, Midi et Soir'),
+      ('au_besoin', 'Au besoin'),
+  ]
+  frequence = models.CharField(max_length=50, choices=FREQUENCE_CHOICES)  
 
   def __str__(self):
-    return self.nom 
-
+      return self.nom  
   
 class Ordonnance(models.Model):
-  date = models.DateField(default=date.today)
-  medicaments = models.ManyToManyField(Medicament, related_name="ordonnances" ,  blank=True )
-  medcin = models.ForeignKey(Medcin , on_delete=models.CASCADE , related_name="medi_ord" , blank=True , null=True)
+  medicaments = models.ManyToManyField(Medicament, related_name="ordonnances" ,  blank=True )  
+  medecin = models.ForeignKey(Medcin, on_delete=models.CASCADE , related_name="medecin_ord" ,  blank=True , null = True)
+  consul = models.ForeignKey(Consultation, on_delete=models.CASCADE,  related_name="consul_ord" ,  blank=True, null= True)
+  duree = models.CharField(max_length=50, blank=True)
+  etat = models.BooleanField(default=False) #validee ou nn
+  dateCreation = models.DateTimeField(auto_now_add=True , null=True, blank=True) 
+  commentairesValidation = models.TextField(blank=True, null=True)
+  dateValidation =  models.DateTimeField(null=True, blank=True)
+
   
 
   def __str__(self):
     return f"Ordonnance {self.id}"
-  
+
 
 class Bilan(models.Model):
   TYPE_BILAN_CHOICES = [
@@ -80,14 +112,6 @@ class MedcalRecord(models.Model) :
     unite = models.CharField(max_length=50 , blank=True , null=True)
 
 
-class Infirmier(models.Model):
-  user = models.OneToOneField(User, on_delete=models.CASCADE , related_name="compte_Infirmier")
-  date_naissance=models.DateField(default=date.today)
-  address = models.CharField(max_length=255 , blank=True)
-  phone_number = models.CharField(max_length=15 , blank=True)
-
-  def __str__(self):
-    return f"{self.user.username}"
 
 class Laborantin(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE , related_name="compte_Laborantin")
@@ -119,17 +143,7 @@ class BilanRadiologique(Bilan):
   compte_rendu = models.TextField(null=True, blank=True)
   medcin = models.OneToOneField(Medcin,  on_delete=models.CASCADE ,  related_name="medcin_bilanRad" , blank=True , null=True ) 
 
-class Soin(models.Model):
-  infirmier = models.OneToOneField(Infirmier , on_delete=models.CASCADE , related_name="infirmier_soin")
-  observation =models.TextField()
 
-
-
-
-class Consultation(models.Model):
-  soin = models.ForeignKey(Soin ,on_delete=models.CASCADE , related_name= "soin_sejour")
-  medcin = models.OneToOneField(Medcin , on_delete=models.CASCADE , related_name="medcin_sejour")
-  date = models.DateField()
   
 
 class Resume(models.Model):
@@ -170,6 +184,7 @@ class Patient(models.Model):
 
   def __str__(self):
         return f"{self.user.username} "
+
 
 
 

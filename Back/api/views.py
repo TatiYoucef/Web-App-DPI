@@ -9,7 +9,8 @@ from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.views import ObtainAuthToken
 from django.db.models import Q
-
+from django.utils import timezone
+import json
 
 # Create your views here.
 
@@ -169,7 +170,6 @@ class DossierPatient(APIView):
 
 
 class OrdonnanceList(APIView):
-    # You can use this if you want to manually query the queryset
     def get(self, request, format=None):
         ordonnances = Ordonnance.objects.all()  # Get all ordonnances
         serializer = OrdonnanceSerializer(ordonnances, many=True)  # Serialize the data
@@ -417,3 +417,24 @@ class BilanRadiologiqueView_radiologue(APIView):
         return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     
+#SGPH  
+class ValiderOrdonnanceAPIView(APIView):
+    def put(self, request, patient_id, ordonnance_id):
+        try:
+            ordonnance = Ordonnance.objects.get(id=ordonnance_id)
+            
+            if ordonnance.etat:
+                return Response({"message": "Cette ordonnance est déjà validée."}, status=status.HTTP_400_BAD_REQUEST)
+
+            ordonnance.etat = True
+            ordonnance.dateValidation = timezone.now()  
+            ordonnance.commentairesValidation = request.data.get('commentairesValidation', ordonnance.commentairesValidation)
+            ordonnance.save()
+            serializer = OrdonnanceSerializer(ordonnance)
+
+            return Response({"message": "Ordonnance validée avec succès.", "ordonnance": serializer.data}, status=status.HTTP_200_OK)
+
+        except Ordonnance.DoesNotExist:
+            return Response({"error": "Ordonnance introuvable."}, status=status.HTTP_404_NOT_FOUND)
+        except Exception as e:
+            return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

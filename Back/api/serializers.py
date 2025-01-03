@@ -152,13 +152,9 @@ class OrdonnanceSerializer(serializers.ModelSerializer):
         model = Ordonnance
         fields = '__all__'
     def create(self, validated_data):
-        # Extract medicaments data from payload
         medicaments_data = validated_data.pop('medicaments', [])
-        
-        # Create the Ordonnance instance
         ordonnance = Ordonnance.objects.create(**validated_data)
 
-        # Create only the medicaments included in the JSON payload
         for medicament_data in medicaments_data:
             medicament = Medicament.objects.create(**medicament_data)
             ordonnance.medicaments.add(medicament)

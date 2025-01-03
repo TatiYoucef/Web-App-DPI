@@ -42,7 +42,7 @@
           <button>Antécédents</button>
         </div>
         <div class="buttons-bottom">
-          <button>Ordonnances</button>
+          <button (click)="navigation.navigate(['consulter-DPI',id,'Ordonnances'])">Ordonnances</button>
           
           <button  (click)="navigation.navigate(['consulter-DPI',id,'Bilans'])">Bilans</button>
 
