@@ -3,6 +3,8 @@ from datetime import date
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django import forms
+from django.utils import timezone
+
 # Create your models here.
 class User(AbstractUser):
     ROLE_CHOICES = (
@@ -159,7 +161,7 @@ class Dossier(models.Model):
   bilanRadiologique =models.ManyToManyField(BilanRadiologique , related_name="sejour_bilanRadio", blank=True)
   consultation = models.ManyToManyField(Consultation , related_name="cons_dossier" ,  blank=True)
   antecedants = models.TextField( null=True ,blank=True)
-  dateAdmission = models.DateField(default=date.today)
+  dateAdmission = models.DateField(default=timezone.now)
 
 class Administratif(models.Model):
   user = models.OneToOneField( User , on_delete=models.CASCADE , related_name="compte_admin")
