@@ -3,13 +3,11 @@
 export type User = {
 
   id: number,
-  nomUser : String ,
-  nom: String,
-  prenom : String,
+  username : String ,
+  first_name: String,
+  last_name : String,
   role: String,
-  naissance: String,
-  adresse: String,
-  tel: String,
+  email: String,
 
 }
 
@@ -17,7 +15,7 @@ export type Patient = { //classe patient
   id : number ,
   id_DPI : number , 
   idUser : number ,
-  nomUser : String ,
+  username : String ,
   nss: number ,
   naissance: String,
   adresse: String,
@@ -31,7 +29,7 @@ export type Patient = { //classe patient
 export type Medcin = {
   id : number ,
   idUser : number ,
-  nomUser : String ,
+  username : String ,
   nom: String,
   prenom : String,
   naissance: String,
@@ -109,7 +107,7 @@ export type Patient2 = {
   id : number ,
   id_DPI : number , 
   idUser : number ,
-  nomUser : String ,
+  username : String ,
   mutuelle: String,
   user : User2,
   date_naissance: Date,

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Bilan, Consultation, Patient } from '../../modules/types';
 import { DPI } from '../../modules/types';
+
 @Injectable({
   providedIn: 'root'
 })
