@@ -36,7 +36,7 @@ export class AcceuilPageComponent implements OnInit{
 
   ngOnInit(): void { //when this page load, we fetch the list of patients
       
-    this.fetchServices.fetchListePatient().pipe( //pipe to catch any error
+    this.fetchServices.fetchListePatientHospitalised().pipe( //pipe to catch any error
       catchError((err) => {
         console.log(err);
         throw err;
@@ -49,11 +49,11 @@ export class AcceuilPageComponent implements OnInit{
           }))
         );
       this.listePatient.set(listeWithQrCode);
-      //this.listePatient.set(liste);
+
     })
- 
+  
     this.rout.paramMap.subscribe((params) =>{
-      this.id = Number(params.get("id")); //id de patient récupéré
+      this.id = Number(params.get("id")); //id de RLI récupéré
     });
 
     

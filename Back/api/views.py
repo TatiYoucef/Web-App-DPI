@@ -108,19 +108,19 @@ class UserLoginView(APIView):
                     response_data['data'] = medcin_data
             
             elif user.role == 'Laborantin' :
-                laborantin = user.compte_laborantin
+                laborantin = user.compte_Laborantin
                 if laborantin is not None:
                     laborantin_data = LaborantinSerializer(laborantin).data
                     response_data['data'] = laborantin_data
             
             elif user.role == 'Infirmier' :
-                infirmier = user.compte_infirmier
+                infirmier = user.compte_Infirmier
                 if infirmier is not None:
                     infirmier_data = InfirmierSerializer(infirmier).data
                     response_data['data'] = infirmier_data
             
             elif user.role == 'Radiologue' :
-                radiologue = user.compte_radiologue
+                radiologue = user.compte_Radiologue
                 if radiologue is not None:
                     radiologue_data = RadiologueSerializer(radiologue).data
                     response_data['data'] = radiologue_data

@@ -16,6 +16,11 @@ export class FetchModulesService { //Hna yesraw les fetch functions
     return this.http.get<Array<Patient>>(url);
   }
 
+  fetchListePatientHospitalised(){ //pour que Infirmier / radiologue / labo puissent les traiter
+    const url = "http://127.0.0.1:8000/api/auth/get/rabLabInf/patient";
+    return this.http.get<Array<Patient>>(url);
+  }
+
   fetchListePatientSansCompte(){ //pour que admin les ajoutent un compte
     const url = "http://127.0.0.1:8000/api/auth/get/admin/patient"; //from backend
     return this.http.get<Array<Patient>>(url);
