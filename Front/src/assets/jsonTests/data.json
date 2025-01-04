@@ -189,7 +189,7 @@
         {
           "id": 21,
           "dossier": 11,
-          "dateCreation": "2024-12-01",
+          "date": "2024-12-01",
           "duree": "10 jours",
           "etat": true,
           "medicaments": [
@@ -212,7 +212,7 @@
         {
           "id": 22,
           "dossier": 11,
-          "dateCreation": "2024-12-05",
+          "date": "2024-12-05",
           "duree": "7 jours",
           "etat": false,
           "medicaments": [
@@ -245,7 +245,7 @@
         {
           "id": 23,
           "dossier": 12,
-          "dateCreation": "2024-12-11",
+          "date": "2024-12-11",
           "duree": "5 jours",
           "etat": true,
           "medicaments": [
@@ -261,7 +261,7 @@
         {
           "id": 24,
           "dossier": 12,
-          "dateCreation": "2024-12-13",
+          "date": "2024-12-13",
           "duree": "10 jours",
           "etat": false,
           "medicaments": [
@@ -301,7 +301,7 @@
         {
           "id": 25,
           "dossier": 13,
-          "dateCreation": "2024-12-21",
+          "date": "2024-12-21",
           "duree": "3 jours",
           "etat": true,
           "medicaments": [
@@ -317,7 +317,7 @@
         {
           "id": 26,
           "dossier": 13,
-          "dateCreation": "2024-12-22",
+          "date": "2024-12-22",
           "duree": "5 jours",
           "etat": false,
           "medicaments": [

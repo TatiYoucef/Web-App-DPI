@@ -85,15 +85,18 @@ export type DPI = {
 
 export type Ordonnance = {
   id : number,
-  id_DPI : number,
-  dateCreation : Date,
+
+  medicaments: Array<Medicament>,
+
+  date : String,
   duree : String,
   etat : Boolean,
+  dateValidation?: String,
+  medcin: number,
 }
 
 export type Medicament = {
   id : number,
-  id_ordonnance : number,
   nom : String,
   dose : String,
   frequence : String,

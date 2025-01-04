@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { MedicalRecord } from '../../modules/types';
+import { MedicalRecord, Medicament } from '../../modules/types';
 
 @Injectable({
   providedIn: 'root'
@@ -61,10 +61,17 @@ export class UpdateModulesService {
     return this.http.put(apiUrl, requestUpdate);
 
   }
-
+  
   toggleStateHospitalPatient(id: number){ //changer le boolean Patient à vrai/faux s'il est en cours de traitement ou pas
     const apiUrl = `http://127.0.0.1:8000/api/auth/post/patient/traitement/${id}`;
     return this.http.put(apiUrl, "");
+  }
+
+  addMedicammentToOrdonnace(medicaments:Array<Object>, idOrdo: number){
+
+    const apiUrl = `http://127.0.0.1:8000/api/auth/post/ordonnance/${idOrdo}/medicament`;
+    return this.http.put(apiUrl, medicaments);
+
   }
 
 }

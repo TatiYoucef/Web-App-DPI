@@ -57,7 +57,7 @@ export class AjoutSoinComponent implements OnInit{
       this.newListe = this.oldListe;
       const date = new Date();
       const formattedDate = date.toLocaleDateString('en-CA'); // 'en-CA' is the ISO date format (yyyy-mm-dd)
-      console.log(formattedDate); // e.g., "2025-01-04"
+
       
       this.newListe.push({
         id: 0, //id 0 pour detecter aprés les nouveaux éléments
