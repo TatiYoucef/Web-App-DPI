@@ -8,6 +8,8 @@ import { FetchModulesService } from '../../../../services/fetchModules/fetch-mod
 import { catchError } from 'rxjs';
 import { UserDataService } from '../../../../services/userData/user-data.service';
 import { FormsModule } from '@angular/forms';
+import { PostModulesService } from '../../../../services/postModules/post-modules.service';
+import { Patient } from '../../../../modules/types';
 
 @Component({
   selector: 'app-consultations',
@@ -17,15 +19,29 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./consultations.component.css']
 })
 export class ConsultationsComponent implements OnInit {
+
   private route = inject(ActivatedRoute);
   private fetchServices = inject(FetchModulesService);
   isDashBoardVisible = true;
   isAjoutConsultation = false;
   user = inject(UserDataService).getUserData();
 
-  isDiagnosed = false;
-  dateSet = Date.now();
-  raisonSet = "";
+  newConsultation = {
+    medcin:this.user.id,
+    soins:[],
+    date:"",
+    dateProchaineCons:"",
+    trouveDiagnostic: false,
+    raison_admission:""
+  }
+
+  dateInput1 = '';
+  timeInput1 = '';
+  dateInput2 = '';
+  timeInput2 = '';
+
+  postServices = inject(PostModulesService);
+  patient !: Patient;
 
   consultations: any[] = []; // List of consultations
   selectedConsultation: any = null; // Selected consultation details for popup
@@ -45,6 +61,19 @@ export class ConsultationsComponent implements OnInit {
         this.errorMessage = 'Patient ID not provided in the URL.';
       }
     });
+
+    this.fetchServices.fetchPatient(this.id)
+    .pipe(
+      // Use catchError to handle errors
+      catchError((err) => {
+        console.error('Error fetching Patient:', err);
+        // Optionally rethrow or handle the error
+        throw err;
+      })
+    )
+    .subscribe((patient) => {
+      this.patient = patient;
+    });
   }
 
   loadConsultations() {
@@ -58,7 +87,7 @@ export class ConsultationsComponent implements OnInit {
           throw err;
         })
       )
-      .subscribe((data: any[]) => {
+      .subscribe((data) => {
         this.consultations = data; // Update consultations list
         this.isLoading.set(false); // Turn off loading signal
       });
@@ -76,11 +105,41 @@ export class ConsultationsComponent implements OnInit {
     this.selectedConsultation = null;
   }
 
-  ajoutConsultation(){
+  async ajoutConsultation(){
 
-    //ajouter if consultation lekhra rahi kemlet besh tajouti, 3endek déja les variables date, raison, boolean isDiagnostique m3emrine
-    console.log("Ajouter une consultation", this.isDiagnosed,"/", this.raisonSet);
-    this.isAjoutConsultation = false;
+    this.newConsultation.date = `${this.dateInput1}T${this.timeInput1}:00Z`;
+    this.newConsultation.dateProchaineCons = `${this.dateInput2}T${this.timeInput2}:00Z`
+
+    if(!this.newConsultation.raison_admission){
+      alert("Veuillez ajouter la raison de consultation")
+    }else{
+
+      await this.postServices.createConsultation(this.newConsultation,this.patient.dossier);
+      this.isAjoutConsultation = false;
+
+      this.newConsultation = {
+        medcin:this.user.id,
+        soins:[],
+        date:"",
+        dateProchaineCons:"",
+        trouveDiagnostic: false,
+        raison_admission:""
+      }
+
+      this.fetchServices.fetchConsultations(this.id).pipe(
+        catchError((err) => {
+          console.error('Error fetching consultations:', err);
+          this.errorMessage = 'Failed to load consultations. Please try again later.';
+          throw err;
+        })
+      )
+      .subscribe((data) => {
+        this.consultations = data; // Update consultations list
+        this.isLoading.set(false); // Turn off loading signal
+      });
+
+    }
+
 
   }
 

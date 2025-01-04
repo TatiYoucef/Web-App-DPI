@@ -10,124 +10,118 @@
   @defer {
 
 
-  <div class="ordonnances-container">
-        <div class="firstLine">
-          <h1>Liste des ordonnances </h1>
-          <button *ngIf="user.role === 'Medcin'" class="card-button" style="margin: auto;" (click)="isAjoutOrdonnance = true">Ajouter ordonnance</button>
-        </div>
-          <div *ngIf="ordonnances.length === 0" class="no-ordonnances">
+    <div class="ordonnances-container">
+      
+      <div class="firstLine">
+
+        <h1>Liste des ordonnances </h1>
+        <button *ngIf="user.role === 'Medcin'" class="card-button" style="margin: auto;" (click)="isAjoutOrdonnance = true">Ajouter ordonnance</button>
+      
+      </div>
+
+      <div *ngIf="ordonnances.length === 0" class="no-ordonnances">
             <img src="../../../../../assets/images/Document_empty.png" width="280px" >
-            <p>Aucune ordonnance disponible pour le moment.</p>
-          </div>
-         <div *ngIf="ordonnances.length > 0" class="ordonnances-list">
-          <ul>
-            <li *ngFor="let ordonnance of ordonnances" class="ordonnance-item">   
-              <div class="profile">
-                <h3>Ordonnance ID: {{ ordonnance.id }}</h3>
-                <p><strong>Date de création:</strong> {{ ordonnance.dateCreation}}</p>
-                <p><strong>Durée:</strong> {{ordonnance.duree}}</p>
-                <p class="etat-line"><strong>État: </strong>
-                  <input type="checkbox" [(ngModel)]="ordonnance.etat" (ngModelChange)="toggleEtat(ordonnance)" /> 
-                  {{ ordonnance.etat ? 'valide' : 'non valide' }}
-                  
-                </p>
-                <p><strong>Médicaments:</strong></p>
-                <ul>
-                  <div *ngIf="ordonnance.medicaments.length > 0" class ="medicaments-list">
-                    <li *ngFor="let medicament of ordonnance.medicaments" class="medicament-item">
-                      <div class="profile-medicament">
-                        <p><strong>Nom:</strong> {{medicament.nom}}</p>
-                        <p><strong>Dose:</strong> {{medicament.dose}}</p>
-                        <p><strong>Fréquence:</strong> {{medicament.frequence}}</p>
-                      </div>
-                    </li>
+          <p>Aucune ordonnance disponible pour le moment.</p>
+        </div>
+
+      <div *ngIf="ordonnances.length > 0" class="ordonnances-list">
+        <ul>
+
+          <li *ngFor="let ordonnance of ordonnances" class="ordonnance-item">   
+            <div class="profile">
+              <h3>Ordonnance ID: {{ ordonnance.id }}</h3>
+              <p><strong>Date de création:</strong> {{ ordonnance.date}}</p>
+              <p><strong>Durée:</strong> {{ordonnance.duree}}</p>
+              <p class="etat-line"><strong>État: </strong>
+                <input type="checkbox" [(ngModel)]="ordonnance.etat" disabled="true"/> 
+                {{ ordonnance.etat ? 'validé le '+ ordonnance.dateValidation : 'non valide' }}
+                
+              </p>
+              <p><strong>Médicaments:</strong></p>
+              <ul>
+              <div *ngIf="ordonnance.medicaments.length > 0" class ="medicaments-list">
+                <li *ngFor="let medicament of ordonnance.medicaments" class="medicament-item">
+                  <div class="profile-medicament">
+                    <p><strong>Nom:</strong> {{medicament.nom}}</p>
+                    <p><strong>Dose:</strong> {{medicament.dose}}</p>
+                    <p><strong>Fréquence:</strong> {{medicament.frequence}}</p>
                   </div>
-                </ul>
+                </li>
               </div>
-              <button *ngIf="user.role === 'Medcin'"  (click)="isAjoutMedicament = true" style="font-family: Quicksand, serif; font-weight: 800;">Ajouter un médicament</button>
-            </li>
-          </ul>
-        </div>
-        
-  </div>
+              </ul>
+            </div>
+            <button *ngIf="!ordonnance.etat" *ngIf="user.role === 'Medcin'"  (click)="isAjoutMedicament = true; idOrdo = ordonnance.id" style="font-family: Quicksand, serif; font-weight: 800;">Ajouter un médicament</button>
+          </li>
 
-  @if (isAjoutOrdonnance) {
-
-    <div class="grey-div" (click)="annuler($event)">
-
-      <div class="card">
-
-        <div class="horiz">
-
-          <h4>Durée:</h4>
-
-          <input type="text" [(ngModel)]="duree">
-
-        </div>
-
-        <div class="horiz">
-          <h4>Valide? </h4>
-
-            <select [(ngModel)]="isValid">
-              <option value="false">Non</option>
-              <option value="true">oui</option>
-            </select>
-        </div>
-
-        <div class="horiz">
-          <button class="annuler" (click)="annuler($event)">Annuler</button>
-          <button (click)="ajoutOrdonnance()">Créer Ordonnance</button>
-        </div>
-        
+        </ul>
       </div>
-
+            
     </div>
 
+    @if (isAjoutOrdonnance) {
 
-  }
+      <div class="grey-div" (click)="annuler($event)">
 
+        <div class="card">
 
-  @if (isAjoutMedicament) {
+          <div class="horiz">
 
-    <div class="grey-div" (click)="annuler($event)">
+            <h4>Durée:</h4>
 
-      <div class="card">
+            <input type="text" [(ngModel)]="newOrdonnance.duree">
 
-        <div class="horiz">
+          </div>
 
-          <h4>Nom du médicament:</h4>
-
-          <input type="text" [(ngModel)]="nom">
-
-        </div>
-
-        <div class="horiz">
-
-          <h4>Dose:</h4>
-          
-          <input type="text" [(ngModel)]="dose">
-
-        </div>
-
-        <div class="horiz">
-
-          <h4>Fréquence:</h4>
-          
-          <input type="text" [(ngModel)]="frequence">
+          <div class="horiz">
+            <button class="annuler" (click)="annuler($event)">Annuler</button>
+            <button (click)="ajoutOrdonnance()">Créer Ordonnance</button>
+          </div>
           
         </div>
 
-        <div class="horiz">
-          <button class="annuler" (click)="annuler($event)">Annuler</button>
-          <button (click)="ajoutMedicament()">Créer Médicament</button>
-        </div>
-        
       </div>
 
-    </div>
+
+    }
+
+    @if (isAjoutMedicament) {
+
+      <div class="grey-div" (click)="annuler($event)">
+
+        <div class="card">
+
+          <div class="horiz">
+
+            <h4>Nom du médicament:</h4>
+            <input type="text" [(ngModel)]="newMed.nom">
+
+          </div>
+
+          <div class="horiz">
+
+            <h4>Dose:</h4>  
+            <input type="text" [(ngModel)]="newMed.dose">
+
+          </div>
+
+          <div class="horiz">
+
+            <h4>Fréquence:</h4>
+            <input type="text" [(ngModel)]="newMed.frequence">
+            
+          </div>
+
+          <div class="horiz">
+            <button class="annuler" (click)="annuler($event)">Annuler</button>
+            <button (click)="ajoutMedicament(idOrdo)">Créer Médicament</button>
+          </div>
+          
+        </div>
+
+      </div>
 
 
-  }
+    }
 
 
   } @loading (minimum 0.5s) { <!--Nesstennaw minimum 4s besh naffichiw @defer-->

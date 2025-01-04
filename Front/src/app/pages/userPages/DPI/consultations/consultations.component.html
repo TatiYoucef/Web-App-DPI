@@ -27,7 +27,6 @@
             <p><strong>Médecin traitant :</strong> {{ consultation.medcin_nom }}</p>
             <p><strong>Date :</strong> {{ consultation.date | date }}</p>
           </div>
-          <button>View Details</button>
         </li>
       </ul>
     </div>
@@ -40,10 +39,10 @@
 
           <div class="horiz">
 
-            <h4>Diagnostiqué? </h4>
+            <h4>Diagnostiqué:</h4>
 
-            <select [(ngModel)]="isDiagnosed">
-              <option value="false">Non</option>
+            <select [(ngModel)]="newConsultation.trouveDiagnostic">
+              <option value="false">non</option>
               <option value="true">oui</option>
             </select>
 
@@ -51,15 +50,24 @@
 
           <div class="horiz">
 
-            <h4>Date :</h4>
-            <input type="date" [(ngModel)]="dateSet">
+            <h4>Date:</h4>
+            <input type="date" [(ngModel)]="dateInput1">
+            <input type="time" [(ngModel)]="timeInput1">
+
+          </div>
+
+          <div class="horiz">
+
+            <h4>ProchaineDate:</h4>
+            <input type="date" [(ngModel)]="dateInput2">
+            <input type="time" [(ngModel)]="timeInput2">
 
           </div>
 
           <div class="horiz">
 
             <h4>Raison d'admission: </h4>
-            <input type="text" [(ngModel)]="raisonSet">
+            <input type="text" [(ngModel)]="newConsultation.raison_admission">
 
           </div>
 

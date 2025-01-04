@@ -181,15 +181,15 @@
   "DPIs": [
     {
       "id": 1,
-      "date_maj": "2024-12-01",
-      "date_admission": "2024-11-15",
-      "date_sortie": "2024-12-10",
-      "antecedents_medicaux": ["Diabète", "Hypertension"],
+      "dateMaj": "2024-12-01",
+      "dateAdmission": "2024-11-15",
+      "dateSortie": "2024-12-10",
+      "antecedants": ["Diabète", "Hypertension"],
       "ordonnances": [
         {
           "id": 21,
           "dossier": 11,
-          "dateCreation": "2024-12-01",
+          "date": "2024-12-01",
           "duree": "10 jours",
           "etat": true,
           "medicaments": [
@@ -212,7 +212,7 @@
         {
           "id": 22,
           "dossier": 11,
-          "dateCreation": "2024-12-05",
+          "date": "2024-12-05",
           "duree": "7 jours",
           "etat": false,
           "medicaments": [
@@ -237,15 +237,15 @@
     },
     {
       "id": 2,
-      "date_maj": "2024-12-20",
-      "date_admission": "2024-12-10",
-      "date_sortie": "2024-12-15",
-      "antecedents_medicaux": ["Asthme"],
+      "dateMaj": "2024-12-20",
+      "dateAdmission": "2024-12-10",
+      "dateSortie": "2024-12-15",
+      "antecedants": ["Asthme"],
       "ordonnances": [
         {
           "id": 23,
           "dossier": 12,
-          "dateCreation": "2024-12-11",
+          "date": "2024-12-11",
           "duree": "5 jours",
           "etat": true,
           "medicaments": [
@@ -261,7 +261,7 @@
         {
           "id": 24,
           "dossier": 12,
-          "dateCreation": "2024-12-13",
+          "date": "2024-12-13",
           "duree": "10 jours",
           "etat": false,
           "medicaments": [
@@ -293,15 +293,15 @@
     },
     {
       "id": 3,
-      "date_maj": "2024-12-25",
-      "date_admission": "2024-12-20",
-      "date_sortie": "2024-12-23",
-      "antecedents_medicaux": ["Allergie au pollen"],
+      "dateMaj": "2024-12-25",
+      "dateAdmission": "2024-12-20",
+      "dateSortie": "2024-12-23",
+      "antecedants": ["Allergie au pollen"],
       "ordonnances": [
         {
           "id": 25,
           "dossier": 13,
-          "dateCreation": "2024-12-21",
+          "date": "2024-12-21",
           "duree": "3 jours",
           "etat": true,
           "medicaments": [
@@ -317,7 +317,7 @@
         {
           "id": 26,
           "dossier": 13,
-          "dateCreation": "2024-12-22",
+          "date": "2024-12-22",
           "duree": "5 jours",
           "etat": false,
           "medicaments": [

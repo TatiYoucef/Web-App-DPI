@@ -19,12 +19,14 @@
           <div class="card-info">
             <p><strong>Patient:</strong> {{patient.user.last_name}} {{patient.user.first_name}}</p>
             <p><strong>NSS:</strong> {{patient.nss}}</p>
-            <p><strong>Créé le :</strong> {{ dossier.date_admission| date:'yyyy-MM-dd à HH\'h\'mm\'m\'ss\'s\'' }} </p>
-            <p><strong>Nombre d'hospitalisations:</strong> {{dossier.ordonnances.length}} </p>
+            <p><strong>Créé le :</strong> {{ dossier.dateAdmission }} </p>
+            <p><strong>Nombre d'hospitalisations:</strong> {{dossier.ordannance.length}} </p>
           </div>
           <div class="last-modif">
             <p class="modif"><strong>Derniere modification</strong></p>
-            <p class="date"> {{dossier.date_maj| date:'yyyy-MM-dd à HH\'h\'mm\'m\'ss\'s\'' }} </p>
+            <p class="date"> {{dossier.dateMaj }} </p>
+            <button (click)="changePatientState()" [style]="patient.en_cours_traitement ? 'background-color:#FF7878':'' ">Status: {{patient.en_cours_traitement ? 'Hospitalisé':'Libre'}}</button>
+
           </div>
         </div>
 
@@ -87,15 +89,13 @@
               <div class="info-container">
                 <div class="div1">
                   <label>Description</label>
+
                   @if (user.role === "Patient") {
-                  <textarea rows="4" type="text" style="width: 200%;" readonly>
-                    Alergie aux chats, poussière, oiseaux, ORG
-                  </textarea>
+                  <textarea rows="4" type="text" style="width: 200%;" readonly>{{dossier.antecedants}}</textarea>
                   } @else {
-                  <textarea rows="4" type="text" style="width: 200%;">
-                    Alergie aux chats, poussière, oiseaux, ORG
-                  </textarea>
+                    <textarea rows="4" type="text" style="width: 200%;" [(ngModel)]="dossier.antecedants"></textarea>
                   }
+                  
                 </div>
               </div>
               <div class="info-container" style="justify-content: center;">
