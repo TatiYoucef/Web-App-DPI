@@ -722,3 +722,23 @@ class PatientConsultationListView(APIView):
             return Response({"error": "Patient not found"}, status=status.HTTP_404_NOT_FOUND)
         except AttributeError:
             return Response({"error": "Patient does not have an associated dossier"}, status=status.HTTP_400_BAD_REQUEST)
+
+class UpdateAntecedantsView(APIView):
+    def put(self, request, dossier_id):
+        try:
+            # Get the Dossier instance by ID
+            dossier = Dossier.objects.get(pk=dossier_id)
+            
+            # Get the antecedants from the request data
+            antecedants = request.data.get('antecedants')
+            
+            if antecedants is None:
+                return Response({"error": "antecedants field is required"}, status=status.HTTP_400_BAD_REQUEST)
+            
+            # Update antecedants and save
+            dossier.antecedants = antecedants
+            dossier.save()
+            
+            return Response({"message": "Antecedants updated successfully"}, status=status.HTTP_200_OK)
+        except Dossier.DoesNotExist:
+            return Response({"error": "Dossier not found"}, status=status.HTTP_404_NOT_FOUND)
