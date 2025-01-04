@@ -45,8 +45,13 @@ export type BilanBio = {
 
   rempli: boolean; //si rad/lab l'a rempli ou pas
   date_creation: String;
+  resultats_analytiques: Array<MedicalRecord>;
 
-  resultats_analytiques: Array<TestBilan>;
+  description: String;
+  date_prescription: String;
+  typeBilan: String;
+  status: String;
+
 }
 
 export type BilanRadio = {
@@ -59,9 +64,15 @@ export type BilanRadio = {
   date_creation: String;
 
   compte_rendu: String;
+
+  description: String;
+  date_prescription: String;
+  typeBilan: String;
+  status: String;
+  
 }
 
-export type TestBilan = {
+export type MedicalRecord = {
 
   id : number,
   parametre : String,
@@ -161,3 +172,24 @@ export type Consultation = {
   trouveDiagnostic: boolean; // Boolean value indicating whether a diagnosis was found
   raison_admission: string; // Text field representing the reason for admission
 };
+
+export type Bilan = {
+
+  id: number;
+  idMed: number;
+  idConsul: number;
+
+  type: String; //Biologique or Radiologique
+  rempli: boolean; //si rad/lab l'a rempli ou pas
+  date: String;
+
+  tests: Array<TestBilan>;
+}
+
+export type TestBilan = {
+
+  id : number,
+  testName : String,
+  result: String | null,
+
+}

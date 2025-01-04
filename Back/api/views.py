@@ -391,7 +391,7 @@ class IncompleteBilansBioView(APIView):
     
 class RemplirBilanBioView(APIView):
 
-    def post(self, request, bilan_id):
+    def put(self, request, bilan_id):
         isRempli = True
         try:
             bilan = BilanBiologique.objects.get(id=bilan_id)
@@ -544,7 +544,7 @@ class IncompleteBilansRadioView(APIView):
     
 class RemplirBilanRadioView(APIView):
 
-    def patch(self, request, bilan_id):
+    def put(self, request, bilan_id):
         # Fetch the BilanRadiologique object
         bilan = get_object_or_404(BilanRadiologique, id=bilan_id)
 

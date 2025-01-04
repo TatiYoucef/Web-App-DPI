@@ -2,17 +2,19 @@ import { Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angul
 import { LoadingScreenComponent } from "../../../../components/loading-screen/loading-screen.component";
 import { HeaderComponent } from "../../../../components/header-user/header.component";
 import { DashBoardComponent } from "../../../../components/dash-board/dash-board.component";
-import { TestBilan } from '../../../../modules/types';
+import { BilanBio, BilanRadio, MedicalRecord, TestBilan } from '../../../../modules/types';
 import { FetchModulesService } from '../../../../services/fetchModules/fetch-modules.service';
 import { catchError } from 'rxjs';
 import { UserDataService } from '../../../../services/userData/user-data.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { UpdateModulesService } from '../../../../services/updateModules/update-modules.service';
 
 @Component({
   selector: 'app-ajout-result-bilan',
   standalone: true,
-  imports: [LoadingScreenComponent, HeaderComponent, DashBoardComponent, CommonModule],
+  imports: [LoadingScreenComponent, HeaderComponent, DashBoardComponent, CommonModule, FormsModule],
   templateUrl: './ajout-result-bilan.component.html',
   styleUrl: './ajout-result-bilan.component.css'
 })
@@ -26,30 +28,91 @@ export class AjoutResultBilanComponent implements OnInit {
   id!: number;
   idP!: number;
   router = inject(ActivatedRoute); //bihe njibou id fel path
+  rout = inject(Router);
 
   fetchServices = inject(FetchModulesService);
-  listTestsBilan = signal<Array<TestBilan>>([]); // liste des demandes de tests pour un bilan
+  updateServices = inject(UpdateModulesService);
+  listTestsBilan !: BilanBio; // liste des demandes de tests pour un bilan
+  compteRendu !: BilanRadio ;
+  length = 0;
 
   ngOnInit(): void {
-
-    this.fetchServices.fetchListeTestsBilan().pipe( //pipe to catch any error
-      catchError((err) => {
-        console.log(err);
-        throw err;
-      })
-      ).subscribe((liste: any) => {
-
-      this.listTestsBilan.set(liste.tests);
-    })
 
     this.router.paramMap.subscribe((params) =>{
       this.id = Number(params.get("id")); //id de patient récupéré
       this.idP = Number(params.get("idP"));
     });
 
+    if(this.user.role === 'Radiologue'){ //ida radiologue, request radiological bilan
 
-    console.log(this.id);
+      this.fetchServices.fetchListeBilanRadioIncompleted(this.id).pipe( //pipe to catch any error
+        catchError((err) => {
+          console.log(err);
+          throw err;
+        })
+        ).subscribe((liste) => {
+  
+        if(liste.length) this.compteRendu = liste[0];
+        this.length = liste.length;
+
+      })
+
+    } else { // sinon, fetch biologique
+
+      this.fetchServices.fetchListeBilanBioIncompleted(this.id).pipe( //pipe to catch any error
+        catchError((err) => {
+          console.log(err);
+          throw err;
+        })
+        ).subscribe((liste) => {
+  
+        if(liste.length) this.listTestsBilan = liste[0];
+        this.length = liste.length;
+
+      })
+
+    }
+
+    
       
+  }
+
+  enregistrerBilan(){
+
+    if(this.user.role === 'Radiologue'){
+
+      this.updateServices.ajoutComptRenduForPatient(this.compteRendu.compte_rendu, this.compteRendu.id).subscribe({
+        next: (response:any)=>{
+          console.log(response) 
+          alert("Bilan radiologique est sauvegardé !")
+          this.rout.navigate(['rabLabInf', this.idP]); 
+        },
+
+        error : (error: any) =>{
+          console.error('Error fetching patient:', error);
+          alert("Il a eut un problème de saisie, veuillez ajouter correctement le saisie")
+        }
+
+      })
+
+    } else {
+
+      this.updateServices.ajoutResultsBioForPatient(this.listTestsBilan.resultats_analytiques, this.listTestsBilan.id).subscribe({
+        next: (response:any)=>{
+          console.log(response) 
+          alert("Bilan biologique est sauvegardé !")
+          this.rout.navigate(['rabLabInf', this.idP]); 
+        },
+
+        error : (error: any) =>{
+          console.error('Error fetching patient:', error);
+          alert("Il a eut un problème de saisie, veuillez ajouter correctement le saisie")
+        }
+
+      })
+
+    }
+
   }
     
   updateDashboardVisibility(isVisible: boolean) {
