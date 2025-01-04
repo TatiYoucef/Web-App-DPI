@@ -72,15 +72,15 @@ export type MedicalRecord = {
 
 export type DPI = {
   id : number,
-  date_maj : Date,
-  date_admission : Date,
-  date_sortie : Date,
-  antecedents_medicaux : Array<String>,
-  ordonnances : Array<Ordonnance>,
-  soins : Array<Soin>
-
-// bilans : Bilan[]
-// observations : Observation[]
+  dateMaj : String,
+  dateAdmission : String,
+  dateSortie : String,
+  antecedants : String,
+  
+  ordannance : Array<number>,
+  bilanBiologique : Array<number>,
+  bilanRadiologique : Array<number>,
+  consultation: Array<number>,
 }
 
 export type Ordonnance = {

@@ -181,10 +181,10 @@
   "DPIs": [
     {
       "id": 1,
-      "date_maj": "2024-12-01",
-      "date_admission": "2024-11-15",
-      "date_sortie": "2024-12-10",
-      "antecedents_medicaux": ["Diabète", "Hypertension"],
+      "dateMaj": "2024-12-01",
+      "dateAdmission": "2024-11-15",
+      "dateSortie": "2024-12-10",
+      "antecedants": ["Diabète", "Hypertension"],
       "ordonnances": [
         {
           "id": 21,
@@ -237,10 +237,10 @@
     },
     {
       "id": 2,
-      "date_maj": "2024-12-20",
-      "date_admission": "2024-12-10",
-      "date_sortie": "2024-12-15",
-      "antecedents_medicaux": ["Asthme"],
+      "dateMaj": "2024-12-20",
+      "dateAdmission": "2024-12-10",
+      "dateSortie": "2024-12-15",
+      "antecedants": ["Asthme"],
       "ordonnances": [
         {
           "id": 23,
@@ -293,10 +293,10 @@
     },
     {
       "id": 3,
-      "date_maj": "2024-12-25",
-      "date_admission": "2024-12-20",
-      "date_sortie": "2024-12-23",
-      "antecedents_medicaux": ["Allergie au pollen"],
+      "dateMaj": "2024-12-25",
+      "dateAdmission": "2024-12-20",
+      "dateSortie": "2024-12-23",
+      "antecedants": ["Allergie au pollen"],
       "ordonnances": [
         {
           "id": 25,

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserRegistrationView , PatientConsultationListView, ModifySoinsListView, LatestSoinListView, IncompleteBilanRadioPatientView, RemplirBilanRadioView, IncompleteBilansRadioView, RemplirBilanBioView , IncompleteBilanBioPatientView,  IncompleteBilansBioView , ListPatientHospitalisedView, ToggleEnCoursTraitementView,  PatientRegistrationView , MedcinRegistrationView , UserLoginView ,PatientList , PatientByNSSView ,Patientwithoutaacounts ,AdminRegistrationView, OrdonnanceCreatView , OrdonnanceList,DossierPatient,DossierOrdonnanceCreatView,LaborantinRegistrationView,RadiologueRegistrationView , InfirmierRegistrationView,MedcinList, PatientDetail,AdminUpdatePatient,BilanBiologiqueCreateView,BilanBiogiqueView, BilanRadiologiqueCreateView, BilanRadiologiqueView , BilanRadiologiqueView_radiologue,BilanView ,BilanRadioView,BilanBioView
+from .views import UserRegistrationView , UpdateAntecedantsView, PatientConsultationListView, ModifySoinsListView, LatestSoinListView, IncompleteBilanRadioPatientView, RemplirBilanRadioView, IncompleteBilansRadioView, RemplirBilanBioView , IncompleteBilanBioPatientView,  IncompleteBilansBioView , ListPatientHospitalisedView, ToggleEnCoursTraitementView,  PatientRegistrationView , MedcinRegistrationView , UserLoginView ,PatientList , PatientByNSSView ,Patientwithoutaacounts ,AdminRegistrationView, OrdonnanceCreatView , OrdonnanceList,DossierPatient,DossierOrdonnanceCreatView,LaborantinRegistrationView,RadiologueRegistrationView , InfirmierRegistrationView,MedcinList, PatientDetail,AdminUpdatePatient,BilanBiologiqueCreateView,BilanBiogiqueView, BilanRadiologiqueCreateView, BilanRadiologiqueView , BilanRadiologiqueView_radiologue,BilanView ,BilanRadioView,BilanBioView
 
 urlpatterns = [
   
@@ -42,6 +42,7 @@ urlpatterns = [
     path('auth/post/rabLabInf/patient/incBilanRadio/update/<int:bilan_id>', RemplirBilanRadioView.as_view() , name='bilanRadio_update'),
     path('auth/post/patient/dossier/<int:dossier_id>/bilanbio' , BilanBiologiqueCreateView.as_view() , name='create_bilan'),
     path("auth/post/patient/dossier/<int:dossier_id>/bilanRadio",BilanRadiologiqueCreateView.as_view(), name ="BilanRadio-create"),
+    path("auth/post/patient/dossier/<int:dossier_id>/antecedant",UpdateAntecedantsView.as_view(), name ="update-antecedents"),
 ]
 
 

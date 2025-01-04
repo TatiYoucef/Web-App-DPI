@@ -13,7 +13,7 @@ export class UserDataService { //classe 3endha ge3 les variables globales de use
     last_name: "???",
     username: "???",
     email: "???",
-    role: "rabLabInf",
+    role: "Medcin",
   };  
 
   getUserData(){

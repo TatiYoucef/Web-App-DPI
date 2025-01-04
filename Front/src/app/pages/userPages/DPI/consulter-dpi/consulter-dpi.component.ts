@@ -9,11 +9,13 @@ import { DPI, Patient } from '../../../../modules/types';
 import { FetchModulesService } from '../../../../services/fetchModules/fetch-modules.service';
 import { catchError } from 'rxjs';
 import { DatePipe } from '@angular/common';
+import { UpdateModulesService } from '../../../../services/updateModules/update-modules.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-consulter-dpi',
   standalone: true,
-  imports: [HeaderComponent, DashBoardComponent, LoadingScreenComponent, CommonModule],
+  imports: [HeaderComponent, DashBoardComponent, LoadingScreenComponent, CommonModule, FormsModule],
   templateUrl: './consulter-dpi.component.html',
   styleUrl: './consulter-dpi.component.css',
   providers: [DatePipe]
@@ -24,6 +26,8 @@ export class ConsulterDPIComponent implements OnInit{
   isDashBoardVisible = true;
 
   fetchServices = inject(FetchModulesService);
+  updateServices = inject(UpdateModulesService);
+
   id!: number ; //id de patient
   patient !: Patient  ;  // ! means it will surely be initialised  
   dossier !: DPI ;
@@ -38,18 +42,31 @@ export class ConsulterDPIComponent implements OnInit{
       this.id =Number(params.get("id")); //id de patient récupéré
     });
 
-    this.fetchServices.fetchDPI(this.id)
+    this.fetchServices.fetchPatient(this.id)
     .pipe(
       // Use catchError to handle errors
       catchError((err) => {
-        console.error('Error fetching DPI:', err);
+        console.error('Error fetching Patient:', err);
         // Optionally rethrow or handle the error
         throw err;
       })
     )
-    
-    .subscribe((response) => {
-      this.dossier = response
+    .subscribe((patient) => {
+      this.patient = patient;
+
+      this.fetchServices.fetchDPI(this.patient.dossier)
+      .pipe(
+        // Use catchError to handle errors
+        catchError((err) => {
+          console.error('Error fetching DPI:', err);
+          // Optionally rethrow or handle the error
+          throw err;
+        })
+      )
+      .subscribe((dpi) => {
+        this.dossier = dpi
+      });
+
     });
 
     if(this.id === 14){ //just a test
@@ -80,7 +97,19 @@ export class ConsulterDPIComponent implements OnInit{
   }
 
   mettreAjourAntecedent(){
-    console.log("Antecedents patché...");
+    this.updateServices.modifyAntecedent(this.dossier.antecedants, this.dossier.id).subscribe({
+      next: (response:any)=>{
+        console.log(response.user);
+        alert("Les antécédants ont été modifié avec succés !!!");
+        this.isAntecedentPatient.set(false);
+      },
+
+      error : (error: any) =>{
+        console.error('Error fetching patient:', error);
+        alert("Il a eut une erreur, veuillez resaisir")
+      }
+
+    })
   }
 
   // Navigate to the consultations page
