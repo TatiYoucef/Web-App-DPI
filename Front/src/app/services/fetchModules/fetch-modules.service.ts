@@ -11,11 +11,6 @@ export class FetchModulesService { //Hna yesraw les fetch functions
 
   http = inject(HttpClient);
 
-  fetchListePatient(){
-    const url = "http://localhost:3000/patients"; //Json Test, not from backend
-    return this.http.get<Array<Patient>>(url);
-  }
-
   fetchListePatientHospitalised(){ //pour que Infirmier / radiologue / labo puissent les traiter
     const url = "http://127.0.0.1:8000/api/auth/get/rabLabInf/patient";
     return this.http.get<Array<Patient>>(url);
@@ -35,23 +30,18 @@ export class FetchModulesService { //Hna yesraw les fetch functions
     const url = `http://127.0.0.1:8000/api/auth/get/patient/${nss}`;
     return this.http.get<Patient>(url);
   }
-
-  fetchListeDPIs(){
-    const url = "http://localhost:3000/DPIs"; //Json Test, not from backend
-    return this.http.get<Array<DPI>>(url);
-  }
   
-  fetchDPI(idPatient: number){
-    const url = `http://127.0.0.1:8000/api/auth/register/medcin/patients/${idPatient}/dpi`; // From backend
-    return this.http.get<{ dossier: any; patient: any }>(url); 
+  fetchDPI(idDossier: number){
+    const url = `http://127.0.0.1:8000/api/auth/get/patient/dossier/${idDossier}`; // From backend
+    return this.http.get<DPI>(url); 
   }
 
-  fetchListeBilan(){
+  fetchListeBilan(){ //erronee
     const url = `http://127.0.0.1:8000/api/auth/post/rabLabInf/patient/incBilanBio`;
     return this.http.get<Array<Bilan>>(url);
   }
 
-  fetchBilan(id:number){
+  fetchBilan(id:number){ //erronee
     const url = "http://localhost:3000/Bilans"; //Json Test, not from backend
     return this.http.get<Bilan>(url);
   }
@@ -66,16 +56,6 @@ export class FetchModulesService { //Hna yesraw les fetch functions
     return this.http.get<Array<BilanRadio>>(url);
   }
 
-  fetchBilanBio(id:number){
-    const url = `http://localhost:3000/listeBilan/${id}`;
-    return this.http.get<BilanBio>(url);
-  }
-
-  fetchBilanRadio(id:number){
-    const url = `http://localhost:3000/listeBilan/${id}`;
-    return this.http.get<BilanBio>(url);
-  }
-
   fetchLatestListSoin(id:number){
     const url = `http://127.0.0.1:8000/api/auth/get/patient/${id}/latestSoin`;
     return this.http.get<Array<Soin>>(url);
@@ -87,7 +67,7 @@ export class FetchModulesService { //Hna yesraw les fetch functions
   }
 
   fetchConsultations(idPatient: number){
-    const url = `http://127.0.0.1:8000/api/auth/register/medcin/patients/${idPatient}/dpi/consultations`; // From backend
+    const url = `http://127.0.0.1:8000/api/auth/get/patient/${idPatient}/consultation`; // From backend
     return this.http.get<Array<Consultation>>(url);
   }
 

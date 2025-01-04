@@ -5,7 +5,7 @@ import { LoadingScreenComponent } from "../../../../components/loading-screen/lo
 import { UserDataService } from '../../../../services/userData/user-data.service';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { ActivatedRoute, Router } from '@angular/router';
-import { DPI2, Patient2 } from '../../../../modules/types';
+import { DPI, Patient } from '../../../../modules/types';
 import { FetchModulesService } from '../../../../services/fetchModules/fetch-modules.service';
 import { catchError } from 'rxjs';
 import { DatePipe } from '@angular/common';
@@ -25,8 +25,8 @@ export class ConsulterDPIComponent implements OnInit{
 
   fetchServices = inject(FetchModulesService);
   id!: number ; //id de patient
-  patient !: Patient2  ;  // ! means it will surely be initialised  
-  dossier !: DPI2 ;
+  patient !: Patient  ;  // ! means it will surely be initialised  
+  dossier !: DPI ;
   user = inject(UserDataService).getUserData() ;  //Njibou Data te3 user te3na 
 
   router = inject(ActivatedRoute); //bihe njibou id fel path
@@ -49,11 +49,7 @@ export class ConsulterDPIComponent implements OnInit{
     )
     
     .subscribe((response) => {
-      // Extract the dossier and patient from the response
-      this.dossier = response.dossier; // Assign dossier to this.dossier
-      this.patient = response.patient; // Optionally handle patient if needed
-      console.log('Dossier:', this.dossier);
-      console.log('Patient:', this.patient);
+      this.dossier = response
     });
 
     if(this.id === 14){ //just a test

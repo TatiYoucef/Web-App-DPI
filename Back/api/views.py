@@ -701,3 +701,24 @@ class ModifySoinsListView(APIView):
                 {"error": "Patient not found."},
                 status=status.HTTP_404_NOT_FOUND,
             )
+        
+class PatientConsultationListView(APIView):
+    def get(self, request, patient_id):
+        try:
+            # Fetch the Patient object
+            patient = get_object_or_404(Patient, id=patient_id)
+
+            # Fetch the associated Dossier
+            dossier = patient.dossier
+            
+            # Fetch the consultations linked to the dossier
+            consultations = dossier.consultation.all()
+            
+            # Serialize the consultations
+            serializer = ConsultationSerializer(consultations, many=True)
+            
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Patient.DoesNotExist:
+            return Response({"error": "Patient not found"}, status=status.HTTP_404_NOT_FOUND)
+        except AttributeError:
+            return Response({"error": "Patient does not have an associated dossier"}, status=status.HTTP_400_BAD_REQUEST)
