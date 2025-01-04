@@ -168,6 +168,12 @@ class OrdonnanceSerializer(serializers.ModelSerializer):
     
 
 class SoinSerializer(serializers.ModelSerializer):
+    # Custom read-only field to extract just the date part
+    date = serializers.SerializerMethodField()
+
+    def get_date(self, obj):
+        return obj.date.date()  # Convert DateTime to Date
+
     class Meta:
         model = Soin
         fields = '__all__'
