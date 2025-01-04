@@ -44,6 +44,13 @@ export class UpdateModulesService {
 
   }
 
+  modifyLatesSoinList(requestUpdate: Object, id:number){
+
+    const apiUrl = `http://127.0.0.1:8000/api/auth/get/patient/${id}/latestSoin/modify`;
+    return this.http.put(apiUrl, requestUpdate);
+
+  }
+
   toggleStateHospitalPatient(id: number){ //changer le boolean Patient à vrai/faux s'il est en cours de traitement ou pas
     const apiUrl = `http://127.0.0.1:8000/api/auth/post/patient/traitement/${id}`;
     return this.http.put(apiUrl, "");

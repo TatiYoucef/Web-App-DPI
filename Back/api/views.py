@@ -602,5 +602,102 @@ class BilanRadiologiqueView_radiologue(APIView):
 
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
     
+class LatestSoinListView(APIView):
+
+    def get(self, request, patient_id):
+        # Fetch the Patient object
+        patient = get_object_or_404(Patient, id=patient_id)
+
+        # Fetch the associated Dossier
+        dossier = patient.dossier
+        if not dossier:
+            return Response(
+                {"error": "No dossier found for the given patient."},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+
+        # Retrieve the latest Consultation by id
+        latest_consultation = dossier.consultation.order_by('-id').first()
+        if not latest_consultation:
+            return Response(
+                {"error": "No consultations found in the dossier."},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+
+        # Fetch related Soin objects
+        soins = latest_consultation.soins.all()
+
+        # Use the SoinSerializer to serialize the data
+        serializer = SoinSerializer(soins, many=True)
+
+        return Response(serializer.data,
+            status=status.HTTP_200_OK,
+        )
+    
+class ModifySoinsListView(APIView):
+    def put(self, request, patient_id):
+        try:
+           # Fetch the Patient object
+            patient = get_object_or_404(Patient, id=patient_id)
+
+            # Fetch the associated Dossier
+            dossier = patient.dossier
+
+            latest_consultation = dossier.consultation.order_by('-id').first()
+
+            if not latest_consultation:
+                return Response(
+                    {"error": "No consultations found for this patient."},
+                    status=status.HTTP_404_NOT_FOUND,
+                )
+
+            # Handling the 'add' field - adding new Soins
+            add_data = request.data.get('add', [])
+            for soin_data in add_data:
+                serializer = SoinSerializer(data=soin_data)
+                if serializer.is_valid():
+                    new_soin = serializer.save()
+                    latest_consultation.soins.add(new_soin)
+                else:
+                    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+            # Handling the 'remove' field - removing Soins by IDs
+            remove_data = request.data.get('remove', [])
+            for soin_id in remove_data:
+                try:
+                    soin = Soin.objects.get(id=soin_id)
+                    latest_consultation.soins.remove(soin)
+                    soin.delete()
+                except Soin.DoesNotExist:
+                    return Response(
+                        {"error": f"Soin with id {soin_id} not found."},
+                        status=status.HTTP_404_NOT_FOUND,
+                    )
+
+            # Handling the 'update' field - updating existing Soins
+            update_data = request.data.get('update', [])
+            for soin_data in update_data:
+                try:
+                    soin = Soin.objects.get(id=soin_data['id'])
+                    serializer = SoinSerializer(soin, data=soin_data, partial=True)
+                    if serializer.is_valid():
+                        serializer.save()
+                    else:
+                        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                except Soin.DoesNotExist:
+                    return Response(
+                        {"error": f"Soin with id {soin_data['id']} not found."},
+                        status=status.HTTP_404_NOT_FOUND,
+                    )
+
+            return Response(
+                {"message": "Soins updated successfully."},
+                status=status.HTTP_200_OK,
+            )
+
+        except Patient.DoesNotExist:
+            return Response(
+                {"error": "Patient not found."},
+                status=status.HTTP_404_NOT_FOUND,
+            )

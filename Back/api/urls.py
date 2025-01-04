@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserRegistrationView , IncompleteBilanRadioPatientView, RemplirBilanRadioView, IncompleteBilansRadioView, RemplirBilanBioView , IncompleteBilanBioPatientView,  IncompleteBilansBioView , ListPatientHospitalisedView, ToggleEnCoursTraitementView,  PatientRegistrationView , MedcinRegistrationView , UserLoginView ,PatientList , PatientByNSSView ,Patientwithoutaacounts ,AdminRegistrationView, OrdonnanceCreatView , OrdonnanceList,DossierPatient,DossierOrdonnanceCreatView,LaborantinRegistrationView,RadiologueRegistrationView , InfirmierRegistrationView,MedcinList, PatientDetail,AdminUpdatePatient,BilanBiologiqueCreateView,BilanBiogiqueView, BilanRadiologiqueCreateView, BilanRadiologiqueView , BilanRadiologiqueView_radiologue,BilanView ,BilanRadioView,BilanBioView
+from .views import UserRegistrationView , ModifySoinsListView, LatestSoinListView, IncompleteBilanRadioPatientView, RemplirBilanRadioView, IncompleteBilansRadioView, RemplirBilanBioView , IncompleteBilanBioPatientView,  IncompleteBilansBioView , ListPatientHospitalisedView, ToggleEnCoursTraitementView,  PatientRegistrationView , MedcinRegistrationView , UserLoginView ,PatientList , PatientByNSSView ,Patientwithoutaacounts ,AdminRegistrationView, OrdonnanceCreatView , OrdonnanceList,DossierPatient,DossierOrdonnanceCreatView,LaborantinRegistrationView,RadiologueRegistrationView , InfirmierRegistrationView,MedcinList, PatientDetail,AdminUpdatePatient,BilanBiologiqueCreateView,BilanBiogiqueView, BilanRadiologiqueCreateView, BilanRadiologiqueView , BilanRadiologiqueView_radiologue,BilanView ,BilanRadioView,BilanBioView
 
 urlpatterns = [
   
@@ -23,6 +23,8 @@ urlpatterns = [
     path('auth/get/patient/dossier/<int:dossier_id>/bilanbio' , BilanBiogiqueView.as_view() , name='get_bilan'),
     path("auth/get/patient/dossier/<int:dossier_id>/bilanRadio", BilanRadiologiqueView.as_view(), name ="BilanRadio-list"),
     path("auth/get/patient/dossier/<int:dossier_id>/bilan", BilanView.as_view(), name ="Bilan-list"),
+    path("auth/get/patient/<int:patient_id>/latestSoin", LatestSoinListView.as_view(), name ="Soin-lastList"),
+    path("auth/get/patient/<int:patient_id>/latestSoin/modify", ModifySoinsListView.as_view(), name ="Soin-lastList-modify"),
     path("auth/get/patient/dossier/bilanRadio/<int:bilan_id>", BilanRadioView.as_view(), name ="BilanRadio-details"),
     path("auth/get/patient/dossier/bilanBio/<int:bilan_id>", BilanBioView.as_view(), name ="BilanRadio-details"),
     path('auth/get/patient/<str:nss>' , PatientByNSSView.as_view() , name='Patient_list'),

@@ -3,6 +3,7 @@ from datetime import date
 from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django import forms
+from datetime import datetime
 
 # Create your models here.
 class User(AbstractUser):
@@ -126,9 +127,10 @@ class BilanRadiologique(Bilan):
 
 
 class Soin(models.Model):
-  infirmier = models.OneToOneField(Infirmier , on_delete=models.CASCADE , related_name="infirmier_soin")
-  descriptionSoin = models.TextField()
-  typeSoin = models.TextField(blank=True)
+  infirmier = models.ForeignKey(Infirmier , on_delete=models.CASCADE , related_name="infirmier_soin")
+  date = models.DateTimeField(default=date.today)
+  subject = models.CharField(max_length=30)
+  description= models.TextField()
 
 
 class Observation(models.Model):
@@ -138,14 +140,13 @@ class Observation(models.Model):
     date = models.DateTimeField(default=date.today)
 
 
-
-
 class Consultation(models.Model):
-  soin = models.ManyToManyField(Soin , related_name= "soin_sejour")
-  medcin = models.OneToOneField(Medcin , on_delete=models.CASCADE , related_name="medcin_sejour")
-  date = models.DateField(default=date.today)
+  medcin = models.OneToOneField(Medcin, on_delete=models.CASCADE)
+  soins = models.ManyToManyField(Soin, related_name='consultations')
+  date = models.DateTimeField(default=datetime.now)
+  dateProchaineCons = models.DateTimeField(default=datetime.now)
   trouveDiagnostic = models.BooleanField(default=False)
-  raison_admission = models.TextField(blank = True)
+  raison_admission = models.TextField()
   
 
 class Resume(models.Model):

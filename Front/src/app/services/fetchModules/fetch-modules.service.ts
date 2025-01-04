@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Bilan, BilanBio, BilanRadio, Consultation, Patient } from '../../modules/types';
+import { Bilan, BilanBio, BilanRadio, Consultation, Patient, Soin } from '../../modules/types';
 import { DPI } from '../../modules/types';
 
 @Injectable({
@@ -74,6 +74,11 @@ export class FetchModulesService { //Hna yesraw les fetch functions
   fetchBilanRadio(id:number){
     const url = `http://localhost:3000/listeBilan/${id}`;
     return this.http.get<BilanBio>(url);
+  }
+
+  fetchLatestListSoin(id:number){
+    const url = `http://127.0.0.1:8000/api/auth/get/patient/${id}/latestSoin`;
+    return this.http.get<Array<Soin>>(url);
   }
   
   fetchListeOrdonnances(){
