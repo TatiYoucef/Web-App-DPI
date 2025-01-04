@@ -1,56 +1,52 @@
 <div class="container">
 
+  <!-- Logo de l'application -->
   <img src="../../../../assets/images/TrackMed1.png" width="180px" class="logo">
 
+  <!-- Bouton pour naviguer vers la page d'accueil -->
   <button (click)="goToHome()">
-
     <div class="button-div">
       <img src="../../../assets/icons/ic_home.png" width="25px" height="25px">
       <p>Accueil</p>
     </div>
-
   </button>
 
-  @if (user.role === "Administratif" ){
-
-  <button>
-
-    <div class="button-div" (click)="router.navigate(['admin/gestionPatient'])">
+  <!-- Option pour les utilisateurs administratifs : gérer les patients -->
+  @if (user.role === "Administratif" ) {
+    <button>
+      <div class="button-div" (click)="router.navigate(['admin/gestionPatient'])">
         <img src="../../../assets/icons/ic_patient.png" width="25px" height="25px">
         <p>Gérer patients</p>
       </div>
     </button>
   }
 
-  @if (user.role === "Laborantin"){
-
+  <!-- Option pour les laborantins : générer un graphe -->
+  @if (user.role === "Laborantin") {
     <button (click)="router.navigate(['rabLabInf/geneGraph'])">
       <div class="button-div">
         <img src="../../../assets/icons/ic_graph.png" width="25px" height="25px">
         <p>Générer un graphe</p>
       </div>
-  </button>
-
+    </button>
   }
 
+  <!-- Bouton pour accéder aux paramètres -->
   <button>
-
     <div class="button-div">
       <img src="../../../assets/icons/ic_settings.png" width="25px" height="25px">
       <p>Paramètres</p>
     </div>
-
   </button>
 
   <div class="empty-div"></div>
 
+  <!-- Bouton pour se déconnecter -->
   <button>
-
     <div class="button-div" (click)="goToDisconnect()">
       <p>Se déconnecter</p>
       <img src="../../../assets/icons/ic_exit.png" width="25px" height="25px">
     </div>
-
   </button>
-  
+
 </div>
