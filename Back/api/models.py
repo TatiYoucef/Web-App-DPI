@@ -75,11 +75,6 @@ class Bilan(models.Model):
   class Meta :
     abstract = True 
 
-class MedcalRecord(models.Model) :
-    parametre = models.CharField(max_length=100 , blank=True)
-    value = models.FloatField(blank=True , null=True)
-    unite = models.CharField(max_length=50 , blank=True , null=True)
-
 
 class Infirmier(models.Model):
   user = models.OneToOneField(User, on_delete=models.CASCADE , related_name="compte_Infirmier")
@@ -107,11 +102,18 @@ class Radiologue(models.Model):
 
   def __str__(self):
    return f"{self.user.username}"
+  
+class MedcalRecord(models.Model) :
+    parametre = models.CharField(max_length=100 , blank=True)
+    value = models.FloatField(blank=True , null=True)
+    unite = models.CharField(max_length=50 , blank=True , null=True)
 
 class BilanBiologique(Bilan):
   laborantin= models.ForeignKey(Laborantin ,on_delete=models.CASCADE , related_name="labo_bilan" , blank=True , null=True)  
   resultats_analytiques = models.ManyToManyField(MedcalRecord ,related_name="result_bilan")
-  medcin = models.OneToOneField(Medcin,  on_delete=models.CASCADE ,  related_name="medcin_bilanBio" , blank=True , null=True ) 
+  medcin = models.OneToOneField(Medcin,  on_delete=models.CASCADE ,  related_name="medcin_bilanBio" , blank=True , null=True )
+  rempli = models.BooleanField(default=False) 
+  date_creation = models.DateField(default=date.today)
   
 
 class BilanRadiologique(Bilan):
@@ -119,6 +121,9 @@ class BilanRadiologique(Bilan):
   images = models.JSONField(default=list , null=True, blank=True )  # List to store image paths
   compte_rendu = models.TextField(null=True, blank=True)
   medcin = models.OneToOneField(Medcin,  on_delete=models.CASCADE ,  related_name="medcin_bilanRad" , blank=True , null=True ) 
+  rempli = models.BooleanField(default=False) 
+  date_creation = models.DateField(default=date.today)
+
 
 class Soin(models.Model):
   infirmier = models.OneToOneField(Infirmier , on_delete=models.CASCADE , related_name="infirmier_soin")

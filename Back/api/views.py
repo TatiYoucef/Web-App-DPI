@@ -1,3 +1,4 @@
+import requests
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate , login
 from rest_framework.views import APIView
@@ -342,6 +343,80 @@ class BilanView(APIView):
             'bilan_biologique': serializer_bio.data,
             'bilan_radiologique': serializer_radio.data
         }, status=status.HTTP_200_OK)
+    
+class IncompleteBilanBioPatientView(APIView):
+    def get(self, request, key):
+        try:
+            
+            # Fetch the Patient object
+            patient = get_object_or_404(Patient, id=key)
+
+            # Access the associated Dossier object
+            dossier = patient.dossier
+
+            # Extract the related BilanBiologique objects and get their IDs
+            bilan_ids = dossier.bilanBiologique.values_list('id', flat=True)
+
+            # Get BilanBiologique linked to this dossier with rempli = false
+            bilans = BilanBiologique.objects.filter(id__in=bilan_ids, rempli=False)
+
+        except Dossier.DoesNotExist:
+            return Response({"error": "Dossier not found for the patient"}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = BilanBiologiqueSerializer(bilans, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class IncompleteBilansBioView(APIView):
+
+    def get(self, request):
+        """
+        Fetches a list of BilanBiologique where 'rempli' == false for patients in the list from another endpoint.
+        """
+         # Fetch the list of patients from the other endpoint
+         
+        external_url = "http://127.0.0.1:8000/api/auth/get/rabLabInf/patient"
+        try:
+            response = requests.get(external_url)
+            response.raise_for_status()  # Raise an error for non-200 responses
+        except requests.RequestException as e:
+            return Response(
+                {"error": f"Failed to fetch patients: {str(e)}"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+                
+        # Query BilanBiologique for patients in this list with 'rempli' == false
+        bilans = BilanBiologique.objects.filter(rempli=False)
+        serializer = BilanBiologiqueSerializer(bilans, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class RemplirBilanBioView(APIView):
+
+    def post(self, request, bilan_id):
+        isRempli = True
+        try:
+            bilan = BilanBiologique.objects.get(id=bilan_id)
+        except BilanBiologique.DoesNotExist:
+            return Response({"error": "BilanBiologique not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+        records_data = request.data.get('resultats_analytiques', [])
+        for record_data in records_data:
+            record_id = record_data.get('id')
+            try:
+                record = bilan.resultats_analytiques.get(id=record_id)
+                if record.value == "":
+                    isRempli = False
+
+                serializer = MedcalRecordSerializer(record, data=record_data, partial=True)
+                if serializer.is_valid():
+                    serializer.save()
+                    bilan.rempli = isRempli
+                    bilan.save()
+                else:
+                    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            except MedcalRecord.DoesNotExist:
+                return Response({"error": f"MedcalRecord with ID {record_id} not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+        return Response({"message": "Resultats updated successfully"}, status=status.HTTP_200_OK)
     
 
 class BilanRadiologiqueCreateView(APIView):

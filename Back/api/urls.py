@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserRegistrationView , ListPatientHospitalisedView, ToggleEnCoursTraitementView,  PatientRegistrationView , MedcinRegistrationView , UserLoginView ,PatientList , PatientByNSSView ,Patientwithoutaacounts ,AdminRegistrationView, OrdonnanceCreatView , OrdonnanceList,DossierPatient,DossierOrdonnanceCreatView,LaborantinRegistrationView,RadiologueRegistrationView , InfirmierRegistrationView,MedcinList, PatientDetail,AdminUpdatePatient,BilanBiologiqueCreateView,BilanBiogiqueView, BilanRadiologiqueCreateView, BilanRadiologiqueView , BilanRadiologiqueView_radiologue,BilanView ,BilanRadioView,BilanBioView
+from .views import UserRegistrationView , RemplirBilanBioView , IncompleteBilanBioPatientView,  IncompleteBilansBioView , ListPatientHospitalisedView, ToggleEnCoursTraitementView,  PatientRegistrationView , MedcinRegistrationView , UserLoginView ,PatientList , PatientByNSSView ,Patientwithoutaacounts ,AdminRegistrationView, OrdonnanceCreatView , OrdonnanceList,DossierPatient,DossierOrdonnanceCreatView,LaborantinRegistrationView,RadiologueRegistrationView , InfirmierRegistrationView,MedcinList, PatientDetail,AdminUpdatePatient,BilanBiologiqueCreateView,BilanBiogiqueView, BilanRadiologiqueCreateView, BilanRadiologiqueView , BilanRadiologiqueView_radiologue,BilanView ,BilanRadioView,BilanBioView
 
 urlpatterns = [
   
@@ -28,10 +28,12 @@ urlpatterns = [
     path('auth/get/patient/<str:nss>' , PatientByNSSView.as_view() , name='Patient_list'),
     path('auth/get/admin/patient' , Patientwithoutaacounts.as_view() , name='admin_list'),
     path('auth/get/rabLabInf/patient', ListPatientHospitalisedView.as_view() , name='hopital_list'),
-    path('auth/get/radiologue/<int:id>/bilanRad', BilanRadiologiqueView_radiologue.as_view(), name='radiologue_bilans'),
+    path('auth/get/rabLabInf/patient/incBilanBio', IncompleteBilansBioView.as_view() , name='bilanBio_list_nonRempli'),    
+    path('auth/get/rabLabInf/patient/<int:key>/incBilanBio', IncompleteBilanBioPatientView.as_view() , name='bilanBio_list_nonRempli'),    
 
     path('auth/post/patient/ordonnance' , OrdonnanceCreatView.as_view() , name='createOrd'),
     path('auth/post/patient/traitement/<int:pk>', ToggleEnCoursTraitementView.as_view() , name='change_state_hospital'),
+    path('auth/post/rabLabInf/patient/incBilanBio/update/<int:bilan_id>', RemplirBilanBioView.as_view() , name='bilanBio_update'),
     path('auth/post/patient/dossier/<int:dossier_id>/bilanbio' , BilanBiologiqueCreateView.as_view() , name='create_bilan'),
     path("auth/post/patient/dossier/<int:dossier_id>/bilanRadio",BilanRadiologiqueCreateView.as_view(), name ="BilanRadio-create"),
 ]
