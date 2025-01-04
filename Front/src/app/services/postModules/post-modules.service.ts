@@ -46,4 +46,19 @@ export class PostModulesService {
     });
 
   }
+
+  createConsultation(consultData:Object, idDossier:number){
+    const apiUrl = `http://127.0.0.1:8000/api/auth/post/patient/dossier/${idDossier}/consultation` ;
+
+    this.http.post(apiUrl , consultData).subscribe({
+      next: (response:any)=>{
+        alert("Nouvelle consultation a été ajouté")
+      },
+      error : (error: any) =>{
+        console.error('Error creating consula:', error);
+        alert("Il a eut une erreur pendant la création d'une consultation, veuillez vérifier vos données")
+      }
+    });
+
+  }
 }

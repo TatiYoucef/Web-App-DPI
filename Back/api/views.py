@@ -240,7 +240,22 @@ class DossierOrdonnanceCreatView(APIView):
             return Response(dossier_serializer.data, status=status.HTTP_201_CREATED)
         else :
             return Response(ordonnance_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
+
+class DossierConsultationCreatView(APIView):
+    def post(self, request , pk):
+        try:
+            dossier = Dossier.objects.get(pk=pk)
+        except Dossier.DoesNotExist:
+            return Response({'error': 'Dossier not found'}, status=status.HTTP_404_NOT_FOUND)
+      
+        consul_serilizer = ConsultationSerializer(data=request.data)
+        if consul_serilizer.is_valid():
+            consultation = consul_serilizer.save()
+            dossier.consultation.add(consultation)
+            dossier_serializer = DossierSerializer(dossier)
+            return Response(dossier_serializer.data, status=status.HTTP_201_CREATED)
+        else :
+            return Response(consul_serilizer.errors, status=status.HTTP_400_BAD_REQUEST)       
 
 class AdminUpdatePatient(APIView):
     
