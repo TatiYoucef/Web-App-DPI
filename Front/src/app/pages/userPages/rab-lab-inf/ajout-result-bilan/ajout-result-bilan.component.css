@@ -94,6 +94,11 @@ h3{
   margin-bottom: 30px;
 }
 
+h4{
+  color: #3958B3;
+  margin-top: -20px;
+}
+
 .inputs-div{
 
   padding: 10px 0px;
@@ -107,9 +112,12 @@ h3{
 }
 
 input{
+  height: 25px;
+}
+
+input, textarea{
   font-family: "Quicksand", serif;
   
-  height: 25px;
   margin-top: 5px;
   margin-bottom: 20px;
   padding: 5px 10px;
@@ -121,7 +129,7 @@ input{
 
 }
 
-input:focus {
+input:focus, textarea:focus {
   border-color: #3958B3; /* Blue border on focus */
 }
 

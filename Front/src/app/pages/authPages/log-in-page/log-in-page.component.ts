@@ -35,12 +35,10 @@ export class LogInPageComponent {
 
         let user:User = {
           id: response.data.id,
-          nomUser : response.username ,
-          nom : response.data.user.first_name ,
-          prenom : response.data.user.last_name ,
-          naissance: response.data.date_naissance,
-          adresse: response.data.address,
-          tel: response.data.phone_number,
+          username : response.username ,
+          first_name : response.data.user.first_name ,
+          last_name : response.data.user.last_name ,
+          email: response.data.user.email,
           role : response.role
         }
         

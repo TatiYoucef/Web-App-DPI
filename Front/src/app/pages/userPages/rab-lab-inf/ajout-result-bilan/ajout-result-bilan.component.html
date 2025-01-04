@@ -11,45 +11,65 @@
     @defer { <!--Defer is when component needs to load so we show something while loading-->
 
       <h2>Saisie {{user.role === "Radiologue" ? "de compte rendue": "des résultats de bilan biologique"}} </h2>
+      <h4>Nombre de bilans non remplis pour le patient: {{ !length ? 'Aucune, vous ètes à jour avec ce patient !!' : length}}</h4>
 
-      <div class="card">
+      @if (length) {
 
-        <h3>Rédaction des résultats des tests</h3>
+        <div class="card">
 
-        @for (item of listTestsBilan() ; track item.id) {
+          @if(user.role === "Radiologue"){
 
-          <div class="inputs-div">
-            <label> {{item.testName}}: </label>
-            <input type="text">
-          </div>
+            <h3>Rédaction de compte rendu</h3>
+
+            <div class="inputs-div">
+              <label> Compte Rendu </label>
+              <textarea rows="4" type="text" placeholder="Résumé de la radio..." [(ngModel)]="compteRendu.compte_rendu"></textarea>
+            </div>
+
+          } @else {
+
+            <h3>Rédaction des résultats des tests</h3>
+            @for (item of listTestsBilan.resultats_analytiques ; track item.id) {
   
-        }
-
-      </div>
-
-      <div class="card">
-        <h3>Jointure {{user.role === "Radiologue" ? "de la radio": "de graphe"}}</h3>
-
-        @if (selectedFile === null) {
-          <button class="card-button" (click)="triggerFileInput()">+</button>
-        } @else {
-          
-          <img [src]="previewUrl" alt="photo preview" width="400px">
-          <button class="card-button" (click)="removeFile()">-</button>
-        }
-
-      </div>
-
+              <div class="inputs-div">
+                <label> {{item.parametre}} ({{item.unite}}): </label>
+                <input type="text" [placeholder]="item.unite" [(ngModel)]="item.value">
+              </div>
       
-      <button class="sub-button">Envoyer bilan</button>
+            }
 
-      <input 
-        type="file" 
-        #fileInput 
-        style="display: none;" 
-        (change)="onFileSelected($event)" 
-        accept=".jpg,.jpeg,.png" 
-      />
+          }
+
+  
+        </div>
+  
+        <div class="card">
+          <h3>Jointure {{user.role === "Radiologue" ? "de la radio": "de graphe"}}</h3>
+  
+          @if (selectedFile === null) {
+            <button class="card-button" (click)="triggerFileInput()">+</button>
+          } @else {
+            
+            <img [src]="previewUrl" alt="photo preview" width="400px">
+            <button class="card-button" (click)="removeFile()">-</button>
+          }
+  
+        </div>
+  
+        
+        <button class="sub-button" (click)="enregistrerBilan()">Envoyer bilan</button>
+  
+        <input 
+          type="file" 
+          #fileInput 
+          style="display: none;" 
+          (change)="onFileSelected($event)" 
+          accept=".jpg,.jpeg,.png" 
+        />
+
+      }
+
+
   
       
     } @loading (minimum 1s) { <!--Nesstennaw minimum 1s besh naffichiw @defer-->

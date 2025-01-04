@@ -9,12 +9,10 @@ export class UserDataService { //classe 3endha ge3 les variables globales de use
 
   private user:User = {
     id: 0,
-    nom: "???",
-    prenom: "???",
-    nomUser: "???",
-    naissance: "???",
-    adresse: "???",
-    tel: "???",
+    first_name: "???",
+    last_name: "???",
+    username: "???",
+    email: "???",
     role: "rabLabInf",
   };  
 

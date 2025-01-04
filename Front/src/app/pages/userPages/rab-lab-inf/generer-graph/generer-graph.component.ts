@@ -29,6 +29,7 @@ export class GenererGraphComponent implements OnInit{
   isDashBoardVisible = true;
   user = inject(UserDataService).getUserData() //Njibou Data te3 user te3na
   id!:number;
+  rout = inject(ActivatedRoute);
 
   updateDashboardVisibility(isVisible: boolean) {
     console.log('Dashboard visibility updated:', isVisible);
@@ -36,9 +37,8 @@ export class GenererGraphComponent implements OnInit{
   }
 
   ngOnInit(): void {
-
-    const rout = inject(ActivatedRoute);
-    rout.paramMap.subscribe((params) =>{
+ 
+    this.rout.paramMap.subscribe((params) =>{
       this.id = Number(params.get("id")); //id de patient récupéré
     });
 

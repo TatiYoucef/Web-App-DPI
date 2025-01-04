@@ -27,10 +27,12 @@ export class GestionPatientsComponent {
   id!:number;
 
   router = inject(Router);
+  rout = inject(ActivatedRoute);
+
 
   ngOnInit(): void { //when this page load, we fetch the list of patients
         
-    this.fetchServices.fetchListePatient().pipe( //pipe to catch any error
+    this.fetchServices.fetchListePatientSansCompte().pipe( //pipe to catch any error
       catchError((err) => {
         console.log(err);
         throw err;
@@ -39,15 +41,14 @@ export class GestionPatientsComponent {
         const listeWithQrCode = await Promise.all(
           liste.map(async (patient) => ({
             ...patient,
-            qrcode: await this.generateQRCode(patient.nss), // Await each QR code generation
+            qrcode: await this.generateQRCode(Number(patient.nss)), // Await each QR code generation
           }))
         );
       this.listePatient.set(listeWithQrCode);
       //this.listePatient.set(liste);
     })
 
-    const rout = inject(ActivatedRoute);
-    rout.paramMap.subscribe((params) =>{
+    this.rout.paramMap.subscribe((params) =>{
       this.id = Number(params.get("id")); //id de patient récupéré
     });
 

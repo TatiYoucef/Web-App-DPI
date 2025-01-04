@@ -59,7 +59,7 @@ export class BilansListeComponent {
         const patQr = await Promise.resolve(
           {
             ...pat,
-            qrcode: await this.generateQRCode(pat.nss), // Await each QR code generation
+            qrcode: await this.generateQRCode(Number(pat.nss)), // Await each QR code generation
           }
         ); 
         console.log(this.id);

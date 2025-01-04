@@ -3,9 +3,9 @@
   "patients": [
     {
       "id": 1,
-      "id_DPI": 1,
+      "dossier": 1,
       "idUser": 101,
-      "nomUser": "Doe",
+      "username": "Doe",
       "nss": 123456789,
       "naissance": "1990-01-01",
       "adresse": "123 Main Street, Cityville",
@@ -17,9 +17,9 @@
     },
     {
       "id": 2,
-      "id_DPI": 2,
+      "dossier": 2,
       "idUser": 102,
-      "nomUser": "Smith",
+      "username": "Smith",
       "nss": 987654321,
       "naissance": "1985-05-15",
       "adresse": "456 Elm Street, Townsville",
@@ -31,9 +31,9 @@
     },
     {
       "id": 3,
-      "id_DPI": 3,
+      "dossier": 3,
       "idUser": 103,
-      "nomUser": "Brown",
+      "username": "Brown",
       "nss": 456123789,
       "naissance": "1995-03-20",
       "adresse": "789 Oak Avenue, Villageton",
@@ -45,9 +45,9 @@
     },
     {
       "id": 4,
-      "id_DPI": 4,
+      "dossier": 4,
       "idUser": 104,
-      "nomUser": "Johnson",
+      "username": "Johnson",
       "nss": 321654987,
       "naissance": "1988-07-11",
       "adresse": "321 Pine Lane, Suburbia",
@@ -59,9 +59,9 @@
     },
     {
       "id": 5,
-      "id_DPI": 5,
+      "dossier": 5,
       "idUser": 105,
-      "nomUser": "Taylor",
+      "username": "Taylor",
       "nss": 654789321,
       "naissance": "1992-12-03",
       "adresse": "654 Maple Drive, Metropolis",
@@ -73,9 +73,9 @@
     },
     {
       "id": 6,
-      "id_DPI": 6,
+      "dossier": 6,
       "idUser": 106,
-      "nomUser": "Anderson",
+      "username": "Anderson",
       "nss": 789123456,
       "naissance": "1980-04-25",
       "adresse": "789 Cedar Court, Riverwood",
@@ -87,9 +87,9 @@
     },
     {
       "id": 7,
-      "id_DPI": 7,
+      "dossier": 7,
       "idUser": 107,
-      "nomUser": "Moore",
+      "username": "Moore",
       "nss": 123789456,
       "naissance": "1998-09-18",
       "adresse": "123 Birch Lane, Highland",
@@ -101,9 +101,9 @@
     },
     {
       "id": 8,
-      "id_DPI": 8,
+      "dossier": 8,
       "idUser": 108,
-      "nomUser": "Thomas",
+      "username": "Thomas",
       "nss": 987321654,
       "naissance": "1983-02-10",
       "adresse": "456 Spruce Road, Valleyview",
@@ -115,9 +115,9 @@
     },
     {
       "id": 9,
-      "id_DPI": 9,
+      "dossier": 9,
       "idUser": 109,
-      "nomUser": "Martin",
+      "username": "Martin",
       "nss": 321987654,
       "naissance": "1991-11-30",
       "adresse": "321 Redwood Avenue, Forest Hill",
@@ -129,9 +129,9 @@
     },
     {
       "id": 10,
-      "id_DPI": 10,
+      "dossier": 10,
       "idUser": 110,
-      "nomUser": "Garcia",
+      "username": "Garcia",
       "nss": 654321987,
       "naissance": "1993-06-22",
       "adresse": "654 Willow Way, Seaside",
@@ -188,7 +188,7 @@
       "ordonnances": [
         {
           "id": 21,
-          "id_DPI": 11,
+          "dossier": 11,
           "dateCreation": "2024-12-01",
           "duree": "10 jours",
           "etat": true,
@@ -211,7 +211,7 @@
         },
         {
           "id": 22,
-          "id_DPI": 11,
+          "dossier": 11,
           "dateCreation": "2024-12-05",
           "duree": "7 jours",
           "etat": false,
@@ -244,7 +244,7 @@
       "ordonnances": [
         {
           "id": 23,
-          "id_DPI": 12,
+          "dossier": 12,
           "dateCreation": "2024-12-11",
           "duree": "5 jours",
           "etat": true,
@@ -260,7 +260,7 @@
         },
         {
           "id": 24,
-          "id_DPI": 12,
+          "dossier": 12,
           "dateCreation": "2024-12-13",
           "duree": "10 jours",
           "etat": false,
@@ -300,7 +300,7 @@
       "ordonnances": [
         {
           "id": 25,
-          "id_DPI": 13,
+          "dossier": 13,
           "dateCreation": "2024-12-21",
           "duree": "3 jours",
           "etat": true,
@@ -316,7 +316,7 @@
         },
         {
           "id": 26,
-          "id_DPI": 13,
+          "dossier": 13,
           "dateCreation": "2024-12-22",
           "duree": "5 jours",
           "etat": false,

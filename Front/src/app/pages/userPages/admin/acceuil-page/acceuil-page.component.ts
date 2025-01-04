@@ -6,6 +6,7 @@ import { UserDataService } from '../../../../services/userData/user-data.service
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { PostModulesService } from '../../../../services/postModules/post-modules.service';
 
 @Component({
   selector: 'app-acceuil-page',
@@ -20,7 +21,24 @@ export class AcceuilPageComponent implements OnInit{
   isDashBoardVisible = true;
   isCreeDPI = signal(false);
   user = inject(UserDataService).getUserData() ;  //Njibou Data te3 user te3na 
+  postServices = inject(PostModulesService)  
   id!:number;
+  rout = inject(ActivatedRoute);
+
+  patientData = { //this will be filled in creerDPI
+    user: {
+      username:"",
+      email: "",
+      role: 'Patient',
+      first_name: "",
+      last_name: ""
+    },
+    date_naissance: "",
+    address: "",
+    phone_number: "",
+    nss: "",
+    mutuelle: "",
+  }
 
   updateDashboardVisibility(isVisible: boolean) {
     this.isDashBoardVisible = isVisible;
@@ -28,15 +46,26 @@ export class AcceuilPageComponent implements OnInit{
 
   ngOnInit(): void {
 
-    const rout = inject(ActivatedRoute);
-    rout.paramMap.subscribe((params) =>{
+    this.rout.paramMap.subscribe((params) =>{
       this.id = Number(params.get("id")); //id de user récupéré
+
     });
+
+    console.log("HELLLLO ?" , isNaN(Number('kjfdb')));
 
   }
 
-  creerDPI(){
-    console.log("Créer DPI en cours de traitement...")
+  creerDPI(){ //post function to create DPI with verification
+
+    if(!this.patientData.address || !this.patientData.user || !this.patientData.date_naissance
+      || !this.patientData.phone_number || !this.patientData.nss || !this.patientData.mutuelle
+    ) alert("Veuillez remplir tous les champs pour créer un DPI");
+
+    else{
+      this.postServices.createPatient(this.patientData);
+      this.isCreeDPI.set(false);
+    }
+
   }
 
   annuler(event: MouseEvent){
@@ -48,7 +77,5 @@ export class AcceuilPageComponent implements OnInit{
 
     }
   }
-
-  nssInput = '';
 
 }
