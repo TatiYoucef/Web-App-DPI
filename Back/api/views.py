@@ -189,6 +189,28 @@ class Patientwithoutaacounts(APIView):
         
         serializer = self.serializer_class(patients , many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class ToggleEnCoursTraitementView(APIView):
+    def post(self, request, pk):
+        """
+        Toggles the 'en_cours_traitement' field for a specific patient.
+        """
+        patient = get_object_or_404(Patient, pk=pk)
+        patient.en_cours_traitement = not patient.en_cours_traitement
+        patient.save()
+        return Response(
+            {"message": f"Patient {patient.user.username}'s 'en_cours_traitement' updated to {patient.en_cours_traitement}."},
+            status=status.HTTP_200_OK
+        )
+
+class ListPatientHospitalisedView(APIView):
+    def get(self, request):
+        """
+        Returns a list of patients with 'en_cours_traitement' = true.
+        """
+        patients = Patient.objects.filter(en_cours_traitement=True)
+        serializer = PatientSerializer(patients, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
         
 
 class OrdonnanceCreatView(APIView):

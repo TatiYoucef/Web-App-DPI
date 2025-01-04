@@ -180,6 +180,7 @@ class Patient(models.Model):
   mutuelle = models.CharField(max_length=15 , blank=True)
   dossier = models.OneToOneField(Dossier , on_delete=models.CASCADE , related_name="patient_dossier" , null=True , blank=True)
   have_accounts = models.BooleanField(default=False , null =True)
+  en_cours_traitement = models.BooleanField(default=False)
   qrcode = models.CharField(default='', max_length=15, blank=True)
 
   def __str__(self):

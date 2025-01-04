@@ -22,6 +22,7 @@ export type Patient = { //classe patient
   mutuelle: String,
   medcin_traitant: String,
   have_accounts: Boolean,
+  en_cours_traitement: Boolean,
   qrcode : String ,
 }
 
