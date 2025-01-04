@@ -19,6 +19,7 @@ import { UserDataService } from '../../../../services/userData/user-data.service
 export class OrdonnancesAccueilComponent {
   
   private route = inject(ActivatedRoute);
+  router = inject(Router);
   isDashBoard = signal(false);
   user = inject(UserDataService).getUserData();
   isDashBoardVisible = true;
@@ -96,7 +97,5 @@ export class OrdonnancesAccueilComponent {
   ajoutMedicament(){
     
   }
-
-  router = inject(Router);
 
 }

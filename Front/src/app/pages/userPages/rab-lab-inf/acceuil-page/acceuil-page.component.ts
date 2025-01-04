@@ -31,6 +31,7 @@ export class AcceuilPageComponent implements OnInit{
   id!:number;
 
   router = inject(Router);
+  rout = inject(ActivatedRoute);
   user = inject(UserDataService).getUserData();
 
   ngOnInit(): void { //when this page load, we fetch the list of patients
@@ -50,9 +51,8 @@ export class AcceuilPageComponent implements OnInit{
       this.listePatient.set(listeWithQrCode);
       //this.listePatient.set(liste);
     })
-
-    const rout = inject(ActivatedRoute);
-    rout.paramMap.subscribe((params) =>{
+ 
+    this.rout.paramMap.subscribe((params) =>{
       this.id = Number(params.get("id")); //id de patient récupéré
     });
 

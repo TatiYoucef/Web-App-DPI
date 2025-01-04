@@ -23,6 +23,7 @@ export class AcceuilPageComponent implements OnInit{
   user = inject(UserDataService).getUserData() ;  //Njibou Data te3 user te3na 
   postServices = inject(PostModulesService)  
   id!:number;
+  rout = inject(ActivatedRoute);
 
   patientData = { //this will be filled in creerDPI
     user: {
@@ -45,12 +46,12 @@ export class AcceuilPageComponent implements OnInit{
 
   ngOnInit(): void {
 
-    const rout = inject(ActivatedRoute);
-    rout.paramMap.subscribe((params) =>{
+    this.rout.paramMap.subscribe((params) =>{
       this.id = Number(params.get("id")); //id de user récupéré
+
     });
 
-
+    console.log("HELLLLO ?" , isNaN(Number('kjfdb')));
 
   }
 

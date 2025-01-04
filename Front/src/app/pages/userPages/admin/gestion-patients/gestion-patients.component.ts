@@ -27,6 +27,8 @@ export class GestionPatientsComponent {
   id!:number;
 
   router = inject(Router);
+  rout = inject(ActivatedRoute);
+
 
   ngOnInit(): void { //when this page load, we fetch the list of patients
         
@@ -46,8 +48,7 @@ export class GestionPatientsComponent {
       //this.listePatient.set(liste);
     })
 
-    const rout = inject(ActivatedRoute);
-    rout.paramMap.subscribe((params) =>{
+    this.rout.paramMap.subscribe((params) =>{
       this.id = Number(params.get("id")); //id de patient récupéré
     });
 

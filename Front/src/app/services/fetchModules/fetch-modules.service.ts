@@ -26,6 +26,11 @@ export class FetchModulesService { //Hna yesraw les fetch functions
     return this.http.get<Patient>(url);
   }
 
+  fetchPatientNss(nss: number){
+    const url = `http://127.0.0.1:8000/api/auth/get/patient/${nss}`;
+    return this.http.get<Patient>(url);
+  }
+
   fetchListeTestsBilan(){
     const url = "http://localhost:3000/bilanMedecin"; //Json Test, not from backend
     return this.http.get(url);
