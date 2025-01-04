@@ -66,7 +66,7 @@ export class AcceuilPageComponent implements OnInit{
 
   goConsult(id:number){
     
-    if(this.user.role === "Infermier"){
+    if(this.user.role === "Infirmier"){
       this.router.navigate([`rabLabInf/${this.user.id}/ajoutSoin/`, id]);
     } else {
       this.router.navigate([`rabLabInf/${this.user.id}/joindreBilan/`, id]);

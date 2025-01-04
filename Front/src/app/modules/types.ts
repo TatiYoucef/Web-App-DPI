@@ -157,6 +157,7 @@ export type Medicament = {
 export type Soin = {
 
   id: number,
+  infirmier: number,
   subject: String,
   description: String, 
   date: String,

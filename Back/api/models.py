@@ -130,7 +130,7 @@ class Soin(models.Model):
   infirmier = models.ForeignKey(Infirmier , on_delete=models.CASCADE , related_name="infirmier_soin")
   date = models.DateTimeField(default=date.today)
   subject = models.CharField(max_length=30)
-  descriptionSoin = models.TextField()
+  description= models.TextField()
 
 
 class Observation(models.Model):

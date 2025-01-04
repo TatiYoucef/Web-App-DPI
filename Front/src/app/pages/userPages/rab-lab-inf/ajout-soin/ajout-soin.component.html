@@ -12,22 +12,24 @@
 
       <h1>liste des soins</h1>
       
-      @for (item of listeSoin(); track item.id) { <!--Parcourir les soins-->
+      @for (item of newListe; track item.id) { <!--Parcourir les soins-->
         <div class="card">
 
-          <h2>Soin {{listeSoin().indexOf(item) + 1}} </h2>
+          <h2>Soin {{newListe.indexOf(item) + 1}} </h2>
 
           <label>Sujet de soin</label>
           <input type="text" placeholder="sujet de votre soin" [(ngModel)]="item.subject"> <!--NgModel yerbet input te3 html be un variable fe component class-->
           <label>Description</label>
           <textarea rows="3" placeholder="description pour votre soin" [(ngModel)]="item.description"></textarea>
 
-          @if (listeSoin().indexOf(item) != listeSoin().length - 1) { <button (click)="removeSoin(listeSoin().indexOf(item))">Supprimer</button> } 
+          <p>Crée le {{item.date}}</p>
+
+          @if (newListe.indexOf(item) != newListe.length - 1) { <button (click)="removeSoin(newListe.indexOf(item))">Supprimer</button> } 
         </div>
       }
 
       <button (click)="addSoin()">Ajouter un soin</button>
-      <button>Sauvegarder</button>
+      <button (click)="sauvegarder()">Sauvegarder</button>
       
     } @loading (minimum 1s) { <!--Nesstennaw minimum 1s besh naffichiw @defer-->
       <div class="center-div">
