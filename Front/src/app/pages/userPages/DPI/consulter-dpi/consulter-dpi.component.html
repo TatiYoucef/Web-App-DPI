@@ -19,12 +19,12 @@
           <div class="card-info">
             <p><strong>Patient:</strong> {{patient.user.last_name}} {{patient.user.first_name}}</p>
             <p><strong>NSS:</strong> {{patient.nss}}</p>
-            <p><strong>Créé le :</strong> {{ dossier.dateAdmission | date:'yyyy-MM-dd à HH\'h\'mm\'m\'ss\'s\'' }} </p>
+            <p><strong>Créé le :</strong> {{ dossier.date_admission| date:'yyyy-MM-dd à HH\'h\'mm\'m\'ss\'s\'' }} </p>
             <p><strong>Nombre d'hospitalisations:</strong> {{dossier.ordonnances.length}} </p>
           </div>
           <div class="last-modif">
             <p class="modif"><strong>Derniere modification</strong></p>
-            <p class="date"> {{dossier.dateMaj | date:'yyyy-MM-dd à HH\'h\'mm\'m\'ss\'s\'' }} </p>
+            <p class="date"> {{dossier.date_maj| date:'yyyy-MM-dd à HH\'h\'mm\'m\'ss\'s\'' }} </p>
           </div>
         </div>
 

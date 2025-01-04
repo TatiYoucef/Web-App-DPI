@@ -182,7 +182,7 @@ class ConsultationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Consultation
         fields = '__all__'
-  #  def create(self , validated_data):
+
 
 
 class ResumeSerializer(serializers.ModelSerializer):
