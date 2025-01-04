@@ -34,13 +34,11 @@ export class LogInPageComponent {
         // Handle successful login (e.g., save token, navigate to another page)
 
         let user:User = {
-          id: response.data.user.id,
-          nomUser : response.username ,
-          nom : response.data.user.first_name ,
-          prenom : response.data.user.last_name ,
-          naissance: response.data.date_naissance,
-          adresse: response.data.address,
-          tel: response.data.phone_number,
+          id: response.data.id,
+          username : response.username ,
+          first_name : response.data.user.first_name ,
+          last_name : response.data.user.last_name ,
+          email: response.data.user.email,
           role : response.role
         }
         
@@ -51,17 +49,23 @@ export class LogInPageComponent {
         switch(response.role){
           
           case "Patient" :
-            const patientId = response.data.id;
-            const patientUrl = `patient/consulter-DPI/${patientId}`;
-            this.router.navigate([patientUrl]);
+
+            this.router.navigate(['patient/consulter-DPI',user.id]);
               
           break;
 
           case "Medcin" :
 
-            this.router.navigate(["medecin"])
+            this.router.navigate(["medecin", user.id])
             
           break;
+
+          case "Administratif":
+            this.router.navigate(['admin', user.id]);
+          break;
+
+          default: this.router.navigate(['rabLabInf', user.id]);
+
         }
         
       },

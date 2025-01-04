@@ -34,21 +34,21 @@ export class DashBoardComponent {
     switch (this.user.role) {
 
       case "Administratif":
-        this.router.navigate(['admin']);
-        break;
+        this.router.navigate(['admin', this.user.id]);
+      break;
 
       case "Medcin":
-        this.router.navigate(['medecin']);
-        break;
+        this.router.navigate(['medecin', this.user.id]);
+      break;
 
       case "Patient":
-        // Génération de l'URL spécifique au patient pour consulter ses données
-        const patientUrl = `patient/consulter-DPI/${this.user.id}`;
-        this.router.navigate([patientUrl]);
-        break;
+        this.router.navigate([`patient/consulter-DPI/${this.user.id}`]);
+      break;
 
-      default: // Option par défaut pour le rôle "rablabinf"
-        this.router.navigate(['rabLabInf']);
+      default: //rablabinf
+        this.router.navigate(['rabLabInf',this.user.id]);
+
+      
     }
   }
 

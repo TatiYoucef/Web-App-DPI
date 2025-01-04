@@ -1,13 +1,14 @@
 import { Component, inject, signal } from '@angular/core';
 import { FetchModulesService } from '../../../../services/fetchModules/fetch-modules.service';
 import { Patient } from '../../../../modules/types';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { catchError } from 'rxjs';
 import QRCode from 'qrcode';
 import { LoadingScreenComponent } from "../../../../components/loading-screen/loading-screen.component";
 import { DashBoardComponent } from "../../../../components/dash-board/dash-board.component";
 import { HeaderComponent } from "../../../../components/header-user/header.component";
 import { CommonModule } from '@angular/common';
+import { UserDataService } from '../../../../services/userData/user-data.service';
 
 @Component({
   selector: 'app-gestion-patients',
@@ -22,12 +23,16 @@ export class GestionPatientsComponent {
   
   fetchServices = inject(FetchModulesService);
   listePatient = signal<Array<Patient>>([]);
+  user = inject(UserDataService).getUserData();
+  id!:number;
 
   router = inject(Router);
+  rout = inject(ActivatedRoute);
+
 
   ngOnInit(): void { //when this page load, we fetch the list of patients
         
-    this.fetchServices.fetchListePatient().pipe( //pipe to catch any error
+    this.fetchServices.fetchListePatientSansCompte().pipe( //pipe to catch any error
       catchError((err) => {
         console.log(err);
         throw err;
@@ -36,12 +41,16 @@ export class GestionPatientsComponent {
         const listeWithQrCode = await Promise.all(
           liste.map(async (patient) => ({
             ...patient,
-            qrcode: await this.generateQRCode(patient.nss), // Await each QR code generation
+            qrcode: await this.generateQRCode(Number(patient.nss)), // Await each QR code generation
           }))
         );
       this.listePatient.set(listeWithQrCode);
       //this.listePatient.set(liste);
     })
+
+    this.rout.paramMap.subscribe((params) =>{
+      this.id = Number(params.get("id")); //id de patient récupéré
+    });
 
     
   }
@@ -56,7 +65,7 @@ export class GestionPatientsComponent {
   }
 
   goConsult(id:number){ //aller au page pour créer un compte
-    this.router.navigate(['admin/gestionPatient', id]);
+    this.router.navigate(['admin',this.user.id,'gestionPatient', id]);
   }
 
 }

@@ -11,7 +11,7 @@
 
     @defer {
 
-      <h1>Bienvenue chers admin {{user.nom}} {{user.prenom}}</h1>
+      <h1>Bienvenue chers admin {{user.first_name}} {{user.last_name}}</h1>
 
       <div class="card2" >
         <img src="../../../../../assets/icons/new_DPI.png" width="100px" >   
@@ -31,25 +31,28 @@
             <h2>Créer DPI d'un patient</h2>
 
             <label>Nss:</label>
-            <input type="text" placeholder="NSS" [(ngModel)]="nssInput"> 
+            <input type="text" placeholder="NSS" [(ngModel)]="patientData.nss"> 
 
             <label>Nom</label>
-            <input type="text" placeholder="nom"> 
+            <input type="text" placeholder="nom" [(ngModel)]="patientData.user.first_name"> 
 
             <label>Prénom</label>
-            <input type="text" placeholder="prénom">
+            <input type="text" placeholder="prénom" [(ngModel)]="patientData.user.last_name">
 
             <label>Nom d'utilisateur</label>
-            <input type="text" placeholder="nom d'utilisateur">
+            <input type="text" placeholder="nom d'utilisateur" [(ngModel)]="patientData.user.username">
 
             <label>Addresse</label>
-            <input type="text" placeholder="Addresse">
+            <input type="text" placeholder="Addresse" [(ngModel)]="patientData.address">
 
             <label>Date de naissance</label>
-            <input type="date">
+            <input type="date" [(ngModel)]="patientData.date_naissance">
 
             <label>numero telephone</label>
-            <input type="tel" placeholder="téléphone">
+            <input type="tel" placeholder="téléphone" [(ngModel)]="patientData.phone_number">
+
+            <label>mutuelle</label>
+            <input type="tel" placeholder="téléphone" [(ngModel)]="patientData.mutuelle">
 
             <div class="container2">
 

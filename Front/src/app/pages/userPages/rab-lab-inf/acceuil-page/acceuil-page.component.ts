@@ -8,7 +8,7 @@ import { LoadingScreenComponent } from "../../../../components/loading-screen/lo
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import QRCode from 'qrcode';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserDataService } from '../../../../services/userData/user-data.service';
 
 
@@ -28,12 +28,15 @@ export class AcceuilPageComponent implements OnInit{
   fetchServices = inject(FetchModulesService);
   listePatient = signal<Array<Patient>>([]);
 
+  id!:number;
+
   router = inject(Router);
+  rout = inject(ActivatedRoute);
   user = inject(UserDataService).getUserData();
 
   ngOnInit(): void { //when this page load, we fetch the list of patients
       
-    this.fetchServices.fetchListePatient().pipe( //pipe to catch any error
+    this.fetchServices.fetchListePatientHospitalised().pipe( //pipe to catch any error
       catchError((err) => {
         console.log(err);
         throw err;
@@ -42,12 +45,16 @@ export class AcceuilPageComponent implements OnInit{
         const listeWithQrCode = await Promise.all(
           liste.map(async (patient) => ({
             ...patient,
-            qrcode: await this.generateQRCode(patient.nss), // Await each QR code generation
+            qrcode: await this.generateQRCode(Number(patient.nss)), // Await each QR code generation
           }))
         );
       this.listePatient.set(listeWithQrCode);
-      //this.listePatient.set(liste);
+
     })
+  
+    this.rout.paramMap.subscribe((params) =>{
+      this.id = Number(params.get("id")); //id de RLI récupéré
+    });
 
     
   }
@@ -59,10 +66,10 @@ export class AcceuilPageComponent implements OnInit{
 
   goConsult(id:number){
     
-    if(this.user.role === "Infermier"){
-      this.router.navigate(['rabLabInf/ajoutSoin/', id]);
+    if(this.user.role === "Infirmier"){
+      this.router.navigate([`rabLabInf/${this.user.id}/ajoutSoin/`, id]);
     } else {
-      this.router.navigate(['rabLabInf/joindreBilan/', id]);
+      this.router.navigate([`rabLabInf/${this.user.id}/joindreBilan/`, id]);
     }
 
   }

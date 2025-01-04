@@ -6,6 +6,7 @@ import { LoadingScreenComponent } from "../../../../components/loading-screen/lo
 import { CommonModule } from '@angular/common'; 
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { UserDataService } from '../../../../services/userData/user-data.service';
 
 
 @Component({
@@ -16,8 +17,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './ordonnances-accueil.component.css'
 })
 export class OrdonnancesAccueilComponent {
+  
   private route = inject(ActivatedRoute);
+  router = inject(Router);
   isDashBoard = signal(false);
+  user = inject(UserDataService).getUserData();
   isDashBoardVisible = true;
   isAjoutOrdonnance = false;
   isAjoutMedicament = false;
@@ -93,7 +97,5 @@ export class OrdonnancesAccueilComponent {
   ajoutMedicament(){
     
   }
-
-  router = inject(Router);
 
 }

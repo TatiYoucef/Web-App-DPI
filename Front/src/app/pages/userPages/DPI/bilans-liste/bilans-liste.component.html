@@ -21,7 +21,7 @@
 
       } @else {
 
-        <h2>Liste des bilans de patient {{patient.nom}} {{patient.prenom}}:</h2>
+        <h2>Liste des bilans de patient {{patient.user.first_name}} {{patient.user.last_name}}:</h2>
 
         <button *ngIf="user.role === 'Medcin'" (click)="isAjoutBilan = true" style="margin: auto;">Ajouter bilan</button>
 

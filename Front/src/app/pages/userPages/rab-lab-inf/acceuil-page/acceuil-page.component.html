@@ -27,15 +27,15 @@
           <div class="item" (click)="goConsult(item.id)">
       
             <div class="profile">
-              <h3>{{ item.nom }} {{ item.prenom }}</h3>
+              <h3>{{ item.user.first_name }} {{ item.user.last_name }}</h3>
               <p>Nss: {{ item.nss }} </p>
             </div>
+            
+            <div class="empty-div"></div>
+
             <div class="qr-code">
               <img [src]="item.qrcode" alt="QR Code" />
             </div>   
-            <div class="empty-div"></div>
-
-            <p>Not yet submitted</p>
           </div>
         }
 

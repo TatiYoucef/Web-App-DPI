@@ -3,35 +3,33 @@
 export type User = {
 
   id: number,
-  nomUser : String ,
-  nom: String,
-  prenom : String,
+  username : String ,
+  first_name: String,
+  last_name : String,
   role: String,
-  naissance: String,
-  adresse: String,
-  tel: String,
+  email: String,
 
 }
 
 export type Patient = { //classe patient
   id : number ,
-  id_DPI : number , 
-  idUser : number ,
-  nomUser : String ,
-  nss: number ,
-  naissance: String,
-  adresse: String,
-  tel: String,
+  dossier : number , 
+  user: User,
+  nss: String ,
+  date_naissance: String,
+  address: String,
+  phone_number: String,
   mutuelle: String,
-  nom: String,
-  prenom : String,
-  qrcode : string,
+  medcin_traitant: String,
+  have_accounts: Boolean,
+  en_cours_traitement: Boolean,
+  qrcode : String ,
 }
 
 export type Medcin = {
   id : number ,
   idUser : number ,
-  nomUser : String ,
+  username : String ,
   nom: String,
   prenom : String,
   naissance: String,
@@ -39,24 +37,47 @@ export type Medcin = {
   tel: String,
 }
 
-export type Bilan = {
+export type BilanBio = {
 
   id: number;
-  idMed: number;
-  idConsul: number;
+  laborantin: number;
+  medcin: number;
 
-  type: String; //Biologique or Radiologique
   rempli: boolean; //si rad/lab l'a rempli ou pas
-  date: String;
+  date_creation: String;
+  resultats_analytiques: Array<MedicalRecord>;
 
-  tests: Array<TestBilan>;
+  description: String;
+  date_prescription: String;
+  typeBilan: String;
+  status: String;
+
 }
 
-export type TestBilan = {
+export type BilanRadio = {
+
+  id: number;
+  radiologue: number;
+  medcin: number;
+
+  rempli: boolean; //si rad/lab l'a rempli ou pas
+  date_creation: String;
+
+  compte_rendu: String;
+
+  description: String;
+  date_prescription: String;
+  typeBilan: String;
+  status: String;
+  
+}
+
+export type MedicalRecord = {
 
   id : number,
-  testName : String,
-  result: String | null,
+  parametre : String,
+  value: String | null,
+  unite: String
 
 }
 
@@ -109,7 +130,7 @@ export type Patient2 = {
   id : number ,
   id_DPI : number , 
   idUser : number ,
-  nomUser : String ,
+  username : String ,
   mutuelle: String,
   user : User2,
   date_naissance: Date,
@@ -136,6 +157,7 @@ export type Medicament = {
 export type Soin = {
 
   id: number,
+  infirmier: number,
   subject: String,
   description: String, 
   date: String,
@@ -151,3 +173,24 @@ export type Consultation = {
   trouveDiagnostic: boolean; // Boolean value indicating whether a diagnosis was found
   raison_admission: string; // Text field representing the reason for admission
 };
+
+export type Bilan = {
+
+  id: number;
+  idMed: number;
+  idConsul: number;
+
+  type: String; //Biologique or Radiologique
+  rempli: boolean; //si rad/lab l'a rempli ou pas
+  date: String;
+
+  tests: Array<TestBilan>;
+}
+
+export type TestBilan = {
+
+  id : number,
+  testName : String,
+  result: String | null,
+
+}

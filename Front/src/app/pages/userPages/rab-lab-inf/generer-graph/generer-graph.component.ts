@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { 
@@ -14,6 +14,7 @@ import { UserDataService } from '../../../../services/userData/user-data.service
 import { HeaderComponent } from "../../../../components/header-user/header.component";
 import { DashBoardComponent } from "../../../../components/dash-board/dash-board.component";
 import { LoadingScreenComponent } from "../../../../components/loading-screen/loading-screen.component";
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-generer-graph',
@@ -23,14 +24,24 @@ import { LoadingScreenComponent } from "../../../../components/loading-screen/lo
   styleUrl: './generer-graph.component.css'
 })
 
-export class GenererGraphComponent {
+export class GenererGraphComponent implements OnInit{
 
   isDashBoardVisible = true;
   user = inject(UserDataService).getUserData() //Njibou Data te3 user te3na
-  
+  id!:number;
+  rout = inject(ActivatedRoute);
+
   updateDashboardVisibility(isVisible: boolean) {
     console.log('Dashboard visibility updated:', isVisible);
     this.isDashBoardVisible = isVisible;
+  }
+
+  ngOnInit(): void {
+ 
+    this.rout.paramMap.subscribe((params) =>{
+      this.id = Number(params.get("id")); //id de patient récupéré
+    });
+
   }
 
   @ViewChild('chartCanvas') chartCanvas!: ElementRef<HTMLCanvasElement>;

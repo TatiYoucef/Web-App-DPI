@@ -13,12 +13,13 @@
 
   <!-- Option pour les utilisateurs administratifs : gérer les patients -->
   @if (user.role === "Administratif" ) {
-    <button>
-      <div class="button-div" (click)="router.navigate(['admin/gestionPatient'])">
-        <img src="../../../assets/icons/ic_patient.png" width="25px" height="25px">
-        <p>Gérer patients</p>
-      </div>
+      <button>
+        <div class="button-div" (click)="router.navigate(['admin', user.id, 'gestionPatient'])">
+          <img src="../../../assets/icons/ic_patient.png" width="25px" height="25px">
+          <p>Gérer patients</p>
+        </div>
     </button>
+
   }
 
   <!-- Option pour les laborantins : générer un graphe -->
@@ -30,14 +31,6 @@
       </div>
     </button>
   }
-
-  <!-- Bouton pour accéder aux paramètres -->
-  <button>
-    <div class="button-div">
-      <img src="../../../assets/icons/ic_settings.png" width="25px" height="25px">
-      <p>Paramètres</p>
-    </div>
-  </button>
 
   <div class="empty-div"></div>
 

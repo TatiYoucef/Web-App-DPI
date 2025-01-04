@@ -26,11 +26,12 @@
 .inscription-button,
 .connexion-button {
   font-family: "Quicksand", serif;
-  font-size: 16px; /* Reduced font size for better responsiveness */
-  font-weight: 500;
+  font-size: 18px; /* Reduced font size for better responsiveness */
+  font-weight: 800;
   border: none;
   border-radius: 100px;
   padding: 10px 20px;
+  margin-right: 10%;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }

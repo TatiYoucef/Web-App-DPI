@@ -1,5 +1,5 @@
-import { Component, EventEmitter, inject, Output, signal, HostListener } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, inject, Output, signal, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserDataService } from '../../services/userData/user-data.service';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common'; // Import CommonModule
   styleUrls: ['./header.component.css']
 })
 
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
 
   isDashBoard = signal(true);  // Dashboard is visible by default on larger screens
   @Output() changeDashEvent = new EventEmitter<boolean>();
@@ -22,6 +22,21 @@ export class HeaderComponent {
   isNotiPage = signal(false);  // Notification page state
 
   screenWidth: number = window.innerWidth;
+
+  ngOnInit(): void {
+
+    if(this.user.role === "???"){
+      alert("Vous devez s'authentifier pour naviguer à cette route")
+      this.router.navigate(['']);
+    }
+
+    if(this.router.url.includes('notif')){
+      this.isNotiPage.set(true);
+    } else {
+      this.isNotiPage.set(false);
+    }
+    
+  }
 
   constructor() {
     // On initialization, check screen width and set dashboard visibility

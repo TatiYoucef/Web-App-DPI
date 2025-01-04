@@ -9,10 +9,11 @@
 
   @defer {
 
+
   <div class="ordonnances-container">
         <div class="firstLine">
           <h1>Liste des ordonnances </h1>
-          <button class="card-button" *ngIf="user.role === 'Medcin'" style="margin: auto;" (click)="isAjoutOrdonnance = true">Ajouter ordonnance</button>
+          <button *ngIf="user.role === 'Medcin'" class="card-button" style="margin: auto;" (click)="isAjoutOrdonnance = true">Ajouter ordonnance</button>
         </div>
           <div *ngIf="ordonnances.length === 0" class="no-ordonnances">
             <img src="../../../../../assets/images/Document_empty.png" width="280px" >

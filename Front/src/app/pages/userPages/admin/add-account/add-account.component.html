@@ -10,7 +10,7 @@
 
     @defer { <!--Defer is when component needs to load so we show something while loading-->
 
-      <h2>Création de compte pour patient {{patient.nom}} {{patient.prenom}} </h2>
+      <h2>Création de compte pour patient {{patient.user.first_name}} {{patient.user.last_name}} </h2>
 
       <div class="card">
 
@@ -18,7 +18,7 @@
 
         <div class="inputs-div">
           <label>Nom de l'utilisateur</label>
-          <input id="username" type="text" placeholder="nom de l'utilisateur" #username>
+          <input id="username" type="text" placeholder="nom de l'utilisateur" [value]="patient.user.username" #username>
         </div>
 
         <div class="inputs-div">
