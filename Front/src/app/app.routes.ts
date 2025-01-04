@@ -52,16 +52,6 @@ export const routes: Routes = [
     }
   },
 
-
-
-  {
-    path:'patient',
-    loadComponent: async () => {
-      const m = await import("./pages/userPages/patient/acceuil-page/acceuil-page.component");
-      return m.AcceuilPageComponent;
-    }
-  },
-
   {
     path :'patient/consulter-DPI/:id' ,
     loadComponent: async () => {

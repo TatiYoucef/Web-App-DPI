@@ -105,32 +105,7 @@ export class AcceuilPageComponent implements OnInit {
   recherchePatient(){
 
     console.log("Recherche patient en cours de traitement...");
-    const inputNSS = +this.nssInput; // Get the user's input
-    console.log(inputNSS);
-    console.log(this.listeDPI());
-    const patient = this.listePatient().find((p) => p.nss === +inputNSS); 
-    console.log(patient);
-
-    if (patient) {
-      console.log("Patient ID_DPI:", patient.id_DPI); 
-
-      const dpi = this.listeDPI().find((d) => {
-        if(d.id === patient.id_DPI) return d;
-        return undefined;
-      });
-
-      console.log("DPI found:", dpi);
-      if (dpi) {
-        this.searchedDPI.set(dpi); // Set the found DPI
-        console.log("DPI trouvé:", dpi);
-      } else {
-        this.searchedDPI.set(null);
-        alert("Aucun DPI trouvé pour ce patient.");
-      }
-    } else {
-      this.searchedDPI.set(null);
-      alert("Aucun patient trouvé avec le NSS saisi.");
-    }
+  
   }
 
 

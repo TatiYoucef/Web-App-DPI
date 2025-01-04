@@ -44,7 +44,7 @@ export class AcceuilPageComponent implements OnInit{
         const listeWithQrCode = await Promise.all(
           liste.map(async (patient) => ({
             ...patient,
-            qrcode: await this.generateQRCode(patient.nss), // Await each QR code generation
+            qrcode: await this.generateQRCode(Number(patient.nss)), // Await each QR code generation
           }))
         );
       this.listePatient.set(listeWithQrCode);

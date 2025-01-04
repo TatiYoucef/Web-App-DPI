@@ -13,17 +13,16 @@ export type User = {
 
 export type Patient = { //classe patient
   id : number ,
-  id_DPI : number , 
-  idUser : number ,
-  username : String ,
-  nss: number ,
-  naissance: String,
-  adresse: String,
-  tel: String,
+  dossier : number , 
+  user: User,
+  nss: String ,
+  date_naissance: String,
+  address: String,
+  phone_number: String,
   mutuelle: String,
-  nom: String,
-  prenom : String,
-  qrcode : string,
+  medcin_traitant: String,
+  have_accounts: Boolean,
+  qrcode : String ,
 }
 
 export type Medcin = {
