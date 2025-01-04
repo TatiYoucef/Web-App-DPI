@@ -192,7 +192,7 @@ class Patientwithoutaacounts(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
     
 class ToggleEnCoursTraitementView(APIView):
-    def post(self, request, pk):
+    def put(self, request, pk):
         """
         Toggles the 'en_cours_traitement' field for a specific patient.
         """
@@ -722,6 +722,66 @@ class PatientConsultationListView(APIView):
             return Response({"error": "Patient not found"}, status=status.HTTP_404_NOT_FOUND)
         except AttributeError:
             return Response({"error": "Patient does not have an associated dossier"}, status=status.HTTP_400_BAD_REQUEST)
+        
+class PatientOrdonnanceListView(APIView):
+    def get(self, request, patient_id):
+        try:
+            # Fetch the Patient object
+            patient = get_object_or_404(Patient, id=patient_id)
+
+            # Fetch the associated Dossier
+            dossier = patient.dossier
+            
+            # Fetch the ordonnances linked to the dossier
+            ordonnances = dossier.ordannance.all()
+            
+            # Serialize the consultations
+            serializer = OrdonnanceSerializer(ordonnances, many=True)
+            
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Patient.DoesNotExist:
+            return Response({"error": "Patient not found"}, status=status.HTTP_404_NOT_FOUND)
+        except AttributeError:
+            return Response({"error": "Patient does not have an associated dossier"}, status=status.HTTP_400_BAD_REQUEST)
+
+class AddMedicamentsToOrdonnanceView(APIView):
+    def put(self, request, pk):
+        try:
+            ordonnance = Ordonnance.objects.get(pk=pk)
+        except Ordonnance.DoesNotExist:
+            return Response({"error": "Ordonnance not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+        # Extract medicaments data from the request
+        medicaments_data = request.data
+        
+        if not medicaments_data:
+            return Response({"error": "No medicaments provided"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        new_medicaments = []
+        for med_data in medicaments_data:
+            medicament_serializer = MedicamentSerializer(data=med_data)
+            if medicament_serializer.is_valid():
+                medicament = medicament_serializer.save()
+                new_medicaments.append(medicament)
+            else:
+                return Response(medicament_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Add the new medicaments to the ordonnance
+        ordonnance.medicaments.add(*new_medicaments)
+        ordonnance.save()
+
+        # Serialize and return the updated ordonnance
+        updated_ordonnance_serializer = OrdonnanceSerializer(ordonnance)
+        return Response(updated_ordonnance_serializer.data, status=status.HTTP_200_OK)
+        
+class SGPHValidateOrdonnanceView(APIView):
+    def put(self, request, pk):
+        try:
+            ordonnance = Ordonnance.objects.get(pk=pk)
+            ordonnance.validate_ordonnance()
+            return Response({"message": "Ordonnance validated successfully"}, status=status.HTTP_200_OK)
+        except Ordonnance.DoesNotExist:
+            return Response({"error": "Ordonnance not found"}, status=status.HTTP_404_NOT_FOUND)
 
 class UpdateAntecedantsView(APIView):
     def put(self, request, dossier_id):

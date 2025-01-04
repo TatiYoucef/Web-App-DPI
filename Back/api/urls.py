@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserRegistrationView , UpdateAntecedantsView, PatientConsultationListView, ModifySoinsListView, LatestSoinListView, IncompleteBilanRadioPatientView, RemplirBilanRadioView, IncompleteBilansRadioView, RemplirBilanBioView , IncompleteBilanBioPatientView,  IncompleteBilansBioView , ListPatientHospitalisedView, ToggleEnCoursTraitementView,  PatientRegistrationView , MedcinRegistrationView , UserLoginView ,PatientList , PatientByNSSView ,Patientwithoutaacounts ,AdminRegistrationView, OrdonnanceCreatView , OrdonnanceList,DossierPatient,DossierOrdonnanceCreatView,LaborantinRegistrationView,RadiologueRegistrationView , InfirmierRegistrationView,MedcinList, PatientDetail,AdminUpdatePatient,BilanBiologiqueCreateView,BilanBiogiqueView, BilanRadiologiqueCreateView, BilanRadiologiqueView , BilanRadiologiqueView_radiologue,BilanView ,BilanRadioView,BilanBioView
+from .views import UserRegistrationView , AddMedicamentsToOrdonnanceView, SGPHValidateOrdonnanceView, PatientOrdonnanceListView, UpdateAntecedantsView, PatientConsultationListView, ModifySoinsListView, LatestSoinListView, IncompleteBilanRadioPatientView, RemplirBilanRadioView, IncompleteBilansRadioView, RemplirBilanBioView , IncompleteBilanBioPatientView,  IncompleteBilansBioView , ListPatientHospitalisedView, ToggleEnCoursTraitementView,  PatientRegistrationView , MedcinRegistrationView , UserLoginView ,PatientList , PatientByNSSView ,Patientwithoutaacounts ,AdminRegistrationView, OrdonnanceCreatView , OrdonnanceList,DossierPatient,DossierOrdonnanceCreatView,LaborantinRegistrationView,RadiologueRegistrationView , InfirmierRegistrationView,MedcinList, PatientDetail,AdminUpdatePatient,BilanBiologiqueCreateView,BilanBiogiqueView, BilanRadiologiqueCreateView, BilanRadiologiqueView , BilanRadiologiqueView_radiologue,BilanView ,BilanRadioView,BilanBioView
 
 urlpatterns = [
   
@@ -19,12 +19,12 @@ urlpatterns = [
 
     path('auth/get/patient' , PatientList.as_view() , name='Patient_list'),
     path('auth/get/patient/dossier/<int:key>' , DossierPatient.as_view() , name='fetch_dossier'),
-    path('auth/get/patient/dossier/<int:pk>/ordonnance' , DossierOrdonnanceCreatView.as_view() , name='fetch_dossier'),
     path('auth/get/patient/dossier/<int:dossier_id>/bilanbio' , BilanBiogiqueView.as_view() , name='get_bilan'),
     path("auth/get/patient/dossier/<int:dossier_id>/bilanRadio", BilanRadiologiqueView.as_view(), name ="BilanRadio-list"),
     path("auth/get/patient/dossier/<int:dossier_id>/bilan", BilanView.as_view(), name ="Bilan-list"),
     path("auth/get/patient/<int:patient_id>/latestSoin", LatestSoinListView.as_view(), name ="Soin-lastList"),
     path("auth/get/patient/<int:patient_id>/consultation", PatientConsultationListView.as_view(), name ="consultation-liste"),
+    path('auth/get/patient/<int:patient_id>/ordonnance' , PatientOrdonnanceListView.as_view() , name='ordonnance-lit'),
     path("auth/get/patient/<int:patient_id>/latestSoin/modify", ModifySoinsListView.as_view(), name ="Soin-lastList-modify"),
     path("auth/get/patient/dossier/bilanRadio/<int:bilan_id>", BilanRadioView.as_view(), name ="BilanRadio-details"),
     path("auth/get/patient/dossier/bilanBio/<int:bilan_id>", BilanBioView.as_view(), name ="BilanRadio-details"),
@@ -43,6 +43,10 @@ urlpatterns = [
     path('auth/post/patient/dossier/<int:dossier_id>/bilanbio' , BilanBiologiqueCreateView.as_view() , name='create_bilan'),
     path("auth/post/patient/dossier/<int:dossier_id>/bilanRadio",BilanRadiologiqueCreateView.as_view(), name ="BilanRadio-create"),
     path("auth/post/patient/dossier/<int:dossier_id>/antecedant",UpdateAntecedantsView.as_view(), name ="update-antecedents"),
+    path('auth/post/patient/dossier/<int:pk>/ordonnance' , DossierOrdonnanceCreatView.as_view() , name='create-ordonnance'),
+    path('auth/post/ordonnance/<int:pk>/medicament' , AddMedicamentsToOrdonnanceView.as_view() , name='ajout-medicament'),
+    path('auth/post/ordonnance/<int:pk>/validate' , SGPHValidateOrdonnanceView.as_view() , name='valider-ordonnance'),
+
 ]
 
 
