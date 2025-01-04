@@ -112,6 +112,21 @@ export class ConsulterDPIComponent implements OnInit{
     })
   }
 
+  changePatientState(){
+    this.updateServices.toggleStateHospitalPatient(this.patient.id).subscribe({
+      next: (response:any)=>{    
+        this.patient.en_cours_traitement = !this.patient.en_cours_traitement    
+        alert(`Le statu de patient est changé à ${this.patient.en_cours_traitement ? 'Hospitalisé':'Libre'} !!!`);
+      },
+
+      error : (error: any) =>{
+        console.error('Error fetching patient:', error);
+        alert("Il a eut une erreur, veuillez reprendre plus tard")
+      }
+
+    })
+  }
+
   // Navigate to the consultations page
   viewConsultations() {
    

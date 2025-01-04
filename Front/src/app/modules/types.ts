@@ -85,15 +85,18 @@ export type DPI = {
 
 export type Ordonnance = {
   id : number,
-  id_DPI : number,
-  dateCreation : Date,
+
+  medicaments: Array<Medicament>,
+
+  date : String,
   duree : String,
   etat : Boolean,
+  dateValidation?: String,
+  medcin: number,
 }
 
 export type Medicament = {
   id : number,
-  id_ordonnance : number,
   nom : String,
   dose : String,
   frequence : String,
@@ -110,11 +113,11 @@ export type Soin = {
 }
 
 export type Consultation = {
-  patient: Patient;  // Assuming Patient is another type or interface you have defined elsewhere
+  id: number,
   medcin: number;    // Assuming Medcin is another type or interface you have defined elsewhere
-  soins: Soin[];     // Assuming Soin is an array type that corresponds to the 'Soin' model
-  date: Date;        // Represents the date of consultation (DateTimeField in Django)
-  dateProchaineCons: Date; // Represents the date of the next consultation (DateTimeField in Django)
+  soins: Array<number>;     // Assuming Soin is an array type that corresponds to the 'Soin' model
+  date: String;        // Represents the date of consultation (DateTimeField in Django)
+  dateProchaineCons: String; // Represents the date of the next consultation (DateTimeField in Django)
   trouveDiagnostic: boolean; // Boolean value indicating whether a diagnosis was found
   raison_admission: string; // Text field representing the reason for admission
 };

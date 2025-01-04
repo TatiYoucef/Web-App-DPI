@@ -84,7 +84,6 @@ h2 {
   margin-bottom: 15px;
   margin-top: 0px;
   transition: background-color 0.3s, box-shadow 0.3s;
-  cursor: pointer;
 }
 
 .medicament-item {
@@ -100,7 +99,6 @@ h2 {
   margin-bottom: 15px;
   margin-top: 0px;
   transition: background-color 0.3s, box-shadow 0.3s;
-  cursor: pointer;
 }
 
 .ordonnance-item:hover {

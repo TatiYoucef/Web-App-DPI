@@ -42,10 +42,19 @@ class Ordonnance(models.Model):
   date = models.DateField(default=date.today)
   medicaments = models.ManyToManyField(Medicament, related_name="ordonnances" ,  blank=True )
   medcin = models.ForeignKey(Medcin , on_delete=models.CASCADE , related_name="medi_ord" , blank=True , null=True)
-  
+  duree = models.CharField(max_length=50, blank=True)
+  etat = models.BooleanField(default=False) #validee ou nn
+  dateValidation =  models.DateField(null=True, blank=True)
+
 
   def __str__(self):
     return f"Ordonnance {self.id}"
+  
+  def validate_ordonnance(self):
+        """Marks the ordonnance as validated and sets the validation date."""
+        self.etat = True
+        self.dateValidation = datetime.now()
+        self.save()
   
 
 class Bilan(models.Model):
@@ -143,7 +152,7 @@ class Observation(models.Model):
 class Consultation(models.Model):
   medcin = models.ForeignKey(Medcin, on_delete=models.CASCADE)
   soins = models.ManyToManyField(Soin, related_name='consultations', blank=True)
-  date = models.DateTimeField(default=datetime.now)
+  date = models.DateTimeField(blank=True)
   dateProchaineCons = models.DateTimeField(default=datetime.now)
   trouveDiagnostic = models.BooleanField(default=False)
   raison_admission = models.TextField()
