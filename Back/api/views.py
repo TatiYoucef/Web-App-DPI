@@ -347,7 +347,7 @@ class BilanView(APIView):
 class IncompleteBilanBioPatientView(APIView):
     def get(self, request, key):
         try:
-            
+
             # Fetch the Patient object
             patient = get_object_or_404(Patient, id=key)
 
@@ -497,6 +497,71 @@ class BilanRadioView(APIView):
         serializer = BilanRadiologiqueSerializer(bilan_radiologique)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+class IncompleteBilanRadioPatientView(APIView):
+    def get(self, request, key):
+        try:
+            
+            # Fetch the Patient object
+            patient = get_object_or_404(Patient, id=key)
+
+            # Access the associated Dossier object
+            dossier = patient.dossier
+
+            # Extract the related BilanBiologique objects and get their IDs
+            bilan_ids = dossier.bilanRadiologique.values_list('id', flat=True)
+
+            # Get BilanBiologique linked to this dossier with rempli = false
+            bilans = BilanRadiologique.objects.filter(id__in=bilan_ids, rempli=False)
+
+        except Dossier.DoesNotExist:
+            return Response({"error": "Dossier not found for the patient"}, status=status.HTTP_404_NOT_FOUND)
+        
+        serializer = BilanRadiologiqueSerializer(bilans, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class IncompleteBilansRadioView(APIView):
+
+    def get(self, request):
+        """
+        Fetches a list of BilanBiologique where 'rempli' == false for patients in the list from another endpoint.
+        """
+         # Fetch the list of patients from the other endpoint
+         
+        external_url = "http://127.0.0.1:8000/api/auth/get/rabLabInf/patient"
+        try:
+            response = requests.get(external_url)
+            response.raise_for_status()  # Raise an error for non-200 responses
+        except requests.RequestException as e:
+            return Response(
+                {"error": f"Failed to fetch patients: {str(e)}"},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+                
+        # Query BilanBiologique for patients in this list with 'rempli' == false
+        bilans = BilanRadiologique.objects.filter(rempli=False)
+        serializer = BilanRadiologiqueSerializer(bilans, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+class RemplirBilanRadioView(APIView):
+
+    def patch(self, request, bilan_id):
+        # Fetch the BilanRadiologique object
+        bilan = get_object_or_404(BilanRadiologique, id=bilan_id)
+
+        # Extract and update the compte_rendu from the request data
+        compte_rendu = request.data.get("compte_rendu", None)
+        if compte_rendu is not None:
+            bilan.compte_rendu = compte_rendu
+            bilan.rempli = True
+            bilan.save()
+            return Response(
+                {"message": "Compte rendu updated successfully", "compte_rendu": bilan.compte_rendu},
+                status=status.HTTP_200_OK,
+            )
+        else:
+            return Response(
+                {"error": "compte_rendu field is required"}, status=status.HTTP_400_BAD_REQUEST
+            )
 
 class BilanBioView(APIView):
     serializer_class = BilanBiologiqueSerializer

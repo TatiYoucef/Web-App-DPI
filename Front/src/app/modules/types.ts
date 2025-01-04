@@ -43,11 +43,22 @@ export type BilanBio = {
   laborantin: number;
   medcin: number;
 
-  type: String; //Biologique or Radiologique
   rempli: boolean; //si rad/lab l'a rempli ou pas
   date_creation: String;
 
   resultats_analytiques: Array<TestBilan>;
+}
+
+export type BilanRadio = {
+
+  id: number;
+  radiologue: number;
+  medcin: number;
+
+  rempli: boolean; //si rad/lab l'a rempli ou pas
+  date_creation: String;
+
+  compte_rendu: String;
 }
 
 export type TestBilan = {

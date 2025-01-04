@@ -117,7 +117,7 @@ class BilanBiologique(Bilan):
   
 
 class BilanRadiologique(Bilan):
-  radiologue = models.ForeignKey(Radiologue ,on_delete=models.CASCADE ,related_name="radio_bilan" , null=True)  
+  radiologue = models.ForeignKey(Radiologue ,on_delete=models.CASCADE ,related_name="radio_bilan" , null=True, blank=True)  
   images = models.JSONField(default=list , null=True, blank=True )  # List to store image paths
   compte_rendu = models.TextField(null=True, blank=True)
   medcin = models.OneToOneField(Medcin,  on_delete=models.CASCADE ,  related_name="medcin_bilanRad" , blank=True , null=True ) 
