@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { PostModulesService } from '../../../services/postModules/post-modules.service';
 import { catchError } from 'rxjs';
-import { Medcin, Patient, User } from '../../../modules/types';
+import { User } from '../../../modules/types';
 import { UserDataService } from '../../../services/userData/user-data.service';
 
 @Component({

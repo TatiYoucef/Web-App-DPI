@@ -141,8 +141,8 @@ class Observation(models.Model):
 
 
 class Consultation(models.Model):
-  medcin = models.OneToOneField(Medcin, on_delete=models.CASCADE)
-  soins = models.ManyToManyField(Soin, related_name='consultations')
+  medcin = models.ForeignKey(Medcin, on_delete=models.CASCADE)
+  soins = models.ManyToManyField(Soin, related_name='consultations', blank=True)
   date = models.DateTimeField(default=datetime.now)
   dateProchaineCons = models.DateTimeField(default=datetime.now)
   trouveDiagnostic = models.BooleanField(default=False)
