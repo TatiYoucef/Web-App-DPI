@@ -1,38 +1,37 @@
-import { Component, inject, Inject, OnInit, signal } from '@angular/core';
-import { Router } from '@angular/router';
-import { HeaderComponent } from "../../../../components/header-user/header.component";
-import { DashBoardComponent } from "../../../../components/dash-board/dash-board.component";
-import { LoadingScreenComponent } from "../../../../components/loading-screen/loading-screen.component";
-import { CommonModule } from '@angular/common'; 
-import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
-import { UserDataService } from '../../../../services/userData/user-data.service';
-
+import { Component, inject, Inject, OnInit, signal } from '@angular/core'; // Importing necessary Angular modules
+import { Router } from '@angular/router'; // Importing Router for navigation
+import { HeaderComponent } from "../../../../components/header-user/header.component"; // Importing HeaderComponent
+import { DashBoardComponent } from "../../../../components/dash-board/dash-board.component"; // Importing DashBoardComponent
+import { LoadingScreenComponent } from "../../../../components/loading-screen/loading-screen.component"; // Importing LoadingScreenComponent
+import { CommonModule } from '@angular/common'; // Importing CommonModule for common directives
+import { FormsModule } from '@angular/forms'; // Importing FormsModule for template-driven forms
+import { ActivatedRoute } from '@angular/router'; // Importing ActivatedRoute for routing parameters
+import { UserDataService } from '../../../../services/userData/user-data.service'; // Importing UserDataService to fetch user data
 
 @Component({
-  selector: 'app-ordonnances-accueil',
-  standalone: true,
-  imports: [HeaderComponent, DashBoardComponent, LoadingScreenComponent, CommonModule, FormsModule],
-  templateUrl: './ordonnances-accueil.component.html',
-  styleUrl: './ordonnances-accueil.component.css'
+  selector: 'app-ordonnances-accueil', // Defining the selector for this component
+  standalone: true, // Indicating that this component is standalone
+  imports: [HeaderComponent, DashBoardComponent, LoadingScreenComponent, CommonModule, FormsModule], // Importing necessary components and modules for this component
+  templateUrl: './ordonnances-accueil.component.html', // Template file for this component
+  styleUrl: './ordonnances-accueil.component.css' // CSS styles for this component
 })
 export class OrdonnancesAccueilComponent {
   
-  private route = inject(ActivatedRoute);
-  router = inject(Router);
-  isDashBoard = signal(false);
-  user = inject(UserDataService).getUserData();
-  isDashBoardVisible = true;
-  isAjoutOrdonnance = false;
-  isAjoutMedicament = false;
-  duree = "";
-  isValid = false;
-  nom = "";
-  dose = "";
-  frequence = "";
-  dateSet = Date.now();
+  private route = inject(ActivatedRoute); // Injecting ActivatedRoute to access route parameters
+  router = inject(Router); // Injecting Router for navigation
+  isDashBoard = signal(false); // A signal for dashboard visibility state
+  user = inject(UserDataService).getUserData(); // Injecting UserDataService and getting user data
+  isDashBoardVisible = true; // Initial state for dashboard visibility
+  isAjoutOrdonnance = false; // State for adding ordonnance
+  isAjoutMedicament = false; // State for adding medicament
+  duree = ""; // Variable to store duration input
+  isValid = false; // Variable to store validity state
+  nom = ""; // Variable to store medicament name input
+  dose = ""; // Variable to store medicament dose input
+  frequence = ""; // Variable to store medicament frequency input
+  dateSet = Date.now(); // Storing current date and time
 
-  ordonnances = [
+  ordonnances = [ // Sample ordonnance data
     {
       "id": 23,
       "id_DPI": 12,
@@ -72,30 +71,31 @@ export class OrdonnancesAccueilComponent {
         }
       ]
     }
-  ]
-  changeDashState(){
-    this.isDashBoard.update((e) => !e);
+  ];
+
+  changeDashState(){ // Function to toggle the dashboard visibility
+    this.isDashBoard.update((e) => !e); // Toggle the current state of the dashboard visibility
   }
 
-  toggleEtat(ordonnance: any): void {
-    ordonnance.etat = !ordonnance.etat;
-    console.log('Etat changed to:', ordonnance.etat);
+  toggleEtat(ordonnance: any): void { // Function to toggle the state of ordonnance (valid or not)
+    ordonnance.etat = !ordonnance.etat; // Toggle the 'etat' of the ordonnance
+    console.log('Etat changed to:', ordonnance.etat); // Log the new state
   }
 
-  annuler(event: MouseEvent){
-
+  annuler(event: MouseEvent){ // Function to handle cancel action (close modal)
+    // Check if the click was on the grey div or the cancel button
     if ((event.target as HTMLElement).classList.contains('grey-div') || (event.target as HTMLElement).classList.contains('annuler') ) {
-      this.isAjoutOrdonnance= false;
-      this.isAjoutMedicament= false;
+      this.isAjoutOrdonnance= false; // Hide ordonnance add modal
+      this.isAjoutMedicament= false; // Hide medicament add modal
     }
-    
-  }
-  ajoutOrdonnance(){
-
   }
 
-  ajoutMedicament(){
-    
+  ajoutOrdonnance(){ // Function to handle adding a new ordonnance
+    // Placeholder for ordonnance addition logic
+  }
+
+  ajoutMedicament(){ // Function to handle adding a new medicament
+    // Placeholder for medicament addition logic
   }
 
 }

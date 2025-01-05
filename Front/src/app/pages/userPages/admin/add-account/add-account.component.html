@@ -1,42 +1,41 @@
-<app-header (changeDashEvent)="updateDashboardVisibility($event)" />
+<app-header (changeDashEvent)="updateDashboardVisibility($event)" /> <!-- Header component with an event binding to update dashboard visibility -->
 
-<div class="content">
+<div class="content"> <!-- Main content container -->
 
-  <div class="empty-dash">
-    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>
+  <div class="empty-dash"> <!-- Empty dashboard container to hold the dashboard component -->
+    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board> <!-- Conditionally display the dashboard if isDashBoardVisible is true -->
   </div>
 
-  <div class="container">
+  <div class="container"> <!-- Container for the account creation form -->
 
-    @defer { <!--Defer is when component needs to load so we show something while loading-->
+    @defer { <!-- Defer is when the component needs to load, so we show something while loading -->
 
-      <h2>Création de compte pour patient {{patient.user.first_name}} {{patient.user.last_name}} </h2>
+      <h2>Création de compte pour patient {{patient.user.first_name}} {{patient.user.last_name}} </h2> <!-- Heading displaying patient name -->
 
-      <div class="card">
+      <div class="card"> <!-- Card to hold the input fields for account creation -->
 
-        <h3>Saisie des données</h3>
+        <h3>Saisie des données</h3> <!-- Heading inside the card -->
 
-        <div class="inputs-div">
-          <label>Nom de l'utilisateur</label>
-          <input id="username" type="text" placeholder="nom de l'utilisateur" [value]="patient.user.username" #username>
+        <div class="inputs-div"> <!-- First input section for the username -->
+          <label>Nom de l'utilisateur</label> <!-- Label for username input -->
+          <input id="username" type="text" placeholder="nom de l'utilisateur" [value]="patient.user.username" #username> <!-- Username input field with two-way binding to the username value -->
         </div>
 
-        <div class="inputs-div">
-          <Label>Mot de passe</Label>
-          <input id="password" type="password" placeholder="mot de passe" #password>
+        <div class="inputs-div"> <!-- Second input section for the password -->
+          <Label>Mot de passe</Label> <!-- Label for password input -->
+          <input id="password" type="password" placeholder="mot de passe" #password> <!-- Password input field -->
         </div>
 
       </div>
       
-      <button class="sub-button" (click)="creerCompte(username.value, password.value)">Créer compte</button>
+      <button class="sub-button" (click)="creerCompte(username.value, password.value)">Créer compte</button> <!-- Button to create account, triggering the creerCompte function with input values -->
   
       
-    } @loading (minimum 1s) { <!--Nesstennaw minimum 1s besh naffichiw @defer-->
+    } @loading (minimum 1s) { <!-- Show loading screen if the component takes more than 1 second to load -->
       <div class="center-div">
-        <app-loading-screen />
+        <app-loading-screen /> <!-- Loading screen component displayed while the page loads -->
       </div>
     }
   
   </div>
 </div>
-

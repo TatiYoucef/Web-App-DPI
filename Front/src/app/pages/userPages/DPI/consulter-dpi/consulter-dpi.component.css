@@ -1,209 +1,209 @@
 .content {
-  display: flex;
-  margin-top: 100px;
-  gap: 20px;
-  align-items: flex-start;
+  display: flex; /* Creates a flexible layout for the content */
+  margin-top: 100px; /* Adds space above the content */
+  gap: 20px; /* Spacing between child elements */
+  align-items: flex-start; /* Aligns items at the start along the cross axis */
   margin-left: 20%; /* Space for the sidebar */
 }
 
-.center-div{
-  width: 80vw;
-  height: 80vh;
-  display: flex;
-  flex-direction:column ;
-  justify-content: center;
-  align-items: center ;
+.center-div {
+  width: 80vw; /* Sets the width to 80% of the viewport width */
+  height: 80vh; /* Sets the height to 80% of the viewport height */
+  display: flex; /* Creates a flexible box layout */
+  flex-direction: column; /* Stacks items vertically */
+  justify-content: center; /* Centers items vertically */
+  align-items: center; /* Centers items horizontally */
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin: 0 20px;
-  width: 100%;
+  display: flex; /* Flexible container */
+  flex-direction: column; /* Stacks items vertically */
+  gap: 20px; /* Space between child elements */
+  margin: 0 20px; /* Horizontal margin */
+  width: 100%; /* Takes full width of parent */
 }
 
 .container2 {
-  display: flex;
-  flex-direction: column;
-  gap: 30px;
-  margin: 0 20px;
-  align-items: flex-start;
+  display: flex; /* Flexible container */
+  flex-direction: column; /* Stacks items vertically */
+  gap: 30px; /* Larger space between child elements */
+  margin: 0 20px; /* Horizontal margin */
+  align-items: flex-start; /* Aligns items at the start along the cross axis */
 }
 
 /* DPI Title */
 .dpi-title {
-  display: flex;
-  align-items: center;
-  font-size: 24px;
-  font-weight: bold;
+  display: flex; /* Flexible container */
+  align-items: center; /* Aligns items at the center along the cross axis */
+  font-size: 24px; /* Sets the font size */
+  font-weight: bold; /* Makes the font bold */
 }
 
 .dpi-title h2 {
-  margin: 0;
+  margin: 0; /* Removes default margin */
 }
 
 /* Patient Information Card */
 .patient-info-card {
-  display: flex;
-  justify-content: space-between;
-  width: 95%;
-  background-color: #EEF4FF;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  position: relative;
+  display: flex; /* Flexible container */
+  justify-content: space-between; /* Space between child elements */
+  width: 95%; /* Takes 95% of the parent's width */
+  background-color: #EEF4FF; /* Light blue background */
+  padding: 20px; /* Adds padding inside the card */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds shadow for depth */
+  position: relative; /* Allows absolute positioning of children */
 }
 
 .card-info {
-  display: flex;
-  flex-direction: column;
+  display: flex; /* Flexible container */
+  flex-direction: column; /* Stacks items vertically */
 }
 
 .card-info p {
-  margin: 10px 0;
+  margin: 10px 0; /* Vertical spacing for paragraphs */
 }
 
 /* "Dernière modification" Positioning */
 .last-modif {
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  text-align: right;
+  position: absolute; /* Positions relative to the nearest positioned ancestor */
+  top: 10px; /* Moves element 10px from the top */
+  right: 15px; /* Moves element 15px from the right */
+  text-align: right; /* Aligns text to the right */
 }
 
 .last-modif .modif {
-  font-weight: bold;
+  font-weight: bold; /* Makes text bold */
 }
 
 .last-modif .date {
-  font-size: 14px;
-  color: #555;
+  font-size: 14px; /* Smaller font size */
+  color: #555; /* Dark gray color */
 }
 
 /* Buttons */
 .buttons-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
+  display: flex; /* Flexible container */
+  flex-direction: column; /* Stacks buttons vertically */
+  gap: 20px; /* Space between buttons */
+  width: 100%; /* Full width */
 }
 
 .buttons-top, .buttons-bottom {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
+  display: flex; /* Flexible container */
+  justify-content: space-between; /* Spreads buttons evenly */
+  gap: 20px; /* Space between buttons */
 }
 
 button {
-  flex: 1; /* Makes buttons equal width */
-  width: 120px; /* Wider buttons */
-  height: 70px; /* Taller buttons */
-  font-family: "SF Pro Display", "Quicksand";
-  font-size: 16px;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
-  background-color: #3958B3;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  flex: 1; /* Ensures buttons grow/shrink equally */
+  width: 120px; /* Sets fixed width */
+  height: 70px; /* Sets fixed height */
+  font-family: "SF Pro Display", "Quicksand"; /* Custom fonts */
+  font-size: 16px; /* Font size */
+  font-weight: 600; /* Semi-bold font weight */
+  border: none; /* Removes default border */
+  border-radius: 8px; /* Rounded corners */
+  background-color: #3958B3; /* Blue background */
+  color: white; /* White text */
+  cursor: pointer; /* Changes cursor to pointer on hover */
+  transition: background-color 0.3s, color 0.3s; /* Smooth hover effects */
 }
 
 button:hover {
-  background-color: #EEF4FF;
-  color: #3958B3;
+  background-color: #EEF4FF; /* Light blue on hover */
+  color: #3958B3; /* Blue text on hover */
 }
 
 /* Adjust layout for smaller screens */
 @media (max-width: 768px) {
   .buttons-container {
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: column; /* Stacks buttons vertically */
+    gap: 10px; /* Reduces gap for smaller screens */
   }
 
   .buttons-top, .buttons-bottom {
-    justify-content: center;
+    justify-content: center; /* Centers buttons */
   }
 
   button {
-    width: 100%; /* Allow buttons to stretch */
-    height: 70px; /* Keep button height consistent */
+    width: 100%; /* Full width for buttons */
+    height: 70px; /* Keeps height consistent */
   }
 }
 
 .grey-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 999; /* Increase z-index for better visibility */
-  background-color: rgba(0, 0, 0, 0.5); /* Slightly darker background */
-  width: 100%;
-  height: 100%;
+  display: flex; /* Flexible container */
+  justify-content: center; /* Centers items horizontally */
+  align-items: center; /* Centers items vertically */
+  position: fixed; /* Stays in place during scrolling */
+  top: 0; /* Positioned at the top */
+  left: 0; /* Positioned at the left */
+  z-index: 999; /* High stacking order */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
 }
 
 .card-bouton-info {
   background-color: #fff; /* White background */
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
-  padding: 30px;
-  max-width: 400px; /* Limit width for better responsiveness */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 30px; /* Padding inside the card */
+  max-width: 400px; /* Sets a max width */
 }
 
 .info-container {
-  display: flex;
-  flex-direction: row;
+  display: flex; /* Flexible container */
+  flex-direction: row; /* Arranges items in a row */
 }
 
 .card-bouton-info h2 {
-  margin-bottom: 20px;
-  font-size: 1.2rem;
+  margin-bottom: 20px; /* Space below heading */
+  font-size: 1.2rem; /* Medium font size */
 }
 
 .card-bouton-info label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  align-items: center;
+  display: block; /* Ensures labels stack above inputs */
+  margin-bottom: 5px; /* Space below labels */
+  font-weight: bold; /* Bold text */
+  align-items: center; /* Aligns text */
 }
 
 .card-bouton-info input[type="text"],
 .card-bouton-info input[type="date"],
 .card-bouton-info input[type="tel"],
 textarea {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-  font-size: 1rem;
-  -webkit-appearance: none; 
-  -moz-appearance: none;
-  appearance: none; 
+  width: 100%; /* Full width */
+  padding: 10px; /* Space inside inputs */
+  margin-bottom: 15px; /* Space below inputs */
+  border: 1px solid #ccc; /* Light gray border */
+  border-radius: 5px; /* Rounded corners */
+  box-sizing: border-box; /* Includes padding and border in width/height */
+  font-size: 1rem; /* Medium font size */
+  -webkit-appearance: none; /* Removes default styling on iOS */
+  -moz-appearance: none; /* Removes default styling on Firefox */
+  appearance: none; /* Removes default styling */
 }
 
 .card-bouton-info input[type="date"]::-webkit-calendar-picker-icon {
-  background: transparent; 
-  border: none;
+  background: transparent; /* Removes default background for date picker */
+  border: none; /* Removes border */
 }
 
 .container3 {
-  text-align: center;
+  text-align: center; /* Centers text */
 }
 
 .annuler {
-  background-color: #3958B3;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  background-color: #3958B3; /* Blue background */
+  color: white; /* White text */
+  padding: 10px 20px; /* Padding around text */
+  border: none; /* Removes border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor */
 }
 
 .div1, .div2 {
-  margin: 10px;
+  margin: 10px; /* Adds space around these divs */
 }

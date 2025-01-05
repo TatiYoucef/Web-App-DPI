@@ -1,75 +1,86 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
-import { Bilan, BilanBio, BilanRadio, Consultation, Patient, Soin } from '../../modules/types';
-import { DPI } from '../../modules/types';
+import { HttpClient } from '@angular/common/http'; // Importing HttpClient to perform HTTP requests
+import { inject, Injectable } from '@angular/core'; // Injecting and making the service injectable
+import { Bilan, BilanBio, BilanRadio, Consultation, Patient, Soin } from '../../modules/types'; // Importing necessary types
+import { DPI } from '../../modules/types'; // Importing DPI type
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' // Making this service available application-wide
 })
 
-export class FetchModulesService { //Hna yesraw les fetch functions
+export class FetchModulesService { // Service to handle all fetch requests
 
-  http = inject(HttpClient);
+  http = inject(HttpClient); // Injecting HttpClient to make HTTP requests
 
-  fetchListePatientHospitalised(){ //pour que Infirmier / radiologue / labo puissent les traiter
-    const url = "http://127.0.0.1:8000/api/auth/get/rabLabInf/patient";
-    return this.http.get<Array<Patient>>(url);
+  // Function to fetch list of hospitalised patients, for handling by nurse, radiologist, or laboratory
+  fetchListePatientHospitalised(){ 
+    const url = "http://127.0.0.1:8000/api/auth/get/rabLabInf/patient"; // URL for fetching hospitalised patients
+    return this.http.get<Array<Patient>>(url); // Sending GET request and returning the list of patients
   }
 
-  fetchListePatientSansCompte(){ //pour que admin les ajoutent un compte
-    const url = "http://127.0.0.1:8000/api/auth/get/admin/patient"; //from backend
-    return this.http.get<Array<Patient>>(url);
+  // Function to fetch list of patients without accounts, for admin to add accounts
+  fetchListePatientSansCompte(){ 
+    const url = "http://127.0.0.1:8000/api/auth/get/admin/patient"; // URL for fetching patients without accounts
+    return this.http.get<Array<Patient>>(url); // Sending GET request and returning the list of patients
   }
 
-  fetchPatient( id:number ){ //fetch patient with id Patient
-    const url = `http://127.0.0.1:8000/api/auth/get/medcin/patient/${id}`;
-    return this.http.get<Patient>(url);
+  // Function to fetch patient by ID
+  fetchPatient( id:number ){ 
+    const url = `http://127.0.0.1:8000/api/auth/get/medcin/patient/${id}`; // URL with patient ID
+    return this.http.get<Patient>(url); // Sending GET request for a specific patient
   }
 
-  fetchPatientNss(nss: number){
-    const url = `http://127.0.0.1:8000/api/auth/get/patient/${nss}`;
-    return this.http.get<Patient>(url);
-  }
-  
-  fetchDPI(idDossier: number){
-    const url = `http://127.0.0.1:8000/api/auth/get/patient/dossier/${idDossier}`; // From backend
-    return this.http.get<DPI>(url); 
-  }
-
-  fetchListeBilan(){ //erronee
-    const url = `http://127.0.0.1:8000/api/auth/post/rabLabInf/patient/incBilanBio`;
-    return this.http.get<Array<Bilan>>(url);
-  }
-
-  fetchBilan(id:number){ //erronee
-    const url = "http://localhost:3000/Bilans"; //Json Test, not from backend
-    return this.http.get<Bilan>(url);
-  }
-
-  fetchListeBilanBioIncompleted(id:number){ //liste des bilans bios non rempli pour rabLabInf de id de patient
-    const url = `http://127.0.0.1:8000/api/auth/get/rabLabInf/patient/${id}/incBilanBio`;
-    return this.http.get<Array<BilanBio>>(url);
-  }
-
-  fetchListeBilanRadioIncompleted(id:number){ //liste des bilans radio non rempli pour rabLabInf de id de patient
-    const url = `http://127.0.0.1:8000/api/auth/get/rabLabInf/patient/${id}/incBilanRadio`;
-    return this.http.get<Array<BilanRadio>>(url);
-  }
-
-  fetchLatestListSoin(id:number){
-    const url = `http://127.0.0.1:8000/api/auth/get/patient/${id}/latestSoin`;
-    return this.http.get<Array<Soin>>(url);
+  // Function to fetch patient by NSS (National Social Security number)
+  fetchPatientNss(nss: number){ 
+    const url = `http://127.0.0.1:8000/api/auth/get/patient/${nss}`; // URL with NSS
+    return this.http.get<Patient>(url); // Sending GET request for a specific patient by NSS
   }
   
-  fetchListeOrdonnances(){
-    const url = "http://localhost:3000/DPIs"; //Json Test, not from backend
-    return this.http.get(url);
+  // Function to fetch DPI (Patient File) by dossier ID
+  fetchDPI(idDossier: number){ 
+    const url = `http://127.0.0.1:8000/api/auth/get/patient/dossier/${idDossier}`; // URL with dossier ID
+    return this.http.get<DPI>(url); // Sending GET request to fetch patient file
   }
 
-  fetchConsultations(idPatient: number){
-    const url = `http://127.0.0.1:8000/api/auth/get/patient/${idPatient}/consultation`; // From backend
-    return this.http.get<Array<Consultation>>(url);
+  // Function to fetch list of incomplete bilan (tests)
+  fetchListeBilan(){ 
+    const url = `http://127.0.0.1:8000/api/auth/post/rabLabInf/patient/incBilanBio`; // URL for fetching incomplete bilan
+    return this.http.get<Array<Bilan>>(url); // Sending GET request to fetch list of bilans
   }
 
+  // Function to fetch a specific bilan (test)
+  fetchBilan(id:number){ 
+    const url = "http://localhost:3000/Bilans"; // URL for testing purposes (not from backend)
+    return this.http.get<Bilan>(url); // Sending GET request to fetch a specific bilan
+  }
+
+  // Function to fetch list of incomplete biological bilans for a specific patient
+  fetchListeBilanBioIncompleted(id:number){ 
+    const url = `http://127.0.0.1:8000/api/auth/get/rabLabInf/patient/${id}/incBilanBio`; // URL for fetching incomplete biological bilans
+    return this.http.get<Array<BilanBio>>(url); // Sending GET request to fetch list of biological bilans
+  }
+
+  // Function to fetch list of incomplete radiology bilans for a specific patient
+  fetchListeBilanRadioIncompleted(id:number){ 
+    const url = `http://127.0.0.1:8000/api/auth/get/rabLabInf/patient/${id}/incBilanRadio`; // URL for fetching incomplete radiology bilans
+    return this.http.get<Array<BilanRadio>>(url); // Sending GET request to fetch list of radiology bilans
+  }
+
+  // Function to fetch the latest soins (care) for a specific patient
+  fetchLatestListSoin(id:number){ 
+    const url = `http://127.0.0.1:8000/api/auth/get/patient/${id}/latestSoin`; // URL for fetching latest soins
+    return this.http.get<Array<Soin>>(url); // Sending GET request to fetch latest soins for a specific patient
+  }
+  
+  // Function to fetch list of prescriptions (ordonnances)
+  fetchListeOrdonnances(){ 
+    const url = "http://localhost:3000/DPIs"; // URL for testing purposes (not from backend)
+    return this.http.get(url); // Sending GET request to fetch list of prescriptions
+  }
+
+  // Function to fetch consultations for a specific patient
+  fetchConsultations(idPatient: number){ 
+    const url = `http://127.0.0.1:8000/api/auth/get/patient/${idPatient}/consultation`; // URL for fetching consultations for a specific patient
+    return this.http.get<Array<Consultation>>(url); // Sending GET request to fetch consultations
+  }
 
 }

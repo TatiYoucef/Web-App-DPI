@@ -1,89 +1,87 @@
-<app-header (changeDashEvent)="updateDashboardVisibility($event)" />
+<app-header (changeDashEvent)="updateDashboardVisibility($event)" /> <!-- Header component with an event binding to toggle the dashboard visibility -->
 
-<div class="content">
-  
-  <div class="empty-dash">
-    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>
+<div class="content"> <!-- Main content container -->
+
+  <div class="empty-dash"> <!-- Container for the dashboard, shown if the dashboard is visible -->
+    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board> <!-- Conditionally display the dashboard -->
   </div>
 
-  <div class="container">
+  <div class="container"> <!-- Container for the content inside the page -->
 
-    @defer {
+    @defer { <!-- Defer the content rendering until a condition is met -->
 
-      @if (listeBilan().length === 0) { <!--Liste rahi fargha-->
+      @if (listeBilan().length === 0) { <!-- Check if the list of bilan (reports) is empty -->
 
-        <div class="center-div">
-          <img src="../../../../../assets/images/Task_empty.png" width="280px" >
-          <h3>Aucun bilan trouvé</h3>
-          <h4>{{user.role === "Medcin" ? "Vous pouvez créer votre premier bilan ici":"Attendez votre medecin crée un bilan pour vous"}}</h4>
-          <button *ngIf="user.role === 'Medcin'" (click)="isAjoutBilan = true" style="margin: auto;">Ajouter bilan</button>
+        <div class="center-div"> <!-- Centered content when the list is empty -->
+          <img src="../../../../../assets/images/Task_empty.png" width="280px" > <!-- Empty state image -->
+          <h3>Aucun bilan trouvé</h3> <!-- Message when no bilan is found -->
+          <h4>{{user.role === "Medcin" ? "Vous pouvez créer votre premier bilan ici":"Attendez votre medecin crée un bilan pour vous"}}</h4> <!-- Conditional message based on the user role -->
+          <button *ngIf="user.role === 'Medcin'" (click)="isAjoutBilan = true" style="margin: auto;">Ajouter bilan</button> <!-- Button to add bilan, shown only for Medcin role -->
         </div>
 
       } @else {
 
-        <h2>Liste des bilans de patient {{patient.user.first_name}} {{patient.user.last_name}}:</h2>
+        <h2>Liste des bilans de patient {{patient.user.first_name}} {{patient.user.last_name}}:</h2> <!-- Display list of reports for the patient -->
 
-        <button *ngIf="user.role === 'Medcin'" (click)="isAjoutBilan = true" style="margin: auto;">Ajouter bilan</button>
+        <button *ngIf="user.role === 'Medcin'" (click)="isAjoutBilan = true" style="margin: auto;">Ajouter bilan</button> <!-- Button to add bilan, shown only for Medcin role -->
 
-        <div class="container-invert">
+        <div class="container-invert"> <!-- Container for the list of bilan items, reversed order -->
 
-          @for (item of listeBilan(); track item.id) { <!--For each patient ndirou ceci-->
+          @for (item of listeBilan(); track item.id) { <!-- Loop through each bilan in the list -->
 
-            <div class="item" (click)="goToBilan(item.id)">
-        
-              <div class="profile">
-                <h3>{{ item.type }}</h3>
-                <h4>créé le: {{ item.date }} </h4>
+            <div class="item" (click)="goToBilan(item.id)"> <!-- Each bilan item, clickable to view details -->
+
+              <div class="profile"> <!-- Profile information for the bilan -->
+                <h3>{{ item.type }}</h3> <!-- Display the type of bilan -->
+                <h4>créé le: {{ item.date }} </h4> <!-- Display the date of creation of the bilan -->
               </div>
                 
-              <div class="empty-div"></div>
-  
-              <p>{{item.tests.length === 0 ? "Pas encore rempli": (item.rempli ? "Résultat reçu" : "en attente")}}</p>
+              <div class="empty-div"></div> <!-- Empty div for spacing -->
+
+              <p>{{item.tests.length === 0 ? "Pas encore rempli": (item.rempli ? "Résultat reçu" : "en attente")}}</p> <!-- Status of the bilan (not filled, results received, or pending) -->
             </div>
           }
           
         </div>
 
-        @if (isAjoutBilan) {
+        @if (isAjoutBilan) { <!-- If adding a new bilan -->
 
-          <div class="grey-div" (click)="annuler($event)">
+          <div class="grey-div" (click)="annuler($event)"> <!-- Overlay to cancel the creation -->
 
-            <div class="card">
+            <div class="card"> <!-- Card container for creating a new bilan -->
 
-              <div class="horiz">
+              <div class="horiz"> <!-- Horizontal layout for input fields -->
 
-                <h4>Type de bilan: </h4>
+                <h4>Type de bilan: </h4> <!-- Label for bilan type -->
 
-                <select [(ngModel)]="selectedType">
-                  <option value="Biologique">Biologique</option>
-                  <option value="Radiologique">Radiologique</option>
+                <select [(ngModel)]="selectedType"> <!-- Dropdown to select bilan type -->
+                  <option value="Biologique">Biologique</option> <!-- Option for biological report -->
+                  <option value="Radiologique">Radiologique</option> <!-- Option for radiological report -->
                 </select>
 
               </div>
 
-              <div class="horiz">
-                <button class="annuler" (click)="annuler($event)">Annuler</button>
-                <button (click)="ajouterBilan()">Créer bilan</button>
+              <div class="horiz"> <!-- Horizontal layout for action buttons -->
+                <button class="annuler" (click)="annuler($event)">Annuler</button> <!-- Button to cancel the creation -->
+                <button (click)="ajouterBilan()">Créer bilan</button> <!-- Button to create the bilan -->
               </div>
               
             </div>
 
           </div>
 
-
         }
 
       }
 
-    } @loading(minimum 1s) {
+    } @loading(minimum 1s) { <!-- Loading screen to be shown for at least 1 second -->
 
       <div class="center-div">
-        <app-loading-screen />
+        <app-loading-screen /> <!-- Loading screen component -->
       </div>
 
     }
 
   </div>
-
 
 </div>

@@ -17,7 +17,7 @@ import { PostModulesService } from '../../../../services/postModules/post-module
 @Component({
   selector: 'app-acceuil-page',
   standalone: true,
-  imports: [HeaderComponent, DashBoardComponent, LoadingScreenComponent, CommonModule, FormsModule, ZXingScannerModule],
+  imports: [HeaderComponent, DashBoardComponent, LoadingScreenComponent, CommonModule, FormsModule, ZXingScannerModule], // Imports other components and modules for this page
   templateUrl: './acceuil-page.component.html',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   styleUrl: './acceuil-page.component.css'
@@ -25,55 +25,51 @@ import { PostModulesService } from '../../../../services/postModules/post-module
 
 export class AcceuilPageComponent implements OnInit {
 
-  isDashBoardVisible = true;
-  id!:number;
-  rout = inject(ActivatedRoute);
-  router = inject(Router);
+  isDashBoardVisible = true; // Determines if the dashboard is visible
+  id!: number; // Doctor ID retrieved from the route
+  rout = inject(ActivatedRoute); // Injects ActivatedRoute to get route parameters
+  router = inject(Router); // Injects Router for navigation
 
-  postServices = inject(PostModulesService);
-  fetchServices = inject(FetchModulesService);
+  postServices = inject(PostModulesService); // Service for posting data
+  fetchServices = inject(FetchModulesService); // Service for fetching data
 
-  user = inject(UserDataService).getUserData() ;  //Njibou Data te3 user te3na 
-  isCreeDPI = signal(false);
-  isRecherchePatient = signal(false); //si on clique 3la recherche wella créer, ywellou vrai
+  user = inject(UserDataService).getUserData();  // Retrieves user data from the service
+  isCreeDPI = signal(false); // Tracks if the user clicked on "Create DPI"
+  isRecherchePatient = signal(false); // Tracks if the user clicked on "Search Patient"
 
   updateDashboardVisibility(isVisible: boolean) {
     console.log('Dashboard visibility updated:', isVisible);
-    this.isDashBoardVisible = isVisible;
+    this.isDashBoardVisible = isVisible; // Updates visibility of the dashboard
   }
 
-  ngOnInit(): void { //when this page load, we fetch the list of patients
-
-    this.rout.paramMap.subscribe((params) =>{
-      this.id = Number(params.get("id")); //id de medecin récupéré
+  ngOnInit(): void { // On initialization, fetch patient data
+    this.rout.paramMap.subscribe((params) => {
+      this.id = Number(params.get("id")); // Get doctor ID from the route
     });
-
-    
   }
 
-  nssInput = '';
-  isScanning = false;
+  nssInput = ''; // Input for patient's NSS (National Social Security number)
+  isScanning = false; // Flag to control QR scanner visibility
 
-  onScanSuccess(result: string) { //Si QrScan est réussi
+  onScanSuccess(result: string) { // QR code scan success handler
     console.log('QR Code scanned: ', result);
 
-    if(isNaN(Number(result))){ //ida meshi un nombre NSS, no
+    if (isNaN(Number(result))) { // Check if scanned value is not a valid NSS number
       alert("Veuillez scanner un nombre entier de nss de patient");
       this.isRecherchePatient.set(false);
-    } else{
-      this.nssInput = result;
-      this.recherchePatient();
+    } else {
+      this.nssInput = result; // Set NSS input value to scanned result
+      this.recherchePatient(); // Trigger patient search
     }
-
   }
 
-  onScanFailure(error: any) {
+  onScanFailure(error: any) { // QR code scan failure handler
     console.error('Scan failed: ', error);
   }
 
-  patientData = { //this will be filled in creerDPI
+  patientData = { // Patient data object for creating or searching patient
     user: {
-      username:"",
+      username: "",
       email: "",
       role: 'Patient',
       first_name: "",
@@ -82,52 +78,43 @@ export class AcceuilPageComponent implements OnInit {
     date_naissance: "",
     address: "",
     phone_number: "",
-    nss: this.nssInput,
+    nss: this.nssInput, // Link NSS input to patient data
     mutuelle: "",
   }
 
-  creerDPI(){ //post function to create DPI with verification
-
-    if(!this.patientData.address || !this.patientData.user || !this.patientData.date_naissance
-      || !this.patientData.phone_number || !this.patientData.nss || !this.patientData.mutuelle
-    ) alert("Veuillez remplir tous les champs pour créer un DPI");
-
-    else{
-      this.postServices.createPatient(this.patientData);
-      this.isCreeDPI.set(false);
+  creerDPI() { // Function to create a DPI (patient data record)
+    if (!this.patientData.address || !this.patientData.user || !this.patientData.date_naissance
+      || !this.patientData.phone_number || !this.patientData.nss || !this.patientData.mutuelle) {
+      alert("Veuillez remplir tous les champs pour créer un DPI"); // Alert if any field is missing
+    } else {
+      this.postServices.createPatient(this.patientData); // Call service to create patient DPI
+      this.isCreeDPI.set(false); // Hide create DPI form
     }
   }
 
-  recherchePatient(){ //searchPatient and navigate to its DPI
-
-    if(isNaN(Number(this.nssInput))){ //ida meshi un nombre NSS, no
+  recherchePatient() { // Function to search patient by NSS and navigate to its DPI
+    if (isNaN(Number(this.nssInput))) { // Check if NSS input is valid
       alert("Veuillez scanner un nombre entier de nss de patient");
       this.isRecherchePatient.set(false);
     } else {
-
-      this.fetchServices.fetchPatientNss(Number(this.nssInput)).pipe( //pipe to catch any error
+      this.fetchServices.fetchPatientNss(Number(this.nssInput)).pipe( // Fetch patient data using NSS
         catchError((err) => {
           console.log(err);
-          alert("Nss saisie est erroné, veillez resaisir");
+          alert("Nss saisie est erroné, veillez resaisir"); // Alert if NSS is incorrect
           this.isRecherchePatient.set(false);
           this.nssInput = "";
           throw err;
         })
-        ).subscribe(async (patient) => { //patient fetched !!! navigating to its page
-          this.router.navigate(['medecin/consulter-DPI', patient.id]);
+      ).subscribe(async (patient) => { // Navigate to patient's DPI page upon successful search
+        this.router.navigate(['medecin/consulter-DPI', patient.id]);
       })
-
     }
-
   }
 
-  annulerRecherche(event: MouseEvent){
-
-    if ((event.target as HTMLElement).classList.contains('grey-div') || (event.target as HTMLElement).classList.contains('annuler') ) {
-      this.isCreeDPI.set(false);
-      this.isRecherchePatient.set(false);
+  annulerRecherche(event: MouseEvent) { // Function to cancel the search or create DPI form
+    if ((event.target as HTMLElement).classList.contains('grey-div') || (event.target as HTMLElement).classList.contains('annuler')) {
+      this.isCreeDPI.set(false); // Reset create DPI form visibility
+      this.isRecherchePatient.set(false); // Reset search patient form visibility
     }
-    
   }
-
 }

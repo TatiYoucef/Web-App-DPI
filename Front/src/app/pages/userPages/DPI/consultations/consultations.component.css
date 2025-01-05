@@ -1,213 +1,199 @@
 .content {
   padding: 20px;
-  display: flex;
+  display: flex; /* Enables flexbox layout for the content */
   justify-content: space-between; /* Space between dashboard and consultations */
-  gap: 20px;
+  gap: 20px; /* Adds space between child elements */
 }
 
 .empty-dash {
   width: 25%; /* Set the width of the dashboard to be smaller */
   display: flex;
-  justify-content: flex-start;
+  justify-content: flex-start; /* Align content to the start */
 }
 
-.center-div{
-  width: 80vw;
-  height: 80vh;
-  display: flex;
-  flex-direction:column ;
-  justify-content: center;
-  align-items: center ;
+.center-div {
+  width: 80vw; /* Set width relative to the viewport width */
+  height: 80vh; /* Set height relative to the viewport height */
+  display: flex; /* Enables flexbox layout */
+  flex-direction: column; /* Align items vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
 }
 
 .consultations-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  display: flex; /* Enables flexbox layout */
+  flex-direction: column; /* Align items vertically */
+  gap: 20px; /* Space between child elements */
   width: 95%; /* Set the width of the consultations container */
-  justify-content: flex-start;
-  margin-top: 60px;
+  justify-content: flex-start; /* Align content to the top */
+  margin-top: 60px; /* Add top margin */
 }
 
 h2 {
-  font-size: 1.8em;
-  margin-bottom: 20px;
+  font-size: 1.8em; /* Larger font size for headings */
+  margin-bottom: 20px; /* Add space below the heading */
 }
 
 .no-consultations {
-  text-align: center;
-  margin-top: 10px;
-  font-size: 1.2em;
-  color: #2B2A7F;
+  text-align: center; /* Center-align the text */
+  margin-top: 10px; /* Add space above the text */
+  font-size: 1.2em; /* Slightly larger font size */
+  color: #2B2A7F; /* Set text color */
 }
 
 .consultations-list ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+  list-style-type: none; /* Remove default list styling */
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
 }
 
 .consultation-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px;
-  background-color: #3958B3;
-  color: white;
-  border-radius: 5px;
-  margin-bottom: 15px;
-  margin-top: 0px;
-  transition: background-color 0.3s, box-shadow 0.3s;
-  cursor: pointer;
+  display: flex; /* Enables flexbox layout */
+  justify-content: space-between; /* Space between elements */
+  align-items: center; /* Align items vertically */
+  padding: 15px; /* Add padding around the item */
+  background-color: #3958B3; /* Set background color */
+  color: white; /* Set text color */
+  border-radius: 5px; /* Rounded corners */
+  margin-bottom: 15px; /* Add space below the item */
+  margin-top: 0px; /* No space above the item */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
+  cursor: pointer; /* Indicate the item is clickable */
 }
 
 .consultation-item:hover {
-  background-color: #758BCA;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.19);
+  background-color: #758BCA; /* Change background color on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.19); /* Add shadow effect */
 }
 
 .profile {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  display: flex; /* Enables flexbox layout */
+  flex-direction: column; /* Align items vertically */
+  justify-content: flex-start; /* Align content to the top */
 }
 
 button {
-  padding:50px 20px;
-  border-radius: 5px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  cursor: pointer;
+  padding: 50px 20px; /* Add padding */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #4CAF50; /* Set button background color */
+  color: white; /* Set text color */
+  border: none; /* Remove border */
+  cursor: pointer; /* Indicate the button is clickable */
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #45a049; /* Change background color on hover */
 }
 
 .popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
+  position: fixed; /* Fix the popup on the screen */
+  top: 0; /* Position at the top */
+  left: 0; /* Position at the left */
+  width: 100%; /* Full width of the screen */
+  height: 100%; /* Full height of the screen */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex; /* Enables flexbox layout */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  z-index: 1000; /* Place the popup above other elements */
 }
 
 .popup-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-  width: 80%;
-  max-width: 600px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: white; /* White background */
+  padding: 20px; /* Add padding inside */
+  border-radius: 5px; /* Rounded corners */
+  width: 80%; /* Set width of the popup */
+  max-width: 600px; /* Set maximum width */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow effect */
 }
 
 .popup-content h3 {
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* Space below the heading */
 }
 
 .popup-content p {
-  margin-bottom: 10px;
+  margin-bottom: 10px; /* Space below the paragraph */
 }
 
 .popup-content button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #f44336;
-  color: white;
-  border: none;
-  cursor: pointer;
+  margin-top: 20px; /* Space above the button */
+  padding: 10px 20px; /* Add padding inside */
+  background-color: #f44336; /* Red background */
+  color: white; /* White text */
+  border: none; /* Remove border */
+  cursor: pointer; /* Indicate the button is clickable */
 }
 
 .popup-content button:hover {
-  background-color: #d32f2f;
+  background-color: #d32f2f; /* Darker red background on hover */
 }
 
-.card-button, .card button, select{
-
-  font-family: "Quicksand", serif;
-
-  background-color: #3958B3;
-  color: white;
-  font-size: 18px;
-  font-weight: 800;
-  border: none;
-  border-radius: 20px;
-
-  padding: 10px 10px ;
-  cursor: pointer;
-
-  transition: background-color 0.3s, color 0.3s, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out ;
+.card-button, .card button, select {
+  font-family: "Quicksand", serif; /* Set font style */
+  background-color: #3958B3; /* Button background color */
+  color: white; /* Text color */
+  font-size: 18px; /* Font size */
+  font-weight: 800; /* Font weight */
+  border: none; /* Remove border */
+  border-radius: 20px; /* Rounded corners */
+  padding: 10px 10px; /* Add padding */
+  cursor: pointer; /* Indicate the button is clickable */
+  transition: background-color 0.3s, color 0.3s, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; /* Smooth transitions */
 }
 
-.card-button:hover, .card button:hover, select:hover{
-  background-color: #EEF4FF;
-  color: #3958B3;
-  border-color: grey;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+.card-button:hover, .card button:hover, select:hover {
+  background-color: #EEF4FF; /* Change background color on hover */
+  color: #3958B3; /* Change text color on hover */
+  border-color: grey; /* Change border color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow effect */
 }
 
-option{
-  font-family: "Quicksand", serif;
+option {
+  font-family: "Quicksand", serif; /* Set font style for options */
 }
 
-.grey-div{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
-
-  background-color: rgba(0, 0, 0, 0.3);
-
-  width: 100%;
-  height: 100%;
-
-  overflow: auto;
+.grey-div {
+  display: flex; /* Enables flexbox layout */
+  flex-direction: column; /* Align items vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  position: fixed; /* Fix the div on the screen */
+  top: 0; /* Position at the top */
+  left: 0; /* Position at the left */
+  z-index: 2; /* Place above other elements */
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+  width: 100%; /* Full width of the screen */
+  height: 100%; /* Full height of the screen */
+  overflow: auto; /* Enable scrolling if content overflows */
 }
 
-.card{
-
-  display: flex;
-  justify-content: start; 
-  flex-direction: column;
-  gap: 30px;
-
-  align-items: center;
-  padding: 20px 20px;
-  border-radius: 20px;
-  background-color: #EEF4FF;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
-
+.card {
+  display: flex; /* Enables flexbox layout */
+  justify-content: start; /* Align content to the start */
+  flex-direction: column; /* Align items vertically */
+  gap: 30px; /* Space between child elements */
+  align-items: center; /* Center items horizontally */
+  padding: 20px 20px; /* Add padding inside */
+  border-radius: 20px; /* Rounded corners */
+  background-color: #EEF4FF; /* Set background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow effect */
 }
 
-.horiz{
-  display: flex;
-  gap: 20px;
-  justify-content: start;
-  align-items: center;
+.horiz {
+  display: flex; /* Enables flexbox layout */
+  gap: 20px; /* Space between child elements */
+  justify-content: start; /* Align content to the start */
+  align-items: center; /* Align items vertically */
 }
 
-input{
-  
-  height: 25px;
-  padding: 5px 10px;
-  width: 80%;
-
+input {
+  height: 25px; /* Set height of the input field */
+  padding: 5px 10px; /* Add padding inside */
+  width: 80%; /* Set width of the input field */
   border: 1px solid #ccc; /* Light gray border */
-  outline: none;
-  border-radius: 5px;
-  transition: border-color 0.3s ease;
-
+  outline: none; /* Remove default outline */
+  border-radius: 5px; /* Rounded corners */
+  transition: border-color 0.3s ease; /* Smooth transition for border color */
 }
 
 input:focus {

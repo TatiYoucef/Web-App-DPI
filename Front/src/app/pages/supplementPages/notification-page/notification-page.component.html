@@ -1,24 +1,31 @@
+<!-- Header component with event binding to update dashboard visibility -->
 <app-header (changeDashEvent)="updateDashboardVisibility($event)" />
 
+<!-- Main content container -->
 <div class="content">
 
+  <!-- Empty dashboard container: conditionally display dashboard component if isDashBoardVisible is true -->
   <div class="empty-dash">
     <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>
   </div>
 
-
+  <!-- Container for content -->
   <div class="container">
 
+    <!-- Defer content rendering until conditions are met -->
     @defer {
-
+      <!-- Centered div for empty notification display -->
       <div class="center-div">
-        <img src="../../../../assets/images/Notification_empty.png" width="280px" >
-        <h3>Aucune notification trouvé</h3>
-        <h4>veuillez attendre de recevoir une notification au plus tard...</h4>
+        <!-- Display empty notification image -->
+        <img src="../../../../assets/images/Notification_empty.png" width="280px">
+        <h3>Aucune notification trouvé</h3> <!-- Heading for no notifications found -->
+        <h4>veuillez attendre de recevoir une notification au plus tard...</h4> <!-- Subheading indicating no notifications yet -->
       </div>
-    
-    } @loading (minimum 0.5s) {
+    } 
+  
+    @loading (minimum 0.5s) { <!-- Loading indicator: shows loading screen with a minimum delay of 0.5 seconds -->
       <div class="center-div">
+        <!-- Loading screen component -->
         <app-loading-screen />
       </div>
     }

@@ -1,23 +1,37 @@
+<!-- Main container holding both left and right side content -->
 <div class="container">
+  <!-- Left-side section for login form -->
   <div class="left-div">
+    <!-- Card holding the login form -->
     <div class="card">
+      <!-- Logo image inside the card -->
       <img src="../../../../assets/images/Logo.png" width="50px">
 
+      <!-- Welcome message -->
       <h2>Ravis de vous revoir !</h2>
 
+      <!-- Container for user input fields -->
       <div class="inputs-div">
+        <!-- Label and input for username -->
         <label>Nom de l'utilisateur</label>
         <input id="username" type="text" placeholder="nom de l'utilisateur" #username>
+
+        <!-- Label and input for password -->
         <Label>Mot de passe</Label>
         <input id="password" type="password" placeholder="mot de passe" #password>
       </div>
 
+      <!-- Button to trigger login action, passing username and password values -->
       <button (click)="onSubmit(username.value,password.value)">Se connecter</button>
+
+      <!-- Display any error message below the login button -->
       <p class="error-message">{{ errorMessage }}</p>
     </div>
   </div>
 
+  <!-- Right-side section with an image -->
   <div class="right-div">
+    <!-- Image for the login page, related to the visual design -->
     <img src="../../../../assets/images/ImageLogIn.png" width="450vh">
   </div>
 </div>

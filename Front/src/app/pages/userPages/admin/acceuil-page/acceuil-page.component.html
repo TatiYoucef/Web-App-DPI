@@ -1,66 +1,65 @@
-<app-header (changeDashEvent)="updateDashboardVisibility($event)" />
+<app-header (changeDashEvent)="updateDashboardVisibility($event)" /> <!-- Header component that listens for a change event to update the dashboard visibility -->
 
-<div class="content">
+<div class="content"> <!-- Main content wrapper -->
 
   <div class="empty-dash">
-    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>
+    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board> <!-- Dashboard component that is conditionally displayed based on the value of isDashBoardVisible -->
   </div>
 
+  <div class="container"> <!-- Container for the main content -->
 
-  <div class="container">
+    @defer { <!-- Defer loading content inside this block until needed -->
 
-    @defer {
+      <h1>Bienvenue chers admin {{user.first_name}} {{user.last_name}}</h1> <!-- Greeting message with dynamic user data -->
 
-      <h1>Bienvenue chers admin {{user.first_name}} {{user.last_name}}</h1>
+      <div class="card2" > <!-- Card component for the 'Créer DPI' button -->
+        <img src="../../../../../assets/icons/new_DPI.png" width="100px" > <!-- Image inside the card -->
 
-      <div class="card2" >
-        <img src="../../../../../assets/icons/new_DPI.png" width="100px" >   
-
-        <button (click)="isCreeDPI.set(true)">  
-          <p>Créer DPI</p>    
+        <button (click)="isCreeDPI.set(true)">  <!-- Button to trigger the creation of a DPI -->
+          <p>Créer DPI</p>  <!-- Text inside the button -->
         </button>
 
       </div>
 
-      @if (isCreeDPI()) {
+      @if (isCreeDPI()) { <!-- Conditional block that checks if the DPI creation process is active -->
 
-        <div class="grey-div" (click)="annuler($event)">
+        <div class="grey-div" (click)="annuler($event)"> <!-- Grey overlay div that closes the DPI creation when clicked -->
 
-          <div class="card3">
+          <div class="card3"> <!-- Card for creating the DPI of a patient -->
 
-            <h2>Créer DPI d'un patient</h2>
+            <h2>Créer DPI d'un patient</h2> <!-- Heading for creating a patient's DPI -->
 
             <label>Nss:</label>
-            <input type="text" placeholder="NSS" [(ngModel)]="patientData.nss"> 
+            <input type="text" placeholder="NSS" [(ngModel)]="patientData.nss">  <!-- Input for patient's NSS -->
 
             <label>Nom</label>
-            <input type="text" placeholder="nom" [(ngModel)]="patientData.user.first_name"> 
+            <input type="text" placeholder="nom" [(ngModel)]="patientData.user.first_name">  <!-- Input for patient's first name -->
 
             <label>Prénom</label>
-            <input type="text" placeholder="prénom" [(ngModel)]="patientData.user.last_name">
+            <input type="text" placeholder="prénom" [(ngModel)]="patientData.user.last_name">  <!-- Input for patient's last name -->
 
             <label>Nom d'utilisateur</label>
-            <input type="text" placeholder="nom d'utilisateur" [(ngModel)]="patientData.user.username">
+            <input type="text" placeholder="nom d'utilisateur" [(ngModel)]="patientData.user.username">  <!-- Input for patient's username -->
 
             <label>Addresse</label>
-            <input type="text" placeholder="Addresse" [(ngModel)]="patientData.address">
+            <input type="text" placeholder="Addresse" [(ngModel)]="patientData.address">  <!-- Input for patient's address -->
 
             <label>Date de naissance</label>
-            <input type="date" [(ngModel)]="patientData.date_naissance">
+            <input type="date" [(ngModel)]="patientData.date_naissance">  <!-- Input for patient's birthdate -->
 
             <label>numero telephone</label>
-            <input type="tel" placeholder="téléphone" [(ngModel)]="patientData.phone_number">
+            <input type="tel" placeholder="téléphone" [(ngModel)]="patientData.phone_number">  <!-- Input for patient's phone number -->
 
             <label>mutuelle</label>
-            <input type="tel" placeholder="téléphone" [(ngModel)]="patientData.mutuelle">
+            <input type="tel" placeholder="téléphone" [(ngModel)]="patientData.mutuelle">  <!-- Input for patient's insurance -->
 
-            <div class="container2">
+            <div class="container2"> <!-- Container for the buttons inside the form -->
 
-              <button (click)="creerDPI()">  
+              <button (click)="creerDPI()">  <!-- Button to submit and create the DPI -->
                 créer DPI    
               </button>
 
-              <button class="annuler" (click)="annuler($event)">
+              <button class="annuler" (click)="annuler($event)"> <!-- Cancel button to close the form -->
                 annuler
               </button>
 
@@ -68,15 +67,13 @@
 
           </div>
 
-          
-
         </div>
 
       }
-    
-    } @loading (minimum 0.5s) {
+
+    } @loading (minimum 0.5s) { <!-- Loading screen displayed if content is still loading, with a minimum delay of 0.5 seconds -->
       <div class="center-div">
-        <app-loading-screen />
+        <app-loading-screen /> <!-- Loading screen component -->
       </div>
     }
 

@@ -1,88 +1,95 @@
+/* Container for the overall layout with flexbox */
 .container {
-  display: flex;
-  height: 100vh;
+  display: flex; /* Enables flexbox layout */
+  height: 100vh; /* Sets the height to 100% of the viewport height */
 }
 
+/* Left-side container with a light blue background */
 .left-div {
-  width: 50%;
-  /* Set the width of the left side */
-  background-color: #eef4ff;
-  /* Light blue background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 50%; /* Occupies 50% of the container width */
+  background-color: #eef4ff; /* Light blue background */
+  display: flex; /* Enables flexbox layout inside */
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
 }
 
+/* Right-side container with a dark blue background */
 .right-div {
-  width: 50%;
-  /* Set the width of the right side */
-  background-color: #3958b3;
-  /* Dark blue background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 50%; /* Occupies 50% of the container width */
+  background-color: #3958b3; /* Dark blue background */
+  display: flex; /* Enables flexbox layout inside */
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
 }
 
+/* Card design that holds content with white background */
 .card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  background-color: white;
-  border-radius: 20px;
-  padding: 30px 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  width: 80%;
-  height: 75%;
-  max-width: 400px;
+  display: flex; /* Enables flexbox layout inside */
+  flex-direction: column; /* Stacks items vertically */
+  justify-content: center; /* Centers content vertically */
+  align-items: center; /* Centers content horizontally */
+  gap: 10px; /* Adds spacing between elements */
+  background-color: white; /* White background for the card */
+  border-radius: 20px; /* Rounded corners */
+  padding: 30px 20px; /* Adds padding inside the card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adds shadow effect around the card */
+  width: 80%; /* Sets the card width to 80% of the container */
+  height: 75%; /* Sets the card height to 75% of the container */
+  max-width: 400px; /* Limits the card's width to 400px */
 }
 
+/* Inputs container, organized in a column */
 .inputs-div {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+  width: 100%; /* Full width */
+  display: flex; /* Enables flexbox layout */
+  flex-direction: column; /* Stacks input elements vertically */
 }
 
+/* Style for input fields */
 input {
-  height: 25px;
-  margin: 5px 0 20px;
-  padding: 5px 10px;
-  border: 1px solid #ccc;
-  outline: none;
-  border-radius: 5px;
-  transition: border-color 0.3s ease;
+  height: 25px; /* Sets the height of input fields */
+  margin: 5px 0 20px; /* Adds margin between inputs */
+  padding: 5px 10px; /* Adds padding inside the input fields */
+  border: 1px solid #ccc; /* Light grey border */
+  outline: none; /* Removes outline when input is focused */
+  border-radius: 5px; /* Rounded corners for input */
+  transition: border-color 0.3s ease; /* Smooth transition for border color */
 }
 
+/* Style for focused input fields */
 input:focus {
-  border-color: #3958b3;
+  border-color: #3958b3; /* Changes border color to dark blue when focused */
 }
 
+/* Style for buttons */
 button {
-  background-color: #3958b3;
-  color: white;
-  font-family: "SF Pro Display", "Quicksand";
-  font-size: 18px;
-  font-weight: 700;
-  border: none;
-  border-radius: 20px;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
+  background-color: #3958b3; /* Dark blue background */
+  color: white; /* White text color */
+  font-family: "SF Pro Display", "Quicksand"; /* Sets font family */
+  font-size: 18px; /* Font size */
+  font-weight: 700; /* Bold font */
+  border: none; /* No border */
+  border-radius: 20px; /* Rounded corners for button */
+  padding: 10px 20px; /* Padding inside the button */
+  cursor: pointer; /* Changes cursor to pointer on hover */
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition for button hover */
 }
 
+/* Style for button hover effect */
 button:hover {
-  background-color: #eef4ff;
-  color: #3958b3;
+  background-color: #eef4ff; /* Light blue background on hover */
+  color: #3958b3; /* Dark blue text color on hover */
 }
 
+/* Style for image inside the right div */
 .right-div img {
-  max-width: 80%;
-  height: auto;
+  max-width: 80%; /* Limits image width to 80% of its container */
+  height: auto; /* Maintains image aspect ratio */
 }
 
+/* Error message styling */
 .error-message {
-  color: red; /* Ensure text color is visible */
-  font-size: 16px; /* Ensure it's readable */
-  display: block; /* Ensure it's not hidden */
+  color: red; /* Red color for error messages */
+  font-size: 16px; /* Sets font size for readability */
+  display: block; /* Ensures error message is displayed */
 }

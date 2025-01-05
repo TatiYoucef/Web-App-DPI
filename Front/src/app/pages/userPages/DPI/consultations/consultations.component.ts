@@ -17,45 +17,48 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./consultations.component.css']
 })
 export class ConsultationsComponent implements OnInit {
-  private route = inject(ActivatedRoute);
-  private fetchServices = inject(FetchModulesService);
-  isDashBoardVisible = true;
-  isAjoutConsultation = false;
-  user = inject(UserDataService).getUserData();
+  private route = inject(ActivatedRoute); // Injects ActivatedRoute for accessing route parameters
+  private fetchServices = inject(FetchModulesService); // Service to fetch module-related data
+  isDashBoardVisible = true; // Controls visibility of the dashboard
+  isAjoutConsultation = false; // Controls visibility of the "Add Consultation" form
+  user = inject(UserDataService).getUserData(); // Fetches user data from the service
 
-  isDiagnosed = false;
-  dateSet = Date.now();
-  raisonSet = "";
+  isDiagnosed = false; // Tracks if the consultation is diagnosed
+  dateSet = Date.now(); // Default date set for the consultation
+  raisonSet = ""; // Reason for admission
 
   consultations: any[] = []; // List of consultations
   selectedConsultation: any = null; // Selected consultation details for popup
-  isPopupVisible = signal(false); // Popup visibility signal
-  isLoading = signal(true); // Loading signal
+  isPopupVisible = signal(false); // Signal to control popup visibility
+  isLoading = signal(true); // Signal to control loading state
   errorMessage: string | null = null; // Error message for API failures
   id!: number; // Patient ID
 
   ngOnInit(): void {
+    // Lifecycle hook triggered when the component initializes
     // Retrieve patient ID from route parameters
     this.route.paramMap.subscribe((params) => {
-      const idParam = params.get('id');
+      const idParam = params.get('id'); // Extract 'id' parameter from route
       if (idParam) {
         this.id = +idParam; // Convert ID to a number
         this.loadConsultations(); // Fetch consultations after getting the ID
       } else {
-        this.errorMessage = 'Patient ID not provided in the URL.';
+        this.errorMessage = 'Patient ID not provided in the URL.'; // Error if ID is missing
       }
     });
   }
 
   loadConsultations() {
+    // Fetches consultations for the given patient ID
     this.fetchServices
-      .fetchConsultations(this.id)
+      .fetchConsultations(this.id) // Fetch consultations from the service
       .pipe(
         catchError((err) => {
-          console.error('Error fetching consultations:', err);
-          this.errorMessage = 'Failed to load consultations. Please try again later.';
+          // Handle errors during the API call
+          console.error('Error fetching consultations:', err); // Log error
+          this.errorMessage = 'Failed to load consultations. Please try again later.'; // Set error message
           this.isLoading.set(false); // Turn off loading signal
-          throw err;
+          throw err; // Re-throw the error
         })
       )
       .subscribe((data: any[]) => {
@@ -66,35 +69,33 @@ export class ConsultationsComponent implements OnInit {
 
   showDetails(consultation: any) {
     // Display popup with consultation details
-    this.selectedConsultation = consultation;
-    this.isPopupVisible.set(true);
+    this.selectedConsultation = consultation; // Set selected consultation
+    this.isPopupVisible.set(true); // Show popup
   }
 
   closePopup() {
     // Close the popup
-    this.isPopupVisible.set(false);
-    this.selectedConsultation = null;
+    this.isPopupVisible.set(false); // Hide popup
+    this.selectedConsultation = null; // Clear selected consultation
   }
 
-  ajoutConsultation(){
-
-    //ajouter if consultation lekhra rahi kemlet besh tajouti, 3endek déja les variables date, raison, boolean isDiagnostique m3emrine
-    console.log("Ajouter une consultation", this.isDiagnosed,"/", this.raisonSet);
-    this.isAjoutConsultation = false;
-
+  ajoutConsultation() {
+    // Add a new consultation
+    console.log("Ajouter une consultation", this.isDiagnosed, "/", this.raisonSet); // Log consultation details
+    this.isAjoutConsultation = false; // Hide the "Add Consultation" form
   }
 
-  annuler(event: MouseEvent){
-
-    if ((event.target as HTMLElement).classList.contains('grey-div') || (event.target as HTMLElement).classList.contains('annuler') ) {
-      this.isAjoutConsultation= false;
+  annuler(event: MouseEvent) {
+    // Cancel adding a consultation
+    if ((event.target as HTMLElement).classList.contains('grey-div') || (event.target as HTMLElement).classList.contains('annuler')) {
+      // Check if the clicked element is part of the cancellation process
+      this.isAjoutConsultation = false; // Hide the "Add Consultation" form
     }
-    
   }
 
   updateDashboardVisibility(isVisible: boolean) {
-    console.log('Dashboard visibility updated:', isVisible);
-    this.isDashBoardVisible = isVisible;
+    // Update dashboard visibility
+    console.log('Dashboard visibility updated:', isVisible); // Log visibility state
+    this.isDashBoardVisible = isVisible; // Set dashboard visibility state
   }
-
 }

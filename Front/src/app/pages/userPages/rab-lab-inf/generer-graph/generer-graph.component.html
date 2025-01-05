@@ -1,51 +1,51 @@
-<app-header (changeDashEvent)="updateDashboardVisibility($event)" />
+<app-header (changeDashEvent)="updateDashboardVisibility($event)" /> <!-- Header component that triggers updateDashboardVisibility on event -->
 
-<div class="content">
+<div class="content"> <!-- Main content container -->
 
-  <div class="empty-dash">
-    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>
+  <div class="empty-dash"> <!-- Container for the dashboard -->
+    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board> <!-- Conditionally displays the dashboard if isDashBoardVisible is true -->
   </div>
 
-  <div class="container">
+  <div class="container"> <!-- Container for the form and graph generation -->
 
-    @defer { <!--Defer is when component needs to load so we show something while loading-->
+    @defer { <!-- Defer: shows content while component is loading -->
+      
+      <h2>Générer un graphe</h2> <!-- Heading for the graph generation section -->
 
-      <h2>Générer un graphe</h2>
+      <div class="card"> <!-- Card for input fields -->
+        <label for="name">Name:</label> <!-- Label for the name input -->
+        <input type="text" [(ngModel)]="newItem.name" id="name" /> <!-- Text input for name, two-way bound to newItem.name -->
 
-      <div class="card">
-        <label for="name">Name:</label>
-        <input type="text" [(ngModel)]="newItem.name" id="name" />
+        <label for="value">Value:</label> <!-- Label for the value input -->
+        <input type="number" [(ngModel)]="newItem.value" id="value" /> <!-- Number input for value, two-way bound to newItem.value -->
 
-        <label for="value">Value:</label>
-        <input type="number" [(ngModel)]="newItem.value" id="value" />
-
-        <button (click)="addData()">+</button>
-        <button (click)="removeData()">-</button>
+        <button (click)="addData()">+</button> <!-- Button to add data to the list -->
+        <button (click)="removeData()">-</button> <!-- Button to remove data from the list -->
       </div>
 
-      @if (data.length > 0) {
-
-        <div class="card2">
+      @if (data.length > 0) { <!-- Conditional display if there is data in the array -->
+        
+        <div class="card2"> <!-- Card for displaying the data list -->
           <ul>
-            @for (item of data; track item.value) {
-              <li>Nom: {{item.name}}, Valeur: {{item.value}} </li>
+            @for (item of data; track item.value) { <!-- Loop through the data array and track each item by value -->
+              <li>Nom: {{item.name}}, Valeur: {{item.value}} </li> <!-- Display name and value of each item -->
             }
           </ul>
           
         </div>
         
-        <button (click)="generateGraph()">Générer le graphe</button>
-        <button (click)="downloadGraph()">Télécharger le graphe</button>
+        <button (click)="generateGraph()">Générer le graphe</button> <!-- Button to generate the graph -->
+        <button (click)="downloadGraph()">Télécharger le graphe</button> <!-- Button to download the graph -->
 
-        <canvas #chartCanvas></canvas>
+        <canvas #chartCanvas></canvas> <!-- Canvas element to render the graph -->
       }
-  
-      
-    } @loading (minimum 0.5s) { <!--Nesstennaw minimum 4s besh naffichiw @defer-->
+
+    } @loading (minimum 0.5s) { <!-- Loading screen shown if minimum delay of 0.5s occurs -->
+
       <div class="center-div">
-        <app-loading-screen />
+        <app-loading-screen /> <!-- Loading screen component -->
       </div>
     }
-  
+
   </div>
 </div>

@@ -1,112 +1,98 @@
 .content{
-
-  display: flex;
-  margin-top: 100px;
-  gap: 0;
-  padding: 0;
-  align-items: start;
+  display: flex; /* Flexbox layout for the content */
+  margin-top: 100px; /* Top margin */
+  gap: 0; /* No gap between items */
+  padding: 0; /* No padding */
+  align-items: start; /* Align items at the start */
 }
 
 .empty-dash{
-  width: 24vw;
+  width: 24vw; /* Set width to 24% of the viewport width */
 }
 
 .container {
-
-  display: flex;
-  flex-direction: column; /* Flex items will be arranged vertically */
-  justify-content: flex-start; /* Align items at the top by default */
-  align-items: center;
-  margin: auto;
-  width: 100%;
-  gap: 15px; /* Add spacing between items */
-  margin: 20px;
+  display: flex; /* Flexbox layout */
+  flex-direction: column; /* Flex items arranged vertically */
+  justify-content: flex-start; /* Align items to the top */
+  align-items: center; /* Center align items horizontally */
+  margin: auto; /* Center container horizontally */
+  width: 100%; /* Full width */
+  gap: 15px; /* 15px gap between items */
+  margin: 20px; /* 20px margin around the container */
 }
 
 .center-div{
-  width: 100vw;
-  height: 80vh;
-  display: flex;
-  flex-direction:column ;
-  justify-content: center;
-  align-items: center ;
+  width: 100vw; /* Full viewport width */
+  height: 80vh; /* 80% of the viewport height */
+  display: flex; /* Flexbox layout */
+  flex-direction: column; /* Items arranged vertically */
+  justify-content: center; /* Vertically center content */
+  align-items: center; /* Horizontally center content */
 }
 
 .card{
-
-  display: flex;
-  justify-content: center; /* Align items at the top by default */
-  align-items: center;
-
-  padding: 40px 40px;
-  border-radius: 20px;
-  background-color: #EEF4FF;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
-
+  display: flex; /* Flexbox layout */
+  justify-content: center; /* Horizontally center content */
+  align-items: center; /* Vertically center content */
+  padding: 40px 40px; /* 40px padding */
+  border-radius: 20px; /* Rounded corners */
+  background-color: #EEF4FF; /* Light background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Box shadow for depth */
 }
+
 .card2{
-
-  display: flex;
-  justify-content: start; /* Align items at the top by default */
-  align-items: center;
-  flex-direction: column;
-
-  padding: 20px 20px;
-  border-radius: 20px;
-  background-color: #EEF4FF;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
-
+  display: flex; /* Flexbox layout */
+  justify-content: start; /* Align items to the start */
+  align-items: center; /* Center items vertically */
+  flex-direction: column; /* Arrange items vertically */
+  padding: 20px 20px; /* 20px padding */
+  border-radius: 20px; /* Rounded corners */
+  background-color: #EEF4FF; /* Light background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Box shadow for depth */
 }
 
 input{
-  font-family: "Quicksand", serif;
-  
-  height: 25px;
-  padding: 5px 10px;
-  margin-right: 10px;
-  margin-left: 5px;
-
+  font-family: "Quicksand", serif; /* Set font */
+  height: 25px; /* Set height of the input */
+  padding: 5px 10px; /* Padding inside the input */
+  margin-right: 10px; /* Right margin */
+  margin-left: 5px; /* Left margin */
   border: 1px solid #ccc; /* Light gray border */
-  outline: none;
-  border-radius: 5px;
-  transition: border-color 0.3s ease;
-
+  outline: none; /* Remove outline */
+  border-radius: 5px; /* Rounded corners */
+  transition: border-color 0.3s ease; /* Smooth transition for border color */
 }
 
 input:focus {
-  border-color: #3958B3; /* Blue border on focus */
+  border-color: #3958B3; /* Change border color when input is focused */
 }
 
 button{
-
-  font-family: "Quicksand", serif;
-
-  background-color: #3958B3;
-  color: white;
-  font-size: 18px;
-  font-weight: 800;
-  border: none;
-  border-radius: 20px;
-  margin-right: 5px;
-
-  padding: 10px 10px ;
-  cursor: pointer;
-
-  transition: background-color 0.3s, color 0.3s, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out ;
+  font-family: "Quicksand", serif; /* Set font */
+  background-color: #3958B3; /* Blue background */
+  color: white; /* White text color */
+  font-size: 18px; /* Set font size */
+  font-weight: 800; /* Bold font weight */
+  border: none; /* No border */
+  border-radius: 20px; /* Rounded corners */
+  margin-right: 5px; /* Right margin */
+  padding: 10px 10px; /* Padding inside the button */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s, color 0.3s, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; /* Smooth transition for button effects */
 }
 
 button:hover{
-  background-color: #EEF4FF;
-  color: #3958B3;
-  border-color: grey;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+  background-color: #EEF4FF; /* Light background on hover */
+  color: #3958B3; /* Blue text on hover */
+  border-color: grey; /* Change border color on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
 }
 
 canvas {
-  margin-top: 20px;
-  max-height: 60%;
+  margin-top: 20px; /* Top margin for canvas */
+  max-height: 60%; /* Set maximum height to 60% */
 }
 
 h2{
-  margin-right: auto;
+  margin-right: auto; /* Push the header to the left */
 }

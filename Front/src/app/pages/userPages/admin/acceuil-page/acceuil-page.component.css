@@ -1,151 +1,133 @@
 .content {
-  display: flex;
-  margin-top: 100px;
-  gap: 20px;
-  align-items: flex-start;
-  margin-left: 20%; /* Space for the sidebar */
+  display: flex;  /* Using flexbox for layout */
+  margin-top: 100px;  /* Adding top margin to create space */
+  gap: 20px;  /* Adding space between flex items */
+  align-items: flex-start;  /* Align items to the start of the container */
+  margin-left: 20%;  /* Space for the sidebar */
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin: 0 20px;
-  width: 100%;
+  display: flex;  /* Using flexbox for layout */
+  flex-direction: column;  /* Align items in a vertical column */
+  gap: 20px;  /* Adding space between flex items */
+  margin: 0 20px;  /* Adding margin to the left and right */
+  width: 100%;  /* Full width of the parent container */
 }
 
 .container2 {
-
-  display: flex;
-  
-  gap: 50px; /* Add spacing between items */
-  margin: 20px;
+  display: flex;  /* Using flexbox for layout */
+  gap: 50px;  /* Adding spacing between items */
+  margin: 20px;  /* Adding margin around the container */
 }
 
-.center-div{
-  width: 80vw;
-  height: 80vh;
-  display: flex;
-  flex-direction:column ;
-  justify-content: center;
-  align-items: center ;
+.center-div {
+  width: 80vw;  /* Set width to 80% of the viewport width */
+  height: 80vh;  /* Set height to 80% of the viewport height */
+  display: flex;  /* Using flexbox for layout */
+  flex-direction: column;  /* Align items in a vertical column */
+  justify-content: center;  /* Center items vertically */
+  align-items: center;  /* Center items horizontally */
 }
 
-.card{
-
-  display: flex;
-  justify-content: center; /* Align items at the top by default */
-
-  padding: 40px 40px;
-  border-radius: 20px;
-  background-color: #EEF4FF;
-  gap: 40px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
-
-}
-.card2{
-
-  display: flex;
-  justify-content: center; 
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 40px;
-  border-radius: 20px;
-  background-color: #EEF4FF;
-  gap: 40px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
-  width: 25%;
-
+.card {
+  display: flex;  /* Using flexbox for layout */
+  justify-content: center;  /* Align items at the top by default */
+  padding: 40px 40px;  /* Add padding inside the card */
+  border-radius: 20px;  /* Rounded corners for the card */
+  background-color: #EEF4FF;  /* Light blue background */
+  gap: 40px;  /* Space between items inside the card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);  /* Shadow effect around the card */
 }
 
-.card3{
-
-  margin-top: 400px;
-  display: flex;
-  justify-content: center; 
-  flex-direction: column;
-  align-items: start;
-  padding: 40px 30px;
-  border-radius: 20px;
-  background-color: #EEF4FF;
-  gap: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
-  width: 25%;
-
+.card2 {
+  display: flex;  /* Using flexbox for layout */
+  justify-content: center;  /* Centering the content */
+  flex-direction: column;  /* Align items in a vertical column */
+  align-items: center;  /* Centering the content horizontally */
+  padding: 40px 40px;  /* Add padding inside the card */
+  border-radius: 20px;  /* Rounded corners */
+  background-color: #EEF4FF;  /* Light blue background */
+  gap: 40px;  /* Space between items inside the card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);  /* Shadow effect */
+  width: 25%;  /* Set width to 25% of the parent container */
 }
 
-button{
-
-  font-family: "Quicksand", serif;
-  font-size: 20px;
-  font-weight: 800;
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  border: none;
-  border-radius: 30px ;
-  padding: 20px 20px;
-  background-color:#3958B3;
-  color: #FFFFFF;
-  transition: color 0.3s, background-color 0.3s, box-shadow 0.3s;
-
-  cursor: pointer;
-
+.card3 {
+  margin-top: 400px;  /* Add space from the top */
+  display: flex;  /* Using flexbox for layout */
+  justify-content: center;  /* Centering the content */
+  flex-direction: column;  /* Align items in a vertical column */
+  align-items: start;  /* Align items to the start */
+  padding: 40px 30px;  /* Add padding inside the card */
+  border-radius: 20px;  /* Rounded corners */
+  background-color: #EEF4FF;  /* Light blue background */
+  gap: 20px;  /* Space between items */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);  /* Shadow effect */
+  width: 25%;  /* Set width to 25% of the parent container */
 }
 
-button:hover{
-  background-color: #EEF4FF;
-  color: #3958B3;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+button {
+  font-family: "Quicksand", serif;  /* Set font for the button */
+  font-size: 20px;  /* Set font size */
+  font-weight: 800;  /* Set font weight */
+  display: flex;  /* Using flexbox for layout */
+  flex-direction: column;  /* Align items in a vertical column */
+  justify-content: center;  /* Center items vertically */
+  align-items: center;  /* Center items horizontally */
+  gap: 20px;  /* Add space between items */
+  border: none;  /* Remove border */
+  border-radius: 30px;  /* Rounded corners for the button */
+  padding: 20px 20px;  /* Add padding inside the button */
+  background-color: #3958B3;  /* Dark blue background */
+  color: #FFFFFF;  /* White text color */
+  transition: color 0.3s, background-color 0.3s, box-shadow 0.3s;  /* Smooth transition for color, background, and shadow */
+  cursor: pointer;  /* Change cursor to pointer on hover */
 }
 
-.annuler{
-  margin-left: -40px;
+button:hover {
+  background-color: #EEF4FF;  /* Change background to light blue on hover */
+  color: #3958B3;  /* Change text color to dark blue on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);  /* Add shadow effect on hover */
 }
 
-p, h1{
-  margin: 0 20px;
+.annuler {
+  margin-left: -40px;  /* Move the element left */
 }
 
-h2{
-  margin: auto;
+p, h1 {
+  margin: 0 20px;  /* Add margin to paragraphs and h1 elements */
 }
 
-.grey-div{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
-
-  background-color: rgba(0, 0, 0, 0.3);
-
-  width: 100%;
-  height: 100%;
-
-  overflow: auto;
+h2 {
+  margin: auto;  /* Center h2 elements */
 }
 
-input{
-  
-  height: 25px;
-  padding: 5px 10px;
-  width: 80%;
-  margin-top: -20px;
+.grey-div {
+  display: flex;  /* Using flexbox for layout */
+  flex-direction: column;  /* Align items in a vertical column */
+  justify-content: center;  /* Center items vertically */
+  align-items: center;  /* Center items horizontally */
+  position: fixed;  /* Position the div fixed to the screen */
+  top: 0;  /* Align to the top of the screen */
+  left: 0;  /* Align to the left of the screen */
+  z-index: 2;  /* Set a higher stacking order */
+  background-color: rgba(0, 0, 0, 0.3);  /* Semi-transparent black background */
+  width: 100%;  /* Full width of the screen */
+  height: 100%;  /* Full height of the screen */
+  overflow: auto;  /* Allow content to overflow if necessary */
+}
 
-  border: 1px solid #ccc; /* Light gray border */
-  outline: none;
-  border-radius: 5px;
-  transition: border-color 0.3s ease;
-
+input {
+  height: 25px;  /* Set height of the input */
+  padding: 5px 10px;  /* Add padding inside the input */
+  width: 80%;  /* Set width to 80% of the parent container */
+  margin-top: -20px;  /* Move the input up */
+  border: 1px solid #ccc;  /* Light gray border */
+  outline: none;  /* Remove outline */
+  border-radius: 5px;  /* Rounded corners */
+  transition: border-color 0.3s ease;  /* Smooth transition for border color */
 }
 
 input:focus {
-  border-color: #3958B3; /* Blue border on focus */
+  border-color: #3958B3;  /* Change border color to blue on focus */
 }

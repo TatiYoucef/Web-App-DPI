@@ -1,15 +1,27 @@
-/* HTML: <div class="loader"></div> */
 .loader {
-  width: 100px;
-  height: 100px;
-  --c:no-repeat linear-gradient(#3958B3 0 0);
-  background: var(--c),var(--c),var(--c),var(--c);
-  background-size: 40px 40px;
-  animation: l5 1.8s infinite cubic-bezier(0.3,1,0,1);
+  width: 100px; /* Set the width of the loader */
+  height: 100px; /* Set the height of the loader */
+  --c: no-repeat linear-gradient(#3958B3 0 0); /* Custom CSS variable for gradient color */
+  background: var(--c), var(--c), var(--c), var(--c); /* Apply the gradient to four corners of the loader */
+  background-size: 40px 40px; /* Set the size of each background section */
+  animation: l5 1.8s infinite cubic-bezier(0.3, 1, 0, 1); /* Animation of the loader */
 }
+
 @keyframes l5 {
- 0%   {background-position: 0    0,100% 0   ,100% 100%,0 100%}
- 33%  {background-position: 0    0,100% 0   ,100% 100%,0 100%;width:60px;height: 60px}
- 66%  {background-position: 100% 0,100% 100%,0    100%,0 0   ;width:60px;height: 60px}
- 100% {background-position: 100% 0,100% 100%,0    100%,0 0   }
+  0% { /* Initial state of the loader animation */
+    background-position: 0 0, 100% 0, 100% 100%, 0 100%; /* Position backgrounds at the four corners */
+  }
+  33% { /* State at 33% of the animation cycle */
+    background-position: 0 0, 100% 0, 100% 100%, 0 100%; /* Background positions remain the same */
+    width: 60px; /* Reduce the width to 60px */
+    height: 60px; /* Reduce the height to 60px */
+  }
+  66% { /* State at 66% of the animation cycle */
+    background-position: 100% 0, 100% 100%, 0 100%, 0 0; /* Change background positions */
+    width: 60px; /* Maintain reduced width of 60px */
+    height: 60px; /* Maintain reduced height of 60px */
+  }
+  100% { /* Final state of the loader animation */
+    background-position: 100% 0, 100% 100%, 0 100%, 0 0; /* Final background positions */
+  }
 }

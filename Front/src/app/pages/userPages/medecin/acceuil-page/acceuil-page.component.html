@@ -1,117 +1,127 @@
 <app-header (changeDashEvent)="updateDashboardVisibility($event)" />
+<!-- Header component with changeDashEvent that updates dashboard visibility -->
 
-<div class="content">
+<div class="content"> <!-- Main content wrapper -->
 
-  <div class="empty-dash">
+  <div class="empty-dash"> <!-- Empty section for dashboard -->
     <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>
+    <!-- Conditional rendering of the dashboard if isDashBoardVisible is true -->
   </div>
 
-  <div class="container">
+  <div class="container"> <!-- Container for the content below -->
 
-    @defer { <!--Defer is when component needs to load so we show something while loading-->
+    @defer { <!-- Defer is used to load a component and show something while it's loading -->
 
-      <h1>Bienvenue chers medecin {{user.first_name}} {{user.last_name}}</h1>
-      
-      <div class="container2">
+    <h1>Bienvenue chers medecin {{user.first_name}} {{user.last_name}}</h1>
+    <!-- Welcome message with user's first and last name -->
 
-        <div class="card2" >
-          <img src="../../../../../assets/icons/new_DPI.png" width="100px" >   
+    <div class="container2"> <!-- Container for the buttons -->
 
-          <button (click)="isCreeDPI.set(true)">  
-            <p>Créer DPI</p>    
-          </button>
+      <div class="card2"> <!-- Card containing the "Créer DPI" button -->
+        <img src="../../../../../assets/icons/new_DPI.png" width="80px"> <!-- Icon for creating DPI -->
 
+        <button (click)="isCreeDPI.set(true)"> <!-- Button to trigger creation of DPI -->
+          <p>Créer DPI</p>
+        </button>
+
+      </div>
+
+      <div class="card"> <!-- Card containing other buttons -->
+
+        <button (click)="isScanning = true"> <!-- Button to start scanning by QR code -->
+          <img src="../../../../../assets/icons/QR.png" width="100px"> <!-- Icon for QR code scanning -->
+          <p>Rechercher DPI par code QR</p>
+        </button>
+
+        <div *ngIf="isScanning"> <!-- If scanning is active, show the scanner -->
+          <zxing-scanner [start]="true" (scanSuccess)="onScanSuccess($event)" (scanFailure)="onScanFailure($event)">
+          </zxing-scanner>
         </div>
 
+        <button (click)="isRecherchePatient.set(true)"> <!-- Button to trigger patient search by NSS -->
+          <img src="../../../../../assets/icons/search.png" width="100px"> <!-- Icon for searching by NSS -->
+          <p>Rechercher DPI par NSS</p>
+        </button>
 
-        <div class="card"> 
+      </div>
 
-          <button (click)="isScanning = true">  
-            <img src="../../../../../assets/icons/QR.png" width="100px" >
-            <p>Rechercher DPI par code QR</p>
+    </div>
+
+    @if (isCreeDPI() || isRecherchePatient()) { <!-- If either "Créer DPI" or "Rechercher DPI" button is clicked -->
+
+    <div class="grey-div" (click)="annulerRecherche($event)">
+      <!-- Grey background overlay with cancel click functionality -->
+
+      <div class="card3"> <!-- Card containing form inputs -->
+
+        <h2>{{isCreeDPI()? "Créer DPI d'un patient":"Rechercher un patient"}}</h2>
+        <!-- Display title based on selected action -->
+
+        <label>Nss:</label>
+        <input type="text" placeholder="NSS" [(ngModel)]="nssInput" width="150%"> <!-- Input field for NSS -->
+
+        @if (isCreeDPI()) { <!-- If creating DPI, show additional fields -->
+        <div class="info-container"> <!-- Information container -->
+          <div class="div1">
+            <label>Nom</label>
+            <input type="text" placeholder="nom" [(ngModel)]="patientData.user.first_name">
+            <!-- Input field for first name -->
+
+            <label>Prénom</label>
+            <input type="text" placeholder="prénom" [(ngModel)]="patientData.user.last_name">
+            <!-- Input field for last name -->
+
+            <label>Nom d'utilisateur</label>
+            <input type="text" placeholder="nom d'utilisateur" [(ngModel)]="patientData.user.username">
+            <!-- Input field for username -->
+
+            <label>Addresse</label>
+            <input type="text" placeholder="Addresse" [(ngModel)]="patientData.address">
+            <!-- Input field for address -->
+          </div>
+          <div class="div2">
+            <label>Date de naissance</label>
+            <input type="date" [(ngModel)]="patientData.date_naissance"> <!-- Input field for date of birth -->
+
+            <label>numero telephone</label>
+            <input type="tel" placeholder="téléphone" [(ngModel)]="patientData.phone_number">
+            <!-- Input field for phone number -->
+
+            <label>mutuelle</label>
+            <input type="tel" placeholder="téléphone" [(ngModel)]="patientData.mutuelle">
+            <!-- Input field for mutual insurance -->
+          </div>
+        </div>
+        }
+
+        <div class="container8"> <!-- Container for action buttons -->
+
+          <button (click)="isCreeDPI()? creerDPI() : recherchePatient()">
+            <!-- Conditional button action based on whether creating or searching DPI -->
+            <p> {{isCreeDPI() ? "Créer DPI":"Recherche DPI" }} </p>
           </button>
 
-          <div *ngIf="isScanning">
-            <zxing-scanner 
-              [start]="true" 
-              (scanSuccess)="onScanSuccess($event)"
-              (scanFailure)="onScanFailure($event)">
-            </zxing-scanner>
-          </div>
-
-
-          <button (click)="isRecherchePatient.set(true)">  
-            <img src="../../../../../assets/icons/search.png" width="100px" >
-            <p>Rechercher DPI par NSS</p>
+          <button class="annuler" (click)="annulerRecherche($event)"> <!-- Cancel button to close form -->
+            annuler
           </button>
 
         </div>
 
       </div>
 
-      @if (isCreeDPI() || isRecherchePatient()) { <!--Ida medecin cliaka l'un des deux boutons-->
+      @if (isRecherchePatient()) {<div style="margin-top: 400px;"></div>}
+      <!-- Empty space when searching for a patient -->
 
-        <div class="grey-div" (click)="annulerRecherche($event)">
+    </div>
 
-          <div class="card3">
- 
-            <h2>{{isCreeDPI()? "Créer DPI d'un patient":"Rechercher un patient"}}</h2>
-
-            <label>Nss:</label>
-            <input type="text" placeholder="NSS" [(ngModel)]="nssInput">  
-            
-            @if (isCreeDPI()) {
-
-              <label>Nom</label>
-              <input type="text" placeholder="nom" [(ngModel)]="patientData.user.first_name"> 
-  
-              <label>Prénom</label>
-              <input type="text" placeholder="prénom" [(ngModel)]="patientData.user.last_name">
-  
-              <label>Nom d'utilisateur</label>
-              <input type="text" placeholder="nom d'utilisateur" [(ngModel)]="patientData.user.username">
-  
-              <label>Addresse</label>
-              <input type="text" placeholder="Addresse" [(ngModel)]="patientData.address">
-  
-              <label>Date de naissance</label>
-              <input type="date" [(ngModel)]="patientData.date_naissance">
-  
-              <label>numero telephone</label>
-              <input type="tel" placeholder="téléphone" [(ngModel)]="patientData.phone_number">
-  
-              <label>mutuelle</label>
-              <input type="tel" placeholder="téléphone" [(ngModel)]="patientData.mutuelle">
-
-            }
-
-            <div class="container2">
-
-              <button (click)="isCreeDPI()? creerDPI() : recherchePatient()">  
-                <p> {{isCreeDPI() ? "Créer DPI":"Recherche DPI" }} </p>    
-              </button>
-
-              <button class="annuler" (click)="annulerRecherche($event)">
-                annuler
-              </button>
-
-            </div>
-
-          </div>
-
-          @if (isRecherchePatient()) {<div style="margin-top: 400px;"></div>} 
-
-        </div>
-
-      }
-  
-      
-    } @loading (minimum 0.5s) { <!--Nesstennaw minimum 4s besh naffichiw @defer-->
-      <div class="center-div">
-        <app-loading-screen />
-      </div>
     }
-  
+
+
+    } @loading (minimum 0.5s) { <!-- Loading screen displayed with minimum delay of 0.5 seconds -->
+    <div class="center-div">
+      <app-loading-screen /> <!-- Display the loading screen -->
+    </div>
+    }
+
   </div>
 </div>
-

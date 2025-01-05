@@ -1,91 +1,82 @@
 .content{
-
-  display: flex;
-  margin-top: 100px;
-  gap: 0;
-  padding: 0;
-  align-items: start;
+  display: flex; /* Using flexbox layout */
+  margin-top: 100px; /* Adding top margin */
+  gap: 0; /* No gap between flex items */
+  padding: 0; /* No padding */
+  align-items: start; /* Aligning items to the start of the container */
 }
 
 .empty-dash{
-  width: 24vw;
+  width: 24vw; /* Setting the width to 24% of the viewport width */
 }
 
 .container {
-
-  display: flex;
+  display: flex; /* Using flexbox layout */
   flex-direction: column; /* Flex items will be arranged vertically */
   justify-content: flex-start; /* Align items at the top by default */
-  width: 100%;
-  gap: 10px; /* Add spacing between items */
-  margin: 20px;
+  width: 100%; /* Full width */
+  gap: 10px; /* Adding spacing between items */
+  margin: 20px; /* Adding margin */
 }
 
 .center-div{
-  width: 100vw;
-  height: 80vh;
-  display: flex;
-  flex-direction:column ;
-  justify-content: center;
-  align-items: center ;
+  width: 100vw; /* Full width of the viewport */
+  height: 80vh; /* 80% of the viewport height */
+  display: flex; /* Using flexbox layout */
+  flex-direction: column; /* Flex items will be arranged vertically */
+  justify-content: center; /* Centering items vertically */
+  align-items: center; /* Centering items horizontally */
 }
 
 h3{
-  color: #2B2A7F;
-  margin: 5px;
+  color: #2B2A7F; /* Set the color of h3 to a specific shade of blue */
+  margin: 5px; /* Adding margin */
 }
+
 h4{
-  color: #2B2A7F;
-  margin: 5px;
-  opacity: 0.5;
+  color: #2B2A7F; /* Set the color of h4 to a specific shade of blue */
+  margin: 5px; /* Adding margin */
+  opacity: 0.5; /* Make the text semi-transparent */
 }
 
 .item {
-
-  display: flex;
-  justify-content: start;
-
-  padding: 10px;
-  box-sizing: border-box;
-  background-color: #3958B3;
-  color: white;
-  border: 2px solid black;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  align-items: center;
-  transition: background-color 0.3s, box-shadow 0.3s;
-
+  display: flex; /* Using flexbox layout */
+  justify-content: start; /* Align items to the start of the container */
+  padding: 10px; /* Adding padding */
+  box-sizing: border-box; /* Ensure padding is included in the width/height calculation */
+  background-color: #3958B3; /* Setting background color */
+  color: white; /* Setting text color to white */
+  border: 2px solid black; /* Setting black border */
+  border: 1px solid #ccc; /* Overriding the previous border with a lighter color */
+  border-radius: 5px; /* Rounding the corners */
+  align-items: center; /* Align items vertically in the center */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Adding smooth transition for background-color and box-shadow */
 }
 
 .item:hover{
-
-  background-color: #758BCA;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.19);
-  cursor: pointer; /* Show pointer on hover */
-
+  background-color: #758BCA; /* Change background color on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.19); /* Adding shadow effect on hover */
+  cursor: pointer; /* Change cursor to pointer on hover */
 }
 
 .profile{
-
-  width: 15%;
-  display: flex;
-  color: white;
+  width: 15%; /* Setting the width to 15% of the container */
+  display: flex; /* Using flexbox layout */
+  color: white; /* Setting text color to white */
   flex-direction: column; /* Flex items will be arranged vertically */
   justify-content: flex-start; /* Align items at the top by default */
-
 }
 
 .profile h3{
-  color: white;
+  color: white; /* Set color of h3 inside profile to white */
 } 
 
 .empty-div{
-  width: 100%;
+  width: 100%; /* Full width */
 }
 
 .qr-code {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+  display: flex; /* Using flexbox layout */
+  justify-content: center; /* Centering items horizontally */
+  align-items: center; /* Centering items vertically */
 }

@@ -1,40 +1,40 @@
-<app-header (changeDashEvent)="updateDashboardVisibility($event)" />
+<app-header (changeDashEvent)="updateDashboardVisibility($event)" /> <!--Header component with an event binding to update dashboard visibility-->
 
 <div class="content">
 
   <div class="empty-dash">
-    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>
+    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board> <!--Dashboard component, only shown if isDashBoardVisible is true-->
   </div>
 
   <div class="container">
 
     @defer { <!--Defer is when component needs to load so we show something while loading-->
 
-      @if (listePatient().length === 0) { <!--Liste rahi fargha-->
-
+      @if (listePatient().length === 0) { <!--Check if the patient list is empty-->
+        
         <div class="center-div">
-          <img src="../../../../../assets/images/Task_empty.png" width="280px" >
-          <h3>Aucun patient trouvé</h3>
-          <h4>Tous les patients possédent déja un compte, vous pouvez crée des nouveaux sur la page d'acceuil</h4>
+          <img src="../../../../../assets/images/Task_empty.png" width="280px" > <!--Image to indicate no patients found-->
+          <h3>Aucun patient trouvé</h3> <!--Text message when no patients are found-->
+          <h4>Tous les patients possédent déja un compte, vous pouvez crée des nouveaux sur la page d'acceuil</h4> <!--Instruction text-->
         </div>
 
       } @else {
 
-        <h2>Liste des patients sans compte:</h2>
+        <h2>Liste des patients sans compte:</h2> <!--Heading for the list of patients without accounts-->
 
-        @for (item of listePatient(); track item.nss) { <!--For each patient ndirou ceci-->
+        @for (item of listePatient(); track item.nss) { <!--For each patient in the list, iterate and track by NSS-->
 
-          <div class="item" (click)="goConsult(item.id)">
+          <div class="item" (click)="goConsult(item.id)"> <!--Clickable item for each patient that triggers goConsult with patient ID-->
       
             <div class="profile">
-              <h3>{{ item.user.first_name }} {{ item.user.last_name }}</h3>
-              <p>Nss: {{ item.nss }} </p>
+              <h3>{{ item.user.first_name }} {{ item.user.last_name }}</h3> <!--Display patient first and last name-->
+              <p>Nss: {{ item.nss }} </p> <!--Display patient NSS-->
             </div>
              
-            <div class="empty-div"></div>
+            <div class="empty-div"></div> <!--Empty div to maintain layout structure-->
 
             <div class="qr-code">
-              <img [src]="item.qrcode" alt="QR Code" />
+              <img [src]="item.qrcode" alt="QR Code" /> <!--QR code for each patient-->
             </div>  
           </div>
         }
@@ -42,9 +42,9 @@
       }
   
       
-    } @loading (minimum 2s) { <!--Nesstennaw minimum 4s besh naffichiw @defer-->
+    } @loading (minimum 2s) { <!--Loading screen is displayed for a minimum of 2 seconds while the content is being deferred-->
       <div class="center-div">
-        <app-loading-screen />
+        <app-loading-screen /> <!--Loading screen component-->
       </div>
     }
   

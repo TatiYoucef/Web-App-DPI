@@ -1,91 +1,82 @@
 .content{
-
-  display: flex;
-  margin-top: 100px;
-  gap: 0;
-  padding: 0;
-  align-items: start;
+  display: flex; /* Display flex for flexible layout */
+  margin-top: 100px; /* Add top margin */
+  gap: 0; /* No gap between flex items */
+  padding: 0; /* No padding */
+  align-items: start; /* Align items at the start (top) of the container */
 }
 
 .empty-dash{
-  width: 24vw;
+  width: 24vw; /* Set width to 24% of the viewport width */
 }
 
 .container {
-
-  display: flex;
+  display: flex; /* Use flexbox layout */
   flex-direction: column; /* Flex items will be arranged vertically */
   justify-content: flex-start; /* Align items at the top by default */
-  width: 100%;
+  width: 100%; /* Take up full width of the parent */
   gap: 10px; /* Add spacing between items */
-  margin: 20px;
+  margin: 20px; /* Add margin around the container */
 }
 
 .center-div{
-  width: 100vw;
-  height: 80vh;
-  display: flex;
-  flex-direction:column ;
-  justify-content: center;
-  align-items: center ;
+  width: 100vw; /* Set width to 100% of the viewport width */
+  height: 80vh; /* Set height to 80% of the viewport height */
+  display: flex; /* Use flexbox layout */
+  flex-direction: column; /* Arrange items vertically */
+  justify-content: center; /* Center items vertically */
+  align-items: center; /* Center items horizontally */
 }
 
 h3{
-  color: #2B2A7F;
-  margin: 5px;
+  color: #2B2A7F; /* Set text color */
+  margin: 5px; /* Add margin around the h3 */
 }
+
 h4{
-  color: #2B2A7F;
-  margin: 5px;
-  opacity: 0.5;
+  color: #2B2A7F; /* Set text color */
+  margin: 5px; /* Add margin around the h4 */
+  opacity: 0.5; /* Make text slightly transparent */
 }
 
 .item {
-
-  display: flex;
-  justify-content: start;
-
-  padding: 10px;
-  box-sizing: border-box;
-  background-color: #3958B3;
-  color: white;
-  border: 2px solid black;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  align-items: center;
-  transition: background-color 0.3s, box-shadow 0.3s;
-
+  display: flex; /* Use flexbox layout */
+  justify-content: start; /* Align items at the start of the container */
+  padding: 10px; /* Add padding inside the item */
+  box-sizing: border-box; /* Include padding and border in the total width/height */
+  background-color: #3958B3; /* Set background color */
+  color: white; /* Set text color to white */
+  border: 2px solid black; /* Border for the item */
+  border: 1px solid #ccc; /* Lighter border for better aesthetics */
+  border-radius: 5px; /* Round the corners of the item */
+  align-items: center; /* Align items in the center */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for background and shadow */
 }
 
 .item:hover{
-
-  background-color: #758BCA;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.19);
-  cursor: pointer; /* Show pointer on hover */
-
+  background-color: #758BCA; /* Change background color on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.19); /* Add shadow on hover */
+  cursor: pointer; /* Change cursor to pointer when hovering */
 }
 
 .profile{
-
-  width: 15%;
-  display: flex;
-  color: white;
-  flex-direction: column; /* Flex items will be arranged vertically */
-  justify-content: flex-start; /* Align items at the top by default */
-
+  width: 15%; /* Set profile width */
+  display: flex; /* Use flexbox layout */
+  color: white; /* Set text color */
+  flex-direction: column; /* Arrange items vertically */
+  justify-content: flex-start; /* Align items at the top */
 }
 
 .profile h3{
-  color: white;
-} 
+  color: white; /* Set color for h3 inside profile */
+}
 
 .empty-div{
-  width: 100%;
+  width: 100%; /* Take up full width */
 }
 
 .qr-code {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+  display: flex; /* Use flexbox layout */
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
 }

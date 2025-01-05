@@ -1,153 +1,139 @@
 .content {
-  display: flex;
-  margin-top: 100px;
-  gap: 20px;
-  align-items: flex-start;
+  display: flex; /* Flexbox layout */
+  margin-top: 100px; /* Space from the top of the page */
+  gap: 20px; /* Space between flex items */
+  align-items: flex-start; /* Align items to the start of the container */
   margin-left: 20%; /* Space for the sidebar */
 }
 
-.center-div{
-  width: 80vw;
-  height: 80vh;
-  display: flex;
-  flex-direction:column ;
-  justify-content: center;
-  align-items: center ;
+.center-div {
+  width: 80vw; /* 80% of the viewport width */
+  height: 80vh; /* 80% of the viewport height */
+  display: flex; /* Flexbox layout */
+  flex-direction: column; /* Arrange items vertically */
+  justify-content: center; /* Center items vertically */
+  align-items: center; /* Center items horizontally */
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin: 0 20px;
-  width: 100%;
+  display: flex; /* Flexbox layout */
+  flex-direction: column; /* Arrange items vertically */
+  gap: 20px; /* Space between items */
+  margin: 0 20px; /* Horizontal margins */
+  width: 100%; /* Full width */
 }
 
 .container-invert {
-  display: flex;
-  flex-direction: column-reverse;
-  gap: 20px;
-  width: 100%;
+  display: flex; /* Flexbox layout */
+  flex-direction: column-reverse; /* Reverse the order of items */
+  gap: 20px; /* Space between items */
+  width: 100%; /* Full width */
 }
 
-h3{
-  color: #2B2A7F;
-  margin: 5px;
+h3 {
+  color: #2B2A7F; /* Set text color */
+  margin: 5px; /* Margin around the heading */
 }
-h4{
-  margin: 5px;
-  width: 200%;
+
+h4 {
+  margin: 5px; /* Margin around the heading */
+  width: 200%; /* Expand width to 200% */
 }
-p{text-align: center;}
+
+p {
+  text-align: center; /* Center-align paragraph text */
+}
 
 .item {
-
-  display: flex;
-  justify-content: start;
-
-  padding: 10px;
-  box-sizing: border-box;
-  background-color: #3958B3;
-  color: white;
-  border: 2px solid black;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  align-items: center;
-  transition: background-color 0.3s, box-shadow 0.3s;
-
+  display: flex; /* Flexbox layout */
+  justify-content: start; /* Align items to the start of the container */
+  padding: 10px; /* Padding inside the item */
+  box-sizing: border-box; /* Include padding in the element's total width and height */
+  background-color: #3958B3; /* Set background color */
+  color: white; /* Set text color */
+  border: 2px solid black; /* Border around the item */
+  border: 1px solid #ccc; /* Border color */
+  border-radius: 5px; /* Rounded corners */
+  align-items: center; /* Align items to the center vertically */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Transition for background color and box shadow */
 }
 
-.item:hover{
-
-  background-color: #758BCA;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.19);
-  cursor: pointer; /* Show pointer on hover */
-
+.item:hover {
+  background-color: #758BCA; /* Change background color on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.19); /* Box shadow effect on hover */
+  cursor: pointer; /* Show pointer cursor on hover */
 }
 
-.profile{
-
-  width: 15%;
-  display: flex;
-  color: white;
-  flex-direction: column; /* Flex items will be arranged vertically */
-  justify-content: flex-start; /* Align items at the top by default */
-
+.profile {
+  width: 15%; /* Set the width of the profile section */
+  display: flex; /* Flexbox layout */
+  color: white; /* Set text color */
+  flex-direction: column; /* Arrange items vertically */
+  justify-content: flex-start; /* Align items at the top */
 }
 
-.profile h3{
-  color: white;
-} 
-
-.empty-div{
-  width: 100%;
+.profile h3 {
+  color: white; /* Set text color for profile name */
 }
 
-button, select{
-
-  font-family: "Quicksand", serif;
-
-  background-color: #3958B3;
-  color: white;
-  font-size: 18px;
-  font-weight: 800;
-  border: none;
-  border-radius: 20px;
-
-  padding: 10px 10px ;
-  cursor: pointer;
-
-  transition: background-color 0.3s, color 0.3s, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out ;
+.empty-div {
+  width: 100%; /* Full width for the empty div */
 }
 
-button:hover, select:hover{
-  background-color: #EEF4FF;
-  color: #3958B3;
-  border-color: grey;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+button, select {
+  font-family: "Quicksand", serif; /* Font for buttons and selects */
+  background-color: #3958B3; /* Background color */
+  color: white; /* Text color */
+  font-size: 18px; /* Font size */
+  font-weight: 800; /* Font weight */
+  border: none; /* Remove border */
+  border-radius: 20px; /* Rounded corners */
+  padding: 10px 10px; /* Padding inside button/select */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s, color 0.3s, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; /* Transition effects */
 }
 
-option{
-  font-family: "Quicksand", serif;
+button:hover, select:hover {
+  background-color: #EEF4FF; /* Change background color on hover */
+  color: #3958B3; /* Change text color on hover */
+  border-color: grey; /* Change border color on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
 }
 
-.grey-div{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
-
-  background-color: rgba(0, 0, 0, 0.3);
-
-  width: 100%;
-  height: 100%;
-
-  overflow: auto;
+option {
+  font-family: "Quicksand", serif; /* Font for options in select */
 }
 
-.card{
-
-  display: flex;
-  justify-content: start; 
-  flex-direction: column;
-  gap: 30px;
-
-  align-items: center;
-  padding: 20px 20px;
-  border-radius: 20px;
-  background-color: #EEF4FF;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
-
+.grey-div {
+  display: flex; /* Flexbox layout */
+  flex-direction: column; /* Arrange items vertically */
+  justify-content: center; /* Center items vertically */
+  align-items: center; /* Center items horizontally */
+  position: fixed; /* Fixed position */
+  top: 0; /* Align to the top */
+  left: 0; /* Align to the left */
+  z-index: 2; /* Layer on top */
+  background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent background */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Allow scrolling if content overflows */
 }
 
-.horiz{
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
+.card {
+  display: flex; /* Flexbox layout */
+  justify-content: start; /* Align items to the start of the container */
+  flex-direction: column; /* Arrange items vertically */
+  gap: 30px; /* Space between items */
+  align-items: center; /* Center items horizontally */
+  padding: 20px 20px; /* Padding inside the card */
+  border-radius: 20px; /* Rounded corners */
+  background-color: #EEF4FF; /* Light blue background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Box shadow effect */
+}
+
+.horiz {
+  display: flex; /* Flexbox layout */
+  gap: 20px; /* Space between items */
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
 }

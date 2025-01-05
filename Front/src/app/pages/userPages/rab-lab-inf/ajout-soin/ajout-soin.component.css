@@ -1,108 +1,94 @@
-.content{
-
-  display: flex;
-  margin-top: 100px;
-  gap: 0;
-  padding: 0;
-  align-items: start;
+.content {
+  display: flex; /* Display content as flexbox */
+  margin-top: 100px; /* Space from top */
+  gap: 0; /* No gap between flex items */
+  padding: 0; /* No padding */
+  align-items: start; /* Align items at the start of the container */
 }
 
-.empty-dash{
-  width: 24vw;
+.empty-dash {
+  width: 24vw; /* Set width as 24% of viewport width */
 }
 
 .container {
-
-  display: flex;
+  display: flex; /* Use flexbox layout */
   flex-direction: column; /* Flex items will be arranged vertically */
   justify-content: flex-start; /* Align items at the top by default */
-  align-items: center;
-  width: 100%;
+  align-items: center; /* Center align items horizontally */
+  width: 100%; /* Take full width */
   gap: 10px; /* Add spacing between items */
-  margin: 20px;
+  margin: 20px; /* Space around the container */
 }
 
-.card{
-
-  display: flex;
-  flex-direction: column; /* Flex items will be arranged vertically */
-  justify-content: flex-start; /* Align items at the top by default */
-
-  padding: 40px 40px;
-  border-radius: 20px;
-  background-color: #EEF4FF;
-  width: 50%;
-  margin-bottom: 40px;
-  
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
-
+.card {
+  display: flex; /* Use flexbox for card */
+  flex-direction: column; /* Arrange items vertically */
+  justify-content: flex-start; /* Align items at the top */
+  padding: 40px 40px; /* Add padding around the card */
+  border-radius: 20px; /* Rounded corners */
+  background-color: #EEF4FF; /* Light blue background */
+  width: 50%; /* Set card width to 50% of container */
+  margin-bottom: 40px; /* Space below the card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Apply shadow */
 }
 
-input{
-  height: 25px;
+input {
+  height: 25px; /* Set input height */
 }
 
-input, textarea{
-  font-family: "Quicksand", serif;
-  
-  padding: 5px 10px;
-
-  margin-bottom: 20px;
-
+input, textarea {
+  font-family: "Quicksand", serif; /* Set font */
+  padding: 5px 10px; /* Add padding inside inputs */
+  margin-bottom: 20px; /* Space below the inputs */
   border: 1px solid #ccc; /* Light gray border */
-  outline: none;
-  border-radius: 5px;
-  transition: border-color 0.3s ease;
-
+  outline: none; /* Remove outline */
+  border-radius: 5px; /* Rounded corners */
+  transition: border-color 0.3s ease; /* Smooth transition on focus */
 }
 
-input:focus , textarea:hover{
-  border-color: #3958B3; /* Blue border on focus */
+input:focus, textarea:hover {
+  border-color: #3958B3; /* Blue border on focus or hover */
 }
 
-button{
-
-  font-family: "Quicksand", serif;
-
-  background-color: #3958B3;
-  color: white;
-  font-size: 18px;
-  font-weight: 800;
-  border: none;
-  border-radius: 20px;
-  width: 20%;
-
-  padding: 10px 10px ;
-  cursor: pointer;
-
-  transition: background-color 0.3s, color 0.3s, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out ;
+button {
+  font-family: "Quicksand", serif; /* Set button font */
+  background-color: #3958B3; /* Blue background */
+  color: white; /* White text */
+  font-size: 18px; /* Font size */
+  font-weight: 800; /* Bold text */
+  border: none; /* No border */
+  border-radius: 20px; /* Rounded corners */
+  width: 20%; /* Set width to 20% of the container */
+  padding: 10px 10px; /* Add padding inside button */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s, color 0.3s, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; /* Smooth transitions */
 }
 
-.card button{
-  margin: auto;
+.card button {
+  margin: auto; /* Center the button inside the card */
 }
 
-button:hover{
-  background-color: #EEF4FF;
-  color: #3958B3;
-  border-color: grey;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+button:hover {
+  background-color: #EEF4FF; /* Light background on hover */
+  color: #3958B3; /* Change text color to blue */
+  border-color: grey; /* Add grey border on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
 }
 
-h1{
-  margin-right: auto;
+h1 {
+  margin-right: auto; /* Align heading to the left */
 }
 
-h2{
-  margin: auto;
-  margin-bottom: 30px;
+h2 {
+  margin: auto; /* Center the heading */
+  margin-bottom: 30px; /* Add space below the heading */
 }
 
-.center-div{
-  width: 100vw;
-  height: 80vh;
-  display: flex;
-  flex-direction:column ;
-  justify-content: center;
-  align-items: center ;
+.center-div {
+  width: 100vw; /* Full width of the viewport */
+  height: 80vh; /* 80% of the viewport height */
+  display: flex; /* Use flexbox layout */
+  flex-direction: column; /* Arrange items vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
 }

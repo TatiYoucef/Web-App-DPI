@@ -1,32 +1,39 @@
 <header class="header-div">
   
-  <!-- Conditionally render the button to toggle the dashboard visibility -->
+  <!-- Button to toggle the visibility of the dashboard -->
+  <!-- The button's class dynamically changes based on the current state of the dashboard -->
   <button 
     class="toggle-dashboard" 
     [class.shifted]="isDashBoard()" 
     (click)="changeDashState()">
+    <!-- Change the button icon based on the dashboard state -->
     <img [src]="isDashBoard() ? '../../../assets/icons/threeLinesA.png' : '../../../assets/icons/threeLinesD.png'" width="30">
   </button>
 
-  <!-- <img src="../../../assets/images/TrackMed1.png" width="280px"> -->
+  <!-- Placeholder for spacing between elements in the header -->
   <div class="empty-div"></div>
 
-  <!-- Notification button -->
+  <!-- Notification button in an active state -->
   <button *ngIf="isNotiPage()" class="activated">
     <img src="../../../assets/icons/NotiActi.png" width="25">
   </button>
 
+  <!-- Notification button in an inactive state -->
+  <!-- Clicking the button navigates to the notifications page -->
   <button *ngIf="!isNotiPage()" class="desactivated" (click)="goToNotifications()">
     <img src="../../../assets/icons/NotiDesacti.png" width="25">
   </button>
 
+  <!-- Profile and user information section -->
   <div class="pfpInfo-div">
-
+    <!-- Profile picture -->
     <img src="../../../assets/icons/pfp.png" width="30">
     <div class="info-div">
+      <!-- Display the user's username -->
       <p>{{ user.username }}</p>
+      <!-- Display the user's role -->
       <p>{{ user.role }}</p>
     </div>
-    
   </div>
+
 </header>

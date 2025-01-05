@@ -1,46 +1,50 @@
-<div class="container">
+<div class="container"> <!-- Main container for the dashboard or navigation menu -->
 
-  <img src="../../../../assets/images/TrackMed1.png" width="180px" class="logo">
+  <img src="../../../../assets/images/TrackMed1.png" width="180px" class="logo"> 
+  <!-- Logo image with specified size -->
 
-  <button (click)="goToHome()">
+  <button (click)="goToHome()"> <!-- Button to navigate to the home page -->
 
-    <div class="button-div">
-      <img src="../../../assets/icons/ic_home.png" width="25px" height="25px">
-      <p>Accueil</p>
+    <div class="button-div"> <!-- Inner div to align icon and text inside the button -->
+      <img src="../../../assets/icons/ic_home.png" width="25px" height="25px"> <!-- Home icon -->
+      <p>Accueil</p> <!-- Label for the button -->
     </div>
 
   </button>
 
-  @if (user.role === "Administratif" ){
+  @if (user.role === "Administratif" ){ <!-- Conditional block for "Administratif" role -->
 
-    <button>
+    <button> <!-- Button for managing patients -->
 
-      <div class="button-div" (click)="router.navigate(['admin', user.id, 'gestionPatient'])">
-          <img src="../../../assets/icons/ic_patient.png" width="25px" height="25px">
-          <p>Gérer patients</p>
-        </div>
+      <div class="button-div" (click)="router.navigate(['admin', user.id, 'gestionPatient'])"> 
+        <!-- Navigate to the patient management page -->
+        <img src="../../../assets/icons/ic_patient.png" width="25px" height="25px"> <!-- Patient icon -->
+        <p>Gérer patients</p> <!-- Label for the button -->
+      </div>
+
     </button>
 
   }
 
-  @if (user.role === "Laborantin"){
+  @if (user.role === "Laborantin"){ <!-- Conditional block for "Laborantin" role -->
 
-    <button (click)="router.navigate(['rabLabInf', user.id ,'geneGraph'])">
-      <div class="button-div">
-        <img src="../../../assets/icons/ic_graph.png" width="25px" height="25px">
-        <p>Générer un graphe</p>
+    <button (click)="router.navigate(['rabLabInf', user.id ,'geneGraph'])"> 
+      <!-- Button to navigate to the graph generation page -->
+      <div class="button-div"> <!-- Inner div for alignment -->
+        <img src="../../../assets/icons/ic_graph.png" width="25px" height="25px"> <!-- Graph icon -->
+        <p>Générer un graphe</p> <!-- Label for the button -->
       </div>
-  </button>
+    </button>
 
   }
 
-  <div class="empty-div"></div>
+  <div class="empty-div"></div> <!-- Spacer div for layout and alignment -->
 
-  <button>
+  <button> <!-- Button for logging out -->
 
-    <div class="button-div" (click)="goToDisconnect()">
-      <p>Se déconnecter</p>
-      <img src="../../../assets/icons/ic_exit.png" width="25px" height="25px">
+    <div class="button-disconnect" (click)="goToDisconnect()"> <!-- Inner div for logout button -->
+      <p>Se déconnecter</p> <!-- Label for the logout button -->
+      <img src="../../../assets/icons/ic_exit.png" width="25px" height="25px"> <!-- Logout icon -->
     </div>
 
   </button>

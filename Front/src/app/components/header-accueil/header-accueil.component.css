@@ -1,20 +1,20 @@
 /* Header container */
 .header-div {
-  display: flex;
+  display: flex; /* Flexible layout to align child elements */
   justify-content: space-between; /* Space between elements for better alignment */
-  align-items: center;
-  gap: 30px;
-  padding: 20px 50px;
-  background-color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  position: relative;
-  z-index: 1;
+  align-items: center; /* Vertically center elements within the container */
+  gap: 30px; /* Space between child elements */
+  padding: 20px 50px; /* Add space inside the container */
+  background-color: white; /* Set background color to white */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add subtle shadow for elevation */
+  position: relative; /* Position relative for layering purposes */
+  z-index: 1; /* Ensure the header is above other elements */
 }
 
 /* Logo image */
 .header-div img {
-  max-width: 200px; /* Responsive logo size */
-  height: auto;
+  max-width: 200px; /* Responsive logo size to maintain proportions */
+  height: auto; /* Automatically adjust height based on width */
 }
 
 /* Empty div to maintain spacing */
@@ -25,47 +25,46 @@
 /* Buttons styling */
 .inscription-button,
 .connexion-button {
-  font-family: "Quicksand", serif;
+  font-family: "Quicksand", serif; /* Font style for buttons */
   font-size: 18px; /* Reduced font size for better responsiveness */
-  font-weight: 800;
-  border: none;
-  border-radius: 100px;
-  padding: 10px 20px;
-  margin-right: 10%;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+  font-weight: 800; /* Bold text for emphasis */
+  border: none; /* Remove default border */
+  border-radius: 100px; /* Fully rounded buttons */
+  padding: 10px 20px; /* Inner spacing for buttons */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s; /* Smooth transitions for hover effects */
 }
 
 /* Specific styles for inscription button */
 .inscription-button {
-  background-color: #FFE7DB;
-  color: #3958B3;
+  background-color: #FFE7DB; /* Light peach background color */
+  color: #3958B3; /* Dark blue text color */
 }
 
 .inscription-button:hover {
-  color: #3958B3;
-  background-color: #EEF4FF;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: #3958B3; /* Retain dark blue text color on hover */
+  background-color: #EEF4FF; /* Light blue background on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow for hover effect */
 }
 
 /* Specific styles for connexion button */
 .connexion-button {
-  background-color: #3958B3;
-  color: #EEF4FF;
+  background-color: #3958B3; /* Dark blue background color */
+  color: #EEF4FF; /* Light blue text color */
 }
 
 .connexion-button:hover {
-  color: #3958B3;
-  background-color: #EEF4FF;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: #3958B3; /* Dark blue text color on hover */
+  background-color: #EEF4FF; /* Light blue background on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow for hover effect */
 }
 
 /* Responsive design for smaller devices */
 @media screen and (max-width: 768px) {
   .header-div {
-    flex-wrap: wrap; /* Allow wrapping for better stacking */
-    padding: 15px 20px;
-    gap: 15px;
+    flex-wrap: wrap; /* Allow wrapping for better stacking on smaller screens */
+    padding: 15px 20px; /* Reduce padding for smaller screens */
+    gap: 15px; /* Reduce spacing between elements */
   }
 
   .header-div img {
@@ -78,12 +77,12 @@
 
   .inscription-button,
   .connexion-button {
-    font-size: 14px; /* Adjust font size */
-    padding: 8px 15px; /* Reduce padding */
-    width: 100%; /* Full width buttons for small screens */
+    font-size: 14px; /* Adjust font size for better fit */
+    padding: 8px 15px; /* Reduce padding for smaller buttons */
+    width: 100%; /* Full-width buttons for smaller screens */
   }
 
   .inscription-button + .connexion-button {
-    margin-top: 10px; /* Add spacing between buttons */
+    margin-top: 10px; /* Add spacing between stacked buttons */
   }
 }

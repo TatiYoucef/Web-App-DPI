@@ -1,67 +1,69 @@
 .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-items: center;
-  gap: 20px;
-  padding: 20px 20px;
-  padding-bottom: 50px;
-  background-color: #EEF4FF;
-  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2; /* Ensure the dashboard is on top of the header */
-  transform: translateX(0); /* Default visible position */
-  transition: transform 0.3s;
+  display: flex; /* Flexbox layout for flexible alignment */
+  flex-direction: column; /* Stack child elements vertically */
+  justify-content: start; /* Align items at the top of the container */
+  align-items: center; /* Center items horizontally */
+  gap: 20px; /* Space between child elements */
+  padding: 20px 20px; /* Padding around the container */
+  padding-bottom: 50px; /* Extra bottom padding */
+  background-color: #EEF4FF; /* Light blue background color */
+  box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  height: 100vh; /* Full viewport height */
+  position: fixed; /* Fixed position relative to the viewport */
+  top: 0; /* Align to the top of the viewport */
+  left: 0; /* Align to the left of the viewport */
+  z-index: 2; /* Ensure the container is above other elements */
+  transform: translateX(0); /* Default position (visible on screen) */
+  transition: transform 0.3s; /* Smooth transition for position changes */
 }
 
-/* .container.hidden {
-  transform: translateX(-100%); /* Hide dashboard off-screen */
-/*} */
-
 .container.visible {
-  transform: translateX(0); /* Visible */
+  transform: translateX(0); /* Make the container visible */
 }
 
 .button-div {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  justify-content: flex-start;
+  display: flex; /* Flexbox layout for buttons */
+  gap: 20px; /* Space between buttons */
+  align-items: center; /* Center buttons vertically */
+  justify-content: flex-start; /* Align buttons to the left */
+}
+
+.button-disconnect {
+  display: flex; /* Flexbox layout for buttons */
+  gap: 20px; /* Space between buttons */
+  align-items: center; /* Center buttons vertically */
+  justify-content: flex-end; /* Align buttons to the left */
 }
 
 .empty-div {
-  height: 40%;
+  height: 40%; /* Empty space for layout purposes */
 }
 
 .logo {
-  padding-top: 13px;
-  padding-bottom: 30px;
+  padding-top: 13px; /* Top padding for spacing */
+  padding-bottom: 30px; /* Bottom padding for spacing */
 }
 
 button {
-  font-size: 15px;
-  font-weight: 600;
-  color: #3958B3;
-  font-family: "SF Pro Display", serif;
-  width: 100%;
-  padding: 10px 20px;
-  background-color: white;
-  border: none;
-  border-radius: 10px;
-
-  cursor: pointer;
-  transition: box-shadow 0.3s;
+  font-size: 15px; /* Button font size */
+  font-weight: 600; /* Semi-bold font weight */
+  color: #3958B3; /* Dark blue text color */
+  font-family: "SF Pro Display", serif; /* Button font family */
+  width: 100%; /* Full-width buttons */
+  padding: 10px 20px; /* Inner padding for the button */
+  background-color: white; /* White button background */
+  border: none; /* Remove default border */
+  border-radius: 10px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: box-shadow 0.3s; /* Smooth shadow transition */
 }
 
 button:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow effect on hover */
 }
 
 p {
-  margin: 0;
+  margin: 0; /* Remove default paragraph margin */
 }
 
 @media (min-width: 769px) {

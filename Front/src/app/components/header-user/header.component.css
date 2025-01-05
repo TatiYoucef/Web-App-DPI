@@ -1,82 +1,82 @@
 .header-div {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  gap: 50px;
-  padding: 20px 50px;
-  width: 100vw;
-  height: 30px;
-  background-color: #EEF4FF;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1; /* Lower than the dashboard */
+  display: flex; /* Align children in a row */
+  justify-content: start; /* Align items to the start of the horizontal axis */
+  align-items: center; /* Align items to the center of the vertical axis */
+  gap: 50px; /* Space between child elements */
+  padding: 20px 50px; /* Padding inside the container */
+  width: 100vw; /* Full width of the viewport */
+  height: 30px; /* Fixed height */
+  background-color: #EEF4FF; /* Light blue background color */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  position: fixed; /* Sticks the header to the top */
+  top: 0; /* Position at the very top */
+  left: 0; /* Position at the very left */
+  z-index: 1; /* Stacking order, placed behind the dashboard */
 }
 
 .pfpInfo-div {
-  display: flex;
-  gap: 10px;
-  justify-content: start;
-  align-items: center;
+  display: flex; /* Align profile picture and info in a row */
+  gap: 10px; /* Space between profile picture and info */
+  justify-content: start; /* Align items to the start horizontally */
+  align-items: center; /* Center items vertically */
 }
 
 .info-div {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  padding: 0;
-  justify-content: start;
-  align-items: start;
+  display: flex; /* Flex container for the info text */
+  flex-direction: column; /* Arrange items in a column */
+  gap: 0; /* No gap between text elements */
+  padding: 0; /* Remove default padding */
+  justify-content: start; /* Align items to the start vertically */
+  align-items: start; /* Align items to the start horizontally */
 }
 
 .empty-div {
-  width: 70%;
+  width: 70%; /* Takes up 70% of the parent container's width */
 }
 
 button {
-  padding: 12px 10px;
-  transition: background-color 0.3s, transform 0.3s;
-  border: none;
-  cursor: pointer;
-  border-radius: 30px;
-  background-color: #EEF4FF; /* Blue background */
-  color: #3958B3; /* Light text color */
+  padding: 12px 10px; /* Padding for clickable area */
+  transition: background-color 0.3s, transform 0.3s; /* Smooth transitions for hover effects */
+  border: none; /* Remove border */
+  cursor: pointer; /* Pointer cursor for clickable effect */
+  border-radius: 30px; /* Rounded corners */
+  background-color: #EEF4FF; /* Default blue background */
+  color: #3958B3; /* Light blue text color */
 }
 
 button:hover {
-  background-color: rgb(213, 213, 213);
-  color: #3958B3;
+  background-color: rgb(213, 213, 213); /* Change background on hover */
+  color: #3958B3; /* Keep text color consistent */
 }
 
 button.toggle-dashboard {
-  display: none; /* Default: hide the button */
-  position: relative; /* Ensure it shifts without affecting layout */
+  display: none; /* Hide the toggle button by default */
+  position: relative; /* Position relative to its normal flow */
 }
 
 button.toggle-dashboard.shifted {
-  transform: translateX(250px); /* Shift button to the right when dashboard is visible */
-  background-color: #3958B3;
-  color :#EEF4FF;
+  transform: translateX(250px); /* Shift button 250px to the right when active */
+  background-color: #3958B3; /* Dark blue background for active state */
+  color: #EEF4FF; /* Light text for contrast */
 }
 
 @media (max-width: 768px) {
   button.toggle-dashboard {
-    display: block; /* Show the button on smaller screens */
+    display: block; /* Show the toggle button on smaller screens */
   }
 }
 
 .activated {
-  background-color: #3958B3;
-  color :#EEF4FF;
+  background-color: #3958B3; /* Dark blue background for active elements */
+  color: #EEF4FF; /* Light text for contrast */
 }
 
 .desactivated {
-  background-color: transparent;
+  background-color: transparent; /* No background for inactive state */
 }
 
 p {
-  white-space: nowrap;
-  margin: 0;
-  margin-bottom: 2px;
+  white-space: nowrap; /* Prevent line breaks */
+  margin: 0; /* Remove default margin */
+  margin-bottom: 2px; /* Add slight spacing below the text */
 }

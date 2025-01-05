@@ -1,132 +1,111 @@
 .content{
-
-  display: flex;
-  margin-top: 100px;
-  gap: 0;
-  padding: 0;
-  align-items: start;
+  display: flex; /* Enables flexbox layout */
+  margin-top: 100px; /* Adds space above the content */
+  gap: 0; /* No gap between flex items */
+  padding: 0; /* Removes padding */
+  align-items: start; /* Aligns items at the start of the container */
 }
 
 .empty-dash{
-  width: 24vw;
+  width: 24vw; /* Sets the width to 24% of the viewport width */
 }
 
 .container {
-
-  display: flex;
+  display: flex; /* Enables flexbox layout */
   flex-direction: column; /* Flex items will be arranged vertically */
-  justify-content: flex-start; /* Align items at the top by default */
-  width: 100%;
-  gap: 10px; /* Add spacing between items */
-  margin: 20px;
+  justify-content: flex-start; /* Align items at the top */
+  width: 100%; /* Full width of the container */
+  gap: 10px; /* Adds space between items */
+  margin: 20px; /* Adds margin around the container */
 }
 
 .center-div{
-  width: 100vw;
-  height: 80vh;
-  display: flex;
-  flex-direction:column ;
-  justify-content: center;
-  align-items: center ;
+  width: 100vw; /* Full viewport width */
+  height: 80vh; /* 80% of the viewport height */
+  display: flex; /* Enables flexbox layout */
+  flex-direction: column; /* Flex items will be arranged vertically */
+  justify-content: center; /* Centers items vertically */
+  align-items: center; /* Centers items horizontally */
 }
 
 .card{
-
-  display: flex;
+  display: flex; /* Enables flexbox layout */
   flex-direction: column; /* Flex items will be arranged vertically */
-  justify-content: flex-start; /* Align items at the top by default */
-
-  padding: 40px 40px;
-  border-radius: 20px;
-  background-color: #EEF4FF;
-  width: 50%;
-  margin: auto;
-  margin-bottom: 40px;
-  
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
-
+  justify-content: flex-start; /* Align items at the top */
+  padding: 40px 40px; /* Adds padding inside the card */
+  border-radius: 20px; /* Rounds the corners of the card */
+  background-color: #EEF4FF; /* Light background color */
+  width: 50%; /* Card width is 50% of its parent */
+  margin: auto; /* Centers the card horizontally */
+  margin-bottom: 40px; /* Adds space below the card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adds shadow to the card */
 }
 
 .card-button{
-
-  font-family: "Quicksand", serif;
-  font-size: 40px;
-  font-weight: 500;
-
-  border: none;
-  border-radius: 30px ;
-  padding: 40px 20px;
-  background-color:#3958B3;
-  color: #EEF4FF;
-  transition: color 0.3s, background-color 0.3s, box-shadow 0.3s;
-
-  cursor: pointer;
-
+  font-family: "Quicksand", serif; /* Sets the font for the button */
+  font-size: 40px; /* Font size for the button */
+  font-weight: 500; /* Font weight for the button */
+  border: none; /* No border for the button */
+  border-radius: 30px; /* Rounded corners for the button */
+  padding: 40px 20px; /* Adds padding inside the button */
+  background-color: #3958B3; /* Background color for the button */
+  color: #EEF4FF; /* Text color for the button */
+  transition: color 0.3s, background-color 0.3s, box-shadow 0.3s; /* Smooth transition for color, background, and shadow */
+  cursor: pointer; /* Changes cursor to pointer on hover */
 }
 
 .card-button:hover, .sub-button:hover{
-  background-color: #EEF4FF;
-  color: #3958B3;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+  background-color: #EEF4FF; /* Light background color on hover */
+  color: #3958B3; /* Text color on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adds shadow on hover */
 }
 
 .sub-button{
-  
-  margin: auto;
-  font-family: "Quicksand", serif;
-  font-size: 20px;
-  font-weight: 800;
-
-  border: none;
-  border-radius: 100px ;
-  padding: 15px 40px;
-  background-color:#3958B3;
-  color: #EEF4FF;
-  transition: color 0.3s, background-color 0.3s, box-shadow 0.3s;
-
-  cursor: pointer;
-
+  margin: auto; /* Centers the button */
+  font-family: "Quicksand", serif; /* Sets the font for the button */
+  font-size: 20px; /* Font size for the button */
+  font-weight: 800; /* Font weight for the button */
+  border: none; /* No border for the button */
+  border-radius: 100px; /* Rounded corners for the button */
+  padding: 15px 40px; /* Adds padding inside the button */
+  background-color: #3958B3; /* Background color for the button */
+  color: #EEF4FF; /* Text color for the button */
+  transition: color 0.3s, background-color 0.3s, box-shadow 0.3s; /* Smooth transition for color, background, and shadow */
+  cursor: pointer; /* Changes cursor to pointer on hover */
 }
 
 h3{
-  font-size: 25px;
-  margin: auto;
-  margin-bottom: 30px;
+  font-size: 25px; /* Font size for h3 elements */
+  margin: auto; /* Centers the h3 element */
+  margin-bottom: 30px; /* Adds space below the h3 element */
 }
 
 h4{
-  color: #3958B3;
-  margin-top: -20px;
+  color: #3958B3; /* Text color for h4 elements */
+  margin-top: -20px; /* Moves the h4 element up */
 }
 
 .inputs-div{
-
-  padding: 10px 0px;
-
-  width: 100%;
-
-  display: flex;
+  padding: 10px 0px; /* Adds vertical padding */
+  width: 100%; /* Full width of the container */
+  display: flex; /* Enables flexbox layout */
   flex-direction: column; /* Flex items will be arranged vertically */
-  justify-content: start; /* Align items at the top by default */
-
+  justify-content: start; /* Align items at the top */
 }
 
 input{
-  height: 25px;
+  height: 25px; /* Sets the height of input fields */
 }
 
 input, textarea{
-  font-family: "Quicksand", serif;
-  
-  margin-top: 5px;
-  margin-bottom: 20px;
-  padding: 5px 10px;
-
-  border: 1px solid #ccc; /* Light gray border */
-  outline: none;
-  border-radius: 5px;
-  transition: border-color 0.3s ease;
-
+  font-family: "Quicksand", serif; /* Sets the font for inputs and textareas */
+  margin-top: 5px; /* Adds margin above the element */
+  margin-bottom: 20px; /* Adds margin below the element */
+  padding: 5px 10px; /* Adds padding inside the element */
+  border: 1px solid #ccc; /* Light gray border for inputs and textareas */
+  outline: none; /* Removes outline when focused */
+  border-radius: 5px; /* Rounded corners for the elements */
+  transition: border-color 0.3s ease; /* Smooth transition for border color */
 }
 
 input:focus, textarea:focus {
@@ -134,9 +113,9 @@ input:focus, textarea:focus {
 }
 
 img{
-  margin: auto;
-  margin-bottom: 30px;
-  border: solid;
-  border-radius: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+  margin: auto; /* Centers the image */
+  margin-bottom: 30px; /* Adds space below the image */
+  border: solid; /* Adds a solid border around the image */
+  border-radius: 20px; /* Rounded corners for the image */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adds shadow to the image */
 }

@@ -20,139 +20,128 @@ import { UpdateModulesService } from '../../../../services/updateModules/update-
 })
 export class AjoutSoinComponent implements OnInit{
 
-  isDashBoardVisible = true;
+  isDashBoardVisible = true; // Boolean to control dashboard visibility
   
-  user = inject(UserDataService).getUserData() //Njibou Data te3 user te3na
-  fetchServices = inject(FetchModulesService)
-  updateServices = inject(UpdateModulesService);
-  id!:number;
-  idP!: number
-  router = inject(ActivatedRoute); //bihe njibou id fel path
-  rout = inject(Router);
+  user = inject(UserDataService).getUserData() // Inject user data service and retrieve the user data
+  fetchServices = inject(FetchModulesService) // Inject the fetch services
+  updateServices = inject(UpdateModulesService); // Inject the update services
+  id!: number; // Patient ID to be extracted from the route
+  idP!: number; // ID for the patient profile
+  router = inject(ActivatedRoute); // ActivatedRoute to fetch parameters from the URL
+  rout = inject(Router); // Router for navigation
 
-  oldListe !: Array<Soin>;
-  newListe !: Array<Soin>;
-  removedIds:Array<number> = [];
+  oldListe !: Array<Soin>; // Old list of soins (treatments)
+  newListe !: Array<Soin>; // New list of soins (with updated data)
+  removedIds:Array<number> = []; // Array to store removed soin ids
 
   updateDashboardVisibility(isVisible: boolean) {
-    console.log('Dashboard visibility updated:', isVisible);
-    this.isDashBoardVisible = isVisible;
+    console.log('Dashboard visibility updated:', isVisible); // Logs the dashboard visibility change
+    this.isDashBoardVisible = isVisible; // Updates the visibility of the dashboard
   }
 
-  ngOnInit(): void { //nrecupriwi id te3 patient 
+  ngOnInit(): void { // ngOnInit lifecycle hook, called on component initialization
 
-    this.router.paramMap.subscribe((params) =>{
-      this.id = Number(params.get("id")); //id de patient récupéré
-      this.idP = Number(params.get("idP"));
+    this.router.paramMap.subscribe((params) => {
+      this.id = Number(params.get("id")); // Extract patient ID from the route
+      this.idP = Number(params.get("idP")); // Extract patient profile ID from the route
     });
 
-    this.fetchServices.fetchLatestListSoin(this.id).pipe( //pipe to catch any error
+    this.fetchServices.fetchLatestListSoin(this.id).pipe( // Fetch latest list of soins for the patient
       catchError((err) => {
-        console.log(err);
+        console.log(err); // Log any errors that occur during fetching
         throw err;
       })
-      ).subscribe((liste) => {
+    ).subscribe((liste) => {
 
-      this.oldListe = liste;
-      this.newListe = this.oldListe;
+      this.oldListe = liste; // Store the fetched list of soins as oldListe
+      this.newListe = this.oldListe; // Set the newListe to be the same as the oldListe initially
       const date = new Date();
-      const formattedDate = date.toLocaleDateString('en-CA'); // 'en-CA' is the ISO date format (yyyy-mm-dd)
-      console.log(formattedDate); // e.g., "2025-01-04"
+      const formattedDate = date.toLocaleDateString('en-CA'); // Format the current date in 'yyyy-mm-dd' format
+      console.log(formattedDate); // Logs the formatted date (e.g., "2025-01-04")
       
       this.newListe.push({
-        id: 0, //id 0 pour detecter aprés les nouveaux éléments
-        infirmier:this.user.id,
+        id: 0, // id 0 to identify new soins
+        infirmier:this.user.id, // Assign the current user's ID as the nurse
         description: '',
         subject: '',
-        date: formattedDate,
+        date: formattedDate, // Assign the formatted date to the new soin
       });
 
     })
-
   }
 
-  addSoin(){
-
+  addSoin() {
+    // Adds a new soin if both the description and subject are filled
     if (this.newListe[this.newListe.length - 1].description != "" 
-    && this.newListe[this.newListe.length - 1].subject != "") { //ida koullesh t3emmer, tesra interaction
+    && this.newListe[this.newListe.length - 1].subject != "") { 
 
       const date = new Date();
-      const formattedDate = date.toLocaleDateString('en-CA'); // 'en-CA' is the ISO date format (yyyy-mm-dd)
+      const formattedDate = date.toLocaleDateString('en-CA'); // Format the current date in 'yyyy-mm-dd' format
 
       this.newListe.push({
-        id: 0, //id 0 pour detecter aprés les nouveaux éléments
-        infirmier:this.user.id,
+        id: 0, // id 0 to identify new soins
+        infirmier:this.user.id, // Assign the current user's ID as the nurse
         description: '',
         subject: '',
-        date: formattedDate,
+        date: formattedDate, // Assign the formatted date to the new soin
       });
-      
     }
-
   }
 
-  removeSoin(index:number){
-
+  removeSoin(index: number) {
+    // Adds the removed soin's ID to removedIds array and removes it from newListe
     this.removedIds.push(this.newListe[index].id);
-    this.newListe.splice(index, 1);
-
-
+    this.newListe.splice(index, 1); // Removes the soin at the specified index
   }
 
-  testIsFilled(){
-
-    let isAllFilled = true;
+  testIsFilled() {
+    let isAllFilled = true; // Initialize a flag to check if all fields are filled
 
     this.newListe.forEach((soin) => {
-
-      if( !soin.description  || !soin.subject ){ //ida kayen un vide
-          
-        alert(`Veuillez remplir les données de soin ${this.newListe.indexOf(soin) + 1}`);
-        isAllFilled = false
-  
+      // Check if either description or subject is missing in any soin
+      if(!soin.description || !soin.subject) {
+        alert(`Veuillez remplir les données de soin ${this.newListe.indexOf(soin) + 1}`); // Alert to fill missing data
+        isAllFilled = false; // Set the flag to false if any field is empty
       }
     })
 
-    return isAllFilled;
-
+    return isAllFilled; // Return whether all fields are filled
   }
 
-  sauvegarder(){
-    
-    if( this.testIsFilled() ){ //ida koullesh t3emmer
+  sauvegarder() {
+    // Save the soins data if all fields are filled
+    if (this.testIsFilled()) { 
 
-      type dataSoin = {
+      type dataSoin = { // Define the type for a soin (treatment)
         id?: number; // Optional because new soins may not have an ID yet
-        infirmier: number,
-        subject: String,
-        description: String, 
-        date: String,
+        infirmier: number, // Nurse ID
+        subject: String, // Subject of the soin
+        description: String, // Description of the soin
+        date: String, // Date of the soin
       };
-      type Change = {
-        add: Array<dataSoin> ,  // Array of new soins to add
-        remove: Array<number>,  // Array of soin ids to remove
-        update: Array<dataSoin>  // Array of updated soins
-      };
-        
-      let changes : Change = {
-        add: [],
-        remove: [],
-        update: [],
-      };
-  
-      this.newListe.forEach((soin) => {
-        
-        if(soin.id === 0){ //totally new
 
+      type Change = { // Define the type for changes (add, remove, update)
+        add: Array<dataSoin>, // Array of new soins to add
+        remove: Array<number>, // Array of soin ids to remove
+        update: Array<dataSoin> // Array of updated soins
+      };
+
+      let changes: Change = {
+        add: [], // Initialize the add array
+        remove: [], // Initialize the remove array
+        update: [], // Initialize the update array
+      };
+
+      this.newListe.forEach((soin) => {
+        // Loop through each soin and categorize it based on its ID
+        if (soin.id === 0) { // New soin (id 0)
           changes.add.push({
             infirmier: soin.infirmier,
             subject: soin.subject,
             description: soin.description,
             date: soin.date
           });
-
-        } else if(this.oldListe.indexOf(soin) >= 0){ //exists already, tsemma update
-
+        } else if (this.oldListe.indexOf(soin) >= 0) { // Existing soin
           changes.update.push({
             id: soin.id,
             infirmier: soin.infirmier,
@@ -160,32 +149,24 @@ export class AjoutSoinComponent implements OnInit{
             description: soin.description,
             date: soin.date
           })
-
         }
-
       })
 
-      this.removedIds.filter((id) => id!=0);
-      changes.remove = this.removedIds;
-      console.log(changes);
+      this.removedIds.filter((id) => id != 0); // Filter out any id that is 0 (which represents a new soin)
+      changes.remove = this.removedIds; // Set the remove array with the removed soin ids
+      console.log(changes); // Logs the changes object for debugging
 
       this.updateServices.modifyLatesSoinList(changes, this.id).subscribe({
-        next: (response:any)=>{
-          console.log(response) 
-          alert("La liste des soins est sauvegardé !")
-          this.rout.navigate(['rabLabInf', this.idP]); 
+        next: (response: any) => {
+          console.log(response); // Logs the response from the server
+          alert("La liste des soins est sauvegardé !"); // Alert that the soins list is saved
+          this.rout.navigate(['rabLabInf', this.idP]); // Navigate to another page after saving
         },
-
-        error : (error: any) =>{
-          console.error('Error fetching:', error);
-          alert("Il a eut un problème de saisie, veuillez ajouter correctement le saisie")
+        error: (error: any) => {
+          console.error('Error fetching:', error); // Logs any errors that occur during the update process
+          alert("Il a eut un problème de saisie, veuillez ajouter correctement le saisie"); // Alert if there is an error
         }
-
       });
-
     }
-    
-
   }
-
 }

@@ -1,83 +1,78 @@
-<app-header (changeDashEvent)="updateDashboardVisibility($event)" />
+<app-header (changeDashEvent)="updateDashboardVisibility($event)" /> <!-- Header component with a change event to update dashboard visibility -->
 
-<div class="content">
+<div class="content"> <!-- Main content wrapper -->
 
-  <div class="empty-dash">
-    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>
+  <div class="empty-dash"> <!-- Empty space for dashboard component -->
+    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board> <!-- Dashboard component displayed if isDashBoardVisible is true -->
   </div>
 
-  <div class="container">
+  <div class="container"> <!-- Container for form and other elements -->
 
-    @defer { <!--Defer is when component needs to load so we show something while loading-->
+    @defer { <!-- Defer is used to load the component with a loading state -->
+      <h2>Saisie {{user.role === "Radiologue" ? "de compte rendue" : "des résultats de bilan biologique"}}</h2> <!-- Display different titles based on user role -->
+      <h4>Nombre de bilans non remplis pour le patient: {{ !length ? 'Aucune, vous êtes à jour avec ce patient !!' : length}}</h4> <!-- Display number of incomplete reports or a message if there are none -->
 
-      <h2>Saisie {{user.role === "Radiologue" ? "de compte rendue": "des résultats de bilan biologique"}} </h2>
-      <h4>Nombre de bilans non remplis pour le patient: {{ !length ? 'Aucune, vous ètes à jour avec ce patient !!' : length}}</h4>
+      @if (length) { <!-- Conditional rendering based on the presence of length -->
 
-      @if (length) {
+        <div class="card"> <!-- Card container for form fields -->
 
-        <div class="card">
+          @if(user.role === "Radiologue") { <!-- Conditional rendering based on user role -->
 
-          @if(user.role === "Radiologue"){
+            <h3>Rédaction de compte rendu</h3> <!-- Heading for the radiologist's report section -->
 
-            <h3>Rédaction de compte rendu</h3>
-
-            <div class="inputs-div">
-              <label> Compte Rendu </label>
-              <textarea rows="4" type="text" placeholder="Résumé de la radio..." [(ngModel)]="compteRendu.compte_rendu"></textarea>
+            <div class="inputs-div"> <!-- Input container for compte rendu -->
+              <label> Compte Rendu </label> <!-- Label for the text area -->
+              <textarea rows="4" type="text" placeholder="Résumé de la radio..." [(ngModel)]="compteRendu.compte_rendu"></textarea> <!-- Textarea for radiologist's summary -->
             </div>
 
-          } @else {
+          } @else { <!-- Else block for non-radiologist users -->
 
-            <h3>Rédaction des résultats des tests</h3>
-            @for (item of listTestsBilan.resultats_analytiques ; track item.id) {
+            <h3>Rédaction des résultats des tests</h3> <!-- Heading for test result writing -->
+
+            @for (item of listTestsBilan.resultats_analytiques ; track item.id) { <!-- Loop over analytical results for the tests -->
   
-              <div class="inputs-div">
-                <label> {{item.parametre}} ({{item.unite}}): </label>
-                <input type="text" [placeholder]="item.unite" [(ngModel)]="item.value">
+              <div class="inputs-div"> <!-- Input container for each test result -->
+                <label> {{item.parametre}} ({{item.unite}}): </label> <!-- Label displaying parameter name and unit -->
+                <input type="text" [placeholder]="item.unite" [(ngModel)]="item.value"> <!-- Input field for test results -->
               </div>
       
             }
 
           }
 
-  
         </div>
-  
-        <div class="card">
-          <h3>Jointure {{user.role === "Radiologue" ? "de la radio": "de graphe"}}</h3>
-  
-          @if (selectedFile === null) {
-            <button class="card-button" (click)="triggerFileInput()">+</button>
-          } @else {
-            
-            <img [src]="previewUrl" alt="photo preview" width="400px">
-            <button class="card-button" (click)="removeFile()">-</button>
+
+        <div class="card"> <!-- Card for image or graph attachment -->
+
+          <h3>Jointure {{user.role === "Radiologue" ? "de la radio" : "de graphe"}}</h3> <!-- Heading for the attachment section -->
+
+          @if (selectedFile === null) { <!-- Check if a file is selected or not -->
+            <button class="card-button" (click)="triggerFileInput()">+</button> <!-- Button to trigger file input if no file is selected -->
+          } @else { <!-- If file is selected, show preview and remove button -->
+            <img [src]="previewUrl" alt="photo preview" width="400px"> <!-- Display image preview -->
+            <button class="card-button" (click)="removeFile()">-</button> <!-- Button to remove the selected file -->
           }
   
         </div>
-  
-        
-        <button class="sub-button" (click)="enregistrerBilan()">Envoyer bilan</button>
-  
+
+        <button class="sub-button" (click)="enregistrerBilan()">Envoyer bilan</button> <!-- Button to submit the report -->
+
         <input 
           type="file" 
           #fileInput 
           style="display: none;" 
           (change)="onFileSelected($event)" 
           accept=".jpg,.jpeg,.png" 
-        />
-
+        /> <!-- Hidden file input to select a file -->
       }
 
+    } @loading (minimum 1s) { <!-- Loading state with a minimum duration of 1 second to display the loading screen -->
 
-  
-      
-    } @loading (minimum 1s) { <!--Nesstennaw minimum 1s besh naffichiw @defer-->
       <div class="center-div">
-        <app-loading-screen />
+        <app-loading-screen /> <!-- Loading screen component -->
       </div>
+
     }
   
   </div>
 </div>
-

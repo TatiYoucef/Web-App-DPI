@@ -1,99 +1,99 @@
 /* General reset */
 html, body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  height: 100%;
+  margin: 0;                    /* Remove default margin */
+  padding: 0;                   /* Remove default padding */
+  box-sizing: border-box;       /* Include padding and border in element's total width and height */
+  height: 100%;                 /* Make sure body takes the full height of the viewport */
 }
 
 /* Container for desktop layout */
 .container {
-  background-color: #EEF4FF;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 50px 50px;
-  gap: 20px; /* Adjust gap for better spacing on smaller screens */
-  height: calc(100vh - 150px); /* Subtract navbar height (adjust value as needed) */
+  background-color: #EEF4FF;    /* Set background color */
+  display: flex;                 /* Use flexbox for layout */
+  flex-wrap: wrap;               /* Allow elements to wrap */
+  justify-content: space-between; /* Distribute items with space between them */
+  align-items: flex-start;       /* Align items at the start (top) */
+  padding: 50px 50px;            /* Add padding to the container */
+  gap: 20px;                     /* Adjust gap for better spacing on smaller screens */
+  height: calc(100vh - 150px);    /* Set height to full viewport height minus navbar height */
 }
 
 /* Centered loading screen */
 .center-div {
-  background-color: #EEF4FF;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: #EEF4FF;    /* Set background color */
+  width: 100vw;                 /* Take full viewport width */
+  height: 100vh;                /* Take full viewport height */
+  display: flex;                 /* Use flexbox for centering */
+  justify-content: center;       /* Center horizontally */
+  align-items: center;          /* Center vertically */
 }
 
 /* Text content */
 .text-div {
-  flex: 1 1 45%; /* 45% width on larger screens, grows/shrinks responsively */
-  min-width: 300px; /* Ensure a minimum size for smaller devices */
-  padding: 10px 0px;
+  flex: 1 1 45%;                 /* Take 45% of the width on larger screens, and shrink/grow as needed */
+  min-width: 300px;              /* Ensure a minimum width for small screens */
+  padding: 10px 0px;             /* Add padding to the text section */
 }
 
 h1, p {
-  margin: 20px 0px;
+  margin: 20px 0px;              /* Add margin to h1 and p elements for spacing */
 }
 
 h1 span {
-  color: #3958B3;
+  color: #3958B3;                /* Set color for text inside h1 span */
 }
 
 h1 {
-  font-size: 2rem; /* Scalable size */
+  font-size: 2rem;               /* Set font size for h1 */
 }
 
 .text-div p {
-  font-size: 1.25rem;
-  font-weight: 400;
+  font-size: 1.25rem;            /* Set font size for paragraph text */
+  font-weight: 400;               /* Set font weight for paragraph text */
 }
 
 /* Image content */
 .image-div {
-  flex: 1 1 45%; /* Same behavior as text-div */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  flex: 1 1 45%;                 /* Same behavior as text-div */
+  display: flex;                 /* Use flexbox for layout */
+  justify-content: center;       /* Center content horizontally */
+  align-items: center;          /* Center content vertically */
 }
 
 .doc-image {
-  width: 90%; /* Scale up slightly for larger screens */
-  max-width: 500px; /* Prevent excessive scaling */
-  height: auto; /* Maintain aspect ratio */
-  transition: transform 0.3s ease; /* Smooth scaling effect on hover */
+  width: 90%;                    /* Set image width to 90% of its container */
+  max-width: 500px;              /* Prevent the image from growing larger than 500px */
+  height: auto;                  /* Maintain aspect ratio */
+  transition: transform 0.3s ease; /* Add smooth transition for scaling effect */
 }
 
 .doc-image:hover {
-  transform: scale(1.05); /* Slight zoom effect */
+  transform: scale(1.05);        /* Apply slight zoom effect on hover */
 }
 
 /* Responsive design for smaller devices */
 @media screen and (max-width: 768px) {
   .container {
-    flex-direction: column; /* Stack content vertically */
-    align-items: center;
-    height: auto; /* Adjust height for scrolling */
-    padding: 30px 20px;
+    flex-direction: column;      /* Stack content vertically on smaller screens */
+    align-items: center;         /* Center content horizontally */
+    height: auto;                 /* Allow content to scroll on smaller screens */
+    padding: 30px 20px;           /* Adjust padding for smaller screens */
   }
 
   .text-div, .image-div {
-    flex: 1 1 100%; /* Full width for small screens */
-    text-align: center; /* Center align text for better readability */
+    flex: 1 1 100%;               /* Full width for both text and image sections */
+    text-align: center;           /* Center align text for better readability */
   }
 
   h1 {
-    font-size: 1.8rem; /* Adjust text size for small screens */
+    font-size: 1.8rem;            /* Adjust font size of h1 for smaller screens */
   }
 
   .text-h1 {
-    font-size: 1.2rem;
+    font-size: 1.2rem;            /* Adjust font size for additional text with class text-h1 */
   }
 
   .doc-image {
-    width: 70%; /* Adjust image size for small screens */
+    width: 70%;                   /* Adjust image size for smaller screens */
   }
 }

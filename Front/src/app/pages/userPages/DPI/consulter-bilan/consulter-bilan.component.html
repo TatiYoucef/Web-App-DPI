@@ -1,59 +1,92 @@
-<app-header (changeDashEvent)="updateDashboardVisibility($event)" />
+<app-header (changeDashEvent)="updateDashboardVisibility($event)" /> 
+<!-- Header component with an event binding to update dashboard visibility -->
 
-<div class="content">
-  
-  <div class="empty-dash">
-    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>
+<div class="content"> 
+  <!-- Main content container -->
+
+  <div class="empty-dash"> 
+    <!-- Container for the dashboard component -->
+    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board> 
+    <!-- Dashboard component displayed conditionally based on visibility -->
   </div>
 
-  <div class="container">
+  <div class="container"> 
+    <!-- Main container for content -->
 
-    @defer {
+    @defer { 
+      <!-- Defer block for rendering content -->
 
-      <h2>Bilan {{bilan.type}}: {{bilan.date}}</h2>
+      <h2>Bilan {{bilan.type}}: {{bilan.date}}</h2> 
+      <!-- Title showing bilan type and date -->
 
-      <div class="card">
+      <div class="card"> 
+        <!-- Card container for tests -->
 
-        <h2 style="margin: auto;">liste des tests demandés</h2>
+        <h2 style="margin: auto;">liste des tests demandés</h2> 
+        <!-- Title for the list of requested tests -->
 
-        @for (item of bilan.tests; track item.id) {
+        @for (item of bilan.tests; track item.id) { 
+          <!-- Loop through the list of tests -->
 
-          <div class="container2">
+          <div class="container2"> 
+            <!-- Container for each test item -->
 
-            <div class="horiz-div">
-              <label>Demande de test: </label>
-              
-              @if (bilan.rempli) {
-                <label>{{item.testName}}</label>
-              } @else {
+            <div class="horiz-div"> 
+              <!-- Horizontal container for test request details -->
+              <label>Demande de test: </label> 
+              <!-- Label for test request -->
 
-                @if (user.role === "Patient") {<input readonly type="text" placeholder="ex:Cholesterol,niveau d'urée..." [(ngModel)]="item.testName">}
-                @else {<input type="text" placeholder="ex:Cholesterol,niveau d'urée..." [(ngModel)]="item.testName">}
+              @if (bilan.rempli) { 
+                <!-- Check if the bilan is completed -->
+                <label>{{item.testName}}</label> 
+                <!-- Display test name -->
+              } @else { 
+                <!-- If the bilan is not completed -->
 
-                @if (bilan.tests.indexOf(item) != bilan.tests.length - 1) { <button (click)="removeTest(bilan.tests.indexOf(item))" *ngIf="!bilan.rempli && user.role!='Patient'" >-</button> }
+                @if (user.role === "Patient") { 
+                  <!-- Check if the user is a patient -->
+                  <input readonly type="text" placeholder="ex:Cholesterol,niveau d'urée..." [(ngModel)]="item.testName"> 
+                  <!-- Read-only input for patients -->
+                } @else { 
+                  <!-- For other roles -->
+                  <input type="text" placeholder="ex:Cholesterol,niveau d'urée..." [(ngModel)]="item.testName"> 
+                  <!-- Editable input for other roles -->
+                }
+
+                @if (bilan.tests.indexOf(item) != bilan.tests.length - 1) { 
+                  <!-- If the current test is not the last in the list -->
+                  <button (click)="removeTest(bilan.tests.indexOf(item))" *ngIf="!bilan.rempli && user.role!='Patient'" >-</button> 
+                  <!-- Button to remove the test -->
+                }
               }
             </div>
 
-            <label>Résultat de test: {{bilan.rempli? item.result : "pas encore soumis"}}</label>
+            <label>Résultat de test: {{bilan.rempli? item.result : "pas encore soumis"}}</label> 
+            <!-- Label to show test result or a message if not submitted -->
 
           </div>
 
         }
 
-        <button *ngIf="!bilan.rempli && user.role!='Patient'" style="margin: auto;" (click)="addTest()">+</button>
+        <button *ngIf="!bilan.rempli && user.role!='Patient'" style="margin: auto;" (click)="addTest()">+</button> 
+        <!-- Button to add a new test -->
+
       </div>
 
-      <button *ngIf="!bilan.rempli && user.role!='Patient'" style="margin: auto;" (click)="patchBilan()">Envoyer</button>
+      <button *ngIf="!bilan.rempli && user.role!='Patient'" style="margin: auto;" (click)="patchBilan()">Envoyer</button> 
+      <!-- Button to send the bilan -->
 
-    } @loading(minimum 1s) {
+    } @loading(minimum 1s) { 
+      <!-- Loading block with a minimum delay of 1 second -->
 
-      <div class="center-div">
-        <app-loading-screen />
+      <div class="center-div"> 
+        <!-- Centered container for loading screen -->
+        <app-loading-screen /> 
+        <!-- Loading screen component -->
       </div>
 
     }
 
   </div>
-
 
 </div>

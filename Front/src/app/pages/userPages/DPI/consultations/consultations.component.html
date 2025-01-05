@@ -4,29 +4,39 @@
 
   <!-- Dashboard visibility -->
   <div class="empty-dash">
+    <!-- Render the dashboard component only if the dashboard is visible -->
     <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>
   </div>
 
   @defer {
 
-  <!-- Consultations Title -->
+  <!-- Container for consultations section -->
   <div class="consultations-container">
+    <!-- Section title -->
     <h2>Consultations</h2>
 
+    <!-- Display a message if there are no consultations available -->
     <div *ngIf="consultations.length === 0" class="no-consultations">
       <p>Aucune consultation disponible pour le moment.</p>
     </div>
 
+    <!-- Button to add a consultation (visible only for users with the role 'Medcin') -->
     <button class="card-button" *ngIf="user.role === 'Medcin'" (click)="isAjoutConsultation = true" style="margin: auto;">Ajouter consultation</button>
 
+    <!-- List of consultations if available -->
     <div *ngIf="consultations.length > 0" class="consultations-list">
       <ul>
+        <!-- Render each consultation item -->
         <li *ngFor="let consultation of consultations" class="consultation-item" (click)="showDetails(consultation)">
           <div class="profile">
+            <!-- Display consultation ID -->
             <h3>Consultation ID : {{ consultation.id }}</h3>
+            <!-- Display the doctor's name -->
             <p><strong>Médecin traitant :</strong> {{ consultation.medcin_nom }}</p>
+            <!-- Display the consultation date -->
             <p><strong>Date :</strong> {{ consultation.date | date }}</p>
           </div>
+          <!-- Button to view consultation details -->
           <button>View Details</button>
         </li>
       </ul>
@@ -34,36 +44,35 @@
 
     @if (isAjoutConsultation) {
 
+      <!-- Overlay for adding a new consultation -->
       <div class="grey-div" (click)="annuler($event)">
 
+        <!-- Card for inputting consultation details -->
         <div class="card">
 
           <div class="horiz">
-
+            <!-- Dropdown to select diagnosis status -->
             <h4>Diagnostiqué? </h4>
-
             <select [(ngModel)]="isDiagnosed">
               <option value="false">Non</option>
               <option value="true">oui</option>
             </select>
-
           </div>
 
           <div class="horiz">
-
+            <!-- Input field for selecting consultation date -->
             <h4>Date :</h4>
             <input type="date" [(ngModel)]="dateSet">
-
           </div>
 
           <div class="horiz">
-
+            <!-- Input field for reason of admission -->
             <h4>Raison d'admission: </h4>
             <input type="text" [(ngModel)]="raisonSet">
-
           </div>
 
           <div class="horiz">
+            <!-- Buttons for canceling or creating the consultation -->
             <button class="annuler" (click)="annuler($event)">Annuler</button>
             <button (click)="ajoutConsultation()">Créer Consultation</button>
           </div>
@@ -72,24 +81,27 @@
 
       </div>
 
-
     }
   </div>
 
-  <!-- Popup for Consultation Details -->
+  <!-- Popup for displaying consultation details -->
   <div class="popup" *ngIf="isPopupVisible()">
     <div class="popup-content">
+      <!-- Popup title -->
       <h2>Détails de la consultation</h2>
+      <!-- Display details of the selected consultation -->
       <p><strong>Médecin traitant :</strong> {{ selectedConsultation.medcin_nom }}</p>
       <p><strong>Date :</strong> {{ selectedConsultation.date | date }}</p>
-      <p><strong>Date de la rochaine consultation :</strong> {{ selectedConsultation.dateProchaineCons | date }}</p>
+      <p><strong>Date de la prochaine consultation :</strong> {{ selectedConsultation.dateProchaineCons | date }}</p>
       <p><strong>Diagnostic trouvé :</strong> {{ selectedConsultation.trouveDiagnostic ? 'Oui' : 'Non' }}</p>
       <p><strong>Motif d'admission :</strong> {{ selectedConsultation.raison_admission }}</p>
+      <!-- Button to close the popup -->
       <button (click)="closePopup()">Close</button>
     </div>
   </div>
   }
   @loading (minimum 0.5s) {
+  <!-- Loading screen displayed during content loading -->
   <div class="center-div">
     <app-loading-screen />
   </div>

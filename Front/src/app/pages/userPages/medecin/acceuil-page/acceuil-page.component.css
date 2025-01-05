@@ -1,156 +1,188 @@
-.content{
-
-  display: flex;
-  margin-top: 100px;
-  gap: 0;
-  padding: 0;
-  align-items: start;
+.content {
+  display: flex; /* Use flexbox for layout */
+  margin-top: 100px; /* Add space above the content */
+  gap: 0; /* No gap between flex items */
+  padding: 0; /* No padding */
+  align-items: start; /* Align items to the start */
 }
 
-.empty-dash{
-  width: 24vw;
+.empty-dash {
+  width: 24vw; /* Set width of the empty dashboard section */
 }
 
 .container {
-
-  display: flex;
+  display: flex; /* Use flexbox for layout */
   flex-direction: column; /* Flex items will be arranged vertically */
   justify-content: flex-start; /* Align items at the top by default */
   gap: 10px; /* Add spacing between items */
-  margin: 20px;
+  margin: 20px; /* Add margin around the container */
 }
+
 .container2 {
-
-  display: flex;
-  flex-direction: column;
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Flex items will be arranged vertically */
   gap: 50px; /* Add spacing between items */
-  margin: 20px;
+  margin: 20px; /* Add margin around the container */
 }
 
-.center-div{
-  width: 100vw;
-  height: 80vh;
-  display: flex;
-  flex-direction:column ;
-  justify-content: center;
-  align-items: center ;
+.container8 {
+  display: flex; /* Use flexbox for layout */
+  flex-direction: row; /* Flex items will be arranged horizontally */
+  justify-content: center; /* Center items vertically */
+  gap: 50px; /* Add spacing between items */
+  margin: 20px; /* Add margin around the container */
 }
 
-.card{
-
-  display: flex;
-  justify-content: center; /* Align items at the top by default */
-
-  padding: 40px 40px;
-  border-radius: 20px;
-  background-color: #EEF4FF;
-  gap: 40px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
-
-}
-.card2{
-
-  display: flex;
-  justify-content: center; 
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 40px;
-  border-radius: 20px;
-  background-color: #EEF4FF;
-  gap: 40px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
-  width: 25%;
-
+.center-div {
+  width: 100vw; /* Set width to full viewport width */
+  height: 80vh; /* Set height to 80% of the viewport height */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Arrange items vertically */
+  justify-content: center; /* Center items vertically */
+  align-items: center; /* Center items horizontally */
 }
 
-.card3{
-
-  margin-top: 200px;
-  display: flex;
-  justify-content: center; 
-  flex-direction: column;
-  align-items: start;
-  padding: 40px 30px;
-  border-radius: 20px;
-  background-color: #EEF4FF;
-  gap: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
-  width: 25%;
-
+.card {
+  display: flex; /* Use flexbox for layout */
+  justify-content: center; /* Center content horizontally */
+  padding: 40px 40px; /* Add padding inside the card */
+  border-radius: 20px; /* Round the corners of the card */
+  background-color: #EEF4FF; /* Light background color */
+  gap: 40px; /* Add space between items inside the card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow to the card */
 }
 
-button{
-
-  font-family: "Quicksand", serif;
-  font-size: 20px;
-  font-weight: 800;
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  border: none;
-  border-radius: 30px ;
-  padding: 20px 20px;
-  background-color:#3958B3;
-  color: #FFFFFF;
-  transition: color 0.3s, background-color 0.3s, box-shadow 0.3s;
-
-  cursor: pointer;
-
+.card2 {
+  display: flex; /* Use flexbox for layout */
+  justify-content: center; /* Center content horizontally */
+  flex-direction: column; /* Arrange items vertically */
+  align-items: center; /* Center items horizontally */
+  padding: 30px 30px; /* Add padding inside the card */
+  border-radius: 20px; /* Round the corners of the card */
+  background-color: #EEF4FF; /* Light background color */
+  gap: 40px; /* Add space between items inside the card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow to the card */
+  width: 93%; /* Set width to 25% of the parent container */
+  height: 10%;
 }
 
-button:hover{
-  background-color: #EEF4FF;
-  color: #3958B3;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3) ;
+.card3 {
+  margin-top: 200px; /* Add margin from the top */
+  display: flex; /* Use flexbox for layout */
+  justify-content: center; /* Center content horizontally */
+  justify-items: center; /* Center content horizontally */
+  flex-direction: column; /* Arrange items vertically */
+  align-items: start; /* Align items to the start */
+  padding: 40px 30px; /* Add padding inside the card */
+  border-radius: 20px; /* Round the corners of the card */
+  background-color: #EEF4FF; /* Light background color */
+  gap: 20px; /* Add space between items inside the card */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow to the card */
+  width: 50%; /* Set width to 50% of the parent container */
 }
 
-.annuler{
-  margin-left: -40px;
-}
-
-p, h1{
-  margin: 0 20px;
-}
-
-h2{
-  margin: auto;
-}
-
-.grey-div{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 2;
-
-  background-color: rgba(0, 0, 0, 0.3);
-
+.card3 label {
+  display: block; /* Ensures labels stack above inputs */
+  margin-bottom: 5px; /* Space below labels */
+  font-weight: bold; /* Bold text */
+  align-items: center; /* Aligns text */
   width: 100%;
-  height: 100%;
-
-  overflow: auto;
 }
 
-input{
-  
-  height: 25px;
-  padding: 5px 10px;
-  width: 80%;
-  margin-top: -20px;
+button {
+  font-family: "Quicksand", serif; /* Set font family */
+  font-size: 20px; /* Set font size */
+  font-weight: 800; /* Set font weight */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Arrange items vertically */
+  justify-content: center; /* Center items vertically */
+  align-items: center; /* Center items horizontally */
+  gap: 20px; /* Add spacing between items inside the button */
+  border: none; /* Remove border */
+  border-radius: 30px; /* Round the corners of the button */
+  padding: 20px 20px; /* Add padding inside the button */
+  background-color: #3958B3; /* Set background color */
+  color: #FFFFFF; /* Set text color */
+  transition: color 0.3s, background-color 0.3s, box-shadow 0.3s; /* Add transition for hover effects */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
 
+button:hover {
+  background-color: #EEF4FF; /* Change background color on hover */
+  color: #3958B3; /* Change text color on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+}
+
+.annuler {
+  margin-left: -40px; /* Move the cancel button to the left */
+}
+
+p, h1 {
+  margin: 0 20px; /* Add margin to paragraphs and h1 elements */
+}
+
+h2 {
+  margin: auto; /* Center h2 element */
+}
+
+.grey-div {
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Arrange items vertically */
+  justify-content: center; /* Center items vertically */
+  align-items: center; /* Center items horizontally */
+  position: fixed; /* Fix the element on the screen */
+  top: 0; /* Position at the top */
+  left: 0; /* Position at the left */
+  z-index: 2; /* Set stacking order */
+  background-color: rgba(0, 0, 0, 0.3); /* Add semi-transparent black background */
+  width: 100%; /* Set width to full viewport width */
+  height: 100%; /* Set height to full viewport height */
+  overflow: auto; /* Enable scrolling if necessary */
+}
+
+input {
+  height: 25px; /* Set input height */
+  padding: 5px 10px; /* Add padding inside the input */
+  width: 80%; /* Set input width */
+  margin-top: -20px; /* Add negative margin from the top */
   border: 1px solid #ccc; /* Light gray border */
-  outline: none;
-  border-radius: 5px;
-  transition: border-color 0.3s ease;
-
+  outline: none; /* Remove outline */
+  border-radius: 5px; /* Round the corners of the input */
+  transition: border-color 0.3s ease; /* Add transition for border color change */
 }
 
 input:focus {
-  border-color: #3958B3; /* Blue border on focus */
+  border-color: #3958B3; /* Change border color on focus */
+}
+
+.info-container {
+  display: flex; /* Flexbox layout */
+  justify-content: space-between; /* Evenly spaces out the two divs */
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.div1, .div2 {
+  width: 48%; /* Each div takes up 48% of the container's width */
+  display: flex;
+  flex-direction: column; /* Align labels and inputs vertically */
+}
+
+.div1 label, .div2 label {
+  margin-bottom: 5px; /* Adds space between the label and the input field */
+  font-weight: bold; /* Makes labels stand out */
+}
+
+.div1 input, .div2 input {
+  margin-bottom: 15px; /* Adds space between the input fields */
+  padding: 10px; /* Adds padding inside the input fields */
+  border-radius: 4px; /* Optional: Adds rounded corners to the inputs */
+  border: 1px solid #ccc; /* Adds border around the input fields */
+}
+
+.div1, .div2 {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Adds consistent spacing between each label and input */
 }

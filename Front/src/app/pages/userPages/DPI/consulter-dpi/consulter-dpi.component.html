@@ -1,118 +1,119 @@
-<app-header (changeDashEvent)="updateDashboardVisibility($event)" />
+<app-header (changeDashEvent)="updateDashboardVisibility($event)" /> <!-- Header component with an event binding to update the dashboard visibility -->
 
-<div class="content">
+<div class="content"> <!-- Main content container -->
 
-  <div class="empty-dash">
-    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>
+  <div class="empty-dash"> <!-- Container for Dashboard -->
+    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board> <!-- Conditionally render dashboard if isDashBoardVisible is true -->
   </div>
 
-  <div class="container">
-    @defer {
-      <div class="container2">
+  <div class="container"> <!-- Main content container -->
+
+    @defer { <!-- Defer content rendering until ready -->
+      <div class="container2"> <!-- Second container for content -->
+
         <!-- First Container: DPI title -->
         <div class="dpi-title">
-          <h2>DPI</h2>
+          <h2>DPI</h2> <!-- Display the title for DPI -->
         </div>
 
         <!-- Second Container: Patient Information Card -->
         <div class="patient-info-card">
-          <div class="card-info">
-            <p><strong>Patient:</strong> {{patient.user.last_name}} {{patient.user.first_name}}</p>
-            <p><strong>NSS:</strong> {{patient.nss}}</p>
-            <p><strong>Créé le :</strong> {{ dossier.dateAdmission }} </p>
-            <p><strong>Nombre d'hospitalisations:</strong> {{dossier.ordannance.length}} </p>
+          <div class="card-info"> <!-- Container for patient information -->
+            <p><strong>Patient:</strong> {{patient.user.last_name}} {{patient.user.first_name}}</p> <!-- Patient's name -->
+            <p><strong>NSS:</strong> {{patient.nss}}</p> <!-- Patient's NSS -->
+            <p><strong>Créé le :</strong> {{ dossier.dateAdmission }} </p> <!-- Date of admission -->
+            <p><strong>Nombre d'hospitalisations:</strong> {{dossier.ordannance.length}} </p> <!-- Number of hospitalizations -->
           </div>
-          <div class="last-modif">
-            <p class="modif"><strong>Derniere modification</strong></p>
-            <p class="date"> {{dossier.dateMaj }} </p>
+          <div class="last-modif"> <!-- Last modification details -->
+            <p class="modif"><strong>Derniere modification</strong></p> <!-- Last modification label -->
+            <p class="date"> {{dossier.dateMaj }} </p> <!-- Last modification date -->
           </div>
         </div>
 
         <!-- Third Container: Buttons -->
         <div class="buttons-container">
-          <div class="buttons-top">
-            <button (click)="isInformationsPatient.set(true)">Informations patient</button>
-            <button (click)="viewConsultations()">Consultations</button>
-            <button (click)="isAntecedentPatient.set(true)">Antécédents</button>
+          <div class="buttons-top"> <!-- Buttons at the top -->
+            <button (click)="isInformationsPatient.set(true)">Informations patient</button> <!-- Open patient information form -->
+            <button (click)="viewConsultations()">Consultations</button> <!-- View consultations -->
+            <button (click)="isAntecedentPatient.set(true)">Antécédents</button> <!-- Open patient antecedents form -->
           </div>
 
-          <div class="buttons-bottom">
-            <button (click)="navigation.navigate([ user.role === 'Patient' ? 'patient':'medecin' , 'consulter-DPI',id,'Ordonnances'])">Ordonnances</button>
-            <button (click)="navigation.navigate([user.role === 'Patient' ? 'patient':'medecin'  , 'consulter-DPI',id,'Bilans'])">Bilans</button>
+          <div class="buttons-bottom"> <!-- Buttons at the bottom -->
+            <button (click)="navigation.navigate([ user.role === 'Patient' ? 'patient':'medecin' , 'consulter-DPI',id,'Ordonnances'])">Ordonnances</button> <!-- Navigate to Ordonnances page -->
+            <button (click)="navigation.navigate([user.role === 'Patient' ? 'patient':'medecin'  , 'consulter-DPI',id,'Bilans'])">Bilans</button> <!-- Navigate to Bilans page -->
           </div>
 
           <!-- Conditional Display: Informations Patient -->
-          @if (isInformationsPatient()) {
-            <div class="grey-div" (click)="annuler($event)">
-              <div class="card-bouton-info">
-                <h2>Consultation des informations du patient</h2>
-                <div class="info-container">
-                  <div class="div1">
-                    <label>Nss:</label>
-                    <input type="text" placeholder="NSS" readonly value="{{patient.nss}}">
+          @if (isInformationsPatient()) { <!-- Display patient information form if isInformationsPatient is true -->
+            <div class="grey-div" (click)="annuler($event)"> <!-- Overlay background with cancel click -->
+              <div class="card-bouton-info"> <!-- Patient information form container -->
+                <h2>Consultation des informations du patient</h2> <!-- Title for patient information -->
+                <div class="info-container"> <!-- Information container -->
+                  <div class="div1"> <!-- First part of the form -->
+                    <label>Nss:</label> <!-- Label for NSS -->
+                    <input type="text" placeholder="NSS" readonly value="{{patient.nss}}"> <!-- NSS field, read-only -->
 
-                    <label>Nom</label>
-                    <input type="text" placeholder="nom" readonly value="{{patient.user.last_name}}">
+                    <label>Nom</label> <!-- Label for name -->
+                    <input type="text" placeholder="nom" readonly value="{{patient.user.last_name}}"> <!-- Name field, read-only -->
 
-                    <label>Prénom</label>
-                    <input type="text" placeholder="prénom" readonly value="{{patient.user.first_name}}">
+                    <label>Prénom</label> <!-- Label for first name -->
+                    <input type="text" placeholder="prénom" readonly value="{{patient.user.first_name}}"> <!-- First name field, read-only -->
 
-                    <label>Nom d'utilisateur</label>
-                    <input type="text" placeholder="nom d'utilisateur" readonly value="{{patient.user.username}}">
+                    <label>Nom d'utilisateur</label> <!-- Label for username -->
+                    <input type="text" placeholder="nom d'utilisateur" readonly value="{{patient.user.username}}"> <!-- Username field, read-only -->
                   </div>
 
-                  <div class="div2">
-                    <label>Addresse</label>
-                    <input type="text" placeholder="Addresse" readonly value="{{patient.address}}">
+                  <div class="div2"> <!-- Second part of the form -->
+                    <label>Addresse</label> <!-- Label for address -->
+                    <input type="text" placeholder="Addresse" readonly value="{{patient.address}}"> <!-- Address field, read-only -->
 
-                    <label>Date de naissance</label>
-                    <input type="date" readonly value="{{patient.date_naissance}}">
+                    <label>Date de naissance</label> <!-- Label for date of birth -->
+                    <input type="date" readonly value="{{patient.date_naissance}}"> <!-- Date of birth field, read-only -->
 
-                    <label>Tel</label>
-                    <input type="tel" placeholder="téléphone" readonly value="{{patient.phone_number}}">
+                    <label>Tel</label> <!-- Label for phone number -->
+                    <input type="tel" placeholder="téléphone" readonly value="{{patient.phone_number}}"> <!-- Phone number field, read-only -->
                   </div>
                 </div>
-                <div class="container3">
-                  <button class="annuler" (click)="annuler($event)">Sortir</button>
+                <div class="container3"> <!-- Cancel button container -->
+                  <button class="annuler" (click)="annuler($event)">Sortir</button> <!-- Cancel button -->
                 </div>
               </div>
             </div>
           }
 
           <!-- Conditional Display: Antecedents Patient -->
-          @if (isAntecedentPatient()) {
-          <div class="grey-div" (click)="annuler($event)">
-            <div class="card-bouton-info" style="width: 30%;">
-              <h2>Antécédents du patient</h2>
-              <div class="info-container">
-                <div class="div1">
-                  <label>Description</label>
+          @if (isAntecedentPatient()) { <!-- Display antecedents patient form if isAntecedentPatient is true -->
+            <div class="grey-div" (click)="annuler($event)"> <!-- Overlay background with cancel click -->
+              <div class="card-bouton-info" style="width: 30%;"> <!-- Antecedents form container -->
+                <h2>Antécédents du patient</h2> <!-- Title for patient antecedents -->
+                <div class="info-container"> <!-- Information container -->
+                  <div class="div1"> <!-- First part of the antecedents form -->
+                    <label>Description</label> <!-- Label for antecedents description -->
 
-                  @if (user.role === "Patient") {
-                  <textarea rows="4" type="text" style="width: 200%;" readonly>{{dossier.antecedants}}</textarea>
-                  } @else {
-                    <textarea rows="4" type="text" style="width: 200%;" [(ngModel)]="dossier.antecedants"></textarea>
-                  }
-                  
+                    @if (user.role === "Patient") { <!-- If the user role is "Patient" -->
+                    <textarea rows="4" type="text" style="width: 165%;" readonly>{{dossier.antecedants}}</textarea> <!-- Read-only antecedents textarea for patient -->
+                    } @else { <!-- If the user role is not "Patient" -->
+                      <textarea rows="4" type="text" style="width: 165%;" [(ngModel)]="dossier.antecedants"></textarea> <!-- Editable antecedents textarea for other roles -->
+                    }
+                  </div>
                 </div>
-              </div>
-              <div class="info-container" style="justify-content: center;">
-                <div class="div1">
-                  <button *ngIf="user.role === 'Medcin'" (click)="mettreAjourAntecedent()">Mettre à jour</button>
-                </div>
-                <div class="div2">
-                  <button class="annuler" (click)="annuler($event)">Sortir</button>
+                <div class="info-container" style="justify-content: center;"> <!-- Centered action buttons for antecedents -->
+                  <div class="div1">
+                    <button *ngIf="user.role === 'Medcin'" (click)="mettreAjourAntecedent()">Mettre à jour</button> <!-- Button to update antecedents (visible to 'Medcin' role) -->
+                  </div>
+                  <div class="div2">
+                    <button class="annuler" (click)="annuler($event)">Sortir</button> <!-- Cancel button -->
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
           }
         </div>
       </div>
     }
-    @loading (minimum 0.5s) {
+    @loading (minimum 0.5s) { <!-- Loading screen if the content is still loading -->
     <div class="center-div">
-      <app-loading-screen />
+      <app-loading-screen /> <!-- Loading screen component -->
     </div>
     }
   </div>

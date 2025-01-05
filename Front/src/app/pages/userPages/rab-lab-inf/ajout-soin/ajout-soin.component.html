@@ -1,42 +1,44 @@
-<app-header (changeDashEvent)="updateDashboardVisibility($event)" />
+<app-header (changeDashEvent)="updateDashboardVisibility($event)" /> <!-- App header with event binding to update dashboard visibility -->
 
 <div class="content">
 
   <div class="empty-dash">
-    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>
+    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board> <!-- Dashboard component displayed if isDashBoardVisible is true -->
   </div>
 
   <div class="container">
 
-    @defer { <!--Defer is when component needs to load so we show something while loading-->
-
-      <h1>liste des soins</h1>
+    @defer { <!-- Defer is used to show content while loading the component -->
       
-      @for (item of newListe; track item.id) { <!--Parcourir les soins-->
+      <h1>liste des soins</h1> <!-- Heading for the list of treatments -->
+      
+      @for (item of newListe; track item.id) { <!-- Iterate over the list of treatments -->
+
         <div class="card">
 
-          <h2>Soin {{newListe.indexOf(item) + 1}} </h2>
+          <h2>Soin {{newListe.indexOf(item) + 1}} </h2> <!-- Display the treatment number (index + 1) -->
 
           <label>Sujet de soin</label>
-          <input type="text" placeholder="sujet de votre soin" [(ngModel)]="item.subject"> <!--NgModel yerbet input te3 html be un variable fe component class-->
+          <input type="text" placeholder="sujet de votre soin" [(ngModel)]="item.subject"> <!-- Two-way binding for subject of treatment -->
+
           <label>Description</label>
-          <textarea rows="3" placeholder="description pour votre soin" [(ngModel)]="item.description"></textarea>
+          <textarea rows="3" placeholder="description pour votre soin" [(ngModel)]="item.description"></textarea> <!-- Two-way binding for description of treatment -->
 
-          <p>Crée le {{item.date}}</p>
+          <p>Crée le {{item.date}}</p> <!-- Display the creation date of the treatment -->
 
-          @if (newListe.indexOf(item) != newListe.length - 1) { <button (click)="removeSoin(newListe.indexOf(item))">Supprimer</button> } 
+          @if (newListe.indexOf(item) != newListe.length - 1) { <button (click)="removeSoin(newListe.indexOf(item))">Supprimer</button> } <!-- Button to remove the treatment (except for the last one) -->
+
         </div>
       }
 
-      <button (click)="addSoin()">Ajouter un soin</button>
-      <button (click)="sauvegarder()">Sauvegarder</button>
+      <button (click)="addSoin()">Ajouter un soin</button> <!-- Button to add a new treatment -->
+      <button (click)="sauvegarder()">Sauvegarder</button> <!-- Button to save the treatments -->
       
-    } @loading (minimum 1s) { <!--Nesstennaw minimum 1s besh naffichiw @defer-->
+    } @loading (minimum 1s) { <!-- Loading state that displays a loading screen if content takes more than 1 second to load -->
       <div class="center-div">
-        <app-loading-screen />
+        <app-loading-screen /> <!-- Display loading screen component -->
       </div>
     }
   
   </div>
 </div>
-
