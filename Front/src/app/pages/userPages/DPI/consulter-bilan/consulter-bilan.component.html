@@ -10,42 +10,60 @@
 
     @defer {
 
-      <h2>Bilan {{bilan.type}}: {{bilan.date}}</h2>
+      <h2>Bilan {{isBio ? "biologique":"radiologique"}}: {{isBio ? bilanBio.date_creation : compteRendu.date_creation}}</h2>
 
-      <div class="card">
+      @if(isBio){
 
-        <h2 style="margin: auto;">liste des tests demandés</h2>
+        <h2 style="margin-top: -20px; color: #3958B3;">Statut: {{bilanBio.rempli ? "Rempli !":"En attente"}}</h2>
 
-        @for (item of bilan.tests; track item.id) {
+        <div class="card">
+  
+          <h2 style="margin: auto;">liste des tests demandés</h2>
+  
+          @for (item of bilanBio.resultats_analytiques; track item.id) {
+  
+            <div class="container2">
+  
+              <div class="horiz-div">
+                <label>Demande de test: </label>
+                
+                @if (bilanBio.rempli) {
+                  <label>{{item.parametre}}</label>
+                } @else {
+  
+                  @if (user.role === "Patient" || isFilled) {<input readonly type="text" placeholder="ex:Cholesterol,niveau d'urée..." [(ngModel)]="item.parametre">}
+                  @else {<input type="text" placeholder="ex:Cholesterol,niveau d'urée..." [(ngModel)]="item.parametre">}
+  
+                  @if (user.role === "Patient" || isFilled) {<input readonly type="text" placeholder="mg/l, g, ..." [(ngModel)]="item.unite">}
+                  @else {<input type="text" placeholder="mg/l, g, ..." [(ngModel)]="item.unite">}
+  
 
-          <div class="container2">
-
-            <div class="horiz-div">
-              <label>Demande de test: </label>
-              
-              @if (bilan.rempli) {
-                <label>{{item.testName}}</label>
-              } @else {
-
-                @if (user.role === "Patient") {<input readonly type="text" placeholder="ex:Cholesterol,niveau d'urée..." [(ngModel)]="item.testName">}
-                @else {<input type="text" placeholder="ex:Cholesterol,niveau d'urée..." [(ngModel)]="item.testName">}
-
-                @if (bilan.tests.indexOf(item) != bilan.tests.length - 1) { <button (click)="removeTest(bilan.tests.indexOf(item))" *ngIf="!bilan.rempli && user.role!='Patient'" >-</button> }
-              }
+                  @if (bilanBio.resultats_analytiques.indexOf(item) != bilanBio.resultats_analytiques.length - 1) { <button (click)="removeTest(bilanBio.resultats_analytiques.indexOf(item))" *ngIf="!isFilled && user.role!='Patient'" >-</button> }
+                }
+              </div>
+  
+              <label>Résultat de test: {{bilanBio.rempli? item.value : "pas encore soumis"}}</label>
+  
             </div>
+  
+          }
+  
+          <button *ngIf="!isFilled && user.role!='Patient'" style="margin: auto;" (click)="addTest()">+</button>
+        </div>
+  
+        <button *ngIf="!isFilled && user.role!='Patient'" style="margin: auto;" (click)="patchBilan()">Envoyer</button>
 
-            <label>Résultat de test: {{bilan.rempli? item.result : "pas encore soumis"}}</label>
+      }@else {
 
-          </div>
+        <h2 style="margin-top: -20px; color: #3958B3;">Statut: {{compteRendu.rempli ? "Rempli !":"En attente"}}</h2>
 
-        }
+        <div class="card">
+          <label>Compte rendu</label>
+          <textarea rows="5" [(ngModel)]="compteRendu.compte_rendu" readonly [(ngModel)]="compteRendu.compte_rendu" [placeholder]="!compteRendu.rempli ?'Pas encore rempli':''"></textarea>
+        </div>
+      }
 
-        <button *ngIf="!bilan.rempli && user.role!='Patient'" style="margin: auto;" (click)="addTest()">+</button>
-      </div>
-
-      <button *ngIf="!bilan.rempli && user.role!='Patient'" style="margin: auto;" (click)="patchBilan()">Envoyer</button>
-
-    } @loading(minimum 1s) {
+    } @loading(minimum 1.5s) {
 
       <div class="center-div">
         <app-loading-screen />

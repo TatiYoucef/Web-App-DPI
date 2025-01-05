@@ -31,7 +31,7 @@
 
           @for (item of listeBilanBio; track item.id) { <!--For each patient ndirou ceci-->
 
-            <div class="item" (click)="goToBilan(item.id)">
+            <div class="item" (click)="goToBilan(item.id, true)">
         
               <div class="profile">
                 <h3>Bilan ID: {{ item.id }}</h3>
@@ -52,7 +52,7 @@
 
           @for (item of listecompteRendu; track item.id) { <!--For each patient ndirou ceci-->
 
-            <div class="item" (click)="goToBilan(item.id)">
+            <div class="item" (click)="goToBilan(item.id, false)">
         
               <div class="profile">
                 <h3>Bilan ID: {{ item.id }}</h3>

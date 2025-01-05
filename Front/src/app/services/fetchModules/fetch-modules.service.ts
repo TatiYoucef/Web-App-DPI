@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Bilan, BilanBio, BilanRadio, Consultation, Ordonnance, Patient, Soin } from '../../modules/types';
+import { BilanBio, BilanRadio, Consultation, Ordonnance, Patient, Soin } from '../../modules/types';
 import { DPI } from '../../modules/types';
 
 @Injectable({
@@ -41,9 +41,19 @@ export class FetchModulesService { //Hna yesraw les fetch functions
     return this.http.get<Array<BilanBio>>(url);
   }
 
+  fetchBilanBio(id:number){
+    const url = `http://127.0.0.1:8000/api/auth/get/patient/dossier/bilanBio/${id}`;
+    return this.http.get<BilanBio>(url);
+  }
+
   fetchListeBilanRadio(idDossier:number){ 
     const url = `http://127.0.0.1:8000/api/auth/get/patient/dossier/${idDossier}/bilanRadio`;
     return this.http.get<Array<BilanRadio>>(url);
+  }
+
+  fetchBilanRadio(id:number){
+    const url = `http://127.0.0.1:8000/api/auth/get/patient/dossier/bilanRadio/${id}`;
+    return this.http.get<BilanRadio>(url);
   }
 
   fetchListeBilanBioIncompleted(id:number){ //liste des bilans bios non rempli pour rabLabInf de id de patient

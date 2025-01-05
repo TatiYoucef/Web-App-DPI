@@ -8,12 +8,12 @@ import { User } from '../../modules/types';
 export class UserDataService { //classe 3endha ge3 les variables globales de user
 
   private user:User = {
-    id: 1,
+    id: 0,
     first_name: "???",
     last_name: "???",
     username: "???",
     email: "???",
-    role: "Medcin",
+    role: "???",
   };  
 
   getUserData(){

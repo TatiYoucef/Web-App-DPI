@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { FetchModulesService } from '../../../../services/fetchModules/fetch-modules.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError } from 'rxjs';
-import { Bilan, BilanBio, BilanRadio, Patient } from '../../../../modules/types';
+import { BilanBio, BilanRadio, Patient } from '../../../../modules/types';
 import { HeaderComponent } from "../../../../components/header-user/header.component";
 import { DashBoardComponent } from "../../../../components/dash-board/dash-board.component";
 import { CommonModule } from '@angular/common';
@@ -28,7 +28,6 @@ export class BilansListeComponent {
   fetchServices = inject(FetchModulesService);
   postServices = inject(PostModulesService)
 
-  listeBilan = signal<Array<Bilan>>([]);
   listeBilanBio !: Array<BilanBio>; // liste des demandes de tests pour un bilan
   listecompteRendu !: Array<BilanRadio> ;
 
@@ -98,9 +97,10 @@ export class BilansListeComponent {
     this.isDashBoardVisible = isVisible;
   }
   
-  goToBilan(idBilan:number){
+  goToBilan(idBilan:number , isBio:Boolean){
     const initPath = this.user.role === 'Patient' ? 'patient':'medecin';
-    this.rout.navigate([initPath,'consulter-DPI',this.id,'Bilans',idBilan]);
+    const bilanType = isBio ? 'bio':'radio';
+    this.rout.navigate([initPath,'consulter-DPI',this.id,'Bilans',idBilan, bilanType]);
   }
 
   annuler(event: MouseEvent){
@@ -124,35 +124,50 @@ export class BilansListeComponent {
 
       if(this.newBilan.typeBilan === 'BIO'){
 
-        this.postServices.createBilanBio(this.newBilan , this.patient.dossier)
+        this.postServices.createBilanBio(this.newBilan , this.patient.dossier).subscribe({
+          next: (response:any)=>{
+            alert("Nouveau bilan biologique a été ajouté")
 
-        setTimeout(() => { //attendre le post soit réussi
-
-          this.fetchServices.fetchListeBilanBio(this.patient.dossier).pipe( //pipe to catch any error
-            catchError((err) => {
-              console.log(err);
-              throw err;
-            })
-            ).subscribe((liste) => {
+            this.fetchServices.fetchListeBilanBio(this.patient.dossier).pipe( //pipe to catch any error
+              catchError((err) => {
+                console.log(err);
+                throw err;
+              })
+              ).subscribe((liste) => {
+        
+              this.listeBilanBio = liste;
       
-            this.listeBilanBio = liste;
-    
-          });
+            });
 
-        } , 1000)
+          },
+          error : (error: any) =>{
+            console.error('Error creating consula:', error);
+            alert("Il a eut une erreur pendant la création d'un bilan, veuillez vérifier vos données")
+          }
+        });
 
       } else {
 
-        this.postServices.createBilanRadio(this.newBilan, this.patient.dossier);
-        this.fetchServices.fetchListeBilanRadio(this.patient.dossier).pipe( //pipe to catch any error
-          catchError((err) => {
-            console.log(err);
-            throw err;
-          })
-          ).subscribe((liste) => {
-    
-          this.listecompteRendu = liste;
-  
+        this.postServices.createBilanRadio(this.newBilan, this.patient.dossier).subscribe({
+          next: (response:any)=>{
+            alert("Nouveau bilan radiologique a été ajouté");
+
+            this.fetchServices.fetchListeBilanRadio(this.patient.dossier).pipe( //pipe to catch any error
+              catchError((err) => {
+                console.log(err);
+                throw err;
+              })
+              ).subscribe((liste) => {
+        
+              this.listecompteRendu = liste;
+      
+            });
+
+          },
+          error : (error: any) =>{
+            console.error('Error creating consula:', error);
+            alert("Il a eut une erreur pendant la création d'un bilan, veuillez vérifier vos données")
+          }
         });
 
       }

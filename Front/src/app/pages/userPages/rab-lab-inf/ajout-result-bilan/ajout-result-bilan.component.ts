@@ -2,7 +2,7 @@ import { Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angul
 import { LoadingScreenComponent } from "../../../../components/loading-screen/loading-screen.component";
 import { HeaderComponent } from "../../../../components/header-user/header.component";
 import { DashBoardComponent } from "../../../../components/dash-board/dash-board.component";
-import { BilanBio, BilanRadio, MedicalRecord, TestBilan } from '../../../../modules/types';
+import { BilanBio, BilanRadio } from '../../../../modules/types';
 import { FetchModulesService } from '../../../../services/fetchModules/fetch-modules.service';
 import { catchError } from 'rxjs';
 import { UserDataService } from '../../../../services/userData/user-data.service';

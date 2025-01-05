@@ -66,15 +66,19 @@ export class PostModulesService {
 
     const apiUrl = `http://127.0.0.1:8000/api/auth/post/patient/dossier/${idDossier}/bilanbio`;
 
-    this.http.post(apiUrl , bilanData).subscribe({
-      next: (response:any)=>{
-        alert("Nouveau bilan biologique a été ajouté")
-      },
-      error : (error: any) =>{
-        console.error('Error creating consula:', error);
-        alert("Il a eut une erreur pendant la création d'un bilan, veuillez vérifier vos données")
-      }
-    });
+    return this.http.post(apiUrl , bilanData);
+
+  }
+
+  createTestsInBio(results:Object, idBilan:number){
+
+    const apiUrl = `http://127.0.0.1:8000/api/auth/post/medecin/patient/incBilanBio/fill/${idBilan}`;
+
+    const requestUpdate = {
+      resultats_analytiques : results
+    }
+
+    return this.http.post(apiUrl, requestUpdate);
 
   }
 
@@ -82,15 +86,7 @@ export class PostModulesService {
 
     const apiUrl = `http://127.0.0.1:8000/api/auth/post/patient/dossier/${idDossier}/bilanRadio`;
 
-    this.http.post(apiUrl , bilanData).subscribe({
-      next: (response:any)=>{
-        alert("Nouveau bilan radiologique a été ajouté")
-      },
-      error : (error: any) =>{
-        console.error('Error creating consula:', error);
-        alert("Il a eut une erreur pendant la création d'un bilan, veuillez vérifier vos données")
-      }
-    });
+    return this.http.post(apiUrl , bilanData);
 
   }
 
