@@ -10,7 +10,7 @@
 
     @defer {
 
-      @if (listeBilan().length === 0) { <!--Liste rahi fargha-->
+      @if ( !listeBilanBio.length && !listecompteRendu.length ) { <!--Liste rahi fargha-->
 
         <div class="center-div">
           <img src="../../../../../assets/images/Task_empty.png" width="280px" >
@@ -25,20 +25,43 @@
 
         <button *ngIf="user.role === 'Medcin'" (click)="isAjoutBilan = true" style="margin: auto;">Ajouter bilan</button>
 
+        <h2 *ngIf="listeBilanBio.length">Bilans Biologiques</h2>
+
         <div class="container-invert">
 
-          @for (item of listeBilan(); track item.id) { <!--For each patient ndirou ceci-->
+          @for (item of listeBilanBio; track item.id) { <!--For each patient ndirou ceci-->
 
             <div class="item" (click)="goToBilan(item.id)">
         
               <div class="profile">
-                <h3>{{ item.type }}</h3>
-                <h4>créé le: {{ item.date }} </h4>
+                <h3>Bilan ID: {{ item.id }}</h3>
+                <h4>créé le: {{ item.date_creation }} </h4>
               </div>
                 
               <div class="empty-div"></div>
   
-              <p>{{item.tests.length === 0 ? "Pas encore rempli": (item.rempli ? "Résultat reçu" : "en attente")}}</p>
+              <p>{{item.resultats_analytiques.length === 0 ? "Pas encore rempli": (item.rempli ? "Résultat reçu" : "en attente")}}</p>
+            </div>
+          }
+          
+        </div>
+
+        <h2 *ngIf="listecompteRendu.length">Bilans Radiologiques</h2>
+
+        <div class="container-invert">
+
+          @for (item of listecompteRendu; track item.id) { <!--For each patient ndirou ceci-->
+
+            <div class="item" (click)="goToBilan(item.id)">
+        
+              <div class="profile">
+                <h3>Bilan ID: {{ item.id }}</h3>
+                <h4>créé le: {{ item.date_creation }} </h4>
+              </div>
+                
+              <div class="empty-div"></div>
+  
+              <p>{{item.rempli ? "Résultat reçu" : "en attente"}}</p>
             </div>
           }
           
@@ -54,10 +77,17 @@
 
                 <h4>Type de bilan: </h4>
 
-                <select [(ngModel)]="selectedType">
-                  <option value="Biologique">Biologique</option>
-                  <option value="Radiologique">Radiologique</option>
+                <select [(ngModel)]="newBilan.typeBilan">
+                  <option value="BIO">Biologique</option>
+                  <option value="RAD">Radiologique</option>
                 </select>
+
+              </div>
+
+              <div class="horiz">
+
+                <h4>Description: </h4>
+                <input type="text" [(ngModel)]="newBilan.description">
 
               </div>
 

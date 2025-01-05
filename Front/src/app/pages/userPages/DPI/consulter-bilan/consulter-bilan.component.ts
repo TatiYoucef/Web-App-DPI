@@ -25,7 +25,7 @@ export class ConsulterBilanComponent implements OnInit{
   fetchServices = inject(FetchModulesService);
   idPatient!:number ; //id patient
   idBilan!:number ; //id bilan
-  bilan!:Bilan;
+  bilan!:any;
   user = inject(UserDataService).getUserData();
 
   router = inject(ActivatedRoute); //bihe njibou id fel path
@@ -37,7 +37,7 @@ export class ConsulterBilanComponent implements OnInit{
       this.idBilan =Number(params.get("id2")); //id de bilan récupéré
     });
 
-    this.fetchServices.fetchBilan(this.idBilan).pipe( //pipe to catch any error
+    this.fetchServices.fetchDPI(this.idBilan).pipe( //pipe to catch any error
       catchError((err) => {
         console.log(err);
         throw err;

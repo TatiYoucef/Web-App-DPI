@@ -36,14 +36,14 @@ export class FetchModulesService { //Hna yesraw les fetch functions
     return this.http.get<DPI>(url); 
   }
 
-  fetchListeBilan(){ //erronee
-    const url = `http://127.0.0.1:8000/api/auth/post/rabLabInf/patient/incBilanBio`;
-    return this.http.get<Array<Bilan>>(url);
+  fetchListeBilanBio(idDossier:number){ 
+    const url = `http://127.0.0.1:8000/api/auth/get/patient/dossier/${idDossier}/bilanbio`;
+    return this.http.get<Array<BilanBio>>(url);
   }
 
-  fetchBilan(id:number){ //erronee
-    const url = "http://localhost:3000/Bilans"; //Json Test, not from backend
-    return this.http.get<Bilan>(url);
+  fetchListeBilanRadio(idDossier:number){ 
+    const url = `http://127.0.0.1:8000/api/auth/get/patient/dossier/${idDossier}/bilanRadio`;
+    return this.http.get<Array<BilanRadio>>(url);
   }
 
   fetchListeBilanBioIncompleted(id:number){ //liste des bilans bios non rempli pour rabLabInf de id de patient
