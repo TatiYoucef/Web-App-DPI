@@ -12,7 +12,7 @@
         <input id="password" type="password" placeholder="mot de passe" #password>
       </div>
 
-      <button (click)="onSubmit(username.value,password.value)">Se connecter</button>
+      <button id="logIn" (click)="onSubmit(username.value,password.value)">Se connecter</button>
       <p class="error-message">{{ errorMessage }}</p>
     </div>
   </div>
