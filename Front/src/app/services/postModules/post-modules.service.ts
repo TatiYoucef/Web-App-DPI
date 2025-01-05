@@ -61,4 +61,33 @@ export class PostModulesService {
     });
 
   }
+
+  createBilanBio(bilanData:Object, idDossier:number){
+
+    const apiUrl = `http://127.0.0.1:8000/api/auth/post/patient/dossier/${idDossier}/bilanbio`;
+
+    return this.http.post(apiUrl , bilanData);
+
+  }
+
+  createTestsInBio(results:Object, idBilan:number){
+
+    const apiUrl = `http://127.0.0.1:8000/api/auth/post/medecin/patient/incBilanBio/fill/${idBilan}`;
+
+    const requestUpdate = {
+      resultats_analytiques : results
+    }
+
+    return this.http.post(apiUrl, requestUpdate);
+
+  }
+
+  createBilanRadio(bilanData:Object, idDossier:number){
+
+    const apiUrl = `http://127.0.0.1:8000/api/auth/post/patient/dossier/${idDossier}/bilanRadio`;
+
+    return this.http.post(apiUrl , bilanData);
+
+  }
+
 }

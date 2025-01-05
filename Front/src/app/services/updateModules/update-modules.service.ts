@@ -33,7 +33,7 @@ export class UpdateModulesService {
 
   }
 
-  ajoutComptRenduForPatient(compte_rendu: String, id_bilan:number){
+  ajoutComptRenduForPatient(compte_rendu: String, id_bilan:number){ //bilan radiologique update
     const requestUpdate = {
       compte_rendu: compte_rendu
     }

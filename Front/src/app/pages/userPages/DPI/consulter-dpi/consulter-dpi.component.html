@@ -25,7 +25,7 @@
           <div class="last-modif">
             <p class="modif"><strong>Derniere modification</strong></p>
             <p class="date"> {{dossier.dateMaj }} </p>
-            <button (click)="changePatientState()" [style]="patient.en_cours_traitement ? 'background-color:#FF7878':'' ">Status: {{patient.en_cours_traitement ? 'Hospitalisé':'Libre'}}</button>
+            <button (click)="changePatientState()" [style]="patient.en_cours_traitement ? 'background-color:#FF7878':'' ">Status: {{patient.en_cours_traitement ? 'Hospitalisé':'Abscent'}}</button>
 
           </div>
         </div>
