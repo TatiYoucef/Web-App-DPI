@@ -67,7 +67,7 @@ h4{
 
 .profile{
 
-  width: 15%;
+  width: 50%;
   display: flex;
   color: white;
   flex-direction: column; /* Flex items will be arranged vertically */
