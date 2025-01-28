@@ -1,0 +1,31 @@
+Initial chunk files | Names                         |  Raw size
+polyfills.js        | polyfills                     |  88.09 kB | 
+main.js             | main                          |   6.16 kB | 
+chunk-4WXVOEFY.js   | -                             |   1.46 kB | 
+styles.css          | styles                        | 559 bytes | 
+
+                    | Initial total                 |  96.26 kB
+
+Lazy chunk files    | Names                         |  Raw size
+chunk-WYTU3NUR.js   | ordonnances-accueil-component |  26.54 kB | 
+chunk-ODU2DIGT.js   | consulter-dpi-component       |  24.33 kB | 
+chunk-B5TSDHEC.js   | consultations-component       |  23.75 kB | 
+chunk-A4CDXIBI.js   | acceuil-page-component        |  21.48 kB | 
+chunk-74UYFWXT.js   | ajout-result-bilan-component  |  17.05 kB | 
+chunk-V47HH2XU.js   | acceuil-page-component        |  16.47 kB | 
+chunk-LWE6CYEU.js   | bilans-liste-component        |  16.18 kB | 
+chunk-JG3YVHD5.js   | -                             |  15.46 kB | 
+chunk-UG5WUGED.js   | consulter-bilan-component     |  13.69 kB | 
+chunk-K5E54U5Y.js   | ajout-soin-component          |  12.89 kB | 
+chunk-QX4VEFK2.js   | generer-graph-component       |  12.26 kB | 
+chunk-BWMSDR5L.js   | acceuil-page-component        |   8.98 kB | 
+chunk-4642WQY4.js   | gestion-patients-component    |   8.89 kB | 
+chunk-KTDWACDK.js   | add-account-component         |   8.12 kB | 
+chunk-OWYDPBH2.js   | acceuil-page-component        |   7.40 kB | 
+...and 6 more lazy chunks files. Use "--verbose" to show all the files.
+
+Application bundle generation complete. [7.543 seconds]
+
+Watch mode enabled. Watching for file changes...
+  ➜  Local:   http://localhost:4200/
+  ➜  press h + enter to show help

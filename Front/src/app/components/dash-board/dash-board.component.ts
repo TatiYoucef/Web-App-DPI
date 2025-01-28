@@ -12,22 +12,26 @@ import { UserDataService } from '../../services/userData/user-data.service';
 
 export class DashBoardComponent {
 
-  isDashBoard = signal(true);  // Dashboard is visible by default on larger screens
+  // Signal pour indiquer si le tableau de bord est visible
+  isDashBoard = signal(true);
   router = inject(Router);
 
-  user= inject(UserDataService).getUserData();
+  // Récupération des informations de l'utilisateur courant
+  user = inject(UserDataService).getUserData();
 
-  goToDisconnect(){
+  // Fonction pour naviguer vers la page de déconnexion
+  goToDisconnect() {
     this.router.navigate([""]);
   }
 
+  // Met à jour la visibilité du tableau de bord
   updateDashboardVisibility(isVisible: boolean) {
     this.isDashBoard.set(isVisible);
   }
 
-  goToHome(){
-
-    switch(this.user.role){
+  // Navigation vers la page d'accueil en fonction du rôle de l'utilisateur
+  goToHome() {
+    switch (this.user.role) {
 
       case "Administratif":
         this.router.navigate(['admin', this.user.id]);
@@ -46,7 +50,6 @@ export class DashBoardComponent {
 
       
     }
-
   }
 
 }

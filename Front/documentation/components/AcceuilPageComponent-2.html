@@ -1,0 +1,1351 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>front documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">front documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  AcceuilPageComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/userPages/medecin/acceuil-page/acceuil-page.component.ts</code>
+</p>
+
+
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-acceuil-page</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                                <code><a href="../components/HeaderComponent.html" target="_self" >HeaderComponent</a></code>
+                                <code><a href="../components/DashBoardComponent.html" target="_self" >DashBoardComponent</a></code>
+                                <code><a href="../components/LoadingScreenComponent.html" target="_self" >LoadingScreenComponent</a></code>
+                            <code>CommonModule</code>
+                            <code>FormsModule</code>
+                            <code>ZXingScannerModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./acceuil-page.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./acceuil-page.component.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#fetchServices" >fetchServices</a>
+                            </li>
+                            <li>
+                                <a href="#isCreeDPI" >isCreeDPI</a>
+                            </li>
+                            <li>
+                                <a href="#isDashBoardVisible" >isDashBoardVisible</a>
+                            </li>
+                            <li>
+                                <a href="#isRecherchePatient" >isRecherchePatient</a>
+                            </li>
+                            <li>
+                                <a href="#isScanning" >isScanning</a>
+                            </li>
+                            <li>
+                                <a href="#listeDPI" >listeDPI</a>
+                            </li>
+                            <li>
+                                <a href="#listePatient" >listePatient</a>
+                            </li>
+                            <li>
+                                <a href="#nssInput" >nssInput</a>
+                            </li>
+                            <li>
+                                <a href="#searchedDPI" >searchedDPI</a>
+                            </li>
+                            <li>
+                                <a href="#user" >user</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#annulerRecherche" >annulerRecherche</a>
+                            </li>
+                            <li>
+                                <a href="#creerDPI" >creerDPI</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onScanFailure" >onScanFailure</a>
+                            </li>
+                            <li>
+                                <a href="#onScanSuccess" >onScanSuccess</a>
+                            </li>
+                            <li>
+                                <a href="#recherchePatient" >recherchePatient</a>
+                            </li>
+                            <li>
+                                <a href="#transformData" >transformData</a>
+                            </li>
+                            <li>
+                                <a href="#updateDashboardVisibility" >updateDashboardVisibility</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="annulerRecherche"></a>
+                    <span class="name">
+                        <span ><b>annulerRecherche</b></span>
+                        <a href="#annulerRecherche"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>annulerRecherche(event: MouseEvent)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="46"
+                                    class="link-to-prism">src/app/pages/userPages/medecin/acceuil-page/acceuil-page.component.ts:46</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>event</td>
+                                            <td>
+                                                        <code>MouseEvent</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="creerDPI"></a>
+                    <span class="name">
+                        <span ><b>creerDPI</b></span>
+                        <a href="#creerDPI"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>creerDPI()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="55"
+                                    class="link-to-prism">src/app/pages/userPages/medecin/acceuil-page/acceuil-page.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="64"
+                                    class="link-to-prism">src/app/pages/userPages/medecin/acceuil-page/acceuil-page.component.ts:64</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onScanFailure"></a>
+                    <span class="name">
+                        <span ><b>onScanFailure</b></span>
+                        <a href="#onScanFailure"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onScanFailure(error: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="32"
+                                    class="link-to-prism">src/app/pages/userPages/medecin/acceuil-page/acceuil-page.component.ts:32</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>error</td>
+                                            <td>
+                                                            <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onScanSuccess"></a>
+                    <span class="name">
+                        <span ><b>onScanSuccess</b></span>
+                        <a href="#onScanSuccess"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onScanSuccess(result: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="29"
+                                    class="link-to-prism">src/app/pages/userPages/medecin/acceuil-page/acceuil-page.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>result</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="recherchePatient"></a>
+                    <span class="name">
+                        <span ><b>recherchePatient</b></span>
+                        <a href="#recherchePatient"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>recherchePatient()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="98"
+                                    class="link-to-prism">src/app/pages/userPages/medecin/acceuil-page/acceuil-page.component.ts:98</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="transformData"></a>
+                    <span class="name">
+                        <span ><b>transformData</b></span>
+                        <a href="#transformData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>transformData()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="88"
+                                    class="link-to-prism">src/app/pages/userPages/medecin/acceuil-page/acceuil-page.component.ts:88</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateDashboardVisibility"></a>
+                    <span class="name">
+                        <span ><b>updateDashboardVisibility</b></span>
+                        <a href="#updateDashboardVisibility"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateDashboardVisibility(isVisible: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="41"
+                                    class="link-to-prism">src/app/pages/userPages/medecin/acceuil-page/acceuil-page.component.ts:41</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>isVisible</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="fetchServices"></a>
+                    <span class="name">
+                        <span ><b>fetchServices</b></span>
+                        <a href="#fetchServices"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(FetchModulesService)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/pages/userPages/medecin/acceuil-page/acceuil-page.component.ts:60</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isCreeDPI"></a>
+                    <span class="name">
+                        <span ><b>isCreeDPI</b></span>
+                        <a href="#isCreeDPI"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/pages/userPages/medecin/acceuil-page/acceuil-page.component.ts:38</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isDashBoardVisible"></a>
+                    <span class="name">
+                        <span ><b>isDashBoardVisible</b></span>
+                        <a href="#isDashBoardVisible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/pages/userPages/medecin/acceuil-page/acceuil-page.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isRecherchePatient"></a>
+                    <span class="name">
+                        <span ><b>isRecherchePatient</b></span>
+                        <a href="#isRecherchePatient"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal(false)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/userPages/medecin/acceuil-page/acceuil-page.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isScanning"></a>
+                    <span class="name">
+                        <span ><b>isScanning</b></span>
+                        <a href="#isScanning"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/userPages/medecin/acceuil-page/acceuil-page.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="listeDPI"></a>
+                    <span class="name">
+                        <span ><b>listeDPI</b></span>
+                        <a href="#listeDPI"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;Array&lt;DPI&gt;&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/pages/userPages/medecin/acceuil-page/acceuil-page.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="listePatient"></a>
+                    <span class="name">
+                        <span ><b>listePatient</b></span>
+                        <a href="#listePatient"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;Array&lt;Patient&gt;&gt;([])</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/pages/userPages/medecin/acceuil-page/acceuil-page.component.ts:61</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nssInput"></a>
+                    <span class="name">
+                        <span ><b>nssInput</b></span>
+                        <a href="#nssInput"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/app/pages/userPages/medecin/acceuil-page/acceuil-page.component.ts:96</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchedDPI"></a>
+                    <span class="name">
+                        <span ><b>searchedDPI</b></span>
+                        <a href="#searchedDPI"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>signal&lt;DPI | null&gt;(null)</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/pages/userPages/medecin/acceuil-page/acceuil-page.component.ts:95</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="user"></a>
+                    <span class="name">
+                        <span ><b>user</b></span>
+                        <a href="#user"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(UserDataService).getUserData()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/userPages/medecin/acceuil-page/acceuil-page.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, inject, OnInit, signal } from &#x27;@angular/core&#x27;;
+import { HeaderComponent } from &quot;../../../../components/header-user/header.component&quot;;
+import { DashBoardComponent } from &quot;../../../../components/dash-board/dash-board.component&quot;;
+import { LoadingScreenComponent } from &quot;../../../../components/loading-screen/loading-screen.component&quot;;
+import { UserDataService } from &#x27;../../../../services/userData/user-data.service&#x27;;
+import { FetchModulesService } from &#x27;../../../../services/fetchModules/fetch-modules.service&#x27;;
+import { Patient } from &#x27;../../../../modules/types&#x27;;
+import { DPI } from &#x27;../../../../modules/types&#x27;;
+import { catchError } from &#x27;rxjs&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { ZXingScannerModule } from &#x27;@zxing/ngx-scanner&#x27;;
+import { CUSTOM_ELEMENTS_SCHEMA } from &#x27;@angular/core&#x27;;
+
+@Component({
+  selector: &#x27;app-acceuil-page&#x27;,
+  standalone: true,
+  imports: [HeaderComponent, DashBoardComponent, LoadingScreenComponent, CommonModule, FormsModule, ZXingScannerModule],
+  templateUrl: &#x27;./acceuil-page.component.html&#x27;,
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  styleUrl: &#x27;./acceuil-page.component.css&#x27;
+})
+
+export class AcceuilPageComponent implements OnInit {
+
+  isDashBoardVisible &#x3D; true;
+
+  isScanning &#x3D; false;
+  onScanSuccess(result: string) {
+    console.log(&#x27;QR Code scanned: &#x27;, result);
+  }
+  onScanFailure(error: any) {
+    console.error(&#x27;Scan failed: &#x27;, error);
+  }
+
+  user &#x3D; inject(UserDataService).getUserData() ;  //Njibou Data te3 user te3na 
+
+  isCreeDPI &#x3D; signal(false);
+  isRecherchePatient &#x3D; signal(false); //si on clique 3la recherche wella créer, ywellou vrai
+
+  updateDashboardVisibility(isVisible: boolean) {
+    console.log(&#x27;Dashboard visibility updated:&#x27;, isVisible);
+    this.isDashBoardVisible &#x3D; isVisible;
+  }
+
+  annulerRecherche(event: MouseEvent){
+
+    if ((event.target as HTMLElement).classList.contains(&#x27;grey-div&#x27;) || (event.target as HTMLElement).classList.contains(&#x27;annuler&#x27;) ) {
+      this.isCreeDPI.set(false);
+      this.isRecherchePatient.set(false);
+    }
+    
+  }
+
+  creerDPI(){
+    console.log(&quot;Créer DPI en cours de traitement...&quot;)
+  }
+  
+  
+  fetchServices &#x3D; inject(FetchModulesService);
+  listePatient &#x3D; signal&lt;Array&lt;Patient&gt;&gt;([]);
+  listeDPI &#x3D; signal&lt;Array&lt;DPI&gt;&gt;([]);
+
+  ngOnInit(): void { //when this page load, we fetch the list of patients
+      
+    this.fetchServices.fetchListePatient().pipe( //pipe to catch any error
+      catchError((err) &#x3D;&gt; {
+        console.log(err);
+        throw err;
+      })
+      ).subscribe((liste) &#x3D;&gt; {
+      this.listePatient.set(liste);
+    });
+
+    this.fetchServices.fetchListeDPIs().pipe( //pipe to catch any error
+      catchError((err) &#x3D;&gt; {
+        console.log(err);
+        throw err;
+      })
+      ).subscribe((liste) &#x3D;&gt; {
+        this.listeDPI.set(liste);
+        this.transformData()
+    })
+
+    
+  }
+
+  transformData(){ //id of DPI from string -&gt; int
+    this.listeDPI.update((liste) &#x3D;&gt; {
+      liste.forEach((d) &#x3D;&gt; d.id &#x3D; Number(d.id));
+      return liste;
+    })
+  }
+
+  searchedDPI &#x3D; signal&lt;DPI | null&gt;(null);
+  nssInput &#x3D; &#x27;&#x27;;
+
+  recherchePatient(){
+
+    console.log(&quot;Recherche patient en cours de traitement...&quot;);
+    const inputNSS &#x3D; +this.nssInput; // Get the user&#x27;s input
+    console.log(inputNSS);
+    console.log(this.listeDPI());
+    const patient &#x3D; this.listePatient().find((p) &#x3D;&gt; p.nss &#x3D;&#x3D;&#x3D; +inputNSS); 
+    console.log(patient);
+
+    if (patient) {
+      console.log(&quot;Patient ID_DPI:&quot;, patient.id_DPI); 
+
+      const dpi &#x3D; this.listeDPI().find((d) &#x3D;&gt; {
+        if(d.id &#x3D;&#x3D;&#x3D; patient.id_DPI) return d;
+        return undefined;
+      });
+
+      console.log(&quot;DPI found:&quot;, dpi);
+      if (dpi) {
+        this.searchedDPI.set(dpi); // Set the found DPI
+        console.log(&quot;DPI trouvé:&quot;, dpi);
+      } else {
+        this.searchedDPI.set(null);
+        alert(&quot;Aucun DPI trouvé pour ce patient.&quot;);
+      }
+    } else {
+      this.searchedDPI.set(null);
+      alert(&quot;Aucun patient trouvé avec le NSS saisi.&quot;);
+    }
+  }
+
+
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;app-header (changeDashEvent)&#x3D;&quot;updateDashboardVisibility($event)&quot; /&gt;
+
+&lt;div class&#x3D;&quot;content&quot;&gt;
+
+  &lt;div class&#x3D;&quot;empty-dash&quot;&gt;
+    &lt;app-dash-board *ngIf&#x3D;&quot;isDashBoardVisible&quot;&gt;&lt;/app-dash-board&gt;
+  &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;container&quot;&gt;
+
+    @defer { &lt;!--Defer is when component needs to load so we show something while loading--&gt;
+
+      &lt;h1&gt;Bienvenue chers medecin {{user.nom}} {{user.prenom}}&lt;/h1&gt;
+      
+      &lt;div class&#x3D;&quot;container2&quot;&gt;
+
+        &lt;div class&#x3D;&quot;card2&quot; &gt;
+          &lt;img src&#x3D;&quot;../../../../../assets/icons/new_DPI.png&quot; width&#x3D;&quot;100px&quot; &gt;   
+
+          &lt;button (click)&#x3D;&quot;isCreeDPI.set(true)&quot;&gt;  
+            &lt;p&gt;Créer DPI&lt;/p&gt;    
+          &lt;/button&gt;
+
+        &lt;/div&gt;
+
+
+        &lt;div class&#x3D;&quot;card&quot;&gt; 
+
+          &lt;button (click)&#x3D;&quot;isScanning &#x3D; !isScanning&quot;&gt;  
+            &lt;img src&#x3D;&quot;../../../../../assets/icons/QR.png&quot; width&#x3D;&quot;100px&quot; &gt;
+            &lt;p&gt;Rechercher DPI par code QR&lt;/p&gt;
+          &lt;/button&gt;
+
+          &lt;div *ngIf&#x3D;&quot;isScanning&quot;&gt;
+            &lt;zxing-scanner 
+              [start]&#x3D;&quot;true&quot; 
+              (scanSuccess)&#x3D;&quot;onScanSuccess($event)&quot;
+              (scanFailure)&#x3D;&quot;onScanFailure($event)&quot;&gt;
+            &lt;/zxing-scanner&gt;
+          &lt;/div&gt;
+
+
+          &lt;button (click)&#x3D;&quot;isRecherchePatient.set(true)&quot;&gt;  
+            &lt;img src&#x3D;&quot;../../../../../assets/icons/search.png&quot; width&#x3D;&quot;100px&quot; &gt;
+            &lt;p&gt;Rechercher DPI par NSS&lt;/p&gt;
+          &lt;/button&gt;
+
+        &lt;/div&gt;
+
+      &lt;/div&gt;
+
+      @if (isCreeDPI() || isRecherchePatient()) { &lt;!--Ida medecin cliaka l&#x27;un des deux boutons--&gt;
+
+        &lt;div class&#x3D;&quot;grey-div&quot; (click)&#x3D;&quot;annulerRecherche($event)&quot;&gt;
+
+          &lt;div class&#x3D;&quot;card3&quot;&gt;
+ 
+            &lt;h2&gt;{{isCreeDPI()? &quot;Créer DPI d&#x27;un patient&quot;:&quot;Rechercher un patient&quot;}}&lt;/h2&gt;
+
+            &lt;label&gt;Nss:&lt;/label&gt;
+            &lt;input type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;NSS&quot; [(ngModel)]&#x3D;&quot;nssInput&quot;&gt;  
+            
+            @if (isCreeDPI()) {
+              &lt;label&gt;Nom&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;nom&quot;&gt; 
+
+              &lt;label&gt;Prénom&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;prénom&quot;&gt;
+
+              &lt;label&gt;Nom d&#x27;utilisateur&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;nom d&#x27;utilisateur&quot;&gt;
+
+              &lt;label&gt;Addresse&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot; placeholder&#x3D;&quot;Addresse&quot;&gt;
+
+              &lt;label&gt;Date de naissance&lt;/label&gt;
+              &lt;input type&#x3D;&quot;date&quot;&gt;
+
+              &lt;label&gt;tel&lt;/label&gt;
+              &lt;input type&#x3D;&quot;tel&quot; placeholder&#x3D;&quot;téléphone&quot;&gt;
+            }
+
+            &lt;div class&#x3D;&quot;container2&quot;&gt;
+
+              &lt;button (click)&#x3D;&quot;isCreeDPI()? creerDPI() : recherchePatient()&quot;&gt;  
+                &lt;p&gt; {{isCreeDPI() ? &quot;Créer DPI&quot;:&quot;Recherche DPI&quot; }} &lt;/p&gt;    
+              &lt;/button&gt;
+
+              &lt;button class&#x3D;&quot;annuler&quot; (click)&#x3D;&quot;annulerRecherche($event)&quot;&gt;
+                annuler
+              &lt;/button&gt;
+
+            &lt;/div&gt;
+
+            @if (isRecherchePatient()) {
+              &lt;div class&#x3D;&quot;card&quot; *ngIf&#x3D;&quot;!searchedDPI &amp;&amp; nssInput&quot;&gt;
+                &lt;p&gt;Aucun DPI trouvé pour le NSS saisi.&lt;/p&gt;
+              &lt;/div&gt;
+            }
+
+          &lt;/div&gt;
+
+          @if (isRecherchePatient()) {&lt;div style&#x3D;&quot;margin-top: 300px;&quot;&gt;&lt;/div&gt;} 
+        &lt;/div&gt;
+
+      }
+  
+      
+    } @loading (minimum 0.5s) { &lt;!--Nesstennaw minimum 4s besh naffichiw @defer--&gt;
+      &lt;div class&#x3D;&quot;center-div&quot;&gt;
+        &lt;app-loading-screen /&gt;
+      &lt;/div&gt;
+    }
+  
+  &lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><app-header (changeDashEvent)="updateDashboardVisibility($event)" /><div class="content">  <div class="empty-dash">    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>  </div>  <div class="container">    @defer { <!--Defer is when component needs to load so we show something while loading-->      <h1>Bienvenue chers medecin {{user.nom}} {{user.prenom}}</h1>            <div class="container2">        <div class="card2" >          <img src="../../../../../assets/icons/new_DPI.png" width="100px" >             <button (click)="isCreeDPI.set(true)">              <p>Créer DPI</p>              </button>        </div>        <div class="card">           <button (click)="isScanning = !isScanning">              <img src="../../../../../assets/icons/QR.png" width="100px" >            <p>Rechercher DPI par code QR</p>          </button>          <div *ngIf="isScanning">            <zxing-scanner               [start]="true"               (scanSuccess)="onScanSuccess($event)"              (scanFailure)="onScanFailure($event)">            </zxing-scanner>          </div>          <button (click)="isRecherchePatient.set(true)">              <img src="../../../../../assets/icons/search.png" width="100px" >            <p>Rechercher DPI par NSS</p>          </button>        </div>      </div>      @if (isCreeDPI() || isRecherchePatient()) { <!--Ida medecin cliaka l\'un des deux boutons-->        <div class="grey-div" (click)="annulerRecherche($event)">          <div class="card3">             <h2>{{isCreeDPI()? "Créer DPI d\'un patient":"Rechercher un patient"}}</h2>            <label>Nss:</label>            <input type="text" placeholder="NSS" [(ngModel)]="nssInput">                          @if (isCreeDPI()) {              <label>Nom</label>              <input type="text" placeholder="nom">               <label>Prénom</label>              <input type="text" placeholder="prénom">              <label>Nom d\'utilisateur</label>              <input type="text" placeholder="nom d\'utilisateur">              <label>Addresse</label>              <input type="text" placeholder="Addresse">              <label>Date de naissance</label>              <input type="date">              <label>tel</label>              <input type="tel" placeholder="téléphone">            }            <div class="container2">              <button (click)="isCreeDPI()? creerDPI() : recherchePatient()">                  <p> {{isCreeDPI() ? "Créer DPI":"Recherche DPI" }} </p>                  </button>              <button class="annuler" (click)="annulerRecherche($event)">                annuler              </button>            </div>            @if (isRecherchePatient()) {              <div class="card" *ngIf="!searchedDPI && nssInput">                <p>Aucun DPI trouvé pour le NSS saisi.</p>              </div>            }          </div>          @if (isRecherchePatient()) {<div style="margin-top: 300px;"></div>}         </div>      }            } @loading (minimum 0.5s) { <!--Nesstennaw minimum 4s besh naffichiw @defer-->      <div class="center-div">        <app-loading-screen />      </div>    }    </div></div></div>'
+    var COMPONENTS = [{'name': 'AcceuilPageComponent', 'selector': 'app-acceuil-page'},{'name': 'AcceuilPageComponent', 'selector': 'app-acceuil-page'},{'name': 'AcceuilPageComponent', 'selector': 'app-acceuil-page'},{'name': 'AcceuilPageComponent', 'selector': 'app-acceuil-page'},{'name': 'AcceuilPageComponent', 'selector': 'app-acceuil-page'},{'name': 'AcceuilPageComponent', 'selector': 'app-acceuil-page'},{'name': 'AddAccountComponent', 'selector': 'app-add-account'},{'name': 'AjoutResultBilanComponent', 'selector': 'app-ajout-result-bilan'},{'name': 'AjoutSoinComponent', 'selector': 'app-ajout-soin'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BilansListeComponent', 'selector': 'app-bilans-liste'},{'name': 'ConsultationsComponent', 'selector': 'app-consultations'},{'name': 'ConsulterBilanComponent', 'selector': 'app-consulter-bilan'},{'name': 'ConsulterDPIComponent', 'selector': 'app-consulter-dpi'},{'name': 'DashBoardComponent', 'selector': 'app-dash-board'},{'name': 'GenererGraphComponent', 'selector': 'app-generer-graph'},{'name': 'GestionPatientsComponent', 'selector': 'app-gestion-patients'},{'name': 'HeaderAccueilComponent', 'selector': 'app-header-accueil'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'LoadingScreenComponent', 'selector': 'app-loading-screen'},{'name': 'LogInPageComponent', 'selector': 'app-log-in-page'},{'name': 'NotificationPageComponent', 'selector': 'app-notification-page'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrdonnancesAccueilComponent', 'selector': 'app-ordonnances-accueil'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'AcceuilPageComponent-2'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'AcceuilPageComponent-2.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

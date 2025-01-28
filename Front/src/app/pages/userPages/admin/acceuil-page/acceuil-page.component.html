@@ -16,7 +16,7 @@
       <div class="card2" >
         <img src="../../../../../assets/icons/new_DPI.png" width="100px" >   
 
-        <button (click)="isCreeDPI.set(true)">  
+        <button id="create-dpi-btn" (click)="isCreeDPI.set(true)">  
           <p>Créer DPI</p>    
         </button>
 
@@ -31,32 +31,32 @@
             <h2>Créer DPI d'un patient</h2>
 
             <label>Nss:</label>
-            <input type="text" placeholder="NSS" [(ngModel)]="patientData.nss"> 
+            <input id="nss" type="text" placeholder="NSS" [(ngModel)]="patientData.nss"> 
 
             <label>Nom</label>
-            <input type="text" placeholder="nom" [(ngModel)]="patientData.user.first_name"> 
+            <input id="nom" type="text" placeholder="nom" [(ngModel)]="patientData.user.first_name"> 
 
             <label>Prénom</label>
-            <input type="text" placeholder="prénom" [(ngModel)]="patientData.user.last_name">
+            <input id="prenom" type="text" placeholder="prénom" [(ngModel)]="patientData.user.last_name">
 
             <label>Nom d'utilisateur</label>
-            <input type="text" placeholder="nom d'utilisateur" [(ngModel)]="patientData.user.username">
+            <input id="user" type="text" placeholder="nom d'utilisateur" [(ngModel)]="patientData.user.username">
 
             <label>Addresse</label>
-            <input type="text" placeholder="Addresse" [(ngModel)]="patientData.address">
+            <input id="adresse" type="text" placeholder="Addresse" [(ngModel)]="patientData.address">
 
             <label>Date de naissance</label>
-            <input type="date" [(ngModel)]="patientData.date_naissance">
+            <input id="date_naissance" type="date" [(ngModel)]="patientData.date_naissance">
 
             <label>numero telephone</label>
-            <input type="tel" placeholder="téléphone" [(ngModel)]="patientData.phone_number">
+            <input id="num" type="tel" placeholder="téléphone" [(ngModel)]="patientData.phone_number">
 
             <label>mutuelle</label>
-            <input type="tel" placeholder="téléphone" [(ngModel)]="patientData.mutuelle">
+            <input id="mutuelle" type="tel" placeholder="téléphone" [(ngModel)]="patientData.mutuelle">
 
             <div class="container2">
 
-              <button (click)="creerDPI()">  
+              <button id="submit-btn" (click)="creerDPI()">  
                 créer DPI    
               </button>
 

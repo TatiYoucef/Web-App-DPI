@@ -1,0 +1,983 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>front documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">front documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  GenererGraphComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/pages/userPages/rab-lab-inf/generer-graph/generer-graph.component.ts</code>
+</p>
+
+
+
+
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-generer-graph</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">standalone</td>
+                <td class="col-md-9"><code>true</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">imports</td>
+                <td class="col-md-9">
+                            <code>FormsModule</code>
+                                <code><a href="../components/HeaderComponent.html" target="_self" >HeaderComponent</a></code>
+                                <code><a href="../components/DashBoardComponent.html" target="_self" >DashBoardComponent</a></code>
+                                <code><a href="../components/LoadingScreenComponent.html" target="_self" >LoadingScreenComponent</a></code>
+                            <code>CommonModule</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./generer-graph.component.html</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrl</td>
+                <td class="col-md-9"><code>./generer-graph.component.css</code></td>
+            </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#chart" >chart</a>
+                            </li>
+                            <li>
+                                    <span class="modifier"></span>
+                                <a href="#chartCanvas" >chartCanvas</a>
+                            </li>
+                            <li>
+                                <a href="#data" >data</a>
+                            </li>
+                            <li>
+                                <a href="#isDashBoardVisible" >isDashBoardVisible</a>
+                            </li>
+                            <li>
+                                <a href="#newItem" >newItem</a>
+                            </li>
+                            <li>
+                                <a href="#user" >user</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#addData" >addData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Async</span>
+                                <a href="#downloadGraph" >downloadGraph</a>
+                            </li>
+                            <li>
+                                <a href="#generateGraph" >generateGraph</a>
+                            </li>
+                            <li>
+                                <a href="#removeData" >removeData</a>
+                            </li>
+                            <li>
+                                <a href="#updateDashboardVisibility" >updateDashboardVisibility</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/pages/userPages/rab-lab-inf/generer-graph/generer-graph.component.ts:40</a></div>
+                            </td>
+                        </tr>
+
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addData"></a>
+                    <span class="name">
+                        <span ><b>addData</b></span>
+                        <a href="#addData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>addData()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="55"
+                                    class="link-to-prism">src/app/pages/userPages/rab-lab-inf/generer-graph/generer-graph.component.ts:55</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="downloadGraph"></a>
+                    <span class="name">
+                            <span class="modifier">Async</span>
+                        <span ><b>downloadGraph</b></span>
+                        <a href="#downloadGraph"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>downloadGraph()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="101"
+                                    class="link-to-prism">src/app/pages/userPages/rab-lab-inf/generer-graph/generer-graph.component.ts:101</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Promise&lt;void&gt;</code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="generateGraph"></a>
+                    <span class="name">
+                        <span ><b>generateGraph</b></span>
+                        <a href="#generateGraph"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>generateGraph()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="68"
+                                    class="link-to-prism">src/app/pages/userPages/rab-lab-inf/generer-graph/generer-graph.component.ts:68</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="removeData"></a>
+                    <span class="name">
+                        <span ><b>removeData</b></span>
+                        <a href="#removeData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>removeData()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="62"
+                                    class="link-to-prism">src/app/pages/userPages/rab-lab-inf/generer-graph/generer-graph.component.ts:62</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateDashboardVisibility"></a>
+                    <span class="name">
+                        <span ><b>updateDashboardVisibility</b></span>
+                        <a href="#updateDashboardVisibility"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateDashboardVisibility(isVisible: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="31"
+                                    class="link-to-prism">src/app/pages/userPages/rab-lab-inf/generer-graph/generer-graph.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>isVisible</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chart"></a>
+                    <span class="name">
+                        <span ><b>chart</b></span>
+                        <a href="#chart"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>Chart | null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/pages/userPages/rab-lab-inf/generer-graph/generer-graph.component.ts:37</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="chartCanvas"></a>
+                    <span class="name">
+                            <span class="modifier"></span>
+                        <span ><b>chartCanvas</b></span>
+                        <a href="#chartCanvas"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ElementRef&lt;HTMLCanvasElement&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(&#x27;chartCanvas&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/pages/userPages/rab-lab-inf/generer-graph/generer-graph.component.ts:36</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="data"></a>
+                    <span class="name">
+                        <span ><b>data</b></span>
+                        <a href="#data"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>literal type[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/pages/userPages/rab-lab-inf/generer-graph/generer-graph.component.ts:39</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isDashBoardVisible"></a>
+                    <span class="name">
+                        <span ><b>isDashBoardVisible</b></span>
+                        <a href="#isDashBoardVisible"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/pages/userPages/rab-lab-inf/generer-graph/generer-graph.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="newItem"></a>
+                    <span class="name">
+                        <span ><b>newItem</b></span>
+                        <a href="#newItem"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{ name: &#x27;&#x27;, value: 0 }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/pages/userPages/rab-lab-inf/generer-graph/generer-graph.component.ts:40</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="user"></a>
+                    <span class="name">
+                        <span ><b>user</b></span>
+                        <a href="#user"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>inject(UserDataService).getUserData()</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/pages/userPages/rab-lab-inf/generer-graph/generer-graph.component.ts:29</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, ElementRef, inject, signal, ViewChild } from &#x27;@angular/core&#x27;;
+import { CommonModule } from &#x27;@angular/common&#x27;;
+import { FormsModule } from &#x27;@angular/forms&#x27;;
+import { 
+  BarController,
+  BarElement, 
+  CategoryScale, 
+  LinearScale,
+  Title,
+  Tooltip,
+Legend, Chart } from &#x27;chart.js&#x27;;
+import html2canvas from &#x27;html2canvas&#x27;;
+import { UserDataService } from &#x27;../../../../services/userData/user-data.service&#x27;;
+import { HeaderComponent } from &quot;../../../../components/header-user/header.component&quot;;
+import { DashBoardComponent } from &quot;../../../../components/dash-board/dash-board.component&quot;;
+import { LoadingScreenComponent } from &quot;../../../../components/loading-screen/loading-screen.component&quot;;
+
+@Component({
+  selector: &#x27;app-generer-graph&#x27;,
+  standalone: true,
+  imports: [FormsModule, HeaderComponent, DashBoardComponent, LoadingScreenComponent, CommonModule],
+  templateUrl: &#x27;./generer-graph.component.html&#x27;,
+  styleUrl: &#x27;./generer-graph.component.css&#x27;
+})
+
+export class GenererGraphComponent {
+
+  isDashBoardVisible &#x3D; true;
+  user &#x3D; inject(UserDataService).getUserData() //Njibou Data te3 user te3na
+  
+  updateDashboardVisibility(isVisible: boolean) {
+    console.log(&#x27;Dashboard visibility updated:&#x27;, isVisible);
+    this.isDashBoardVisible &#x3D; isVisible;
+  }
+
+  @ViewChild(&#x27;chartCanvas&#x27;) chartCanvas!: ElementRef&lt;HTMLCanvasElement&gt;;
+  chart: Chart | null &#x3D; null;
+
+  data: { name: string; value: number }[] &#x3D; [];
+  newItem &#x3D; { name: &#x27;&#x27;, value: 0 };
+
+  constructor() {
+    // Register necessary Chart.js components
+    Chart.register(
+      BarController,
+      BarElement,
+      CategoryScale,
+      LinearScale,
+      Title,
+      Tooltip,
+      Legend
+    );
+  }
+
+  addData(): void {
+    if (this.newItem.name &amp;&amp; this.newItem.value &gt; 0) {
+      this.data.push({ ...this.newItem });
+      this.newItem &#x3D; { name: &#x27;&#x27;, value: 0 };
+    }
+  }
+
+  removeData(): void{
+    if(this.data.length &gt; 0){
+      this.data.splice(this.data.length - 1, 1);
+    }
+  }
+
+  generateGraph(): void {
+    if (this.chart) {
+      this.chart.destroy();
+    }
+
+    const labels &#x3D; this.data.map((item) &#x3D;&gt; item.name);
+    const values &#x3D; this.data.map((item) &#x3D;&gt; item.value);
+
+    this.chart &#x3D; new Chart(this.chartCanvas.nativeElement, {
+      type: &#x27;bar&#x27;,
+      data: {
+        labels,
+        datasets: [
+          {
+            label: &#x27;Résultats de patient&#x27;,
+            data: values,
+            backgroundColor: &#x27;#10B981&#x27;,
+            borderColor: &#x27;rgba(75, 192, 192, 1)&#x27;,
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+  }
+
+  async downloadGraph(): Promise&lt;void&gt; {
+    const canvas &#x3D; this.chartCanvas.nativeElement;
+    const image &#x3D; await html2canvas(canvas).then((canvas) &#x3D;&gt;
+      canvas.toDataURL(&#x27;image/png&#x27;)
+    );
+
+    const link &#x3D; document.createElement(&#x27;a&#x27;);
+    link.href &#x3D; image;
+    link.download &#x3D; &#x27;bar-graph.png&#x27;;
+    link.click();
+  }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;app-header (changeDashEvent)&#x3D;&quot;updateDashboardVisibility($event)&quot; /&gt;
+
+&lt;div class&#x3D;&quot;content&quot;&gt;
+
+  &lt;div class&#x3D;&quot;empty-dash&quot;&gt;
+    &lt;app-dash-board *ngIf&#x3D;&quot;isDashBoardVisible&quot;&gt;&lt;/app-dash-board&gt;
+  &lt;/div&gt;
+
+  &lt;div class&#x3D;&quot;container&quot;&gt;
+
+    @defer { &lt;!--Defer is when component needs to load so we show something while loading--&gt;
+
+      &lt;h2&gt;Générer un graphe&lt;/h2&gt;
+
+      &lt;div class&#x3D;&quot;card&quot;&gt;
+        &lt;label for&#x3D;&quot;name&quot;&gt;Name:&lt;/label&gt;
+        &lt;input type&#x3D;&quot;text&quot; [(ngModel)]&#x3D;&quot;newItem.name&quot; id&#x3D;&quot;name&quot; /&gt;
+
+        &lt;label for&#x3D;&quot;value&quot;&gt;Value:&lt;/label&gt;
+        &lt;input type&#x3D;&quot;number&quot; [(ngModel)]&#x3D;&quot;newItem.value&quot; id&#x3D;&quot;value&quot; /&gt;
+
+        &lt;button (click)&#x3D;&quot;addData()&quot;&gt;+&lt;/button&gt;
+        &lt;button (click)&#x3D;&quot;removeData()&quot;&gt;-&lt;/button&gt;
+      &lt;/div&gt;
+
+      @if (data.length &gt; 0) {
+
+        &lt;div class&#x3D;&quot;card2&quot;&gt;
+          &lt;ul&gt;
+            @for (item of data; track item.value) {
+              &lt;li&gt;Nom: {{item.name}}, Valeur: {{item.value}} &lt;/li&gt;
+            }
+          &lt;/ul&gt;
+          
+        &lt;/div&gt;
+        
+        &lt;button (click)&#x3D;&quot;generateGraph()&quot;&gt;Générer le graphe&lt;/button&gt;
+        &lt;button (click)&#x3D;&quot;downloadGraph()&quot;&gt;Télécharger le graphe&lt;/button&gt;
+
+        &lt;canvas #chartCanvas&gt;&lt;/canvas&gt;
+      }
+  
+      
+    } @loading (minimum 0.5s) { &lt;!--Nesstennaw minimum 4s besh naffichiw @defer--&gt;
+      &lt;div class&#x3D;&quot;center-div&quot;&gt;
+        &lt;app-loading-screen /&gt;
+      &lt;/div&gt;
+    }
+  
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><app-header (changeDashEvent)="updateDashboardVisibility($event)" /><div class="content">  <div class="empty-dash">    <app-dash-board *ngIf="isDashBoardVisible"></app-dash-board>  </div>  <div class="container">    @defer { <!--Defer is when component needs to load so we show something while loading-->      <h2>Générer un graphe</h2>      <div class="card">        <label for="name">Name:</label>        <input type="text" [(ngModel)]="newItem.name" id="name" />        <label for="value">Value:</label>        <input type="number" [(ngModel)]="newItem.value" id="value" />        <button (click)="addData()">+</button>        <button (click)="removeData()">-</button>      </div>      @if (data.length > 0) {        <div class="card2">          <ul>            @for (item of data; track item.value) {              <li>Nom: {{item.name}}, Valeur: {{item.value}} </li>            }          </ul>                  </div>                <button (click)="generateGraph()">Générer le graphe</button>        <button (click)="downloadGraph()">Télécharger le graphe</button>        <canvas #chartCanvas></canvas>      }            } @loading (minimum 0.5s) { <!--Nesstennaw minimum 4s besh naffichiw @defer-->      <div class="center-div">        <app-loading-screen />      </div>    }    </div></div></div>'
+    var COMPONENTS = [{'name': 'AcceuilPageComponent', 'selector': 'app-acceuil-page'},{'name': 'AcceuilPageComponent', 'selector': 'app-acceuil-page'},{'name': 'AcceuilPageComponent', 'selector': 'app-acceuil-page'},{'name': 'AcceuilPageComponent', 'selector': 'app-acceuil-page'},{'name': 'AcceuilPageComponent', 'selector': 'app-acceuil-page'},{'name': 'AcceuilPageComponent', 'selector': 'app-acceuil-page'},{'name': 'AddAccountComponent', 'selector': 'app-add-account'},{'name': 'AjoutResultBilanComponent', 'selector': 'app-ajout-result-bilan'},{'name': 'AjoutSoinComponent', 'selector': 'app-ajout-soin'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BilansListeComponent', 'selector': 'app-bilans-liste'},{'name': 'ConsultationsComponent', 'selector': 'app-consultations'},{'name': 'ConsulterBilanComponent', 'selector': 'app-consulter-bilan'},{'name': 'ConsulterDPIComponent', 'selector': 'app-consulter-dpi'},{'name': 'DashBoardComponent', 'selector': 'app-dash-board'},{'name': 'GenererGraphComponent', 'selector': 'app-generer-graph'},{'name': 'GestionPatientsComponent', 'selector': 'app-gestion-patients'},{'name': 'HeaderAccueilComponent', 'selector': 'app-header-accueil'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'LoadingScreenComponent', 'selector': 'app-loading-screen'},{'name': 'LogInPageComponent', 'selector': 'app-log-in-page'},{'name': 'NotificationPageComponent', 'selector': 'app-notification-page'},{'name': 'NotificationsComponent', 'selector': 'app-notifications'},{'name': 'OrdonnancesAccueilComponent', 'selector': 'app-ordonnances-accueil'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'GenererGraphComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'GenererGraphComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -20,8 +20,9 @@
       </div>
 
       <div *ngIf="ordonnances.length === 0" class="no-ordonnances">
-        <p>Aucune ordonnance disponible pour le moment.</p>
-      </div>
+            <img src="../../../../../assets/images/Document_empty.png" width="280px" >
+          <p>Aucune ordonnance disponible pour le moment.</p>
+        </div>
 
       <div *ngIf="ordonnances.length > 0" class="ordonnances-list">
         <ul>
@@ -49,7 +50,7 @@
               </div>
               </ul>
             </div>
-            <button *ngIf="!ordonnance.etat" (click)="isAjoutMedicament = true; idOrdo = ordonnance.id" style="font-family: Quicksand, serif; font-weight: 800;">Ajouter un médicament</button>
+            <button *ngIf="user.role === 'Medcin'"  (click)="isAjoutMedicament = true; idOrdo = ordonnance.id" style="font-family: Quicksand, serif; font-weight: 800;">Ajouter un médicament</button>
           </li>
 
         </ul>
