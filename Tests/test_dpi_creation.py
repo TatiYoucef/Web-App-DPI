@@ -10,7 +10,7 @@ import random
 def random_date(start_date, end_date):
     delta_days = (end_date - start_date).days
     random_days = random.randint(0, delta_days)
-    return start_date + timedelta(days=random_days)
+    return (start_date + timedelta(days=random_days)).strftime("%d/%m/%Y")
 
 
 # Initialize the WebDriver
@@ -58,9 +58,9 @@ try:
         EC.presence_of_element_located((By.ID, "nss"))
     )
     value = int(10000000000 * random.random())
-    input = str(value) 
+    nss_input = str(value) 
     time.sleep(0.5)
-    nss_field.send_keys(value)
+    nss_field.send_keys(nss_input)
 
     nom_field = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, "nom"))
@@ -97,8 +97,7 @@ try:
     
     start = datetime(1950, 1, 1).date()
     end = datetime(2025, 1, 1).date()
-    date_naissance = random_date(start, end)
-    input = date_naissance.strftime("%d/%m/%Y")
+    input = random_date(start, end)  # Random date as a valid string
     date_naissance_field.send_keys(input)
 
     num_field = WebDriverWait(driver, 10).until(
@@ -123,14 +122,20 @@ try:
         EC.presence_of_element_located((By.ID, "submit-btn"))
     )
 
-    time.sleep(2)
+    time.sleep(3)
     submit_button.click()
+    path = "http://127.0.0.1:8000/api/auth/get/patient/" + nss_input
+    driver.get(path)  
+    for _ in range(3):
+        driver.refresh()  
+        time.sleep(1)  
+    time.sleep(5)
 
     # Verify that the DPI has been created
-    # success_message = WebDriverWait(driver, 10).until(
-    #     EC.presence_of_element_located((By.CLASS_NAME, "success-message"))
-    # )
-    # assert "DPI créé avec succès" in success_m
+    success_message = WebDriverWait(driver, 10).until(
+        EC.presence_of_element_located((By.CLASS_NAME, "success-message"))
+    )
+    assert "DPI créé avec succès" in success_m
 
 finally:
     # Fermer le navigateur
