@@ -89,6 +89,7 @@ export class ConsultationsComponent implements OnInit {
       )
       .subscribe((data) => {
         this.consultations = data; // Update consultations list
+        this.consultations.reverse(); //latest one is the first to appear
         this.isLoading.set(false); // Turn off loading signal
       });
   }
@@ -126,17 +127,7 @@ export class ConsultationsComponent implements OnInit {
         raison_admission:""
       }
 
-      this.fetchServices.fetchConsultations(this.id).pipe(
-        catchError((err) => {
-          console.error('Error fetching consultations:', err);
-          this.errorMessage = 'Failed to load consultations. Please try again later.';
-          throw err;
-        })
-      )
-      .subscribe((data) => {
-        this.consultations = data; // Update consultations list
-        this.isLoading.set(false); // Turn off loading signal
-      });
+      this.loadConsultations();
 
     }
 

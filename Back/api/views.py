@@ -403,7 +403,43 @@ class IncompleteBilansBioView(APIView):
         bilans = BilanBiologique.objects.filter(rempli=False)
         serializer = BilanBiologiqueSerializer(bilans, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-    
+
+class FillResultatsAnalytiqueView(APIView):
+    def post(self, request, bilan_id):
+        try:
+            # Retrieve the BilanBiologique instance
+            bilan = BilanBiologique.objects.get(pk=bilan_id)
+        except BilanBiologique.DoesNotExist:
+            return Response({"error": "BilanBiologique not found."}, status=status.HTTP_404_NOT_FOUND)
+        
+        # Retrieve data from request
+        records_data = request.data.get('resultats_analytiques', [])
+        
+        if not records_data:
+            return Response({"error": "No resultats_analytiques provided."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        created_records = []
+        
+        # Populate resultats_analytiques with value=None
+        for record_data in records_data:
+            parametre = record_data.get("parametre")
+            unite = record_data.get("unite")
+            
+            if not parametre or not unite:
+                return Response(
+                    {"error": "Each record must have 'parametre' and 'unite' filled."},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            
+            # Create the MedcalRecord instance
+            medical_record = MedcalRecord.objects.create(parametre=parametre, unite=unite, value=None)
+            bilan.resultats_analytiques.add(medical_record)
+            created_records.append(medical_record)
+        
+        # Serialize the updated BilanBiologique
+        bilan_serializer = BilanBiologiqueSerializer(bilan)
+        return Response(bilan_serializer.data, status=status.HTTP_200_OK)
+
 class RemplirBilanBioView(APIView):
 
     def put(self, request, bilan_id):

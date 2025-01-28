@@ -77,7 +77,15 @@ export const routes: Routes = [
   },
 
   {
-    path :'patient/consulter-DPI/:id1/Bilans/:id2' , //id1: id de patient / id2: id de bilan
+    path :'patient/consulter-DPI/:id1/Bilans/:id2/bio' , //id1: id de patient / id2: id de bilan
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/DPI/consulter-bilan/consulter-bilan.component");
+      return m.ConsulterBilanComponent;
+    }
+  },
+
+  {
+    path :'patient/consulter-DPI/:id1/Bilans/:id2/radio' , //id1: id de patient / id2: id de bilan
     loadComponent: async () => {
       const m = await import("./pages/userPages/DPI/consulter-bilan/consulter-bilan.component");
       return m.ConsulterBilanComponent;
@@ -125,7 +133,15 @@ export const routes: Routes = [
   },
 
   {
-    path :'medecin/consulter-DPI/:id1/Bilans/:id2' , //id1: id de patient / id2: id de bilan
+    path :'medecin/consulter-DPI/:id1/Bilans/:id2/bio' , //id1: id de patient / id2: id de bilan
+    loadComponent: async () => {
+      const m = await import("./pages/userPages/DPI/consulter-bilan/consulter-bilan.component");
+      return m.ConsulterBilanComponent;
+    }
+  },
+
+  {
+    path :'medecin/consulter-DPI/:id1/Bilans/:id2/radio' , //id1: id de patient / id2: id de bilan
     loadComponent: async () => {
       const m = await import("./pages/userPages/DPI/consulter-bilan/consulter-bilan.component");
       return m.ConsulterBilanComponent;

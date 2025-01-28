@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserRegistrationView , DossierConsultationCreatView, AddMedicamentsToOrdonnanceView, SGPHValidateOrdonnanceView, PatientOrdonnanceListView, UpdateAntecedantsView, PatientConsultationListView, ModifySoinsListView, LatestSoinListView, IncompleteBilanRadioPatientView, RemplirBilanRadioView, IncompleteBilansRadioView, RemplirBilanBioView , IncompleteBilanBioPatientView,  IncompleteBilansBioView , ListPatientHospitalisedView, ToggleEnCoursTraitementView,  PatientRegistrationView , MedcinRegistrationView , UserLoginView ,PatientList , PatientByNSSView ,Patientwithoutaacounts ,AdminRegistrationView, OrdonnanceCreatView , OrdonnanceList,DossierPatient,DossierOrdonnanceCreatView,LaborantinRegistrationView,RadiologueRegistrationView , InfirmierRegistrationView,MedcinList, PatientDetail,AdminUpdatePatient,BilanBiologiqueCreateView,BilanBiogiqueView, BilanRadiologiqueCreateView, BilanRadiologiqueView , BilanRadiologiqueView_radiologue,BilanView ,BilanRadioView,BilanBioView
+from .views import UserRegistrationView , FillResultatsAnalytiqueView, DossierConsultationCreatView, AddMedicamentsToOrdonnanceView, SGPHValidateOrdonnanceView, PatientOrdonnanceListView, UpdateAntecedantsView, PatientConsultationListView, ModifySoinsListView, LatestSoinListView, IncompleteBilanRadioPatientView, RemplirBilanRadioView, IncompleteBilansRadioView, RemplirBilanBioView , IncompleteBilanBioPatientView,  IncompleteBilansBioView , ListPatientHospitalisedView, ToggleEnCoursTraitementView,  PatientRegistrationView , MedcinRegistrationView , UserLoginView ,PatientList , PatientByNSSView ,Patientwithoutaacounts ,AdminRegistrationView, OrdonnanceCreatView , OrdonnanceList,DossierPatient,DossierOrdonnanceCreatView,LaborantinRegistrationView,RadiologueRegistrationView , InfirmierRegistrationView,MedcinList, PatientDetail,AdminUpdatePatient,BilanBiologiqueCreateView,BilanBiogiqueView, BilanRadiologiqueCreateView, BilanRadiologiqueView , BilanRadiologiqueView_radiologue,BilanView ,BilanRadioView,BilanBioView
 
 urlpatterns = [
   
@@ -38,6 +38,7 @@ urlpatterns = [
 
     path('auth/post/patient/traitement/<int:pk>', ToggleEnCoursTraitementView.as_view() , name='change_state_hospital'),
     path('auth/post/rabLabInf/patient/incBilanBio/update/<int:bilan_id>', RemplirBilanBioView.as_view() , name='bilanBio_update'),
+    path('auth/post/medecin/patient/incBilanBio/fill/<int:bilan_id>', FillResultatsAnalytiqueView.as_view() , name='bilanBio_fill'),
     path('auth/post/rabLabInf/patient/incBilanRadio/update/<int:bilan_id>', RemplirBilanRadioView.as_view() , name='bilanRadio_update'),
     path('auth/post/patient/dossier/<int:dossier_id>/bilanbio' , BilanBiologiqueCreateView.as_view() , name='create_bilan'),
     path("auth/post/patient/dossier/<int:dossier_id>/bilanRadio",BilanRadiologiqueCreateView.as_view(), name ="BilanRadio-create"),

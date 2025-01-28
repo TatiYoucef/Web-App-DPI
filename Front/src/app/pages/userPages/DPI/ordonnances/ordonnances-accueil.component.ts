@@ -82,6 +82,7 @@ export class OrdonnancesAccueilComponent implements OnInit {
       ).subscribe(async (liste) => {
     
       this.ordonnances = liste;  
+      this.ordonnances.reverse();
 
     })
 
@@ -120,6 +121,7 @@ export class OrdonnancesAccueilComponent implements OnInit {
         ).subscribe(async (liste) => {
       
         this.ordonnances = liste;  
+        this.ordonnances.reverse();
   
       })
 
@@ -157,7 +159,7 @@ export class OrdonnancesAccueilComponent implements OnInit {
             ).subscribe(async (liste) => {
           
             this.ordonnances = liste;  
-      
+            this.ordonnances.reverse();
           })
 
           this.newMed = {
