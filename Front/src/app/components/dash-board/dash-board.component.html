@@ -24,7 +24,7 @@
 
   <!-- Option pour les laborantins : générer un graphe -->
   @if (user.role === "Laborantin") {
-    <button (click)="router.navigate(['rabLabInf/geneGraph'])">
+    <button (click)="router.navigate(['rabLabInf',user.id,'geneGraph'])">
       <div class="button-div">
         <img src="../../../assets/icons/ic_graph.png" width="25px" height="25px">
         <p>Générer un graphe</p>
