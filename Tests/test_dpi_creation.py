@@ -71,15 +71,11 @@ try:
     # Fill in the form fields on the frontend
     WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, "nss"))
-<<<<<<< HEAD
     )
     value = int(10000000000 * random.random())
     nss_input = str(value) 
     time.sleep(0.5)
     nss_field.send_keys(nss_input)
-=======
-    ).send_keys(nss)
->>>>>>> 2a65d154614a4eb83d0380a00246b5a4d41d5864
 
     WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, "nom"))
@@ -99,16 +95,12 @@ try:
 
     WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, "date_naissance"))
-<<<<<<< HEAD
     )
     
     start = datetime(1950, 1, 1).date()
     end = datetime(2025, 1, 1).date()
     input = random_date(start, end)  # Random date as a valid string
     date_naissance_field.send_keys(input)
-=======
-    ).send_keys(date_naissance)
->>>>>>> 2a65d154614a4eb83d0380a00246b5a4d41d5864
 
     WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, "num"))
@@ -122,12 +114,8 @@ try:
     submit_button = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.ID, "submit-btn"))
     )
-<<<<<<< HEAD
 
     time.sleep(3)
-=======
-    time.sleep(2)
->>>>>>> 2a65d154614a4eb83d0380a00246b5a4d41d5864
     submit_button.click()
     path = "http://127.0.0.1:8000/api/auth/get/patient/" + nss_input
     driver.get(path)  
@@ -136,37 +124,11 @@ try:
         time.sleep(1)  
     time.sleep(5)
 
-<<<<<<< HEAD
     # Verify that the DPI has been created
     success_message = WebDriverWait(driver, 10).until(
         EC.presence_of_element_located((By.CLASS_NAME, "success-message"))
     )
     assert "DPI créé avec succès" in success_m
-=======
-    # Wait for the frontend success message
-    success_message = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.CLASS_NAME, "success-message"))
-    )
-    assert "DPI créé avec succès" in success_message.text
-    print("Frontend: DPI created successfully!")
-
-    # Verify the data in the backend
-    response = requests.get(f"{BACKEND_URL}/dpi/{nss}")  # Replace with your backend's DPI retrieval endpoint
-    if response.status_code == 200:
-        backend_data = response.json()
-        assert backend_data["nss"] == nss
-        assert backend_data["nom"] == nom
-        assert backend_data["prenom"] == prenom
-        assert backend_data["user"] == user
-        assert backend_data["adresse"] == adresse
-        assert backend_data["date_naissance"] == datetime.strptime(date_naissance, "%d/%m/%Y").strftime("%Y-%m-%d")
-        assert backend_data["num"] == num
-        assert backend_data["mutuelle"] == mutuelle
-        print("Backend: Data verified successfully!")
-    else:
-        print(f"Backend verification failed! Status code: {response.status_code}")
-        print("Response:", response.text)
->>>>>>> 2a65d154614a4eb83d0380a00246b5a4d41d5864
 
 finally:
     # Close the browser
