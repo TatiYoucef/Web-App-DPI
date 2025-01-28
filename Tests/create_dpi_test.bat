@@ -1,31 +1,3 @@
-@REM @echo off
-@REM cd /d "%~dp0"
-
-@REM :: Start Angular server
-@REM start cmd /k "cd ../Front && ng serve"
-
-@REM :: Wait for Angular server to start
-@REM echo Waiting for Angular server to start...
-@REM :waitForNg
-@REM for /f "tokens=2 delims=:" %%I in ('netstat -an ^| find ":4200"') do (
-@REM     if "%%I"=="LISTENING" (
-@REM         goto ngStarted
-@REM     )
-@REM )
-@REM timeout /t 1 >nul
-@REM echo ...
-@REM goto waitForNg
-
-@REM :ngStarted
-@REM echo Angular server is running. Proceeding...
-
-@REM :: Start the backend server
-@REM start cmd /k "cd ../Back && python manage.py runserver"
-
-@REM :: Run the Python script
-@REM start cmd /k "python test_dpi_creation.py"
-
-
 @echo off
 cd /d "%~dp0"
 
@@ -46,10 +18,10 @@ if %ERRORLEVEL% EQU 0 (
 ) else (
     timeout /t 1 /nobreak > nul
     set /a TIMEOUT_COUNTER+=1
-    
+
     :: Show progress
     echo Waiting... %TIMEOUT_COUNTER%/%TIMEOUT_LIMIT% seconds
-    
+
     :: Check if we've exceeded the timeout limit
     if %TIMEOUT_COUNTER% GEQ %TIMEOUT_LIMIT% (
         echo Timeout waiting for Angular server to start!
@@ -72,8 +44,14 @@ start cmd /k "cd ../Back && python manage.py runserver"
 :: Add a small delay before starting the Python script
 timeout /t 5 /nobreak > nul
 
-:: Run the Python script
+:: Run the frontend Selenium test script
 start cmd /k "python test_dpi_creation.py"
 
-echo All services have been started!
+:: Add a delay to ensure backend processes complete
+timeout /t 5 /nobreak > nul
+
+:: Run the backend API test script
+start cmd /k "python test_backend_dpi.py"
+
+echo All services and tests have been executed!
 pause
