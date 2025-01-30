@@ -24,8 +24,8 @@
         <li *ngFor="let consultation of consultations" class="consultation-item" (click)="showDetails(consultation)">
           <div class="profile">
             <h3>Consultation ID : {{ consultation.id }}</h3>
-            <p><strong>Médecin traitant :</strong> {{ consultation.medcin_nom }}</p>
-            <p><strong>Date :</strong> {{ consultation.date | date }}</p>
+            <p><strong>id de médecin traitant :</strong> {{ consultation.medcin }}</p>
+            <p><strong>Date :</strong> {{ consultation.date.replace("T"," à ").replace("+01:00",'')  }}</p>
           </div>
         </li>
       </ul>
