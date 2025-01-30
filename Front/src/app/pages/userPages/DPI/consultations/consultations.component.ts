@@ -9,7 +9,7 @@ import { catchError } from 'rxjs';
 import { UserDataService } from '../../../../services/userData/user-data.service';
 import { FormsModule } from '@angular/forms';
 import { PostModulesService } from '../../../../services/postModules/post-modules.service';
-import { Patient } from '../../../../modules/types';
+import { Consultation, Patient } from '../../../../modules/types';
 
 @Component({
   selector: 'app-consultations',
@@ -43,7 +43,7 @@ export class ConsultationsComponent implements OnInit {
   postServices = inject(PostModulesService);
   patient !: Patient;
 
-  consultations: any[] = []; // List of consultations
+  consultations: Consultation[] = []; // List of consultations
   selectedConsultation: any = null; // Selected consultation details for popup
   isPopupVisible = signal(false); // Popup visibility signal
   isLoading = signal(true); // Loading signal

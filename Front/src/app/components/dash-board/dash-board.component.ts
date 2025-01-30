@@ -17,10 +17,21 @@ export class DashBoardComponent {
   router = inject(Router);
 
   // Récupération des informations de l'utilisateur courant
-  user = inject(UserDataService).getUserData();
+  userServices = inject(UserDataService);
+  user = this.userServices.getUserData();
 
   // Fonction pour naviguer vers la page de déconnexion
   goToDisconnect() {
+
+    this.userServices.setUserData({
+      id: 0,
+      first_name: "???",
+      last_name: "???",
+      username: "???",
+      email: "???",
+      role: "???",
+    })
+
     this.router.navigate([""]);
   }
 

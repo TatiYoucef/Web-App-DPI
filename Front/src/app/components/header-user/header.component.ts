@@ -25,8 +25,23 @@ export class HeaderComponent implements OnInit{
 
   ngOnInit(): void {
 
-    if(this.user.role === "???"){
-      alert("Vous devez s'authentifier pour naviguer à cette route")
+    if(this.user.role != "Patient" && this.router.url.includes('patient')){
+      alert("Vous devez s'authentifier en tant que patient pour naviguer à cette page")
+      this.router.navigate(['']);
+    }
+
+    if(this.user.role != "Medcin" && this.router.url.includes('medecin')){
+      alert("Vous devez s'authentifier en tant que medecin pour naviguer à cette page")
+      this.router.navigate(['']);
+    }
+
+    if(this.user.role != "Administratif" && this.router.url.includes('admin')){
+      alert("Vous devez s'authentifier en tant que medecin pour naviguer à cette page")
+      this.router.navigate(['']);
+    }
+
+    if(this.user.role != "Radiologue" && this.user.role != "Laborantin"  && this.user.role != "Infirmier" && this.router.url.includes('rabLabInf')){
+      alert("Vous devez s'authentifier en tant que Radio/Labo/Infirmier pour naviguer à cette page")
       this.router.navigate(['']);
     }
 
