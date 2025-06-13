@@ -55,3 +55,7 @@ start cmd /k "python test_backend_dpi.py"
 
 echo All services and tests have been executed!
 pause
+
+
+
+:: Just a test line : memoryCTF{n0st41g1c_d4y5}
